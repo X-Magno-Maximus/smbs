@@ -167,3 +167,4 @@ html[data-theme="dark"] .profile-settings-card i{background:#244039;color:#b9f3e
 html[data-theme="dark"] .acknowledge-row button.acknowledged{background:#7dd3bd;color:#10211c}
 @media (max-width:899px){.profile-settings-card{grid-template-columns:1fr 1fr}.support-workspace{grid-template-columns:1fr}.support-start{align-self:stretch}.support-access-form{min-height:0}}
 @media (max-width:599px){.profile-settings-card{grid-template-columns:1fr}.acknowledge-row{align-items:stretch;flex-direction:column}.acknowledge-row button{width:100%}}
+.section-title[hidden]{display:none}
