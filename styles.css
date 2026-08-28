@@ -115,7 +115,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 /* Header preferences */
 .bell>span{font-size:.92rem;filter:grayscale(1);line-height:1}
 .product-stack{position:relative;display:flex;align-items:center}
-.header-preferences{position:absolute;right:0;top:calc(100% + .55rem);display:flex;align-items:center;gap:.35rem;z-index:25}
+.header-preferences{position:absolute;right:0;top:calc(100% + 1.05rem);display:flex;align-items:center;gap:.35rem;z-index:25}
 .header-preferences button{height:2rem;border:1px solid #b8c8c2;border-radius:.5rem;background:#fff;color:#29443b;display:flex;align-items:center;justify-content:center;gap:.35rem;padding:0 .55rem;font-size:.58rem;font-weight:700;box-shadow:0 .25rem .8rem #20352e14}
 .header-preferences button:hover{background:#edf8f4;border-color:#2b7b69}
 #languageToggle span{color:#71807a}
@@ -134,4 +134,36 @@ html[data-theme="dark"] .pulse-card .pulse-icon{background:#24352f!important}
 html[data-theme="dark"] .quick-nav button[data-view="Overview"]{color:#c7d2fe}html[data-theme="dark"] .quick-nav button[data-view="Orders"]{color:#7dd3fc}html[data-theme="dark"] .quick-nav button[data-view="Products"]{color:#99f6e4}html[data-theme="dark"] .quick-nav button[data-view="Inventory"]{color:#fde68a}html[data-theme="dark"] .quick-nav button[data-view="Marketplace"]{color:#e9d5ff}html[data-theme="dark"] .quick-nav button[data-view="Logistics"]{color:#a5f3fc}html[data-theme="dark"] .quick-nav button[data-view="Accounting"]{color:#bbf7d0}html[data-theme="dark"] .quick-nav button[data-view="Reports"]{color:#fecdd3}
 html[data-theme="dark"] .support-button{background:#18342c;color:#b9f3e2;border-color:#3d675b}
 html[data-theme="dark"] .header-preferences button:hover{background:#244039}
-@media (max-width:599px){.product-stack{position:static}.header-preferences{right:.8rem;top:4.4rem}.page{padding-top:3.5rem}.bell{display:block}.header-preferences button{height:1.9rem}.header-preferences button span{display:none}}
+@media (max-width:599px){.product-stack{position:static}.header-preferences{right:.8rem;top:4.9rem}.page{padding-top:4rem}.bell{display:block}.header-preferences button{height:1.9rem}.header-preferences button span{display:none}}
+
+/* Profile inside Settings */
+.profile-settings-card{display:grid;grid-template-columns:minmax(14rem,1fr) repeat(2,minmax(11rem,.7fr)) auto;align-items:center;gap:1rem;margin-bottom:.8rem}
+.profile-settings-card>div{display:flex;align-items:center;gap:.7rem}
+.profile-settings-card i{width:2.6rem;height:2.6rem;display:grid;place-items:center;border-radius:50%;background:#e5f3ee;color:#155e55;font-style:normal;font-weight:800}
+.profile-settings-card>div span{display:flex;flex-direction:column;gap:.2rem}.profile-settings-card h3{margin:0}.profile-settings-card small{font-size:.55rem;color:var(--muted)}
+.profile-settings-card p{display:flex;flex-direction:column;gap:.25rem;margin:0}.profile-settings-card p span{font-size:.53rem;color:var(--muted)}.profile-settings-card p b{font-size:.64rem}
+.profile-settings-card>button{height:2rem;border:1px solid #b8c8c2;border-radius:.45rem;background:#fff;color:var(--green);padding:0 .7rem;font-size:.58rem;font-weight:700}
+
+/* Gated Tech Support access */
+.support-workspace{display:grid;grid-template-columns:minmax(28rem,1.45fr) minmax(18rem,.55fr);gap:.8rem;align-items:start}
+.support-access-form{min-height:22rem;display:flex;flex-direction:column;gap:.8rem}
+.support-title{display:flex;align-items:center;gap:.8rem;padding-bottom:.8rem;border-bottom:1px solid var(--line)}
+.support-title>i{width:3.2rem;height:3.2rem;display:grid;place-items:center;border-radius:50%;background:#155e55;color:#fff;font-style:normal;font-size:1.1rem}
+.support-title>span{display:flex;flex-direction:column;gap:.2rem}.support-title h3{margin:0}.support-title p{margin:0;font-size:.58rem;color:var(--muted)}
+.support-access-form>label{display:flex;flex-direction:column;gap:.35rem;font-size:.6rem;font-weight:700}
+.support-access-form input{height:2.55rem;border:1px solid #b8c8c2;border-radius:.5rem;background:#fff;color:var(--ink);padding:0 .7rem;font-size:.7rem}
+.acknowledge-row{display:flex;align-items:center;gap:1rem;border:1px solid #c7d8d2;border-radius:.6rem;background:#f6faf8;padding:.7rem}
+.acknowledge-row>span{display:flex;flex:1;flex-direction:column;gap:.2rem}.acknowledge-row b{font-size:.62rem}.acknowledge-row small{font-size:.52rem;color:var(--muted)}
+.acknowledge-row button{height:2.1rem;border:1px solid #7da99d;border-radius:.45rem;background:#fff;color:#155e55;padding:0 .7rem;font-size:.58rem;font-weight:800}
+.acknowledge-row button.acknowledged{background:#155e55;color:#fff}
+.support-note{display:flex;align-items:center;gap:.35rem;margin:0;font-size:.52rem;color:var(--muted)}
+.support-note button{width:1.1rem;height:1.1rem;border:1px solid #78968d;border-radius:50%;background:transparent;color:var(--ink);padding:0;font-size:.56rem;font-weight:800}
+.support-side{display:flex;flex-direction:column;gap:.8rem}
+.support-start{align-self:flex-end;min-width:13rem}
+.support-start:disabled{background:#aeb8b4;color:#eef1f0;cursor:not-allowed;opacity:.72}
+.quick-help{width:100%}.support-status{min-height:1rem;margin:0;color:#166534;font-size:.56rem;font-weight:700}
+html[data-theme="dark"] .profile-settings-card>button,html[data-theme="dark"] .support-access-form input,html[data-theme="dark"] .acknowledge-row,html[data-theme="dark"] .acknowledge-row button{background:#101a17;color:var(--ink);border-color:#42584f}
+html[data-theme="dark"] .profile-settings-card i{background:#244039;color:#b9f3e2}
+html[data-theme="dark"] .acknowledge-row button.acknowledged{background:#7dd3bd;color:#10211c}
+@media (max-width:899px){.profile-settings-card{grid-template-columns:1fr 1fr}.support-workspace{grid-template-columns:1fr}.support-start{align-self:stretch}.support-access-form{min-height:0}}
+@media (max-width:599px){.profile-settings-card{grid-template-columns:1fr}.acknowledge-row{align-items:stretch;flex-direction:column}.acknowledge-row button{width:100%}}
