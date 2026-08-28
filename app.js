@@ -8,7 +8,7 @@ $("#menu").onclick=()=>{sidebar.classList.add("open");$("#scrim").classList.add(
 const accountTrigger=$("#accountTrigger"), accountMenu=$("#accountMenu");
 const closeAccount=()=>{accountMenu.hidden=true;accountTrigger.setAttribute('aria-expanded','false')};
 accountTrigger.onclick=e=>{e.stopPropagation();const opening=accountMenu.hidden;accountMenu.hidden=!opening;accountTrigger.setAttribute('aria-expanded',String(opening))};
-$('[data-view]').forEach(b=>b.onclick=()=>{const view=b.dataset.view;$('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===view));closeMenu();closeAccount()});
+document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{const view=b.dataset.view;document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===view));closeMenu();closeAccount()});
 $$('.mode button').forEach(b=>b.onclick=()=>{$$('.mode button').forEach(x=>x.classList.remove('active'));b.classList.add('active')});
 const openModal=()=>{modal.hidden=false;document.body.classList.add('locked');$("#formBody").hidden=false;$("#success").hidden=true};const closeModal=()=>{modal.hidden=true;document.body.classList.remove('locked')};$$('[data-add]').forEach(b=>b.onclick=openModal);$$('[data-cancel]').forEach(b=>b.onclick=closeModal);
 upload.onclick=()=>photo.click();photo.onchange=()=>{const file=photo.files[0];if(file){upload.style.backgroundImage=`url(${URL.createObjectURL(file)})`;upload.classList.add('has-photo')}};
