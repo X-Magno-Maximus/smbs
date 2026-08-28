@@ -4,3 +4,17 @@
 /* Mobile: up to 599px */@media (max-width:599px){.sidebar{width:min(18rem,86vw);transform:translateX(-100%);transition:.25s;box-shadow:1rem 0 3rem #132e2333}.sidebar.open{transform:none}.close{display:block}.scrim.show{display:block;position:fixed;inset:0;border:0;background:#10231e88;z-index:25}main{margin-left:0}header{height:4rem;padding:0 .75rem;gap:.5rem}.menu{display:block}.search kbd{display:none}.primary[data-add]{width:2.4rem;padding:0}.primary[data-add] span{display:none}.page{padding:1.2rem .8rem 2rem}.welcome{align-items:flex-start;flex-direction:column;gap:1rem}.welcome h1{font-size:1.55rem}.mode{width:100%}.mode button{flex:1;padding:0 .3rem}.notice{align-items:flex-start;flex-wrap:wrap}.notice button{margin-left:1.7rem}.metrics,.grid,.lower{grid-template-columns:minmax(0,1fr)}.chart{height:11rem}.chart-card{padding:.75rem}.card{padding:.85rem}.form-grid{grid-template-columns:1fr}.upload{height:9.5rem}.modal-wrap{padding:.4rem}.modal{padding:1rem}.fields>div{grid-template-columns:1fr}.tax{flex-wrap:wrap}.tax>span{min-width:100%}.actions>*{flex:1}.product b{max-width:10rem}}
 /* Wide PC: 1280px and above */@media (min-width:1280px){.page{padding-left:clamp(2.2rem,4vw,4.5rem);padding-right:clamp(2.2rem,4vw,4.5rem)}.metrics article{min-height:7.2rem}.chart{height:15rem}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* Horizontal workspace and account navigation */
+.account-actions{margin-left:auto;display:flex;align-items:center;gap:.35rem}
+.account-actions button{height:2.4rem;border:1px solid var(--line);border-radius:.55rem;background:#fff;color:#59635f;padding:0 .7rem;font-size:.68rem;display:flex;align-items:center;gap:.35rem}
+.account-actions button:hover,.account-actions button.active{background:var(--pale);color:var(--green);font-weight:700}
+.account-actions+.bell{margin-left:0}
+.welcome{margin-bottom:.8rem}
+.quick-nav{display:flex;flex-direction:row;align-items:center;gap:.25rem;width:100%;overflow-x:auto;scrollbar-width:thin;padding:.3rem;margin:0 0 1rem;border:1px solid var(--line);border-radius:.7rem;background:#fff}
+.quick-nav p{display:none}
+.quick-nav button{height:2.15rem;flex:1 0 auto;justify-content:center;padding:0 .55rem;font-size:.66rem}
+.quick-nav button em{margin-left:.15rem}
+@media (min-width:900px){.sidebar>nav{display:none}}
+@media (max-width:899px){.quick-nav{display:none}.account-actions{margin-left:auto}}
+@media (max-width:599px){.account-actions button{width:2.4rem;padding:0;justify-content:center}.account-actions button span{display:none}}
