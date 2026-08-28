@@ -18,3 +18,51 @@
 @media (min-width:900px){.sidebar>nav{display:none}}
 @media (max-width:899px){.quick-nav{display:none}.account-actions{margin-left:auto}}
 @media (max-width:599px){.account-actions button{width:2.4rem;padding:0;justify-content:center}.account-actions button span{display:none}}
+
+/* Business Pulse views */
+.view-host{scroll-margin-top:5.5rem}
+.overview-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.8rem}
+.pulse-card{min-width:0;min-height:10rem;position:relative;overflow:hidden;text-align:left;border:1px solid var(--line);border-radius:.75rem;background:#fff;padding:1rem;display:flex;flex-direction:column;align-items:flex-start;cursor:pointer}
+.pulse-card:hover,.pulse-card:focus-visible{border-color:#a9cac0;box-shadow:0 .45rem 1.2rem #183d3212;transform:translateY(-1px)}
+.pulse-card small{font-size:.5rem;letter-spacing:.07rem;color:#87908c;font-weight:700}
+.pulse-card strong{font:700 1.18rem Georgia;margin:.45rem 0 .1rem}
+.pulse-card em{font-size:.52rem;color:var(--green);font-style:normal;font-weight:700}
+.pulse-icon{position:absolute;right:.85rem;top:.8rem;width:1.9rem;height:1.9rem;display:grid;place-items:center;border-radius:.5rem;background:var(--pale);color:var(--green);font-size:.72rem;font-weight:700}
+.sparkline{display:block;width:100%;height:3.1rem;margin:.2rem 0}
+.detail-head{display:flex;align-items:center;gap:1rem;margin-bottom:.8rem}
+.detail-head>span{display:flex;flex-direction:column;gap:.2rem}
+.detail-head h2{font:700 1.35rem Georgia;margin:0}
+.detail-head small{font-size:.62rem;color:var(--muted)}
+.back-button{height:2.15rem;border:1px solid #bfd0ca;border-radius:.5rem;background:#fff;color:var(--green);padding:0 .7rem;font-size:.65rem;font-weight:700}
+.back-button:hover{background:var(--pale)}
+.detail-card{background:#fff;border:1px solid var(--line);border-radius:.75rem;padding:1rem}
+.detail-card h3{font-size:.82rem;margin:0 0 .55rem}
+.detail-card>small{font-size:.58rem;color:var(--muted)}
+.detail-toolbar{display:flex;align-items:center;justify-content:space-between;padding-bottom:.75rem;border-bottom:1px solid var(--line);font-size:.72rem}
+.detail-toolbar button,.market-card button,.report-card button{border:1px solid #cbd8d3;border-radius:.45rem;background:#fff;color:var(--green);height:1.9rem;padding:0 .65rem;font-size:.56rem;font-weight:700}
+.data-list>div{display:flex;align-items:center;gap:.8rem;padding:.8rem 0;border-bottom:1px solid #edf0ee}
+.data-list>div:last-child{border-bottom:0}
+.data-list span{display:flex;flex:1;min-width:0;flex-direction:column;gap:.2rem}
+.data-list b{font-size:.64rem}.data-list small{font-size:.53rem;color:var(--muted)}
+.data-list strong{font-size:.65rem}
+.data-list em{min-width:4rem;text-align:center;border-radius:1rem;background:#e9f4ef;color:var(--green);padding:.25rem .45rem;font-size:.5rem;font-style:normal;font-weight:700}
+.data-list.compact>div{padding:.7rem 0}
+.product-catalog .product{padding:.8rem 0}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.big-number{display:block;font:700 1.8rem Georgia;margin:.9rem 0 .25rem}
+.sparkline.large{height:7rem;margin-top:1.4rem}
+.market-grid,.report-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem}
+.market-card,.report-card{display:flex;align-items:center;gap:.8rem}
+.market-card>i,.report-card>i{width:2.5rem;height:2.5rem;flex:0 0 auto;display:grid;place-items:center;border-radius:.6rem;background:var(--pale);color:var(--green);font-style:normal;font-weight:700}
+.market-card>span,.report-card>span{display:flex;min-width:0;flex:1;flex-direction:column;gap:.2rem}
+.market-card h3,.report-card h3{margin:0}
+.market-card small,.report-card small{font-size:.54rem;color:var(--muted)}
+.market-card>b{font-size:.58rem;color:#9a722f}
+.report-card em{font-size:.5rem;color:var(--green);font-style:normal}
+.account-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-bottom:.8rem}
+.account-summary article{display:flex;flex-direction:column;gap:.45rem}
+.account-summary strong{font:700 1.2rem Georgia}
+.account-summary em{font-size:.55rem;color:var(--green);font-style:normal}
+.accounting-chart{height:9rem;margin-top:1rem}
+@media (max-width:1279px){.overview-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:699px){.detail-grid,.market-grid,.report-grid{grid-template-columns:1fr}.account-summary{grid-template-columns:1fr}.detail-head{align-items:flex-start;flex-direction:column}.overview-cards{grid-template-columns:1fr}.data-list strong{display:none}}
