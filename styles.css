@@ -111,3 +111,27 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 .support-hero>span{flex:1}.support-hero h3{margin:0}.support-hero p{font-size:.62rem;color:var(--muted)}
 @media (max-width:899px){header{padding:0 .8rem}.account-actions button{width:2.4rem;padding:0;justify-content:center}.account-actions button span,.support-button span{display:none}.tenant-brand{min-width:0}.tenant-brand small{display:none}.settings-layout,.support-grid{grid-template-columns:1fr}}
 @media (max-width:599px){.tenant-brand>span:last-child{display:none}.tenant-brand{padding:0}.search{min-width:5rem}.bell{display:none}.page{padding-top:1rem}.quick-nav{margin-left:-.2rem;margin-right:-.2rem;width:calc(100% + .4rem)}}
+
+/* Header preferences */
+.bell>span{font-size:.92rem;filter:grayscale(1);line-height:1}
+.product-stack{position:relative;display:flex;align-items:center}
+.header-preferences{position:absolute;right:0;top:calc(100% + .55rem);display:flex;align-items:center;gap:.35rem;z-index:25}
+.header-preferences button{height:2rem;border:1px solid #b8c8c2;border-radius:.5rem;background:#fff;color:#29443b;display:flex;align-items:center;justify-content:center;gap:.35rem;padding:0 .55rem;font-size:.58rem;font-weight:700;box-shadow:0 .25rem .8rem #20352e14}
+.header-preferences button:hover{background:#edf8f4;border-color:#2b7b69}
+#languageToggle span{color:#71807a}
+
+/* Dark theme */
+html[data-theme="dark"]{color-scheme:dark;--paper:#0f1715;--ink:#eef7f3;--muted:#a9b8b2;--line:#33443e;--green:#7dd3bd;--pale:#1c2b27}
+html[data-theme="dark"] body{background:var(--paper);color:var(--ink)}
+html[data-theme="dark"] header,html[data-theme="dark"] .quick-nav,html[data-theme="dark"] .pulse-card,html[data-theme="dark"] .detail-card,html[data-theme="dark"] .modal,html[data-theme="dark"] .account-actions button,html[data-theme="dark"] .bell,html[data-theme="dark"] .header-preferences button{background:#17231f;color:var(--ink);border-color:#3b5048}
+html[data-theme="dark"] .search input,html[data-theme="dark"] select,html[data-theme="dark"] .settings-form input,html[data-theme="dark"] .actions button{background:#101a17;color:var(--ink);border-color:#42584f}
+html[data-theme="dark"] .tenant-brand:hover,html[data-theme="dark"] .tenant-brand.active,html[data-theme="dark"] .mode,html[data-theme="dark"] .notice{background:#1b2d28}
+html[data-theme="dark"] .mode button.active{background:#2a4039;color:#b9f3e2}
+html[data-theme="dark"] .notice{border-color:#3d675b;color:#b9f3e2}
+html[data-theme="dark"] .notice small,html[data-theme="dark"] .welcome>div>span{color:#b3c2bc}
+html[data-theme="dark"] .pulse-card canvas{background:#22332d!important}
+html[data-theme="dark"] .pulse-card .pulse-icon{background:#24352f!important}
+html[data-theme="dark"] .quick-nav button[data-view="Overview"]{color:#c7d2fe}html[data-theme="dark"] .quick-nav button[data-view="Orders"]{color:#7dd3fc}html[data-theme="dark"] .quick-nav button[data-view="Products"]{color:#99f6e4}html[data-theme="dark"] .quick-nav button[data-view="Inventory"]{color:#fde68a}html[data-theme="dark"] .quick-nav button[data-view="Marketplace"]{color:#e9d5ff}html[data-theme="dark"] .quick-nav button[data-view="Logistics"]{color:#a5f3fc}html[data-theme="dark"] .quick-nav button[data-view="Accounting"]{color:#bbf7d0}html[data-theme="dark"] .quick-nav button[data-view="Reports"]{color:#fecdd3}
+html[data-theme="dark"] .support-button{background:#18342c;color:#b9f3e2;border-color:#3d675b}
+html[data-theme="dark"] .header-preferences button:hover{background:#244039}
+@media (max-width:599px){.product-stack{position:static}.header-preferences{right:.8rem;top:4.4rem}.page{padding-top:3.5rem}.bell{display:block}.header-preferences button{height:1.9rem}.header-preferences button span{display:none}}
