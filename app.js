@@ -5,11 +5,15 @@ const renderProducts=()=>{$("#products").innerHTML=products.map(p=>`<div class="
 const sidebar=$("#sidebar"), modal=$("#modal"), form=$("#productForm"), photo=$("#photo"), upload=$("#upload"), taxToggle=$("#taxToggle"), taxValue=$("#taxValue"), stock=$("#stock");
 const closeMenu=()=>{sidebar.classList.remove("open");$("#scrim").classList.remove("show")};
 $("#menu").onclick=()=>{sidebar.classList.add("open");$("#scrim").classList.add("show")};$("#scrim").onclick=closeMenu;$$('[data-close]').forEach(b=>b.onclick=closeMenu);
-$$('nav [data-view]').forEach(b=>b.onclick=()=>{$$('nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');closeMenu()});
+const accountTrigger=$("#accountTrigger"), accountMenu=$("#accountMenu");
+const closeAccount=()=>{accountMenu.hidden=true;accountTrigger.setAttribute('aria-expanded','false')};
+accountTrigger.onclick=e=>{e.stopPropagation();const opening=accountMenu.hidden;accountMenu.hidden=!opening;accountTrigger.setAttribute('aria-expanded',String(opening))};
+$('[data-view]').forEach(b=>b.onclick=()=>{const view=b.dataset.view;$('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===view));closeMenu();closeAccount()});
 $$('.mode button').forEach(b=>b.onclick=()=>{$$('.mode button').forEach(x=>x.classList.remove('active'));b.classList.add('active')});
 const openModal=()=>{modal.hidden=false;document.body.classList.add('locked');$("#formBody").hidden=false;$("#success").hidden=true};const closeModal=()=>{modal.hidden=true;document.body.classList.remove('locked')};$$('[data-add]').forEach(b=>b.onclick=openModal);$$('[data-cancel]').forEach(b=>b.onclick=closeModal);
 upload.onclick=()=>photo.click();photo.onchange=()=>{const file=photo.files[0];if(file){upload.style.backgroundImage=`url(${URL.createObjectURL(file)})`;upload.classList.add('has-photo')}};
 $("#minus").onclick=()=>stock.value=Math.max(0,Number(stock.value)-1);$("#plus").onclick=()=>stock.value=Number(stock.value)+1;
 taxToggle.onclick=()=>{const on=taxToggle.classList.toggle('on');taxToggle.setAttribute('aria-checked',on);taxValue.disabled=!on};
 form.onsubmit=e=>{e.preventDefault();$("#formBody").hidden=true;$("#success").hidden=false};
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeMenu()}if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();$("#search").focus()}});
+document.addEventListener('click',e=>{if(!e.target.closest('.account-wrap'))closeAccount()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeMenu();closeAccount()}if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();$("#search").focus()}});
