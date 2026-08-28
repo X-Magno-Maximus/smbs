@@ -5,7 +5,7 @@ const renderProducts=()=>{$("#products").innerHTML=products.map(p=>`<div class="
 const sidebar=$("#sidebar"), modal=$("#modal"), form=$("#productForm"), photo=$("#photo"), upload=$("#upload"), taxToggle=$("#taxToggle"), taxValue=$("#taxValue"), stock=$("#stock");
 const closeMenu=()=>{sidebar.classList.remove("open");$("#scrim").classList.remove("show")};
 $("#menu").onclick=()=>{sidebar.classList.add("open");$("#scrim").classList.add("show")};$("#scrim").onclick=closeMenu;$$('[data-close]').forEach(b=>b.onclick=closeMenu);
-$$('nav [data-view]').forEach(b=>b.onclick=()=>{$$('nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');closeMenu()});
+$$('[data-view]').forEach(b=>b.onclick=()=>{$$('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===b.dataset.view));closeMenu()});
 $$('.mode button').forEach(b=>b.onclick=()=>{$$('.mode button').forEach(x=>x.classList.remove('active'));b.classList.add('active')});
 const openModal=()=>{modal.hidden=false;document.body.classList.add('locked');$("#formBody").hidden=false;$("#success").hidden=true};const closeModal=()=>{modal.hidden=true;document.body.classList.remove('locked')};$$('[data-add]').forEach(b=>b.onclick=openModal);$$('[data-cancel]').forEach(b=>b.onclick=closeModal);
 upload.onclick=()=>photo.click();photo.onchange=()=>{const file=photo.files[0];if(file){upload.style.backgroundImage=`url(${URL.createObjectURL(file)})`;upload.classList.add('has-photo')}};
