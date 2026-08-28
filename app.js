@@ -1,0 +1,15 @@
+"use strict";
+const $=(s,p=document)=>p.querySelector(s), $$=(s,p=document)=>[...p.querySelectorAll(s)];
+const products=[{name:"Café Andino · 500 g",sku:"CAF-500",stock:8,price:12.5,color:"#8b5e3c",emoji:"☕"},{name:"Salsa de Mango",sku:"SAL-240",stock:17,price:6.75,color:"#e99b31",emoji:"🥭"},{name:"Tortillas Artesanales",sku:"TOR-012",stock:0,price:4.9,color:"#d6ad72",emoji:"🌮"}];
+const renderProducts=()=>{$("#products").innerHTML=products.map(p=>`<div class="product"><i style="background:${p.color}">${p.emoji}</i><span><b>${p.name}</b><small>${p.sku} · $${p.price.toFixed(2)}</small></span><em class="${p.stock?'low':'out'}">${p.stock?p.stock+' left':'Out'}</em><button aria-label="More options">•••</button></div>`).join("")};renderProducts();
+const sidebar=$("#sidebar"), modal=$("#modal"), form=$("#productForm"), photo=$("#photo"), upload=$("#upload"), taxToggle=$("#taxToggle"), taxValue=$("#taxValue"), stock=$("#stock");
+const closeMenu=()=>{sidebar.classList.remove("open");$("#scrim").classList.remove("show")};
+$("#menu").onclick=()=>{sidebar.classList.add("open");$("#scrim").classList.add("show")};$("#scrim").onclick=closeMenu;$$('[data-close]').forEach(b=>b.onclick=closeMenu);
+$$('nav [data-view]').forEach(b=>b.onclick=()=>{$$('nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');closeMenu()});
+$$('.mode button').forEach(b=>b.onclick=()=>{$$('.mode button').forEach(x=>x.classList.remove('active'));b.classList.add('active')});
+const openModal=()=>{modal.hidden=false;document.body.classList.add('locked');$("#formBody").hidden=false;$("#success").hidden=true};const closeModal=()=>{modal.hidden=true;document.body.classList.remove('locked')};$$('[data-add]').forEach(b=>b.onclick=openModal);$$('[data-cancel]').forEach(b=>b.onclick=closeModal);
+upload.onclick=()=>photo.click();photo.onchange=()=>{const file=photo.files[0];if(file){upload.style.backgroundImage=`url(${URL.createObjectURL(file)})`;upload.classList.add('has-photo')}};
+$("#minus").onclick=()=>stock.value=Math.max(0,Number(stock.value)-1);$("#plus").onclick=()=>stock.value=Number(stock.value)+1;
+taxToggle.onclick=()=>{const on=taxToggle.classList.toggle('on');taxToggle.setAttribute('aria-checked',on);taxValue.disabled=!on};
+form.onsubmit=e=>{e.preventDefault();$("#formBody").hidden=true;$("#success").hidden=false};
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeMenu()}if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();$("#search").focus()}});
