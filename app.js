@@ -23,6 +23,7 @@ const localize=(root=document)=>{const translate=value=>{const lead=value.match(
 const businessViews=new Set(["Overview","Orders","Products","Inventory","Marketplace","Logistics","Accounting","Reports","Settings","Support"]);
 const selectView=view=>{activeView=view;$$('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===view));if(businessViews.has(view))renderDashboardView(view);closeMenu()};
 $$('[data-view]').forEach(b=>b.onclick=()=>selectView(b.dataset.view));
+$(".notice>button").onclick=()=>selectView("Inventory");
 $$('.mode button').forEach(b=>b.onclick=()=>{$$('.mode button').forEach(x=>x.classList.remove('active'));b.classList.add('active')});
 
 const viewHost=$("#viewHost");
