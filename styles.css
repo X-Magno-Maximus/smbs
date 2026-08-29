@@ -222,3 +222,30 @@ html[data-theme="dark"] .quick-nav button:focus-visible{
 
 html[data-theme="dark"] .mobile-sections-toggle{background:#17231f;color:var(--ink);border-color:#3b5048}html[data-theme="dark"] .quick-nav.mobile-open{background:#17231f;box-shadow:0 .8rem 2rem #0008}
 
+
+/* Floating consumer-friendly mobile app navigation */
+.mobile-app-nav{display:none}
+@media (max-width:599px){
+ body{padding-bottom:calc(5.7rem + env(safe-area-inset-bottom))}
+ header .account-actions,header .header-preferences,header .product-stack{display:none}
+ .page{padding-bottom:2rem}
+ .mobile-app-nav{position:fixed;left:.65rem;right:.65rem;bottom:calc(.55rem + env(safe-area-inset-bottom));z-index:80;min-height:4.65rem;display:flex;align-items:stretch;gap:.25rem;padding:.4rem;border:1px solid var(--line);border-radius:1rem;background:#fffffff2;box-shadow:0 .8rem 2.2rem #10211c38;backdrop-filter:blur(14px);overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none}
+ .mobile-app-nav::-webkit-scrollbar{display:none}
+ .mobile-app-nav>button{flex:1 0 4.35rem;min-width:4.35rem;min-height:3.75rem;border:0;border-radius:.72rem;background:transparent;color:var(--ink);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.28rem;padding:.25rem;font-size:.56rem;font-weight:750;white-space:nowrap}
+ .mobile-app-nav>button:hover,.mobile-app-nav>button:focus-visible,.mobile-app-nav>button[aria-pressed="true"]{background:var(--pale);color:var(--green)}
+ .mobile-app-nav .ui-icon{width:1.15rem;height:1.15rem}
+ .mobile-app-nav .mobile-sections-toggle{width:auto;height:auto;margin:0;text-align:center}
+ .mobile-app-nav .hamburger{width:1.15rem;gap:.2rem}
+ .mobile-app-nav .mobile-sections-toggle.open{background:var(--pale);color:var(--green)}
+ .mobile-app-nav .mobile-sections-toggle.open .hamburger i:first-child{transform:translateY(.4rem) rotate(45deg)}
+ .mobile-app-nav .mobile-sections-toggle.open .hamburger i:last-child{transform:translateY(-.4rem) rotate(-45deg)}
+ .mobile-app-nav #mobileLanguage b,.mobile-app-nav #mobileTheme b,.mobile-app-nav .mobile-add-product b{font-size:1rem;line-height:1}
+ .mobile-app-nav #mobileLanguage span{font-size:.5rem;color:var(--muted)}
+ .mobile-app-nav .mobile-add-product{background:var(--green);color:#fff}
+ .mobile-app-nav .mobile-add-product:hover,.mobile-app-nav .mobile-add-product:focus-visible{background:#174e43;color:#fff}
+ .quick-nav{position:fixed;left:.65rem;right:.65rem;bottom:calc(5.55rem + env(safe-area-inset-bottom));z-index:79;width:auto;max-height:min(56vh,25rem);margin:0;padding:.65rem;overflow-y:auto;overscroll-behavior:contain;border-radius:1rem;box-shadow:0 .8rem 2.2rem #10211c4d}
+ .quick-nav.mobile-open{display:grid!important}
+}
+html[data-theme="dark"] .mobile-app-nav{background:#17231ff2;border-color:#3b5048;box-shadow:0 .8rem 2.2rem #000a}
+html[data-theme="dark"] .mobile-app-nav .mobile-add-product{background:#3a8f7b;color:#fff}
+
