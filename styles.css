@@ -115,9 +115,9 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 
 /* Header preferences */
 .bell>span{font-size:.92rem;filter:grayscale(1);line-height:1}
-.product-stack{position:relative;display:flex;align-items:center}
-.header-preferences{position:absolute;right:0;top:calc(100% + 1.05rem);display:flex;align-items:center;gap:.35rem;z-index:25}
-.header-preferences button{height:2rem;border:1px solid #b8c8c2;border-radius:.5rem;background:#fff;color:#29443b;display:flex;align-items:center;justify-content:center;gap:.35rem;padding:0 .55rem;font-size:.58rem;font-weight:700;box-shadow:0 .25rem .8rem #20352e14}
+.product-stack{display:flex;align-items:center}
+.header-preferences{display:flex;align-items:center;gap:.35rem}
+.header-preferences button{height:2rem;border:1px solid #b8c8c2;border-radius:.5rem;background:#fff;color:#29443b;display:flex;align-items:center;justify-content:center;gap:.35rem;padding:0 .55rem;font-size:.58rem;font-weight:700;box-shadow:none}
 .header-preferences button:hover{background:#edf8f4;border-color:#2b7b69}
 #languageToggle span{color:#71807a}
 
@@ -135,7 +135,7 @@ html[data-theme="dark"] .pulse-card .pulse-icon{background:#24352f!important}
 html[data-theme="dark"] .quick-nav button[data-view="Overview"]{color:#c7d2fe}html[data-theme="dark"] .quick-nav button[data-view="Orders"]{color:#7dd3fc}html[data-theme="dark"] .quick-nav button[data-view="Products"]{color:#99f6e4}html[data-theme="dark"] .quick-nav button[data-view="Inventory"]{color:#fde68a}html[data-theme="dark"] .quick-nav button[data-view="Marketplace"]{color:#e9d5ff}html[data-theme="dark"] .quick-nav button[data-view="Logistics"]{color:#a5f3fc}html[data-theme="dark"] .quick-nav button[data-view="Accounting"]{color:#bbf7d0}html[data-theme="dark"] .quick-nav button[data-view="Reports"]{color:#fecdd3}
 html[data-theme="dark"] .support-button{background:#18342c;color:#b9f3e2;border-color:#3d675b}
 html[data-theme="dark"] .header-preferences button:hover{background:#244039}
-@media (max-width:599px){.product-stack{position:static}.header-preferences{right:.8rem;top:4.9rem}.page{padding-top:4rem}.bell{display:block}.header-preferences button{height:1.9rem}.header-preferences button span{display:none}}
+@media (max-width:599px){.bell{display:block}.header-preferences{gap:.2rem}.header-preferences button{height:2.4rem;min-width:2.4rem;padding:0 .35rem}.header-preferences button span{display:none}}
 
 /* Profile inside Settings */
 .profile-settings-card{display:grid;grid-template-columns:minmax(14rem,1fr) repeat(2,minmax(11rem,.7fr)) auto;align-items:center;gap:1rem;margin-bottom:.8rem}
