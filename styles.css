@@ -170,3 +170,50 @@ html[data-theme="dark"] .acknowledge-row button.acknowledged{background:#7dd3bd;
 @media (max-width:599px){.profile-settings-card{grid-template-columns:1fr}.acknowledge-row{align-items:stretch;flex-direction:column}.acknowledge-row button{width:100%}}
 .section-title[hidden]{display:none}
 .view-host[hidden]{display:none}
+
+
+/* Dark-theme contrast hardening: light controls always use dark, legible text */
+html[data-theme="dark"] .quick-nav button.active,
+html[data-theme="dark"] .quick-nav button:hover,
+html[data-theme="dark"] .notice button,
+html[data-theme="dark"] .back-button,
+html[data-theme="dark"] .detail-toolbar button,
+html[data-theme="dark"] .market-card button,
+html[data-theme="dark"] .report-card button,
+html[data-theme="dark"] .outline{
+  background:#eef8f4;
+  color:#123d34;
+  border-color:#75a99b;
+  font-weight:800;
+}
+html[data-theme="dark"] .quick-nav button.active,
+html[data-theme="dark"] .quick-nav button:hover{
+  color:#102f29!important;
+  border-color:#67a999;
+}
+html[data-theme="dark"] .notice button:hover,
+html[data-theme="dark"] .back-button:hover,
+html[data-theme="dark"] .detail-toolbar button:hover,
+html[data-theme="dark"] .market-card button:hover,
+html[data-theme="dark"] .report-card button:hover,
+html[data-theme="dark"] .outline:hover{
+  background:#d7eee7;
+  color:#0b2b24;
+  border-color:#4f907f;
+}
+html[data-theme="dark"] .data-list em{
+  background:#dff4ec;
+  color:#124c3d;
+  border:1px solid #8ab7aa;
+}
+html[data-theme="dark"] .data-list em.packing{
+  background:#e5ebf7;
+  color:#263e73;
+  border-color:#9badd2;
+}
+html[data-theme="dark"] .notice button:focus-visible,
+html[data-theme="dark"] .back-button:focus-visible,
+html[data-theme="dark"] .detail-toolbar button:focus-visible,
+html[data-theme="dark"] .quick-nav button:focus-visible{
+  outline-color:#93c5fd;
+}
