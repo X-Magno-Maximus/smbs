@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-labelledby="title">
+  <title id="title">Tech Support</title>
+  <circle cx="16" cy="16" r="15" fill="#176b5b"/>
+  <path d="M10.6 14.1v-1.3a5.4 5.4 0 0 1 10.8 0v1.3" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M9.1 14.3a2.2 2.2 0 0 1 2.2-2.2h.4v6.1h-.4A2.2 2.2 0 0 1 9.1 16v-1.7Zm13.8 0a2.2 2.2 0 0 0-2.2-2.2h-.4v6.1h.4a2.2 2.2 0 0 0 2.2-2.2v-1.7Z" fill="#8de2d0"/>
+  <circle cx="16" cy="12.9" r="3.8" fill="#fff"/>
+  <path d="M9.8 24.9c.8-3.3 3.1-5.2 6.2-5.2s5.4 1.9 6.2 5.2" fill="#fff"/>
+  <path d="M22.6 18.1c0 2.3-1.5 3.7-3.8 3.7h-1.1" fill="none" stroke="#8de2d0" stroke-width="1.6" stroke-linecap="round"/>
+  <rect x="16.5" y="20.7" width="3" height="2" rx="1" fill="#8de2d0"/>
+</svg>
