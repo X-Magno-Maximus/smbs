@@ -307,3 +307,86 @@ html[data-theme="dark"] .remove-item,html[data-theme="dark"] .remove-record,html
 
 /* Compact dashboard Accounting experience */
 .accounting-dashboard-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1rem}.accounting-equation{display:flex;flex-direction:column;gap:.35rem;color:var(--muted);font-size:.68rem}.accounting-equation b{color:var(--green)}.accounting-period-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.8rem;margin-bottom:.8rem}.accounting-period-card{min-height:10.5rem;text-align:left;border:1px solid var(--line);border-radius:.85rem;background:var(--white);padding:1rem;display:flex;flex-direction:column;cursor:pointer;color:var(--ink)}.accounting-period-card:hover,.accounting-period-card.active{border-color:var(--green);box-shadow:0 0 0 2px color-mix(in srgb,var(--green) 18%,transparent)}.accounting-period-card small{font-size:.58rem;letter-spacing:.05rem;color:var(--muted);font-weight:800;text-transform:uppercase}.accounting-period-card strong{font:700 1.25rem Georgia;margin:.45rem 0 .2rem}.accounting-period-card em{font-size:.58rem;color:var(--green);font-style:normal}.mini-accounting-chart{width:100%;height:4rem;margin-top:auto}.accounting-breakdown{background:var(--white);border:1px solid var(--line);border-radius:.85rem;padding:1rem}.accounting-breakdown-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:.8rem}.accounting-breakdown-grid article{border:1px solid var(--line);border-radius:.75rem;padding:1rem;display:flex;flex-direction:column}.accounting-breakdown-grid small{font-size:.58rem;color:var(--muted);font-weight:800;text-transform:uppercase}.accounting-breakdown-grid strong{font:700 1.35rem Georgia;margin:.5rem 0}.accounting-breakdown-grid span{font-size:.58rem;color:var(--green)}.accounting-main-trend{height:12rem;margin-top:1rem}.accounting-main-trend canvas{width:100%;height:100%}html[data-theme="dark"] .accounting-period-card,html[data-theme="dark"] .accounting-breakdown{background:#192520}@media(max-width:900px){.accounting-period-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:599px){.accounting-dashboard-head{align-items:stretch;flex-direction:column}.accounting-period-grid,.accounting-breakdown-grid{grid-template-columns:1fr}.accounting-period-card{min-height:9rem}}
+
+/* Responsive vertical workspace navigation — 2026-08-30 */
+@media (min-width:600px){
+ .page{
+  display:grid;
+  grid-template-columns:clamp(4.75rem,15vw,12.5rem) minmax(0,1fr);
+  column-gap:1rem;
+  align-items:start
+ }
+ .welcome{grid-column:1/-1}
+ .quick-nav{
+  grid-column:1;
+  grid-row:2/span 4;
+  position:sticky;
+  top:5.25rem;
+  display:flex!important;
+  flex-direction:column;
+  align-items:stretch;
+  width:100%;
+  max-height:calc(100vh - 6.25rem);
+  margin:0;
+  padding:.45rem;
+  gap:.35rem;
+  overflow-x:hidden;
+  overflow-y:auto
+ }
+ .quick-nav button{
+  flex:0 0 auto;
+  width:100%;
+  min-width:0;
+  min-height:2.65rem;
+  height:auto;
+  justify-content:flex-start;
+  padding:.55rem .7rem;
+  text-align:left
+ }
+ .quick-nav button em{margin-left:auto}
+ .notice,.section-title,.view-host{grid-column:2}
+}
+@media (min-width:600px) and (max-width:899px){
+ .page{grid-template-columns:4.75rem minmax(0,1fr);padding-left:1rem;padding-right:1rem}
+ .quick-nav button{
+  justify-content:center;
+  padding:.55rem .35rem;
+  font-size:0
+ }
+ .quick-nav button span{display:none}
+ .quick-nav button em{
+  display:grid;
+  place-items:center;
+  min-width:1.15rem;
+  min-height:1.15rem;
+  margin:0;
+  font-size:.55rem
+ }
+}
+@media (max-width:599px){
+ .page{display:block}
+ .quick-nav{
+  grid-template-columns:1fr!important;
+  left:.65rem;
+  right:auto;
+  bottom:calc(5.55rem + env(safe-area-inset-bottom));
+  width:min(13.5rem,calc(100vw - 1.3rem));
+  max-height:min(62vh,28rem);
+  padding:.55rem;
+  gap:.35rem;
+  overflow-x:hidden;
+  overflow-y:auto
+ }
+ .quick-nav:not(.mobile-open){display:none!important}
+ .quick-nav.mobile-open{display:grid!important}
+ .quick-nav button{
+  width:100%;
+  min-width:0;
+  min-height:2.8rem;
+  height:auto;
+  justify-content:flex-start;
+  padding:.55rem .75rem;
+  text-align:left
+ }
+ .quick-nav button em{margin-left:auto}
+}
