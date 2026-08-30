@@ -300,7 +300,5 @@ html[data-theme="dark"] .remove-item,html[data-theme="dark"] .remove-record,html
 
 /* Shared account controls and Accounting workspace entry */
 .account-actions{display:flex;align-items:center;gap:.4rem}
-.profile-avatar-button{width:2.4rem;height:2.4rem;border:1px solid var(--line);border-radius:50%;background:#d8ab7d;color:#3c2b20;font-size:.65rem;font-weight:900;display:grid;place-items:center}
 .accounting-actions .open-accounting-page{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;white-space:nowrap}
-html[data-theme="dark"] .profile-avatar-button{border-color:#52635e;background:#d8ab7d;color:#2d2119}
 @media(max-width:599px){.account-actions{display:none}.accounting-actions .open-accounting-page{width:100%}}
