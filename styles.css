@@ -117,9 +117,10 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 /* Header preferences */
 .bell>span{font-size:.92rem;filter:grayscale(1);line-height:1}
 .product-stack{display:flex;align-items:center}
-.header-preferences{display:flex;align-items:center;gap:.35rem}
-.header-preferences button{height:2.4rem;border:1px solid #b8c8c2;border-radius:.5rem;background:#fff;color:#29443b;display:flex;align-items:center;justify-content:center;gap:.35rem;padding:0 .55rem;font-size:.58rem;font-weight:700;box-shadow:none}
-.header-preferences button:hover{background:#edf8f4;border-color:#2b7b69}
+.header-preferences{display:flex;align-items:center;gap:.45rem}
+.header-preferences button{height:2.45rem;min-height:2.45rem;border:1px solid var(--line);border-radius:.65rem;background:#fff;color:#29443b;display:flex;align-items:center;justify-content:center;gap:.35rem;padding:0 .7rem;font-size:.72rem;font-weight:700;box-shadow:none;cursor:pointer}
+.header-preferences .settings-control{width:2.45rem;padding:0}
+.header-preferences button:hover,.header-preferences button[aria-pressed="true"],.header-preferences button.active{background:var(--pale);border-color:var(--green)}
 #languageToggle span{color:#71807a}.settings-control .ui-icon{width:1rem;height:1rem}.theme-control>span{font-size:.9rem;line-height:1}.language-control b{font-weight:900}
 
 /* Dark theme */
