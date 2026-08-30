@@ -297,3 +297,10 @@ html[data-theme="dark"] .remove-item,html[data-theme="dark"] .remove-record,html
 @media(max-width:800px){.account-summary.expanded{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:599px){.account-summary.expanded{grid-template-columns:1fr 1fr}.yearly-card{padding:.85rem}.year-table{font-size:.56rem}.party-list>div{display:grid;grid-template-columns:1fr auto}.party-list>div span{grid-column:1/-1}.party-list>div .remove-record{grid-column:2;grid-row:2}.remove-all-records{font-size:.62rem}}
 @media(max-width:380px){.account-summary.expanded{grid-template-columns:1fr}}
+
+/* Shared account controls and Accounting workspace entry */
+.account-actions{display:flex;align-items:center;gap:.4rem}
+.profile-avatar-button{width:2.4rem;height:2.4rem;border:1px solid var(--line);border-radius:50%;background:#d8ab7d;color:#3c2b20;font-size:.65rem;font-weight:900;display:grid;place-items:center}
+.accounting-actions .open-accounting-page{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;white-space:nowrap}
+html[data-theme="dark"] .profile-avatar-button{border-color:#52635e;background:#d8ab7d;color:#2d2119}
+@media(max-width:599px){.account-actions{display:none}.accounting-actions .open-accounting-page{width:100%}}
