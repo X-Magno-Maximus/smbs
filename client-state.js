@@ -1,7 +1,7 @@
 "use strict";
 (()=>{
 const prefix="marxia-smb.";
-const legacy={language:"marxia-language",theme:"marxia-theme",brand:"marxia-smb-brand",parties:"marxia-party-records"};
+const legacy={language:"marxia-language",theme:"marxia-theme",brand:"marxia-smb-brand",parties:"marxia-party-records","cli-sequence":"marxia-cli-sequence","pro-sequence":"marxia-pro-sequence"};
 const parse=(value,fallback)=>{try{return value===null?fallback:JSON.parse(value)}catch{return fallback}};
 const key=name=>prefix+name;
 const get=(name,fallback=null)=>{
