@@ -6,9 +6,10 @@
 <meta name="theme-color" content="#173f37">
 <title>Marxia | Accounting</title>
 <meta name="description" content="Marxia SMB consolidated accounting workspace">
-<link rel="stylesheet" href="accounting.css?v=20260830-1">
+<link rel="stylesheet" href="accounting.css?v=20260830-2">
+<script src="client-state.js?v=20260830-1" defer></script>
 <script src="ledger.js?v=20260830-1" defer></script>
-<script src="accounting.js?v=20260830-1" defer></script>
+<script src="accounting.js?v=20260830-2" defer></script>
 </head>
 <body>
 <header class="topbar">
@@ -18,17 +19,12 @@
 <button id="languageToggle" aria-label="Change language"><b id="languageCurrent">EN</b><span id="languageTarget">ES</span></button>
 <button id="themeToggle" aria-label="Switch appearance"><b id="themeIcon">☀</b><span id="themeLabel">Light</span></button>
 <button id="settingsToggle" aria-expanded="false" aria-controls="settingsPanel" data-i18n-aria="Settings">⚙</button>
-<button id="profileToggle" class="avatar" aria-expanded="false" aria-controls="profileMenu" data-i18n-aria="Profile">GS</button>
 </div>
 </header>
 <aside id="settingsPanel" class="popover settings-popover" hidden>
 <h3 data-i18n="Settings">Settings</h3>
 <label><span data-i18n="Business timezone">Business timezone</span><select id="timezone"><option value="America/Guayaquil">America/Guayaquil</option><option value="UTC">UTC</option></select></label>
 <label><span data-i18n="Currency">Currency</span><select><option>USD</option></select></label>
-</aside>
-<aside id="profileMenu" class="popover profile-popover" hidden>
-<strong>Gabriel S.</strong><small data-i18n="Owner · Full access">Owner · Full access</small>
-<a href="index.html#settings" data-i18n="Open profile settings">Open profile settings</a>
 </aside>
 <main>
 <section class="hero">
