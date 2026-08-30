@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#173f37">
+<title>Marxia | Accounting</title>
+<meta name="description" content="Marxia SMB consolidated accounting workspace">
+<link rel="stylesheet" href="accounting.css?v=20260830-1">
+<script src="ledger.js?v=20260830-1" defer></script>
+<script src="accounting.js?v=20260830-1" defer></script>
+</head>
+<body>
+<header class="topbar">
+<a class="back" href="index.html" data-i18n="Back to dashboard">← Back to dashboard</a>
+<div class="brand"><span>CM</span><div><strong>Cacao & Más</strong><small data-i18n="Accounting workspace">Accounting workspace</small></div></div>
+<div class="top-actions">
+<button id="languageToggle" aria-label="Change language"><b id="languageCurrent">EN</b><span id="languageTarget">ES</span></button>
+<button id="themeToggle" aria-label="Switch appearance"><b id="themeIcon">☀</b><span id="themeLabel">Light</span></button>
+<button id="settingsToggle" aria-expanded="false" aria-controls="settingsPanel" data-i18n-aria="Settings">⚙</button>
+<button id="profileToggle" class="avatar" aria-expanded="false" aria-controls="profileMenu" data-i18n-aria="Profile">GS</button>
+</div>
+</header>
+<aside id="settingsPanel" class="popover settings-popover" hidden>
+<h3 data-i18n="Settings">Settings</h3>
+<label><span data-i18n="Business timezone">Business timezone</span><select id="timezone"><option value="America/Guayaquil">America/Guayaquil</option><option value="UTC">UTC</option></select></label>
+<label><span data-i18n="Currency">Currency</span><select><option>USD</option></select></label>
+</aside>
+<aside id="profileMenu" class="popover profile-popover" hidden>
+<strong>Gabriel S.</strong><small data-i18n="Owner · Full access">Owner · Full access</small>
+<a href="index.html#settings" data-i18n="Open profile settings">Open profile settings</a>
+</aside>
+<main>
+<section class="hero">
+<div><p data-i18n="ACCOUNTING">ACCOUNTING</p><h1 data-i18n="Consolidated business performance">Consolidated business performance</h1><span data-i18n="One ledger. Clear inventory, sales, taxes, profit, and equity.">One ledger. Clear inventory, sales, taxes, profit, and equity.</span></div>
+<div class="ledger-status"><i></i><span><b data-i18n="Ledger synchronized">Ledger synchronized</b><small id="ledgerCount"></small></span></div>
+</section>
+<section class="formula" aria-label="Accounting formula">
+<div><span data-i18n="Sales Revenue">Sales Revenue</span><b>−</b><span data-i18n="Returns & Discounts">Returns & Discounts</span><b>=</b><strong data-i18n="Net Sales">Net Sales</strong></div>
+<div><span data-i18n="Net Sales">Net Sales</span><b>−</b><span data-i18n="Cost of Goods Sold">Cost of Goods Sold</span><b>=</b><strong data-i18n="Gross Profit">Gross Profit</strong></div>
+<div><span data-i18n="Gross Profit">Gross Profit</span><b>−</b><span data-i18n="Operating & Other Expenses">Operating & Other Expenses</span><b>=</b><strong data-i18n="Net Profit">Net Profit</strong></div>
+<div><span data-i18n="Opening Capital + Contributions + Net Profit − Withdrawals">Opening Capital + Contributions + Net Profit − Withdrawals</span><b>=</b><strong data-i18n="Closing Equity">Closing Equity</strong></div>
+</section>
+<section class="period-strip" aria-label="Reporting period">
+<div class="presets" role="group">
+<button data-period="today" data-i18n="Today">Today</button>
+<button data-period="mtd" class="active">MTD</button>
+<button data-period="quarter" data-i18n="Quarter">Quarter</button>
+<button data-period="semester" data-i18n="Semester">Semester</button>
+<button data-period="ytd">YTD</button>
+</div>
+<div class="range">
+<label><span data-i18n="From">From</span><input id="dateFrom" type="date"></label>
+<label><span data-i18n="To">To</span><input id="dateTo" type="date"></label>
+<button id="applyRange" data-i18n="Display range">Display range</button>
+</div>
+<div class="compare">
+<label><span data-i18n="Compare with">Compare with</span><select id="compareMode"><option value="none" data-i18n="No comparison">No comparison</option><option value="previous" data-i18n="Previous period">Previous period</option><option value="last-year" data-i18n="Same period last year">Same period last year</option></select></label>
+<button id="trendToggle" aria-pressed="true" data-i18n="Trend: On">Trend: On</button>
+</div>
+</section>
+<div id="rangeMessage" class="range-message" role="status" hidden></div>
+<nav class="tabs" aria-label="Accounting categories">
+<button class="active" data-tab="overview" data-i18n="Overview">Overview</button>
+<button data-tab="inventory" data-i18n="Inventory">Inventory</button>
+<button data-tab="sales" data-i18n="Sales">Sales</button>
+<button data-tab="returns" data-i18n="Returns">Returns</button>
+<button data-tab="expenses" data-i18n="Expenses">Expenses</button>
+<button data-tab="receivables" data-i18n="Receivables">Receivables</button>
+<button data-tab="payables" data-i18n="Payables">Payables</button>
+<button data-tab="tax" data-i18n="Taxes / VAT">Taxes / VAT</button>
+<button data-tab="equity" data-i18n="Equity">Equity</button>
+</nav>
+<section id="summaryCards" class="summary-grid"></section>
+<section class="chart-grid">
+<article class="panel main-chart"><header><div><small id="chartEyebrow"></small><h2 id="chartTitle"></h2></div><span id="comparisonBadge"></span></header><canvas id="trendChart" width="1000" height="330" aria-label="Accounting trend chart"></canvas><div class="legend"><span><i></i><b data-i18n="Selected period">Selected period</b></span><span id="compareLegend"><i></i><b data-i18n="Comparison">Comparison</b></span></div></article>
+<article class="panel snapshot"><header><h2 data-i18n="Period snapshot">Period snapshot</h2></header><div id="snapshotRows"></div></article>
+</section>
+<section class="panel table-panel">
+<header><div><small data-i18n="AUDITABLE DETAIL">AUDITABLE DETAIL</small><h2 data-i18n="Ledger transactions">Ledger transactions</h2></div><button id="exportButton" data-i18n="Export">Export</button></header>
+<div class="table-scroll"><table><thead><tr><th data-i18n="Date">Date</th><th data-i18n="Reference">Reference</th><th data-i18n="Transaction">Transaction</th><th data-i18n="Account">Account</th><th data-i18n="Amount">Amount</th></tr></thead><tbody id="ledgerRows"></tbody></table></div>
+</section>
+<div id="upgradeModal" class="modal-wrap" hidden><button class="modal-bg" data-close-upgrade aria-label="Close"></button><section class="upgrade-card"><button class="close-x" data-close-upgrade>×</button><small data-i18n="ADVANCED ACCOUNTING">ADVANCED ACCOUNTING</small><h2 data-i18n="Unlock historical analytics and exports">Unlock historical analytics and exports</h2><p data-i18n="The standard workspace includes the current and previous year. Older history and downloadable exports require the Advanced Accounting add-on.">The standard workspace includes the current and previous year. Older history and downloadable exports require the Advanced Accounting add-on.</p><strong>$99.99</strong><span data-i18n="Separate from your monthly platform fee · Cancel anytime">Separate from your monthly platform fee · Cancel anytime</span><button class="primary" data-close-upgrade data-i18n="Return to Accounting">Return to Accounting</button></section></div>
+</main>
+</body></html>
