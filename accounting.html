@@ -6,10 +6,10 @@
 <meta name="theme-color" content="#173f37">
 <title>Marxia | Accounting</title>
 <meta name="description" content="Marxia SMB consolidated accounting workspace">
-<link rel="stylesheet" href="accounting.css?v=20260830-2">
+<link rel="stylesheet" href="accounting.css?v=20260830-3">
 <script src="client-state.js?v=20260830-1" defer></script>
 <script src="ledger.js?v=20260830-1" defer></script>
-<script src="accounting.js?v=20260830-2" defer></script>
+<script src="accounting.js?v=20260830-3" defer></script>
 </head>
 <body>
 <header class="topbar">
@@ -28,15 +28,10 @@
 </aside>
 <main>
 <section class="hero">
-<div><p data-i18n="ACCOUNTING">ACCOUNTING</p><h1 data-i18n="Consolidated business performance">Consolidated business performance</h1><span data-i18n="One ledger. Clear inventory, sales, taxes, profit, and equity.">One ledger. Clear inventory, sales, taxes, profit, and equity.</span></div>
+<div><p data-i18n="ACCOUNTING">ACCOUNTING</p><div class="hero-title-row"><h1 data-i18n="Consolidated business performance">Consolidated business performance</h1><button id="infoToggle" class="information-trigger" type="button" aria-expanded="false" aria-controls="accountingInformation"><span aria-hidden="true">✉</span><small data-i18n="Information">Information</small></button></div><span data-i18n="One ledger. Clear inventory, sales, taxes, profit, and equity.">One ledger. Clear inventory, sales, taxes, profit, and equity.</span></div>
 <div class="ledger-status"><i></i><span><b data-i18n="Ledger synchronized">Ledger synchronized</b><small id="ledgerCount"></small></span></div>
 </section>
-<section class="formula" aria-label="Accounting formula">
-<div><span data-i18n="Sales Revenue">Sales Revenue</span><b>−</b><span data-i18n="Returns & Discounts">Returns & Discounts</span><b>=</b><strong data-i18n="Net Sales">Net Sales</strong></div>
-<div><span data-i18n="Net Sales">Net Sales</span><b>−</b><span data-i18n="Cost of Goods Sold">Cost of Goods Sold</span><b>=</b><strong data-i18n="Gross Profit">Gross Profit</strong></div>
-<div><span data-i18n="Gross Profit">Gross Profit</span><b>−</b><span data-i18n="Operating & Other Expenses">Operating & Other Expenses</span><b>=</b><strong data-i18n="Net Profit">Net Profit</strong></div>
-<div><span data-i18n="Opening Capital + Contributions + Net Profit − Withdrawals">Opening Capital + Contributions + Net Profit − Withdrawals</span><b>=</b><strong data-i18n="Closing Equity">Closing Equity</strong></div>
-</section>
+<aside id="accountingInformation" class="accounting-information" hidden aria-label="Accounting information"><h2 data-i18n="Accounting formulas">Accounting formulas</h2><p><span data-i18n="Sales Revenue">Sales Revenue</span> − <span data-i18n="Returns & Discounts">Returns & Discounts</span> = <strong data-i18n="Net Sales">Net Sales</strong></p><p><span data-i18n="Net Sales">Net Sales</span> − <span data-i18n="Cost of Goods Sold">Cost of Goods Sold</span> = <strong data-i18n="Gross Profit">Gross Profit</strong></p><p><span data-i18n="Gross Profit">Gross Profit</span> − <span data-i18n="Operating & Other Expenses">Operating & Other Expenses</span> = <strong data-i18n="Net Profit">Net Profit</strong></p><p><span data-i18n="Opening Capital + Contributions + Net Profit − Withdrawals">Opening Capital + Contributions + Net Profit − Withdrawals</span> = <strong data-i18n="Closing Equity">Closing Equity</strong></p></aside>
 <section class="period-strip" aria-label="Reporting period">
 <div class="presets" role="group">
 <button data-period="today" data-i18n="Today">Today</button>
