@@ -24,7 +24,7 @@
 <aside id="settingsPanel" class="popover settings-popover" hidden>
 <h3 data-i18n="Settings">Settings</h3>
 <label><span data-i18n="Business timezone">Business timezone</span><select id="timezone"><option value="America/Guayaquil">America/Guayaquil</option><option value="UTC">UTC</option></select></label>
-<label><span data-i18n="Currency">Currency</span><select><option>USD</option></select></label>
+<p><span data-i18n="Currency">Currency</span><strong>USD</strong></p>
 </aside>
 <main>
 <section class="hero">
@@ -68,9 +68,8 @@
 <article class="panel snapshot"><header><h2 data-i18n="Period snapshot">Period snapshot</h2></header><div id="snapshotRows"></div></article>
 </section>
 <section class="panel table-panel">
-<header><div><small data-i18n="AUDITABLE DETAIL">AUDITABLE DETAIL</small><h2 data-i18n="Ledger transactions">Ledger transactions</h2></div><button id="exportButton" data-i18n="Export">Export</button></header>
+<header><div><small data-i18n="AUDITABLE DETAIL">AUDITABLE DETAIL</small><h2 data-i18n="Ledger transactions">Ledger transactions</h2></div></header>
 <div class="table-scroll"><table><thead><tr><th data-i18n="Date">Date</th><th data-i18n="Reference">Reference</th><th data-i18n="Transaction">Transaction</th><th data-i18n="Account">Account</th><th data-i18n="Amount">Amount</th></tr></thead><tbody id="ledgerRows"></tbody></table></div>
 </section>
-<div id="upgradeModal" class="modal-wrap" hidden><button class="modal-bg" data-close-upgrade aria-label="Close"></button><section class="upgrade-card"><button class="close-x" data-close-upgrade aria-label="Close">×</button><small data-i18n="ADVANCED ACCOUNTING">ADVANCED ACCOUNTING</small><h2 data-i18n="Unlock historical analytics and exports">Unlock historical analytics and exports</h2><p data-i18n="The standard workspace includes the current and previous year. Older history and downloadable exports require the Advanced Accounting add-on.">The standard workspace includes the current and previous year. Older history and downloadable exports require the Advanced Accounting add-on.</p><strong>$99.99</strong><span data-i18n="Separate from your monthly platform fee · Cancel anytime">Separate from your monthly platform fee · Cancel anytime</span><button class="primary" data-close-upgrade data-i18n="Return to Accounting">Return to Accounting</button></section></div>
 </main>
 </body></html>
