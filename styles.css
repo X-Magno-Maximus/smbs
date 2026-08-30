@@ -127,6 +127,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 html[data-theme="dark"]{color-scheme:dark;--paper:#0f1715;--ink:#eef7f3;--muted:#a9b8b2;--line:#33443e;--green:#7dd3bd;--pale:#1c2b27}
 html[data-theme="dark"] body{background:var(--paper);color:var(--ink)}
 html[data-theme="dark"] header,html[data-theme="dark"] .quick-nav,html[data-theme="dark"] .pulse-card,html[data-theme="dark"] .detail-card,html[data-theme="dark"] .modal,html[data-theme="dark"] .bell,html[data-theme="dark"] .header-preferences button{background:#17231f;color:var(--ink);border-color:#3b5048}
+html[data-theme="dark"] .header-preferences button[aria-pressed="true"],html[data-theme="dark"] .header-preferences button.active{background:var(--pale);border-color:var(--green)}
 html[data-theme="dark"] .search input,html[data-theme="dark"] select,html[data-theme="dark"] .settings-form input,html[data-theme="dark"] .actions button{background:#101a17;color:var(--ink);border-color:#42584f}
 html[data-theme="dark"] .tenant-brand:hover,html[data-theme="dark"] .tenant-brand.active,html[data-theme="dark"] .mode,html[data-theme="dark"] .notice{background:#1b2d28}
 html[data-theme="dark"] .mode button.active{background:#2a4039;color:#b9f3e2}
