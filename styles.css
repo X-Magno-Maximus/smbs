@@ -393,3 +393,61 @@ html[data-theme="dark"] .remove-item,html[data-theme="dark"] .remove-record,html
 }
 html[data-theme="dark"] .workspace-nav-toggle{background:#17231f;border-color:#3b5048;color:#eef5f1}
 html[data-theme="dark"] .workspace-nav-toggle:hover,html[data-theme="dark"] .workspace-nav-toggle.open{background:#24362f;color:#9ce0cc}
+
+
+/* Horizontal mobile and tablet navigation — five controls only */
+@media (max-width:900px){
+ body{padding-bottom:calc(5.75rem + env(safe-area-inset-bottom))}
+ header .header-preferences,header .product-stack,header .support-button,header .workspace-nav-toggle{display:none}
+ .page{padding-bottom:2rem}
+ .mobile-app-nav{
+  position:fixed;
+  left:clamp(.4rem,2vw,1rem);
+  right:clamp(.4rem,2vw,1rem);
+  bottom:calc(.55rem + env(safe-area-inset-bottom));
+  z-index:80;
+  min-height:4.65rem;
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  align-items:stretch;
+  gap:.25rem;
+  padding:.4rem;
+  border:1px solid var(--line);
+  border-radius:1rem;
+  background:#fffffff2;
+  box-shadow:0 .8rem 2.2rem #10211c38;
+  backdrop-filter:blur(14px);
+  overflow:visible
+ }
+ .mobile-app-nav>button{
+  width:100%;
+  min-width:0;
+  min-height:3.75rem;
+  border:0;
+  border-radius:.72rem;
+  background:transparent;
+  color:var(--ink);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:.28rem;
+  padding:.25rem .1rem;
+  font-size:clamp(.5rem,1.5vw,.66rem);
+  font-weight:750;
+  line-height:1.1;
+  white-space:nowrap
+ }
+ .mobile-app-nav #mobileSectionsToggle{display:flex}
+ .mobile-app-nav>button:hover,.mobile-app-nav>button:focus-visible,.mobile-app-nav>button[aria-pressed="true"],.mobile-app-nav .mobile-sections-toggle.open{background:var(--pale);color:var(--green)}
+ .mobile-app-nav .ui-icon{width:1.2rem;height:1.2rem}
+ .mobile-app-nav .hamburger{width:1.15rem;display:flex;flex-direction:column;gap:.2rem}
+ .mobile-app-nav .hamburger i{display:block;width:100%;height:2px;border-radius:2px;background:currentColor}
+ .mobile-app-nav #mobileLanguage b,.mobile-app-nav #mobileTheme b{font-size:1rem;line-height:1}
+ .mobile-app-nav #mobileLanguage span{font-size:.5rem;color:var(--muted)}
+ .quick-nav{max-height:calc(100vh - 10.75rem)}
+}
+@media (min-width:901px){
+ .mobile-app-nav{display:none!important}
+}
+html[data-theme="dark"] .mobile-app-nav{background:#17231ff2;border-color:#3b5048;box-shadow:0 .8rem 2.2rem #000a}
