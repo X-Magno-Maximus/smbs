@@ -6,19 +6,19 @@
 <meta name="theme-color" content="#173f37">
 <title>Marxia | Accounting</title>
 <meta name="description" content="Marxia SMB consolidated accounting workspace">
-<link rel="stylesheet" href="accounting.css?v=20260830-3">
+<link rel="stylesheet" href="accounting.css?v=20260830-4">
 <script src="client-state.js?v=20260830-1" defer></script>
 <script src="ledger.js?v=20260830-1" defer></script>
-<script src="accounting.js?v=20260830-3" defer></script>
+<script src="accounting.js?v=20260830-4" defer></script>
 </head>
 <body>
 <header class="topbar">
 <a class="back" href="index.html" data-i18n="Back to dashboard">← Back to dashboard</a>
 <div class="brand"><span>CM</span><div><strong>Cacao & Más</strong><small data-i18n="Accounting workspace">Accounting workspace</small></div></div>
 <div class="top-actions">
-<button id="languageToggle" aria-label="Change language"><b id="languageCurrent">EN</b><span id="languageTarget">ES</span></button>
-<button id="themeToggle" aria-label="Switch appearance"><b id="themeIcon">☀</b><span id="themeLabel">Light</span></button>
-<button id="settingsToggle" aria-expanded="false" aria-controls="settingsPanel" data-i18n-aria="Settings">⚙</button>
+<button id="languageToggle" class="language-control" aria-label="Change language"><b id="languageCurrent">EN</b><span id="languageTarget">ES</span></button>
+<button id="themeToggle" class="theme-control" aria-label="Switch appearance"><b id="themeIcon">✷</b><span id="themeLabel">Light</span></button>
+<button id="settingsToggle" class="settings-control" aria-expanded="false" aria-controls="settingsPanel" data-i18n-aria="Settings"><img class="ui-icon settings-icon" src="assets/icons/settings.svg" alt="" aria-hidden="true"></button>
 </div>
 </header>
 <aside id="settingsPanel" class="popover settings-popover" hidden>
