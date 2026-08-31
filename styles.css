@@ -458,3 +458,99 @@ html[data-theme="dark"] .mobile-app-nav{background:#17231ff2;border-color:#3b504
 .theme-glyph{width:1.12rem;height:1.12rem}.product-glyph{width:1.2rem;height:1.2rem}.profile-glyph{width:1.35rem;height:1.35rem}
 .header-preferences .profile-control{width:2.45rem;padding:0}.quick-nav .repo-menu-icon{width:1.45rem;height:1.45rem}.product-stack .product-glyph{margin-right:.05rem}
 .mobile-app-nav .theme-glyph{width:1.25rem;height:1.25rem}.mobile-app-nav .profile-glyph{width:1.35rem;height:1.35rem}
+
+/* Approved 60px navigation controls — 2026-08-31 */
+@media (min-width:901px){
+ header{
+  height:5.5rem;
+  min-height:5.5rem;
+  padding:0 clamp(.75rem,1.5vw,1.5rem);
+  gap:.5rem;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scrollbar-width:thin
+ }
+ .tenant-brand{
+  flex:0 0 10.75rem;
+  min-width:10.75rem;
+  height:3.75rem;
+  padding:0;
+  gap:.65rem
+ }
+ .tenant-logo{
+  width:3.75rem;
+  height:3.75rem;
+  border-radius:.85rem
+ }
+ .search{
+  flex:1 1 18rem;
+  min-width:13rem;
+  max-width:none
+ }
+ .search input{
+  height:3.75rem;
+  border-radius:.75rem;
+  font-size:.75rem
+ }
+ .support-button,.bell,.workspace-nav-toggle,
+ .header-preferences .settings-control,
+ .header-preferences .profile-control{
+  flex:0 0 3.75rem;
+  width:3.75rem;
+  min-width:3.75rem;
+  height:3.75rem;
+  min-height:3.75rem;
+  padding:0;
+  border-radius:.75rem
+ }
+ .header-preferences{flex:0 0 auto;gap:.5rem}
+ .header-preferences button{
+  height:3.75rem;
+  min-height:3.75rem;
+  min-width:4.75rem;
+  padding:0 .75rem;
+  border-radius:.75rem
+ }
+ .support-avatar,.settings-icon{width:1.55rem;height:1.55rem}
+ .profile-glyph{width:1.75rem;height:1.75rem}
+ .theme-glyph{width:1.55rem;height:1.55rem}
+ .bell span{font-size:1.35rem}
+ .workspace-nav-toggle .hamburger{width:1.5rem}
+ .product-stack{
+  flex:0 0 auto;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  gap:.5rem
+ }
+ .product-stack .header-add-party,
+ .product-stack .primary{
+  height:3.75rem;
+  min-height:3.75rem;
+  min-width:5.25rem;
+  padding:0 .8rem;
+  border-radius:.75rem
+ }
+ .product-stack .product-glyph{width:1.55rem;height:1.55rem}
+}
+@media (max-width:900px){
+ body{padding-bottom:calc(5.7rem + env(safe-area-inset-bottom))}
+ .mobile-app-nav{
+  min-height:4.9rem;
+  padding:.45rem;
+  align-items:center
+ }
+ .mobile-app-nav>button{
+  flex:0 0 3.75rem;
+  min-width:3.75rem;
+  width:3.75rem;
+  min-height:3.75rem;
+  height:3.75rem;
+  padding:.25rem;
+  border-radius:.75rem
+ }
+ .mobile-app-nav .ui-icon,
+ .mobile-app-nav .theme-glyph{width:1.45rem;height:1.45rem}
+ .mobile-app-nav .profile-glyph{width:1.65rem;height:1.65rem}
+ .mobile-app-nav .hamburger{width:1.45rem}
+}
