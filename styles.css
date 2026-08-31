@@ -649,3 +649,38 @@ html[data-theme="dark"] .orders-filter select{background:#17231f;border-color:#3
  .orders-filter select{flex:1;min-width:0}
  .orders-filter-status{text-align:left}
 }
+
+
+/* Left sliding navigation and welcome business identity — 2026-08-31 */
+.welcome-primary{display:flex;align-items:center;gap:clamp(1rem,2.5vw,2.25rem);min-width:0}
+.welcome-primary .tenant-brand{flex:0 0 auto}
+.welcome-copy{min-width:0}
+.drawer-account-controls{display:flex;flex-direction:column;gap:.35rem;padding-bottom:.75rem;margin-bottom:.35rem;border-bottom:1px solid var(--line)}
+.drawer-account-controls .header-preferences{display:contents}
+.drawer-account-controls>button,.drawer-account-controls .header-preferences>button{width:100%;min-width:0;min-height:2.8rem;height:auto;justify-content:flex-start;gap:.75rem;padding:.55rem .75rem;border:1px solid transparent;border-radius:.65rem;background:transparent;color:var(--ink);font-size:.7rem;font-weight:700}
+.drawer-account-controls>button:hover,.drawer-account-controls>button.active,.drawer-account-controls .header-preferences>button:hover,.drawer-account-controls .header-preferences>button.active,.drawer-account-controls .header-preferences>button[aria-pressed="true"]{background:var(--pale);border-color:var(--green);color:var(--green)}
+.drawer-account-controls .support-button,.drawer-account-controls .top-profile-control,.drawer-account-controls .bell{flex:none}
+.drawer-account-controls .bell{position:relative;margin-left:0}
+.drawer-account-controls .bell i{right:.7rem;top:.55rem}
+.drawer-account-controls .ui-icon,.drawer-account-controls .theme-glyph,.drawer-account-controls .profile-glyph{width:1.4rem;height:1.4rem}
+.drawer-section-label{margin:.25rem .7rem .1rem!important;font-size:.55rem!important;letter-spacing:.08rem;color:var(--muted);font-weight:800;text-transform:uppercase}
+@media (min-width:901px){
+ header{overflow:visible}
+ .quick-nav{top:5.5rem;right:auto;left:0;width:min(18rem,calc(100vw - 1.3rem));max-height:calc(100vh - 5.5rem);border-radius:0 1rem 1rem 0;transform:translateX(calc(-100% - 3rem))}
+ .quick-nav.nav-open{transform:translateX(0)}
+ .welcome .tenant-brand{flex-basis:15rem;min-width:15rem;height:4.2rem}
+ .welcome .tenant-logo{width:4.2rem;height:4.2rem}
+}
+@media (max-width:900px){
+ .welcome-primary{width:100%}
+ .welcome .tenant-brand{min-width:0}
+ .drawer-account-controls{display:none}
+ .drawer-section-label{display:none}
+}
+@media (max-width:699px){
+ .welcome-primary{align-items:flex-start;flex-direction:column;gap:.85rem}
+ .welcome .tenant-brand{width:100%}
+ .welcome-copy{padding-left:.15rem}
+}
+html[data-theme="dark"] .drawer-account-controls>button,html[data-theme="dark"] .drawer-account-controls .header-preferences>button{background:transparent;color:var(--ink);border-color:transparent}
+html[data-theme="dark"] .drawer-account-controls>button:hover,html[data-theme="dark"] .drawer-account-controls>button.active,html[data-theme="dark"] .drawer-account-controls .header-preferences>button:hover,html[data-theme="dark"] .drawer-account-controls .header-preferences>button.active,html[data-theme="dark"] .drawer-account-controls .header-preferences>button[aria-pressed="true"]{background:#244039;border-color:var(--green)}
