@@ -14,7 +14,6 @@ const toggleMenu=event=>{event?.stopPropagation();setMenuState(!workspaceSection
 sectionToggles.forEach(toggle=>toggle.addEventListener("click",toggleMenu));
 document.addEventListener("click",event=>{if(workspaceSections?.classList.contains("nav-open")&&!event.target.closest("#workspaceSections")&&!event.target.closest("#workspaceNavToggle")&&!event.target.closest("#mobileSectionsToggle"))closeMenu()});
 one("#mobileSettings")?.addEventListener("click",()=>selectView("Settings"));
-one("#mobileProfile")?.addEventListener("click",()=>selectView("Settings"));
 one("#mobileLanguage")?.addEventListener("click",()=>one("#languageToggle").click());
 one("#mobileTheme")?.addEventListener("click",()=>one("#themeToggle").click());
 one("#mobileSupport")?.addEventListener("click",()=>selectView("Support"));
