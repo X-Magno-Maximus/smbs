@@ -554,3 +554,49 @@ html[data-theme="dark"] .mobile-app-nav{background:#17231ff2;border-color:#3b504
  .mobile-app-nav .profile-glyph{width:1.65rem;height:1.65rem}
  .mobile-app-nav .hamburger{width:1.45rem}
 }
+
+/* Shared top Profile control and simplified man avatar — 2026-08-31 */
+.top-profile-control{
+ flex:0 0 3.75rem;
+ width:3.75rem;
+ min-width:3.75rem;
+ height:3.75rem;
+ min-height:3.75rem;
+ padding:0;
+ border:1px solid var(--line);
+ border-radius:.75rem;
+ background:var(--white);
+ color:var(--ink);
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ cursor:pointer
+}
+.top-profile-control .profile-glyph{width:1.8rem;height:1.8rem}
+.top-profile-control:hover,.top-profile-control.active,.top-profile-control[aria-pressed="true"]{
+ background:var(--pale);
+ border-color:var(--green)
+}
+html[data-theme="dark"] .top-profile-control{
+ background:#17231f;
+ color:var(--ink);
+ border-color:#3b5048
+}
+html[data-theme="dark"] .top-profile-control:hover,html[data-theme="dark"] .top-profile-control.active{
+ background:#244039;
+ border-color:var(--green)
+}
+@media (max-width:900px){
+ header{
+  height:5.5rem;
+  min-height:5.5rem;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scrollbar-width:thin
+ }
+ .top-profile-control{
+  display:flex;
+  flex:0 0 3.75rem
+ }
+ .mobile-app-nav{justify-content:center}
+}
