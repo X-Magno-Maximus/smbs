@@ -600,3 +600,52 @@ html[data-theme="dark"] .top-profile-control:hover,html[data-theme="dark"] .top-
  }
  .mobile-app-nav{justify-content:center}
 }
+
+/* Orders status filter — 2026-08-31 */
+.orders-toolbar{align-items:center;gap:1rem}
+.orders-filter{
+ margin-left:auto;
+ display:flex;
+ align-items:center;
+ gap:.55rem;
+ color:var(--muted);
+ font-size:.62rem;
+ font-weight:700
+}
+.orders-filter select{
+ min-width:9rem;
+ height:2.35rem;
+ padding:0 2rem 0 .7rem;
+ border:1px solid var(--line);
+ border-radius:.55rem;
+ background:var(--white);
+ color:var(--ink);
+ cursor:pointer
+}
+.orders-filter select:hover,.orders-filter select:focus{
+ border-color:var(--green)
+}
+.orders-filter-status{
+ margin:.6rem 0 0;
+ color:var(--muted);
+ font-size:.58rem;
+ text-align:right
+}
+.orders-list>div[hidden]{display:none!important}
+.orders-filter-empty{
+ margin:1rem 0 0;
+ padding:1rem;
+ border-radius:.65rem;
+ background:var(--pale);
+ color:var(--muted);
+ text-align:center;
+ font-size:.68rem
+}
+.orders-filter-empty[hidden]{display:none!important}
+html[data-theme="dark"] .orders-filter select{background:#17231f;border-color:#3b5048;color:var(--ink)}
+@media(max-width:599px){
+ .orders-toolbar{align-items:stretch;flex-direction:column}
+ .orders-filter{width:100%;margin-left:0;justify-content:space-between}
+ .orders-filter select{flex:1;min-width:0}
+ .orders-filter-status{text-align:left}
+}
