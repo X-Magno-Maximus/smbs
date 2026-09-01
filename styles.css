@@ -868,3 +868,19 @@ html[data-theme="dark"] .coverage-options,html[data-theme="dark"] .staff-member{
 html[data-theme="dark"] .field-grid textarea{background:#0d1714;color:#f6fbf8;border-color:#7d9990}
 html[data-theme="dark"] .staff-invite-links a,html[data-theme="dark"] .staff-invite-links button{background:#162720;color:#d9fff2;border-color:#567268}
 @media(max-width:599px){.hours-row,.staff-member{grid-template-columns:1fr}.staff-member .setting-toggle{justify-self:start}.weekday-list{display:grid;grid-template-columns:repeat(2,1fr)}}
+
+
+/* Staff account lifecycle */
+.staff-member{grid-template-columns:minmax(12rem,1fr) auto auto}
+.staff-status{justify-self:end;border-radius:999px;padding:.3rem .55rem;font-size:.5rem;font-weight:850;text-transform:uppercase;letter-spacing:.03rem}
+.staff-status--invited{background:#e8eefc;color:#314b8f}
+.staff-status--active{background:#dcfce7;color:#166534}
+.staff-status--suspended{background:#fef3c7;color:#92400e}
+.staff-status--revoked{background:#fee2e2;color:#991b1b}
+.staff-invite-links button:disabled{cursor:not-allowed;opacity:.45}
+.staff-invite-links .danger-action{border-color:#efb0b0;color:#a61b1b}
+html[data-theme="dark"] .staff-status--invited{background:#293b66;color:#dbe6ff}
+html[data-theme="dark"] .staff-status--active{background:#183f2b;color:#bff4cf}
+html[data-theme="dark"] .staff-status--suspended{background:#513c16;color:#ffe3a1}
+html[data-theme="dark"] .staff-status--revoked{background:#512323;color:#ffc5c5}
+@media(max-width:599px){.staff-member{grid-template-columns:1fr}.staff-status{justify-self:start}}
