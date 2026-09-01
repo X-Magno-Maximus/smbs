@@ -684,3 +684,11 @@ html[data-theme="dark"] .orders-filter select{background:#17231f;border-color:#3
 }
 html[data-theme="dark"] .drawer-account-controls>button,html[data-theme="dark"] .drawer-account-controls .header-preferences>button{background:transparent;color:var(--ink);border-color:transparent}
 html[data-theme="dark"] .drawer-account-controls>button:hover,html[data-theme="dark"] .drawer-account-controls>button.active,html[data-theme="dark"] .drawer-account-controls .header-preferences>button:hover,html[data-theme="dark"] .drawer-account-controls .header-preferences>button.active,html[data-theme="dark"] .drawer-account-controls .header-preferences>button[aria-pressed="true"]{background:#244039;border-color:var(--green)}
+
+
+/* Responsive header continuity: keep Profile and Notifications available on mobile/tablet */
+.mobile-header-only{display:none}
+@media (max-width:900px){
+ header .mobile-header-only{display:flex}
+ header .mobile-header-only.bell{flex:0 0 3.75rem;width:3.75rem;height:3.75rem;margin-left:0}
+}
