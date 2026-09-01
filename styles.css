@@ -746,3 +746,58 @@ html[data-theme="dark"] .account-nav{background:#17231f;border-color:#3b5048;box
 
 /* Match the Products menu icon to the responsive workspace icon scale */
 @media (max-width:599px){.quick-nav .repo-menu-icon{width:3rem;height:3rem}}
+
+
+/* Dark left slide-out — clean dashboard update */
+.account-nav{
+ top:5.5rem;
+ min-height:calc(100vh - 5.5rem);
+ max-height:calc(100vh - 5.5rem);
+ padding:1rem .8rem;
+ border-color:#395267;
+ border-radius:0 1rem 1rem 0;
+ background:#20384b;
+ color:#f7fbff;
+ box-shadow:.7rem 0 2rem #10253538
+}
+.account-nav .drawer-account-controls{
+ display:grid;
+ gap:.45rem
+}
+.account-nav .drawer-account-controls button,
+.account-nav .drawer-account-controls .language-control,
+.account-nav .drawer-account-controls .theme-control{
+ width:100%;
+ min-height:3.25rem;
+ justify-content:flex-start;
+ gap:.8rem;
+ padding:.65rem .8rem;
+ border-color:transparent;
+ background:transparent;
+ color:#f7fbff;
+ box-shadow:none
+}
+.account-nav .drawer-account-controls button:hover,
+.account-nav .drawer-account-controls button:focus-visible,
+.account-nav .drawer-account-controls>button.active{
+ border-color:#56738a;
+ background:#36566e;
+ color:#fff
+}
+.account-nav .drawer-account-controls .ui-icon,
+.account-nav .drawer-account-controls .theme-glyph{
+ width:2rem;
+ height:2rem;
+ flex:0 0 2rem
+}
+.account-nav .drawer-account-controls .bell i{
+ right:.7rem
+}
+html[data-theme="dark"] .account-nav{
+ border-color:#486278;
+ background:#172d3f;
+ color:#fff
+}
+.welcome{
+ justify-content:flex-start
+}
