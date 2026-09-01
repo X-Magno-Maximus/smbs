@@ -778,7 +778,8 @@ html[data-theme="dark"] .account-nav{background:#17231f;border-color:#3b5048;box
  box-shadow:none
 }
 .account-nav .drawer-account-controls button:hover,
-.account-nav .drawer-account-controls button:focus-visible{
+.account-nav .drawer-account-controls button:focus-visible,
+.account-nav .drawer-account-controls>button.active{
  border-color:#56738a;
  background:#36566e;
  color:#fff
