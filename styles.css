@@ -692,3 +692,52 @@ html[data-theme="dark"] .drawer-account-controls>button:hover,html[data-theme="d
  header .mobile-header-only{display:flex}
  header .mobile-header-only.bell{flex:0 0 3.75rem;width:3.75rem;height:3.75rem;margin-left:0}
 }
+
+
+/* Two independent vertical menus — 2026-09-01 */
+.account-nav{
+ position:fixed;
+ top:5.5rem;
+ left:0;
+ right:auto;
+ z-index:76;
+ width:min(18rem,calc(100vw - 1.3rem));
+ max-height:calc(100vh - 5.5rem);
+ padding:.6rem;
+ overflow-y:auto;
+ border:1px solid var(--line);
+ border-left:0;
+ border-radius:0 1rem 1rem 0;
+ background:var(--white);
+ box-shadow:0 .8rem 2.2rem #10211c4d;
+ transform:translateX(calc(-100% - 3rem));
+ opacity:0;
+ visibility:hidden;
+ pointer-events:none;
+ transition:transform .22s ease,opacity .22s ease,visibility 0s linear .22s
+}
+.account-nav.nav-open{
+ transform:translateX(0);
+ opacity:1;
+ visibility:visible;
+ pointer-events:auto;
+ transition:transform .22s ease,opacity .22s ease
+}
+.account-nav .drawer-account-controls{margin:0;padding:0;border:0}
+.account-nav-toggle{margin-left:0;margin-right:.15rem}
+@media (min-width:901px){
+ .quick-nav{
+  top:5.5rem;
+  right:0;
+  left:auto;
+  width:min(18rem,calc(100vw - 1.3rem));
+  max-height:calc(100vh - 5.5rem);
+  border-radius:1rem 0 0 1rem;
+  transform:translateX(calc(100% + 3rem))
+ }
+ .quick-nav.nav-open{transform:translateX(0)}
+}
+@media (max-width:900px){
+ .account-nav,.account-nav-toggle{display:none!important}
+}
+html[data-theme="dark"] .account-nav{background:#17231f;border-color:#3b5048;box-shadow:0 .8rem 2.2rem #000a}
