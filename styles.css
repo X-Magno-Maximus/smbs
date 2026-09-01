@@ -663,6 +663,7 @@ html[data-theme="dark"] .orders-filter select{background:#17231f;border-color:#3
 .drawer-account-controls .bell{position:relative;margin-left:0}
 .drawer-account-controls .bell i{right:.7rem;top:.55rem}
 .drawer-account-controls .ui-icon,.drawer-account-controls .theme-glyph,.drawer-account-controls .profile-glyph{width:1.4rem;height:1.4rem}
+.drawer-account-controls .bell>span:first-child{display:grid;place-items:center;flex:0 0 1.4rem;width:1.4rem;height:1.4rem;font-size:1.4rem;line-height:1}
 .drawer-section-label{margin:.25rem .7rem .1rem!important;font-size:.55rem!important;letter-spacing:.08rem;color:var(--muted);font-weight:800;text-transform:uppercase}
 @media (min-width:901px){
  header{overflow:visible}
