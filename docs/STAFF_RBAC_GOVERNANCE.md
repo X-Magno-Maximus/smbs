@@ -68,7 +68,7 @@ A staff invitation requires:
 - First and last name
 - Position
 - Private salary record
-- Verified email
+- Email address (verification pending at invitation time)
 - Phone and optional WhatsApp number
 - Assigned branch
 - Invitation method
@@ -77,7 +77,7 @@ A staff invitation requires:
 - SMB-owner confirmation
 - Owner current-password verification
 
-The invitation or password-reset email allows the staff member to create their own password. Owners and managers cannot view, set, copy, or receive staff passwords.
+An invitation may be created before the staff email is verified. The account must remain inactive until the staff member completes email authentication.\n\nThe invitation or password-reset email allows the staff member to create their own password. Owners and managers cannot view, set, copy, or receive staff passwords.
 
 Authorization and email authentication are separate events. Both must generate:
 
@@ -163,7 +163,7 @@ Audit records should be append-only, access-controlled, timestamped, and protect
 - Enforce RBAC server-side.
 - Enforce working hours server-side.
 - Require recent owner reauthentication for privileged actions.
-- Revoke sessions immediately after suspension, master deactivation, or revocation.
+- Revoke sessions immediately after individual deactivation, suspension, master deactivation, or revocation.
 - Send owner notifications through a trusted backend service.
 - Protect audit logs from update and deletion.
 - Rate-limit invitations, password resets, and authentication attempts.
