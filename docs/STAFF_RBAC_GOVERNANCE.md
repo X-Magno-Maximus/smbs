@@ -168,3 +168,53 @@ Audit records should be append-only, access-controlled, timestamped, and protect
 - Protect audit logs from update and deletion.
 - Rate-limit invitations, password resets, and authentication attempts.
 - Require MFA for SMB owners and privileged administrators.
+
+## Revoked-record immutability
+
+After revocation:
+
+- The authorization toggle remains OFF.
+- RBAC presets and individual permissions cannot be changed.
+- Promotions and role changes cannot be approved.
+- Password-reset and authentication actions cannot be initiated.
+- The record remains available only for authorized audit review and protected deletion.
+
+A revoked record may be deleted only through the dedicated owner-confirmation dialog. The final audit event must be written before the user-facing record is removed.
+
+## Legacy-role migration
+
+Existing staff records must retain the safest equivalent access when the RBAC model changes.
+
+- Legacy **Read only** maps to read access across approved business areas.
+- Legacy operational roles map to their corresponding lower-staff presets.
+- Unknown or privileged legacy roles receive no automatic elevated permissions.
+- Migration must never silently expand Write, Approve, Audit, owner, security, or staff-administration privileges.
+
+## Notification delivery states
+
+Authorization, authentication, password-reset, RBAC, promotion, suspension, revocation, and deletion events must expose a delivery state:
+
+- Queued
+- Sent
+- Delivered
+- Failed
+
+The current frontend prototype may record **Queued** only. It must not claim that an email was sent or delivered until the trusted notification backend confirms that outcome.
+
+Notification payloads must exclude passwords, password hashes, reset tokens, MFA secrets, session tokens, and authentication answers.
+
+## Verification boundary
+
+A non-empty password field in the frontend demonstrates the approval interaction only. Production authorization requires recent server-verified owner reauthentication.
+
+The trusted backend must:
+
+1. Verify the SMB owner identity and current authentication state.
+2. Confirm the verified owner email.
+3. Apply tenant, branch, RBAC, and working-hour policies.
+4. Commit the access change and immutable audit event atomically.
+5. Queue the owner notification only after the change succeeds.
+6. Return a non-sensitive result to the interface.
+
+Frontend state, hidden fields, disabled buttons, local storage, or visual toggles are never authoritative security controls.
+
