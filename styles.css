@@ -840,3 +840,31 @@ html[data-theme="dark"] .security-row{background:#21372f}
 html[data-theme="dark"] .settings-panel button:not(.primary){background:#162720;color:#d9fff2;border-color:#567268}
 @media(max-width:899px){.profile-workspace,.account-settings-grid{grid-template-columns:1fr}.profile-workspace .brand-preview{position:static;min-height:13rem}}
 @media(max-width:599px){.field-grid{grid-template-columns:1fr}.field-grid label.wide{grid-column:auto}.form-actions,.settings-panel-head{align-items:stretch;flex-direction:column}.form-actions .primary,.settings-panel-head button{width:100%}.account-settings-grid{gap:.8rem}}
+
+
+/* Service coverage and staff access controls */
+.coverage-options{display:flex;flex-wrap:wrap;gap:.65rem 1rem;padding:.75rem;border-radius:.6rem;background:var(--pale)}
+.coverage-options label,.access-option{display:flex;align-items:center;gap:.5rem;font-size:.62rem;font-weight:750}
+.coverage-options input,.access-option input,.weekday-list input{width:1.1rem;height:1.1rem;accent-color:var(--green)}
+.field-grid textarea{width:100%;min-height:5rem;resize:vertical;border:1px solid #9eb1aa;border-radius:.55rem;background:#fff;color:#14231e;padding:.7rem .75rem;font:inherit;font-size:.7rem}
+#serviceRadiusConversion{font-weight:750;color:var(--green)}
+.staff-access-panel{grid-column:1/-1}
+.working-hours{display:flex;flex-direction:column;gap:.75rem;margin:0;padding:.85rem;border:1px solid var(--line);border-radius:.65rem}
+.working-hours legend{padding:0 .35rem;font-size:.62rem;font-weight:800}
+.working-hours>small{font-size:.54rem;color:var(--muted);line-height:1.45}
+.weekday-list{display:flex;flex-wrap:wrap;gap:.5rem}
+.weekday-list label{display:flex;align-items:center;gap:.3rem;padding:.4rem .5rem;border:1px solid var(--line);border-radius:.45rem;font-size:.56rem;font-weight:750}
+.hours-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem}
+.hours-row label{display:flex;flex-direction:column;gap:.35rem;font-size:.58rem;font-weight:700}
+.staff-list{display:grid;gap:.65rem;padding-top:.75rem;border-top:1px solid var(--line)}
+.staff-list h4{margin:0;font-size:.72rem}
+.staff-member{display:grid;grid-template-columns:minmax(12rem,1fr) auto;gap:.65rem 1rem;align-items:center;padding:.8rem;border:1px solid var(--line);border-radius:.65rem;background:var(--paper)}
+.staff-member>div:first-child{display:flex;flex-direction:column;gap:.2rem}
+.staff-member b{font-size:.66rem}.staff-member small{font-size:.54rem;color:var(--muted)}
+.staff-invite-links{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:.5rem}
+.staff-invite-links a,.staff-invite-links button{display:inline-flex;align-items:center;min-height:2rem;border:1px solid #aabdb6;border-radius:.45rem;background:#fff;color:var(--green);padding:.35rem .6rem;text-decoration:none;font-size:.55rem;font-weight:800}
+.empty-staff{margin:0!important;color:var(--muted)!important}
+html[data-theme="dark"] .coverage-options,html[data-theme="dark"] .staff-member{background:#21372f}
+html[data-theme="dark"] .field-grid textarea{background:#0d1714;color:#f6fbf8;border-color:#7d9990}
+html[data-theme="dark"] .staff-invite-links a,html[data-theme="dark"] .staff-invite-links button{background:#162720;color:#d9fff2;border-color:#567268}
+@media(max-width:599px){.hours-row,.staff-member{grid-template-columns:1fr}.staff-member .setting-toggle{justify-self:start}.weekday-list{display:grid;grid-template-columns:repeat(2,1fr)}}
