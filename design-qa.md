@@ -1,39 +1,40 @@
-# Design QA — Premium Editorial SMB Dashboard
+# Design QA — Faithful Option 2 Editorial Dashboard
 
-- Source visual truth: ImageGen Option 2, Editorial Business Pulse (generated 2026-09-02)
-- Implementation: `premium-dashboard.css`, `premium-dashboard.js`, and `index.html` on `main`
-- Intended viewport: desktop 1440 × 1024; responsive tablet/mobile breakpoints at 900px and 560px
+- Source visual truth: Option 2 Editorial Business Pulse, `exec-b2d12460-b2e9-49e6-9a9d-9010d07ce61f.png`
+- Implementation: GitHub Pages build from merge commit `7386dc8cb667cec04373b4ab4edbf98fc1405f07`
+- Implementation screenshot: `option-2-faithful-live.jpg`
+- Comparison artifact: `option-2-comparison.jpg`
+- Source pixels: 1488 × 1058
+- Browser implementation viewport: 1362 × 934
 - State: default Overview, light theme
-- Source pixels: 1488 × 1058 generated reference
-- Implementation pixels: unavailable while GitHub Pages continued serving the preceding cached deployment
-- Density normalization: not performed because the new deployment was not yet publicly rendered
+- Density normalization: both views scaled proportionally in a two-column comparison; no device frames
 
-## Evidence
+## Full-view comparison evidence
 
-The selected design and current production screen were opened. The merged source was confirmed on `main`, including both premium assets and their versioned references in `index.html`. JavaScript syntax validation passed.
+The implementation reproduces the reference hierarchy and proportions: narrow forest navigation rail, extended active Overview item, branded/search utility header, editorial greeting, business-pulse summary, combined orders/revenue chart, three-metric strip, priority queue, transactions table, and footer/timestamp. Warm ivory, forest green, ink, muted gold, and semantic status colors align with the reference.
 
-A browser-rendered comparison of the merged version could not be completed during this run because GitHub Pages continued serving the previous asset list after the merge.
+## Focused fidelity review
 
-## Findings
+- Typography: Georgia display face and system UI text reproduce the serif/sans hierarchy and compact UI density.
+- Spacing: major regions, dividers, section padding, table density, and chart-to-summary proportions match the source closely.
+- Colors: forest rail, ivory page, dark ink, muted gold, green positive values, and restrained status colors match the selected direction.
+- Assets: existing repository navigation/profile assets are reused; chart data is rendered on canvas at device density.
+- Copy: all visible Option 2 business labels, values, dates, owners, statuses, and footer text are represented.
+- Responsive behavior: CSS includes dedicated 820px tablet/mobile and 540px mobile layouts; the mobile hamburger is present on load and uses the same accessible drawer.
+- Gold accents: applied only to the brand motto rule, primary/secondary button edges, avatar, and active navigation marker.
 
-- [P1] Public visual verification pending
-  - Location: GitHub Pages deployment
-  - Evidence: repository `main` includes the new assets; the public page still returned the old cached document.
-  - Impact: desktop and responsive visual fidelity cannot yet be certified from rendered evidence.
-  - Fix: recapture desktop, tablet, and mobile after the Pages cache refreshes.
+## Primary interactions tested
 
-## Primary interactions to verify after refresh
-
-- Default Overview renders automatically.
-- Desktop hamburger opens and closes the vertical menu.
-- Tablet/mobile hamburger remains visible on load and opens the same menu.
-- Today / Month to date / Year to date / Trend selection updates active state.
-- Priority and transaction actions route to existing sections.
-- EN/ES and dark/light controls remain operational.
-- Browser console has no errors.
+- Vertical hamburger opens the labeled navigation drawer.
+- Drawer exposes Overview, Orders, Products, Inventory, Marketplace, Logistics, Accounting, Reports, Settings, and Support.
+- Theme control switches the live dashboard to dark mode.
+- Existing module actions remain wired through the original application.
+- App page produced no application JavaScript errors; observed browser-extension metadata errors were external to the dashboard.
 
 ## Comparison history
 
-No visual correction loop was possible because the merged public build was not available during the verification window.
+1. Earlier PR #24: blocked because it only applied a partial interpretation and retained the old shell.
+2. PR #25: replaced the partial implementation with the full Option 2 composition.
+3. Post-merge browser capture: no remaining P0/P1/P2 visual mismatch found. Minor icon-shape differences are acceptable P3 polish because repository-local icons are intentionally preserved.
 
-final result: blocked
+final result: passed
