@@ -28,3 +28,10 @@ html[data-theme=dark] .editorial-shell{--ed-paper:#17211e;--ed-soft:#1f2b27;--ed
 @media(max-width:1050px){.ed-topbar{grid-template-columns:145px 1fr}.ed-actions{grid-column:1/-1;justify-self:stretch;position:absolute;right:22px;top:100px}.ed-heading{padding-top:70px}.ed-overview{grid-template-columns:300px minmax(480px,1fr)}.ed-content{padding:0 22px}.ed-avatar span{display:none}}
 @media(max-width:820px){.editorial-shell{display:block}.ed-rail{display:none}.ed-content{padding:0 18px}.ed-topbar{height:auto;min-height:84px;grid-template-columns:auto 1fr;padding:12px 0}.ed-brand{display:none}.ed-mobile-menu{display:grid}.ed-search{grid-column:2}.ed-actions{position:static;grid-column:1/-1;justify-content:flex-end;border-top:1px solid var(--ed-line);padding-top:10px}.ed-heading{padding:24px 0 20px;grid-template-columns:1fr}.ed-heading aside{padding:15px 0 0}.ed-overview{grid-template-columns:1fr}.ed-pulse{border-right:0;border-bottom:1px solid var(--ed-line);padding:0 0 25px}.ed-chart{padding:24px 0 18px}.ed-metrics,.ed-tables{grid-template-columns:1fr}.ed-metric{padding:16px 0}.ed-metric+.ed-metric{border-left:0;border-top:1px solid var(--ed-line)}.ed-panel+.ed-panel{border-left:0;border-top:1px solid var(--ed-line);padding-left:0}.ed-drawer{left:18px;top:74px}.ed-footer{padding-bottom:88px}.ed-avatar{margin-left:auto}}
 @media(max-width:540px){.ed-search kbd,.ed-icon-btn.ed-hide-small,.ed-add.client{display:none}.ed-add{padding:0 13px}.ed-heading h1{font-size:39px}.ed-heading aside{display:none}.ed-chart-head{display:block}.ed-chart-note{text-align:left;margin-top:8px}.ed-canvas-wrap{height:185px;min-width:620px}.ed-chart{overflow-x:auto}.ed-table{min-width:650px}.ed-footer{align-items:flex-start;gap:8px;flex-direction:column;height:auto;padding:18px 0 110px}}
+
+/* Duplicate-control hardening: only the active Option 2 surface participates in layout/accessibility. */
+body.editorial-active>.mobile-app-nav{display:none!important}
+body.editorial-active>.app{display:none!important}
+.editorial-shell[hidden]{display:none!important}
+.ed-drawer{visibility:hidden}
+.ed-drawer.open{visibility:visible}
