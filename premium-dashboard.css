@@ -35,3 +35,22 @@ body.editorial-active>.app{display:none!important}
 .editorial-shell[hidden]{display:none!important}
 .ed-drawer{visibility:hidden}
 .ed-drawer.open{visibility:visible}
+
+
+/* Option 2 shared workspace shell */
+.ed-module-host{padding:34px 0 20px;min-height:calc(100vh - 116px)}
+.ed-module-host[hidden]{display:none!important}
+.ed-module-host>.view-host{display:block;width:100%;min-height:620px;background:transparent}
+.ed-module-host>.view-host[hidden]{display:none!important}
+.ed-module-host .view{display:block}
+.ed-module-host :is(h1,h2,h3){font-family:Georgia,"Times New Roman",serif;color:var(--ed-ink);letter-spacing:-.02em}
+.ed-module-host h2{font-size:clamp(28px,3vw,42px);margin:0 0 8px}
+.ed-module-host :is(.card,.panel,.table-card,.surface,.settings-card,.stat-card){background:#fffefa;border:1px solid var(--ed-line);border-radius:12px;box-shadow:0 10px 28px rgba(15,55,45,.055)}
+.ed-module-host :is(button,.btn){border-radius:9px}
+.ed-module-host :is(button.primary,.btn.primary,[data-primary]){background:var(--ed-forest);color:#fff;border:1px solid var(--ed-gold);box-shadow:inset 0 0 0 1px rgba(202,155,45,.24)}
+.ed-module-host :is(input,select,textarea){border-color:#d9d6ce;border-radius:9px;background:#fffefa}
+.ed-module-host table{background:#fffefa}
+.ed-module-host thead th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ed-muted);border-bottom-color:var(--ed-gold)}
+.ed-module-host tbody tr:hover{background:#f7f3e9}
+.ed-module-host .empty-state{border:1px dashed #d7c596;background:#fffaf0;border-radius:12px}
+@media(max-width:780px){.ed-module-host{padding:22px 0 88px}.ed-module-host>.view-host{min-height:calc(100vh - 170px)}}
