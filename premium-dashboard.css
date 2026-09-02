@@ -66,3 +66,5 @@ body.editorial-active>.app{display:none!important}
 .ed-module-host :is(.product,.list-row,.table-row) em{font-size:11px}
 .ed-module-host .back-button{font-size:13px;color:var(--ed-forest)}
 .ed-rail-menu{color:#fff}
+
+.ed-content>[hidden]{display:none!important}
