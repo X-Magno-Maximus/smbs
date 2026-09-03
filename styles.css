@@ -149,7 +149,7 @@ html[data-theme="dark"] .header-preferences button:hover{background:#244039}
 .profile-settings-card>button{height:2rem;border:1px solid #b8c8c2;border-radius:.45rem;background:#fff;color:var(--green);padding:0 .7rem;font-size:.58rem;font-weight:700}
 
 /* Gated Tech Support access */
-.support-workspace{display:grid;grid-template-columns:minmax(28rem,1.45fr) minmax(18rem,.55fr);gap:.8rem;align-items:start}
+.support-workspace{display:block;max-width:64rem}
 .support-access-form{min-height:22rem;display:flex;flex-direction:column;gap:.8rem}
 .support-title{display:flex;align-items:center;gap:.8rem;padding-bottom:.8rem;border-bottom:1px solid var(--line)}
 .support-title>i{width:3.2rem;height:3.2rem;display:grid;place-items:center;border-radius:50%;background:#155e55;color:#fff;font-style:normal;font-size:1.1rem}
@@ -162,14 +162,14 @@ html[data-theme="dark"] .header-preferences button:hover{background:#244039}
 .acknowledge-row button.acknowledged{background:#155e55;color:#fff}
 .support-note{display:flex;align-items:center;gap:.35rem;margin:0;font-size:.52rem;color:var(--muted)}
 .support-note button{width:1.1rem;height:1.1rem;border:1px solid #78968d;border-radius:50%;background:transparent;color:var(--ink);padding:0;font-size:.56rem;font-weight:800}
-.support-side{display:flex;flex-direction:column;gap:.8rem}
-.support-start{align-self:flex-end;min-width:13rem}
+.support-actions{display:flex;align-items:center;justify-content:flex-end;gap:.8rem;margin-top:auto;padding-top:.4rem}
+.support-start{flex:0 0 auto;min-width:13rem}
 .support-start:disabled{background:#aeb8b4;color:#eef1f0;cursor:not-allowed;opacity:.72}
-.quick-help{width:100%}.support-status{min-height:1rem;margin:0;color:#166534;font-size:.56rem;font-weight:700}
+.support-status{flex:1;min-height:1rem;margin:0;color:#166534;font-size:.56rem;font-weight:700}
 html[data-theme="dark"] .profile-settings-card>button,html[data-theme="dark"] .support-access-form input,html[data-theme="dark"] .acknowledge-row,html[data-theme="dark"] .acknowledge-row button{background:#101a17;color:var(--ink);border-color:#42584f}
 html[data-theme="dark"] .profile-settings-card i{background:#244039;color:#b9f3e2}
 html[data-theme="dark"] .acknowledge-row button.acknowledged{background:#7dd3bd;color:#10211c}
-@media (max-width:899px){.profile-settings-card{grid-template-columns:1fr 1fr}.support-workspace{grid-template-columns:1fr}.support-start{align-self:stretch}.support-access-form{min-height:0}}
+@media (max-width:899px){.profile-settings-card{grid-template-columns:1fr 1fr}.support-actions{align-items:stretch;flex-direction:column}.support-start{width:100%}.support-access-form{min-height:0}}
 @media (max-width:599px){.profile-settings-card{grid-template-columns:1fr}.acknowledge-row{align-items:stretch;flex-direction:column}.acknowledge-row button{width:100%}}
 .section-title[hidden]{display:none}
 .view-host[hidden]{display:none}
