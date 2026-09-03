@@ -10,7 +10,7 @@ This standard governs staff access for the SMB and Logistics dashboards. It appl
 2. Owner security, MFA, owner email, ownership transfer, and staff administration are never assignable through staff RBAC.
 3. Staff passwords are created and reset by the staff member through a verified email flow.
 4. The owner password may verify a privileged action, but it must never be stored, logged, emailed, displayed to staff, or included in an audit event.
-5. UI controls are prototypes until authorization, authentication, session revocation, time restrictions, notifications, and audit storage are enforced by the trusted backend.
+5. UI controls must remain inactive until authorization, authentication, session revocation, time restrictions, notifications, and audit storage are enforced by the trusted backend.
 
 ## Access tiers
 
@@ -199,7 +199,7 @@ Authorization, authentication, password-reset, RBAC, promotion, suspension, revo
 - Delivered
 - Failed
 
-The current frontend prototype may record **Queued** only. It must not claim that an email was sent or delivered until the trusted notification backend confirms that outcome.
+The current frontend may record **Queued** only. It must not claim that an email was sent or delivered until the trusted notification backend confirms that outcome.
 
 Notification payloads must exclude passwords, password hashes, reset tokens, MFA secrets, session tokens, and authentication answers.
 
