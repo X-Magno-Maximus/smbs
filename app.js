@@ -10,8 +10,7 @@ function showToast(message){
 document.querySelectorAll('[data-page]').forEach(control=>{
   control.addEventListener('click',()=>{
     const page=control.dataset.page;
-    document.querySelector('#sidebar').classList.remove('open');
-    document.querySelector('#menuToggle').setAttribute('aria-expanded','false');
+    if(window.matchMedia('(max-width:900px)').matches) setSidebarOpen(false,false);
     closeUtilityMenu();
     if(page==='Overview') return;
     showToast(page+' will be created as its own page in the next approved stage.');
@@ -20,11 +19,36 @@ document.querySelectorAll('[data-page]').forEach(control=>{
 document.querySelectorAll('[data-toast]').forEach(control=>control.addEventListener('click',()=>showToast(control.dataset.toast)));
 document.querySelectorAll('[data-no-route]').forEach(link=>link.addEventListener('click',event=>{event.preventDefault();showToast('This action will be connected during the Overview workflow.');}));
 
+const appShell=document.querySelector('.app-shell');
+const sidebar=document.querySelector('#sidebar');
 const menuToggle=document.querySelector('#menuToggle');
-menuToggle.addEventListener('click',()=>{
-  const sidebar=document.querySelector('#sidebar');
-  const open=sidebar.classList.toggle('open');
+const sidebarSlideToggle=document.querySelector('#sidebarSlideToggle');
+function sidebarIsOpen(){
+  return window.matchMedia('(max-width:900px)').matches
+    ?sidebar.classList.contains('open')
+    :!appShell.classList.contains('sidebar-collapsed');
+}
+function setSidebarOpen(open,persist=true){
+  const compact=window.matchMedia('(max-width:900px)').matches;
+  sidebar.classList.toggle('open',compact&&open);
+  appShell.classList.toggle('sidebar-collapsed',!compact&&!open);
   menuToggle.setAttribute('aria-expanded',String(open));
+  sidebarSlideToggle.setAttribute('aria-expanded',String(open));
+  sidebarSlideToggle.setAttribute('aria-label',open?'Close navigation menu':'Open navigation menu');
+  sidebarSlideToggle.textContent=open?'<':'>';
+  if(persist&&!compact){
+    try{localStorage.setItem('marxia-sidebar-open',String(open))}catch(error){}
+  }
+}
+menuToggle.addEventListener('click',()=>setSidebarOpen(!sidebarIsOpen()));
+sidebarSlideToggle.addEventListener('click',()=>setSidebarOpen(!sidebarIsOpen()));
+try{
+  const storedSidebarState=localStorage.getItem('marxia-sidebar-open');
+  if(!window.matchMedia('(max-width:900px)').matches&&storedSidebarState==='false') setSidebarOpen(false,false);
+}catch(error){}
+window.addEventListener('resize',()=>{
+  if(window.matchMedia('(max-width:900px)').matches) setSidebarOpen(sidebar.classList.contains('open'),false);
+  else setSidebarOpen(!appShell.classList.contains('sidebar-collapsed'),false);
 });
 
 const utilityMenuToggle=document.querySelector('#utilityMenuToggle');
@@ -77,8 +101,7 @@ document.addEventListener('keydown',event=>{
     document.querySelector('#searchInput').focus();
   }
   if(event.key==='Escape'){
-    document.querySelector('#sidebar').classList.remove('open');
-    menuToggle.setAttribute('aria-expanded','false');
+    setSidebarOpen(false,false);
     closeUtilityMenu();
   }
 });
