@@ -166,6 +166,57 @@ document.querySelector('#clientForm').addEventListener('submit',event=>{
   updateClientType();
 });
 
+const inventoryCatalog=[
+  {name:'Dark Cocoa 70%',sku:'SKU-1021',price:8.50,stock:8,tax:15,notInStock:false},
+  {name:'Cacao Beans Raw',sku:'SKU-2003',price:12.75,stock:12,tax:15,notInStock:false},
+  {name:'Vanilla Extract 250ml',sku:'SKU-3012',price:9.25,stock:5,tax:15,notInStock:false},
+  {name:'Cacao Nacional',sku:'SKU-4010',price:14.00,stock:20,tax:15,notInStock:false}
+];
+const productInventorySearch=document.querySelector('#productInventorySearch');
+const inventoryProductOptions=document.querySelector('#inventoryProductOptions');
+const inventorySearchStatus=document.querySelector('#inventorySearchStatus');
+const productName=document.querySelector('#productName');
+const productPrice=document.querySelector('#productPrice');
+const productSku=document.querySelector('#productSku');
+inventoryCatalog.forEach(product=>{
+  const option=document.createElement('option');
+  option.value=product.name;
+  option.label=product.sku;
+  inventoryProductOptions.append(option);
+});
+function findInventoryProduct(query){
+  const normalized=query.trim().toLowerCase();
+  if(!normalized) return null;
+  return inventoryCatalog.find(product=>product.name.toLowerCase()===normalized||product.sku.toLowerCase()===normalized)
+    ||inventoryCatalog.find(product=>product.name.toLowerCase().includes(normalized)||product.sku.toLowerCase().includes(normalized));
+}
+function populateProductFromInventory(){
+  const product=findInventoryProduct(productInventorySearch.value);
+  if(!product){
+    inventorySearchStatus.textContent='No matching inventory product found. Try a product name or SKU.';
+    return;
+  }
+  productName.value=product.name;
+  productPrice.value=product.price.toFixed(2);
+  productSku.value=product.sku;
+  productStock.value=product.stock;
+  productTaxValue.value=product.tax;
+  productTaxValue.disabled=false;
+  productTaxToggle.classList.add('on');
+  productTaxToggle.setAttribute('aria-checked','true');
+  notInStock.checked=product.notInStock;
+  productStock.disabled=product.notInStock;
+  inventorySearchStatus.textContent=product.name+' ('+product.sku+') loaded from inventory.';
+}
+document.querySelector('#loadInventoryProduct').addEventListener('click',populateProductFromInventory);
+productInventorySearch.addEventListener('change',populateProductFromInventory);
+productInventorySearch.addEventListener('keydown',event=>{
+  if(event.key==='Enter'){
+    event.preventDefault();
+    populateProductFromInventory();
+  }
+});
+
 const productUpload=document.querySelector('#productUpload');
 const productPhoto=document.querySelector('#productPhoto');
 productUpload.addEventListener('click',()=>productPhoto.click());
@@ -184,7 +235,8 @@ productTaxToggle.addEventListener('click',()=>{
   productTaxToggle.classList.toggle('on',on);
   productTaxValue.disabled=!on;
 });
-document.querySelector('#notInStock').addEventListener('change',event=>{
+const notInStock=document.querySelector('#notInStock');
+notInStock.addEventListener('change',event=>{
   productStock.disabled=event.currentTarget.checked;
   if(event.currentTarget.checked) productStock.value=0;
 });
@@ -199,4 +251,6 @@ document.querySelector('#productForm').addEventListener('submit',event=>{
   productTaxToggle.classList.add('on');
   productTaxToggle.setAttribute('aria-checked','true');
   productUpload.querySelector('strong').textContent='Take a picture or upload';
+  productInventorySearch.value='';
+  inventorySearchStatus.textContent='Choose an existing inventory product to populate the form.';
 });
