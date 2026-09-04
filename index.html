@@ -6,9 +6,9 @@
   <meta name="theme-color" content="#064f40">
   <title>Marxia | Business Overview</title>
   <meta name="description" content="Marxia SMB business overview">
-  <link rel="stylesheet" href="styles.css?v=20260904-4">
+  <link rel="stylesheet" href="styles.css?v=20260904-5">
   <script src="embedded-assets.js"></script>
-  <script src="app.js?v=20260904-4" defer></script>
+  <script src="app.js?v=20260904-5" defer></script>
 </head>
 <body>
   <div class="app-shell">
@@ -169,11 +169,17 @@
         <div><small>NEW PRODUCT</small><h2 id="productDialogTitle">Add to your catalog</h2><p>Photograph it, price it, and start selling.</p></div>
         <button class="dialog-close" type="button" data-close-dialog aria-label="Close product form">×</button>
       </header>
+      <section class="inventory-search" aria-labelledby="inventorySearchLabel">
+        <label id="inventorySearchLabel" for="productInventorySearch">Product Search</label>
+        <div><input id="productInventorySearch" type="search" list="inventoryProductOptions" autocomplete="off" placeholder="Search inventory by product name or SKU"><button id="loadInventoryProduct" type="button">Load product</button></div>
+        <datalist id="inventoryProductOptions"></datalist>
+        <small id="inventorySearchStatus" role="status" aria-live="polite">Choose an existing inventory product to populate the form.</small>
+      </section>
       <div class="product-form-grid">
         <div class="image-field"><label>Product image</label><button class="upload-control" id="productUpload" type="button"><img src="assets/products.webp" alt=""><strong>Take a picture or upload</strong><small>JPG or PNG · up to 10 MB</small></button><input hidden id="productPhoto" name="photo" type="file" accept="image/png,image/jpeg" capture="environment"></div>
         <div class="product-fields">
-          <label>Product name<input name="productName" required placeholder="e.g. Cacao Nacional"></label>
-          <div class="field-pair"><label>Price (USD)<input name="price" required type="number" min="0" step=".01" placeholder="0.00"></label><label>SKU<input name="sku" placeholder="Auto-generated"></label></div>
+          <label>Product name<input id="productName" name="productName" required placeholder="e.g. Cacao Nacional"></label>
+          <div class="field-pair"><label>Price (USD)<input id="productPrice" name="price" required type="number" min="0" step=".01" placeholder="0.00"></label><label>SKU<input id="productSku" name="sku" placeholder="Auto-generated"></label></div>
           <label>Stock quantity<span class="stepper"><button id="stockMinus" type="button" aria-label="Decrease stock quantity">−</button><input id="productStock" name="stock" type="number" min="0" value="20"><button id="stockPlus" type="button" aria-label="Increase stock quantity">＋</button></span></label>
         </div>
       </div>
