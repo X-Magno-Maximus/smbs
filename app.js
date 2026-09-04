@@ -10,10 +10,10 @@ function showToast(message){
 document.querySelectorAll('[data-page]').forEach(control=>{
   control.addEventListener('click',()=>{
     const page=control.dataset.page;
-    if(page==='Overview') return;
-    showToast(page+' will be created as its own page in the next approved stage.');
     document.querySelector('#sidebar').classList.remove('open');
     document.querySelector('#menuToggle').setAttribute('aria-expanded','false');
+    if(page==='Overview') return;
+    showToast(page+' will be created as its own page in the next approved stage.');
   });
 });
 document.querySelectorAll('[data-toast]').forEach(control=>control.addEventListener('click',()=>showToast(control.dataset.toast)));
@@ -37,7 +37,8 @@ const themeToggle=document.querySelector('#themeToggle');
 themeToggle.addEventListener('click',()=>{
   const dark=document.body.classList.toggle('dark');
   const image=themeToggle.querySelector('img');
-  image.src=dark?'assets/dark.webp':'assets/light.webp';
+  const source=dark?'assets/dark.webp':'assets/light.webp';
+  image.src=typeof MARXIA_ASSETS!=='undefined'&&MARXIA_ASSETS[source]?MARXIA_ASSETS[source]:source;
   showToast(dark?'Dark appearance enabled.':'Light appearance enabled.');
   drawChart();
 });
