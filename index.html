@@ -6,9 +6,9 @@
   <meta name="theme-color" content="#064f40">
   <title>Marxia | Business Overview</title>
   <meta name="description" content="Marxia SMB business overview">
-  <link rel="stylesheet" href="styles.css?v=20260904-5">
+  <link rel="stylesheet" href="styles.css?v=20260904-6">
   <script src="embedded-assets.js"></script>
-  <script src="app.js?v=20260904-5" defer></script>
+  <script src="app.js?v=20260904-6" defer></script>
 </head>
 <body>
   <div class="app-shell">
@@ -42,7 +42,7 @@
         <label class="search"><span aria-hidden="true">⌕</span><input type="search" id="searchInput" placeholder="Search orders, products, customers..." aria-label="Search"><kbd>⌘ K</kbd></label>
         <div class="top-actions">
           <button class="notification" type="button" aria-label="Notifications"><span>3</span>!</button>
-          <button class="support-button" type="button" data-page="IT Tech Support" aria-label="Open IT Tech Support" title="IT Tech Support">?</button>
+          <button class="support-button" type="button" data-open-dialog="supportDialog" aria-label="Open IT Tech Support request form" title="IT Tech Support">?</button>
           <div class="utility-nav">
             <button class="utility-menu-toggle" id="utilityMenuToggle" type="button" aria-controls="utilityMenu" aria-expanded="false" aria-label="Open account and appearance menu">☰</button>
             <nav class="utility-menu" id="utilityMenu" aria-label="Account and appearance" hidden>
@@ -142,6 +142,30 @@
       </div>
     </main>
   </div>
+  <dialog class="record-dialog support-dialog" id="supportDialog" aria-labelledby="supportDialogTitle">
+    <form method="dialog" class="record-form" id="supportForm">
+      <header class="dialog-heading">
+        <div><small>IT TECH SUPPORT</small><h2 id="supportDialogTitle">Request support</h2><p>Describe the issue and securely confirm that you are authorizing this request.</p></div>
+        <button class="dialog-close" type="button" data-close-dialog aria-label="Close support request form">×</button>
+      </header>
+      <div class="form-grid">
+        <label>Full name<input id="supportName" name="supportName" required autocomplete="name" placeholder="Enter your full name"></label>
+        <label>Account email<input id="supportEmail" name="supportEmail" type="email" required autocomplete="email" placeholder="name@business.com"></label>
+        <label>Support category<select id="supportCategory" name="supportCategory" required><option value="">Choose a category</option><option>Account access</option><option>Orders</option><option>Products or inventory</option><option>Accounting or billing</option><option>Logistics</option><option>Technical issue</option></select></label>
+        <label>Temporary access period<select id="supportAccessPeriod" name="supportAccessPeriod" required><option value="15">15 minutes</option><option value="30">30 minutes</option><option value="60">1 hour</option></select></label>
+        <label class="wide">Issue summary<input id="supportSubject" name="supportSubject" required maxlength="120" placeholder="Briefly describe what needs attention"></label>
+        <label class="wide">Details<textarea id="supportDetails" name="supportDetails" required rows="5" placeholder="Explain what happened, what you expected, and any error message"></textarea></label>
+      </div>
+      <section class="support-authorization" aria-labelledby="supportAuthorizationTitle">
+        <div><strong id="supportAuthorizationTitle">Confirm your identity</strong><small>Your password is used only for secure re-authentication. It must never be included in the support request or shown to support personnel.</small></div>
+        <label>Account password<input id="supportPassword" name="supportPassword" type="password" required autocomplete="current-password" spellcheck="false" placeholder="Enter your account password"></label>
+        <label class="support-consent"><input id="supportConsent" name="supportConsent" type="checkbox" required> I authorize temporary, audited IT Support access for the selected period. I can revoke access at any time.</label>
+      </section>
+      <p class="form-note">Submitting creates a traceable support request. Production access will activate only after the authentication service verifies your identity.</p>
+      <footer class="dialog-actions"><button type="button" data-close-dialog>Cancel</button><button class="primary" type="submit">Authorize and request support</button></footer>
+    </form>
+  </dialog>
+
   <dialog class="record-dialog" id="clientDialog" aria-labelledby="clientDialogTitle">
     <form method="dialog" class="record-form" id="clientForm">
       <header class="dialog-heading">
