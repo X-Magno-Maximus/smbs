@@ -6,9 +6,9 @@
   <meta name="theme-color" content="#064f40">
   <title>Marxia | Business Overview</title>
   <meta name="description" content="Marxia SMB business overview">
-  <link rel="stylesheet" href="styles.css?v=20260904-2">
+  <link rel="stylesheet" href="styles.css?v=20260904-4">
   <script src="embedded-assets.js"></script>
-  <script src="app.js?v=20260904-3" defer></script>
+  <script src="app.js?v=20260904-4" defer></script>
 </head>
 <body>
   <div class="app-shell">
@@ -42,11 +42,29 @@
         <label class="search"><span aria-hidden="true">⌕</span><input type="search" id="searchInput" placeholder="Search orders, products, customers..." aria-label="Search"><kbd>⌘ K</kbd></label>
         <div class="top-actions">
           <button class="notification" type="button" aria-label="Notifications"><span>3</span>!</button>
-          <button class="language" id="languageToggle" type="button" aria-label="Switch language">EN</button>
-          <button class="theme" id="themeToggle" type="button" aria-label="Switch color theme"><img src="assets/light.webp" alt=""></button>
-          <button class="action secondary" type="button" data-open-dialog="clientDialog">＋ Client</button>
-          <button class="action primary" type="button" data-open-dialog="productDialog">＋ Product</button>
-          <button class="profile" type="button" data-page="Profile"><span>GS</span><span><strong>Gabriel</strong><small>Owner</small></span></button>
+          <button class="support-button" type="button" data-page="IT Tech Support" aria-label="Open IT Tech Support" title="IT Tech Support">?</button>
+          <div class="utility-nav">
+            <button class="utility-menu-toggle" id="utilityMenuToggle" type="button" aria-controls="utilityMenu" aria-expanded="false" aria-label="Open account and appearance menu">☰</button>
+            <nav class="utility-menu" id="utilityMenu" aria-label="Account and appearance" hidden>
+              <button class="utility-action primary-action" type="button" data-open-dialog="productDialog">＋ Product</button>
+              <button class="utility-action" type="button" data-open-dialog="clientDialog">＋ Client</button>
+              <button class="utility-profile" type="button" data-page="Profile"><img src="assets/avatar.webp" alt=""><span><strong>Gabriel</strong><small>Profile · Owner</small></span><b aria-hidden="true">›</b></button>
+              <section class="utility-group" aria-labelledby="appearanceLabel">
+                <strong id="appearanceLabel">Appearance</strong>
+                <div class="segmented">
+                  <button type="button" data-theme-choice="light" aria-pressed="true"><img src="assets/light.webp" alt="">Light</button>
+                  <button type="button" data-theme-choice="dark" aria-pressed="false"><img src="assets/dark.webp" alt="">Dark</button>
+                </div>
+              </section>
+              <section class="utility-group" aria-labelledby="languageLabel">
+                <strong id="languageLabel">Language</strong>
+                <div class="segmented language-options">
+                  <button type="button" data-language-choice="en" aria-pressed="true">EN</button>
+                  <button type="button" data-language-choice="es" aria-pressed="false">ES</button>
+                </div>
+              </section>
+            </nav>
+          </div>
         </div>
       </header>
 
