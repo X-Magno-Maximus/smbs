@@ -12,6 +12,7 @@ document.querySelectorAll('[data-page]').forEach(control=>{
     const page=control.dataset.page;
     document.querySelector('#sidebar').classList.remove('open');
     document.querySelector('#menuToggle').setAttribute('aria-expanded','false');
+    closeUtilityMenu();
     if(page==='Overview') return;
     showToast(page+' will be created as its own page in the next approved stage.');
   });
@@ -26,22 +27,49 @@ menuToggle.addEventListener('click',()=>{
   menuToggle.setAttribute('aria-expanded',String(open));
 });
 
-const languageToggle=document.querySelector('#languageToggle');
-languageToggle.addEventListener('click',()=>{
-  const spanish=languageToggle.textContent==='EN';
-  languageToggle.textContent=spanish?'ES':'EN';
-  showToast(spanish?'Spanish labels will be completed page by page.':'English restored.');
+const utilityMenuToggle=document.querySelector('#utilityMenuToggle');
+const utilityMenu=document.querySelector('#utilityMenu');
+function closeUtilityMenu(){
+  utilityMenu.hidden=true;
+  utilityMenuToggle.setAttribute('aria-expanded','false');
+}
+utilityMenuToggle.addEventListener('click',()=>{
+  const open=utilityMenu.hidden;
+  utilityMenu.hidden=!open;
+  utilityMenuToggle.setAttribute('aria-expanded',String(open));
 });
+document.addEventListener('click',event=>{
+  if(!event.target.closest('.utility-nav')) closeUtilityMenu();
+});
+utilityMenu.querySelectorAll('button').forEach(control=>control.addEventListener('click',event=>{
+  if(!event.currentTarget.closest('.segmented')) closeUtilityMenu();
+}));
 
-const themeToggle=document.querySelector('#themeToggle');
-themeToggle.addEventListener('click',()=>{
-  const dark=document.body.classList.toggle('dark');
-  const image=themeToggle.querySelector('img');
-  const source=dark?'assets/dark.webp':'assets/light.webp';
-  image.src=typeof MARXIA_ASSETS!=='undefined'&&MARXIA_ASSETS[source]?MARXIA_ASSETS[source]:source;
+const languageButtons=document.querySelectorAll('[data-language-choice]');
+function setLanguage(language){
+  document.documentElement.lang=language;
+  languageButtons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.languageChoice===language)));
+  try{localStorage.setItem('marxia-language',language)}catch(error){}
+  showToast(language==='es'?'Español seleccionado. Las traducciones se completarán página por página.':'English selected.');
+}
+languageButtons.forEach(button=>button.addEventListener('click',()=>setLanguage(button.dataset.languageChoice)));
+
+const themeButtons=document.querySelectorAll('[data-theme-choice]');
+function setTheme(theme){
+  const dark=theme==='dark';
+  document.body.classList.toggle('dark',dark);
+  themeButtons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.themeChoice===theme)));
+  try{localStorage.setItem('marxia-theme',theme)}catch(error){}
   showToast(dark?'Dark appearance enabled.':'Light appearance enabled.');
   drawChart();
-});
+}
+themeButtons.forEach(button=>button.addEventListener('click',()=>setTheme(button.dataset.themeChoice)));
+try{
+  const storedTheme=localStorage.getItem('marxia-theme');
+  const storedLanguage=localStorage.getItem('marxia-language');
+  if(storedTheme==='dark'||storedTheme==='light') setTheme(storedTheme);
+  if(storedLanguage==='en'||storedLanguage==='es') setLanguage(storedLanguage);
+}catch(error){}
 
 document.addEventListener('keydown',event=>{
   if((event.metaKey||event.ctrlKey)&&event.key.toLowerCase()==='k'){
@@ -51,6 +79,7 @@ document.addEventListener('keydown',event=>{
   if(event.key==='Escape'){
     document.querySelector('#sidebar').classList.remove('open');
     menuToggle.setAttribute('aria-expanded','false');
+    closeUtilityMenu();
   }
 });
 
