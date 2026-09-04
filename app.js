@@ -90,3 +90,72 @@ function drawChart(){
 }
 window.addEventListener('resize',drawChart);
 drawChart();
+
+const dialogOpeners=document.querySelectorAll('[data-open-dialog]');
+dialogOpeners.forEach(control=>control.addEventListener('click',()=>{
+  const dialog=document.querySelector('#'+control.dataset.openDialog);
+  if(dialog&&typeof dialog.showModal==='function') dialog.showModal();
+}));
+document.querySelectorAll('[data-close-dialog]').forEach(control=>control.addEventListener('click',()=>{
+  const dialog=control.closest('dialog');
+  if(dialog) dialog.close();
+}));
+document.querySelectorAll('.record-dialog').forEach(dialog=>dialog.addEventListener('click',event=>{
+  if(event.target===dialog) dialog.close();
+}));
+
+const clientType=document.querySelector('#clientType');
+const taxIdField=document.querySelector('#taxIdField');
+const clientTaxId=document.querySelector('#clientTaxId');
+function updateClientType(){
+  const business=clientType.value==='business';
+  taxIdField.hidden=!business;
+  clientTaxId.required=business;
+  clientTaxId.setAttribute('aria-required',String(business));
+}
+clientType.addEventListener('change',updateClientType);
+updateClientType();
+
+document.querySelector('#clientForm').addEventListener('submit',event=>{
+  event.preventDefault();
+  if(!event.currentTarget.reportValidity()) return;
+  document.querySelector('#clientDialog').close();
+  showToast('Client saved. Billing notices will use the registered email.');
+  event.currentTarget.reset();
+  updateClientType();
+});
+
+const productUpload=document.querySelector('#productUpload');
+const productPhoto=document.querySelector('#productPhoto');
+productUpload.addEventListener('click',()=>productPhoto.click());
+productPhoto.addEventListener('change',()=>{
+  const file=productPhoto.files&&productPhoto.files[0];
+  if(file) productUpload.querySelector('strong').textContent=file.name;
+});
+const productStock=document.querySelector('#productStock');
+document.querySelector('#stockMinus').addEventListener('click',()=>productStock.value=Math.max(0,Number(productStock.value||0)-1));
+document.querySelector('#stockPlus').addEventListener('click',()=>productStock.value=Number(productStock.value||0)+1);
+const productTaxToggle=document.querySelector('#productTaxToggle');
+const productTaxValue=document.querySelector('#productTaxValue');
+productTaxToggle.addEventListener('click',()=>{
+  const on=productTaxToggle.getAttribute('aria-checked')!=='true';
+  productTaxToggle.setAttribute('aria-checked',String(on));
+  productTaxToggle.classList.toggle('on',on);
+  productTaxValue.disabled=!on;
+});
+document.querySelector('#notInStock').addEventListener('change',event=>{
+  productStock.disabled=event.currentTarget.checked;
+  if(event.currentTarget.checked) productStock.value=0;
+});
+document.querySelector('#productForm').addEventListener('submit',event=>{
+  event.preventDefault();
+  if(!event.currentTarget.reportValidity()) return;
+  document.querySelector('#productDialog').close();
+  showToast('Product saved to the catalog.');
+  event.currentTarget.reset();
+  productStock.disabled=false;
+  productTaxValue.disabled=false;
+  productTaxToggle.classList.add('on');
+  productTaxToggle.setAttribute('aria-checked','true');
+  productUpload.querySelector('strong').textContent='Take a picture or upload';
+});
