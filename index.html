@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#064f40">
+  <title>Marxia | Business Overview</title>
+  <meta name="description" content="Marxia SMB business overview">
+  <link rel="stylesheet" href="styles.css">
+  <script src="embedded-assets.js"></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Primary navigation">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">M</span>
+        <span><strong>Marxia</strong><small>Cacao &amp; Más</small></span>
+        <button class="tenant-menu" type="button" aria-label="Open business menu">⌄</button>
+      </div>
+      <nav class="primary-nav" id="primaryNav">
+        <button class="nav-item active" data-page="Overview"><img src="assets/overview.webp" alt=""><span>Overview</span></button>
+        <button class="nav-item" data-page="Orders"><img src="assets/order.webp" alt=""><span>Orders</span></button>
+        <button class="nav-item" data-page="Products"><img src="assets/products.webp" alt=""><span>Products</span></button>
+        <button class="nav-item" data-page="Inventory"><img src="assets/inventory.webp" alt=""><span>Inventory</span></button>
+        <button class="nav-item" data-page="Marketplace"><img src="assets/marketplace.webp" alt=""><span>Marketplace</span></button>
+        <button class="nav-item" data-page="Logistics"><img src="assets/truck.webp" alt=""><span>Logistics</span></button>
+        <button class="nav-item" data-page="Accounting"><img src="assets/accounting.webp" alt=""><span>Accounting</span></button>
+        <button class="nav-item" data-page="Reports"><img src="assets/reports.webp" alt=""><span>Reports</span></button>
+        <button class="nav-item" data-page="Settings & Access"><img src="assets/settings.webp" alt=""><span>Settings &amp; Access</span></button>
+      </nav>
+      <button class="owner-card" type="button" data-page="Profile">
+        <img src="assets/avatar.webp" alt="">
+        <span><strong>Gabriel Salazar</strong><small>Owner</small></span>
+        <span aria-hidden="true">⌄</span>
+      </button>
+    </aside>
+
+    <main class="workspace">
+      <header class="topbar">
+        <button class="mobile-menu" id="menuToggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Open navigation">☰</button>
+        <label class="search"><span aria-hidden="true">⌕</span><input type="search" id="searchInput" placeholder="Search orders, products, customers..." aria-label="Search"><kbd>⌘ K</kbd></label>
+        <div class="top-actions">
+          <button class="notification" type="button" aria-label="Notifications"><span>3</span>!</button>
+          <button class="language" id="languageToggle" type="button" aria-label="Switch language">EN</button>
+          <button class="theme" id="themeToggle" type="button" aria-label="Switch color theme"><img src="assets/light.webp" alt=""></button>
+          <button class="action secondary" type="button" data-toast="Client page will be created in its own stage.">＋ Client</button>
+          <button class="action primary" type="button" data-toast="Product page will be created in its own stage.">＋ Product</button>
+          <button class="profile" type="button" data-page="Profile"><span>GS</span><span><strong>Gabriel</strong><small>Owner</small></span></button>
+        </div>
+      </header>
+
+      <div class="page">
+        <section class="heading-row">
+          <div><h1>Good morning, Gabriel</h1><p>Here's what's happening across your business.</p></div>
+          <div class="as-of"><strong>Today is Friday, September 4, 2026</strong><span>Data as of 8:00 AM local time</span></div>
+        </section>
+
+        <div class="overview-layout">
+          <section class="main-column">
+            <div class="attention-strip" aria-label="Items requiring attention">
+              <button type="button" data-toast="Priority details will be added with the Overview workflow."><img src="assets/reports.webp" alt=""><span><b>3</b><strong>Priority items</strong><small>Need your attention</small></span></button>
+              <button type="button" data-toast="Orders is the next independent page."><img src="assets/order.webp" alt=""><span><b>6</b><strong>Orders</strong><small>Awaiting action</small></span></button>
+              <button type="button" data-toast="Accounting will be created as an independent page."><img src="assets/accounting.webp" alt=""><span><b>2</b><strong>Invoices</strong><small>Overdue</small></span></button>
+            </div>
+
+            <div class="metric-grid">
+              <article class="metric"><img src="assets/reports.webp" alt=""><div><small>Net sales (MTD)</small><strong>$128,740</strong><span class="positive">↑ 18.6% <i>vs Aug 1 – Sep 1, 2025</i></span></div></article>
+              <article class="metric"><img src="assets/accounting.webp" alt=""><div><small>Gross profit (MTD)</small><strong>$48,310</strong><span>37.4% margin</span></div></article>
+              <article class="metric"><img src="assets/inventory.webp" alt=""><div><small>Inventory value</small><strong>$236,874</strong><span>412 SKUs</span></div></article>
+              <article class="metric"><img src="assets/avatar.webp" alt=""><div><small>Receivables (30+ days)</small><strong>$21,860</strong><span class="negative">↑ 6.3%</span></div></article>
+            </div>
+
+            <article class="panel chart-panel">
+              <div class="panel-heading"><h2>Revenue &amp; Orders over time</h2><div class="legend"><span class="line-key"></span>Net sales (USD)<span class="bar-key"></span>Orders (count)</div><select aria-label="Chart period"><option>Last 30 days</option></select></div>
+              <canvas id="performanceChart" height="170" aria-label="Revenue and orders chart"></canvas>
+              <small>Data as of Sep 4, 2026 8:00 AM</small>
+            </article>
+
+            <div class="tables-grid">
+              <article class="panel table-panel">
+                <div class="panel-heading"><h2>Priority queue</h2><button type="button" data-toast="Full queue will be part of the Overview workflow.">View all ›</button></div>
+                <div class="table-scroll"><table><thead><tr><th>Issue</th><th>Severity</th><th>Owner</th><th>Due</th><th>Action</th></tr></thead><tbody>
+                  <tr><td>Overdue payment from Café Aurora</td><td><em class="high">High</em></td><td>Ana P.</td><td>Sep 4</td><td><a href="#" data-no-route>Follow up ›</a></td></tr>
+                  <tr><td>Inventory below reorder point (3 SKUs)</td><td><em class="medium">Medium</em></td><td>Isaac S.</td><td>Sep 3</td><td><a href="#" data-no-route>Review ›</a></td></tr>
+                  <tr><td>Order #10458 requires fulfillment</td><td><em class="medium">Medium</em></td><td>Luis M.</td><td>Sep 3</td><td><a href="#" data-no-route>Process ›</a></td></tr>
+                  <tr><td>Customer inquiry: Shipping delay</td><td><em class="low">Low</em></td><td>Ana P.</td><td>Sep 6</td><td><a href="#" data-no-route>Respond ›</a></td></tr>
+                </tbody></table></div>
+              </article>
+              <article class="panel table-panel">
+                <div class="panel-heading"><h2>Recent transactions</h2><button type="button" data-toast="Transactions will be completed with Accounting.">View all ›</button></div>
+                <div class="table-scroll"><table><thead><tr><th>Date</th><th>Type</th><th>Document</th><th>Customer / Vendor</th><th>Amount</th><th>Status</th></tr></thead><tbody>
+                  <tr><td>Sep 4, 2026</td><td>Order</td><td>#10472</td><td>Café Aurora</td><td>$4,860.00</td><td><em class="processing">Processing</em></td></tr>
+                  <tr><td>Sep 4, 2026</td><td>Invoice</td><td>INV-3081</td><td>Cacao Lab LLC</td><td>$7,125.00</td><td><em class="paid">Paid</em></td></tr>
+                  <tr><td>Sep 3, 2026</td><td>Payment</td><td>RCV-2104</td><td>Cacao Lab LLC</td><td>-$7,125.00</td><td><em class="paid">Applied</em></td></tr>
+                  <tr><td>Sep 3, 2026</td><td>Order</td><td>#10468</td><td>Greenleaf Market</td><td>$3,210.00</td><td><em class="paid">Confirmed</em></td></tr>
+                </tbody></table></div>
+              </article>
+            </div>
+          </section>
+
+          <aside class="status-column">
+            <article class="panel status-card"><h2>Today</h2><ul><li>5 orders to confirm</li><li>2 shipments to schedule</li><li>1 payment to record</li></ul><button type="button" data-toast="Today's task workflow will be completed on this page.">View today's tasks ›</button></article>
+            <article class="panel status-card"><h2>Business health</h2><dl><div><dt>Overall status</dt><dd class="badge">Good</dd></div><div><dt>Sales vs last month</dt><dd class="positive">↑ 18.6%</dd></div><div><dt>On-time fulfillment</dt><dd>94%</dd></div><div><dt>Overdue invoices</dt><dd class="negative">2</dd></div></dl><button type="button" data-toast="Reports will be created as an independent page.">View full report ›</button></article>
+            <article class="panel status-card"><h2>Low stock alert</h2><dl><div><dt>Dark Cocoa 70% (SKU-1021)</dt><dd class="negative">8 units left</dd></div><div><dt>Cacao Beans Raw (SKU-2003)</dt><dd class="negative">12 units left</dd></div><div><dt>Vanilla Extract 250ml (SKU-3012)</dt><dd class="negative">5 units left</dd></div></dl><button type="button" data-toast="Inventory is an independent page awaiting its build stage.">View all low stock ›</button></article>
+            <article class="panel status-card"><h2>Fulfillment progress</h2><div class="progress-copy"><span>Orders shipped (MTD)</span><b>68%</b></div><progress value="68" max="100">68%</progress><small>34 of 50 orders</small><button type="button" data-toast="Logistics is an independent page awaiting its build stage.">View logistics ›</button></article>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
