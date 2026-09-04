@@ -254,3 +254,15 @@ document.querySelector('#productForm').addEventListener('submit',event=>{
   productInventorySearch.value='';
   inventorySearchStatus.textContent='Choose an existing inventory product to populate the form.';
 });
+
+const supportForm=document.querySelector('#supportForm');
+const supportPassword=document.querySelector('#supportPassword');
+supportForm.addEventListener('submit',event=>{
+  event.preventDefault();
+  if(!supportForm.reportValidity()) return;
+  supportPassword.value='';
+  document.querySelector('#supportDialog').close();
+  showToast('Support request prepared. Secure identity verification is required before access begins.');
+  supportForm.reset();
+});
+document.querySelector('#supportDialog').addEventListener('close',()=>{supportPassword.value='';});
