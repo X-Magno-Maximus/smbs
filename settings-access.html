@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#064f40">
+  <title>Marxia | Settings & Access</title>
+  <meta name="description" content="Marxia SMB settings, identity, employees, roles, approvals, and audit controls">
+  <link rel="stylesheet" href="styles.css?v=20260904-11">
+  <link rel="stylesheet" href="settings-access.css?v=20260904-1">
+  <script src="embedded-assets.js"></script>
+  <script src="settings-access.js?v=20260904-1" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Primary navigation">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">M</span>
+        <span><strong>Marxia</strong><small>Cacao &amp; Más</small></span>
+      </div>
+      <nav class="primary-nav">
+        <a class="nav-item" href="index.html"><img src="assets/overview.webp" alt=""><span>Overview</span></a>
+        <button class="nav-item" type="button" data-future-page="Orders"><img src="assets/order.webp" alt=""><span>Orders</span></button>
+        <button class="nav-item" type="button" data-future-page="Products"><img src="assets/products.webp" alt=""><span>Products</span></button>
+        <button class="nav-item" type="button" data-future-page="Inventory"><img src="assets/inventory.webp" alt=""><span>Inventory</span></button>
+        <button class="nav-item" type="button" data-future-page="Marketplace"><img src="assets/marketplace.webp" alt=""><span>Marketplace</span></button>
+        <button class="nav-item" type="button" data-future-page="Logistics"><img src="assets/truck.webp" alt=""><span>Logistics</span></button>
+        <button class="nav-item" type="button" data-future-page="Accounting"><img src="assets/accounting.webp" alt=""><span>Accounting</span></button>
+        <button class="nav-item" type="button" data-future-page="Reports"><img src="assets/reports.webp" alt=""><span>Reports</span></button>
+        <a class="nav-item active" href="settings-access.html" aria-current="page"><img src="assets/settings.webp" alt=""><span>Settings &amp; Access</span></a>
+      </nav>
+      <button class="owner-card" type="button" data-toast="Profile controls will be completed in the Profile stage.">
+        <img src="assets/avatar.webp" alt="">
+        <span><strong>Gabriel Salazar</strong><small>Owner</small></span>
+      </button>
+    </aside>
+    <button class="sidebar-slide-toggle" id="sidebarSlideToggle" type="button" aria-controls="sidebar" aria-expanded="true" aria-label="Close navigation menu">&lt;</button>
+
+    <main class="workspace">
+      <header class="topbar">
+        <button class="mobile-menu" id="menuToggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Open navigation">☰</button>
+        <label class="search settings-search"><span aria-hidden="true">⌕</span><input type="search" id="settingsSearch" placeholder="Search settings, people, roles..." aria-label="Search settings"><kbd>⌘ K</kbd></label>
+        <div class="top-actions">
+          <a class="support-button" href="index.html" aria-label="Return to Overview for IT Tech Support" title="IT Tech Support">?</a>
+          <div class="utility-nav">
+            <button class="utility-menu-toggle" id="utilityMenuToggle" type="button" aria-controls="utilityMenu" aria-expanded="false" aria-label="Open profile and appearance menu">☰</button>
+            <nav class="utility-menu" id="utilityMenu" aria-label="Profile and appearance" hidden>
+              <button class="utility-profile" type="button" data-toast="Profile controls will be completed in the Profile stage."><img src="assets/avatar.webp" alt=""><span><strong>Gabriel</strong><small>Profile · Owner</small></span><b aria-hidden="true">›</b></button>
+              <section class="utility-group" aria-labelledby="appearanceLabel">
+                <strong id="appearanceLabel">Appearance</strong>
+                <div class="segmented">
+                  <button type="button" data-theme-choice="light" aria-pressed="true"><img src="assets/light.webp" alt="">Light</button>
+                  <button type="button" data-theme-choice="dark" aria-pressed="false"><img src="assets/dark.webp" alt="">Dark</button>
+                </div>
+              </section>
+              <section class="utility-group" aria-labelledby="languageLabel">
+                <strong id="languageLabel">Language</strong>
+                <div class="segmented">
+                  <button type="button" data-language-choice="en" aria-pressed="true">EN</button>
+                  <button type="button" data-language-choice="es" aria-pressed="false">ES</button>
+                </div>
+              </section>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <div class="page settings-page">
+        <section class="heading-row settings-heading">
+          <div><a class="back-link" href="index.html">‹ Overview</a><h1>Settings &amp; Access</h1><p>Manage your business identity, people, permissions, approvals, and security records.</p></div>
+          <button class="primary-page-action" id="addEmployeeButton" type="button">＋ Add new employee</button>
+        </section>
+
+        <section class="settings-summary" aria-label="Settings summary">
+          <article><img src="assets/avatar.webp" alt=""><span><strong>12</strong><small>Employees</small></span></article>
+          <article><img src="assets/settings.webp" alt=""><span><strong>7</strong><small>Active roles</small></span></article>
+          <article><img src="assets/reports.webp" alt=""><span><strong>3</strong><small>Pending approvals</small></span></article>
+          <article><img src="assets/accounting.webp" alt=""><span><strong>24</strong><small>Audit events today</small></span></article>
+        </section>
+
+        <section class="settings-sections" id="settingsSections">
+          <details class="settings-section" open data-search-terms="business profile identity tax address email phone">
+            <summary><span><img src="assets/marketplace.webp" alt=""><b>Business Profile</b><small>Legal identity and business contact information</small></span><i aria-hidden="true">＋</i></summary>
+            <form class="section-body settings-form" data-form-name="Business profile">
+              <div class="form-grid">
+                <label>Business name<input required value="Cacao & Más"></label>
+                <label>Tax ID<input required placeholder="Enter registered Tax ID"></label>
+                <label class="wide">Business address<input required autocomplete="street-address" placeholder="Street, city, province, postal code"></label>
+                <label>Business email<input required type="email" value="owner@cacaoymas.com"></label>
+                <label>Business phone<input type="tel" placeholder="+593"></label>
+              </div>
+              <div class="section-actions"><button class="primary" type="submit">Save business profile</button></div>
+            </form>
+          </details>
+
+          <details class="settings-section" data-search-terms="account authentication password mfa session security">
+            <summary><span><img src="assets/settings.webp" alt=""><b>Account &amp; Authentication</b><small>Password, multifactor authentication, and sessions</small></span><i aria-hidden="true">＋</i></summary>
+            <div class="section-body">
+              <div class="control-list">
+                <label class="control-row"><span><strong>Require multifactor authentication</strong><small>Require a second factor for owners, administrators, and managers.</small></span><input type="checkbox" role="switch" checked></label>
+                <label class="control-row"><span><strong>Notify owner about new sign-ins</strong><small>Email the owner when a new device or location signs in.</small></span><input type="checkbox" role="switch" checked></label>
+                <label class="control-row"><span><strong>Automatic session lock</strong><small>Lock privileged sessions after two minutes of inactivity.</small></span><input type="checkbox" role="switch" checked></label>
+              </div>
+              <p class="security-note">Passwords are verified by the authentication service and are never displayed or stored in this page.</p>
+            </div>
+          </details>
+
+          <details class="settings-section" data-search-terms="employees staff add employee name address email phone position">
+            <summary><span><img src="assets/avatar.webp" alt=""><b>Employees &amp; Staff</b><small>Add people and review employment status</small></span><i aria-hidden="true">＋</i></summary>
+            <div class="section-body">
+              <div class="table-scroll"><table class="settings-table"><thead><tr><th>Employee</th><th>Position</th><th>Status</th><th>Last access</th><th>Action</th></tr></thead><tbody>
+                <tr><td>Ana Pérez</td><td>Manager</td><td><em class="paid">Active</em></td><td>Today, 8:14 AM</td><td><button type="button" data-toast="Ana Pérez's employee record opened.">Review</button></td></tr>
+                <tr><td>Isaac Silva</td><td>Inventory Supervisor</td><td><em class="paid">Active</em></td><td>Yesterday</td><td><button type="button" data-toast="Isaac Silva's employee record opened.">Review</button></td></tr>
+                <tr><td>Luis Mora</td><td>Fulfillment Staff</td><td><em class="medium">Pending review</em></td><td>Sep 2</td><td><button type="button" data-toast="Luis Mora's employee record opened.">Review</button></td></tr>
+              </tbody></table></div>
+            </div>
+          </details>
+
+          <details class="settings-section" data-search-terms="roles access permissions rbac supervisor employee contractor manager admin superuser vice president">
+            <summary><span><img src="assets/settings.webp" alt=""><b>Roles &amp; Access Permissions</b><small>RBAC controls and privileged-role authorization</small></span><i aria-hidden="true">＋</i></summary>
+            <div class="section-body role-layout">
+              <section><h3>Preset staff access</h3><p>Activate or deactivate approved presets for operational roles.</p>
+                <div class="control-list">
+                  <label class="control-row"><span><strong>Supervisor</strong><small>Operational review and team approvals</small></span><input type="checkbox" role="switch" checked></label>
+                  <label class="control-row"><span><strong>Employee / Staff</strong><small>Assigned operational screens only</small></span><input type="checkbox" role="switch" checked></label>
+                  <label class="control-row"><span><strong>Independent contractor</strong><small>Time-bound assigned work only</small></span><input type="checkbox" role="switch"></label>
+                </div>
+              </section>
+              <form class="privileged-form" id="privilegedRoleForm"><h3>Privileged roles</h3><p>Management Admin, IT SuperUser, and VP access requires direct SMB Owner approval.</p>
+                <label>Employee email<input required type="email" placeholder="employee@business.com"></label>
+                <label>Privileged role<select required><option value="">Choose a role</option><option>Management Admin</option><option>IT SuperUser</option><option>Vice President</option></select></label>
+                <label>Owner re-authentication<input id="ownerAuthPassword" required type="password" autocomplete="current-password" placeholder="Enter owner password"></label>
+                <button class="primary" type="submit">Authorize role request</button>
+              </form>
+            </div>
+          </details>
+
+          <details class="settings-section" data-search-terms="approvals promotions owner management pending review">
+            <summary><span><img src="assets/reports.webp" alt=""><b>Approvals &amp; Promotions</b><small>Owner review for role and employment changes</small></span><i aria-hidden="true">＋</i></summary>
+            <div class="section-body approval-list">
+              <article><span><strong>Luis Mora — promotion to Supervisor</strong><small>Submitted by Ana Pérez · Sep 4, 2026</small></span><div><button type="button" data-decision="rejected">Reject</button><button class="primary" type="button" data-decision="approved">Approve</button></div></article>
+              <article><span><strong>IT SuperUser access — Mateo Ruiz</strong><small>Privileged request · Owner approval required</small></span><div><button type="button" data-decision="rejected">Reject</button><button class="primary" type="button" data-decision="approved">Approve</button></div></article>
+            </div>
+          </details>
+
+          <details class="settings-section" data-search-terms="end user customer activate deactivate delete access">
+            <summary><span><img src="assets/overview.webp" alt=""><b>End-User Access</b><small>Activation controls and protected account removal</small></span><i aria-hidden="true">＋</i></summary>
+            <div class="section-body">
+              <label class="master-control control-row"><span><strong>All end-user access</strong><small>Master activation control for customer accounts</small></span><input id="masterEndUserAccess" type="checkbox" role="switch" checked></label>
+              <div class="end-user-list">
+                <article><span><strong>customer.one@example.com</strong><small>Customer · Active</small></span><label><input type="checkbox" role="switch" checked aria-label="Activate customer.one@example.com"></label><button class="danger-link" type="button" data-delete-user="customer.one@example.com">Delete</button></article>
+                <article><span><strong>buyer.two@example.com</strong><small>Customer · Active</small></span><label><input type="checkbox" role="switch" checked aria-label="Activate buyer.two@example.com"></label><button class="danger-link" type="button" data-delete-user="buyer.two@example.com">Delete</button></article>
+              </div>
+            </div>
+          </details>
+
+          <details class="settings-section" data-search-terms="notifications audit history owner email authorization authentication">
+            <summary><span><img src="assets/accounting.webp" alt=""><b>Notifications &amp; Audit History</b><small>Owner alerts and traceable access events</small></span><i aria-hidden="true">＋</i></summary>
+            <div class="section-body">
+              <label class="control-row"><span><strong>Email owner about authorization changes</strong><small>Notify the owner when staff access, roles, or promotions change.</small></span><input type="checkbox" role="switch" checked></label>
+              <div class="table-scroll"><table class="settings-table"><thead><tr><th>Time</th><th>Event</th><th>Actor</th><th>Result</th></tr></thead><tbody>
+                <tr><td>8:24 AM</td><td>Staff role reviewed</td><td>Gabriel Salazar</td><td><em class="paid">Approved</em></td></tr>
+                <tr><td>8:12 AM</td><td>New device sign-in</td><td>Ana Pérez</td><td><em class="paid">Verified</em></td></tr>
+                <tr><td>7:58 AM</td><td>Support access expired</td><td>System</td><td><em class="low">Closed</em></td></tr>
+              </tbody></table></div>
+            </div>
+          </details>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <dialog class="record-dialog" id="employeeDialog" aria-labelledby="employeeDialogTitle">
+    <form method="dialog" class="record-form" id="employeeForm">
+      <header class="dialog-heading"><div><small>NEW EMPLOYEE</small><h2 id="employeeDialogTitle">Add new employee</h2><p>Create the staff record before assigning access.</p></div><button class="dialog-close" type="button" data-close-dialog aria-label="Close employee form">×</button></header>
+      <div class="form-grid">
+        <label>First name<input required autocomplete="given-name"></label><label>Last name<input required autocomplete="family-name"></label>
+        <label class="wide">Address<input required autocomplete="street-address"></label>
+        <label>Email<input required type="email" autocomplete="email"></label><label>Phone<input required type="tel" autocomplete="tel"></label>
+        <label>Position<select required><option value="">Choose position</option><option>Employee / Staff</option><option>Supervisor</option><option>Manager</option><option>Management Admin</option><option>IT SuperUser</option><option>Vice President</option></select></label>
+        <label>Initial status<select required><option>Pending owner review</option><option>Active</option><option>Inactive</option></select></label>
+      </div>
+      <p class="form-note">Creating an employee record does not automatically grant system access. Access must be authorized separately.</p>
+      <footer class="dialog-actions"><button type="button" data-close-dialog>Cancel</button><button class="primary" type="submit">Submit employee</button></footer>
+    </form>
+  </dialog>
+
+  <dialog class="confirm-dialog" id="deleteDialog" aria-labelledby="deleteDialogTitle">
+    <form method="dialog" id="deleteForm"><h2 id="deleteDialogTitle">Delete end-user account?</h2><p>This action requires explicit confirmation. The account will be queued for protected deletion.</p><strong id="deleteUserIdentity"></strong><div class="dialog-actions"><button type="button" data-close-dialog>Cancel</button><button class="danger-button" type="submit">Delete account</button></div></form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
