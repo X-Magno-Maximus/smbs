@@ -12,6 +12,7 @@ document.querySelectorAll('[data-page]').forEach(control=>{
     const page=control.dataset.page;
     document.querySelector('#sidebar').classList.remove('open');
     document.querySelector('#menuToggle').setAttribute('aria-expanded','false');
+    closeUtilityMenu();
     if(page==='Overview') return;
     showToast(page+' will be created as its own page in the next approved stage.');
   });
@@ -26,22 +27,49 @@ menuToggle.addEventListener('click',()=>{
   menuToggle.setAttribute('aria-expanded',String(open));
 });
 
-const languageToggle=document.querySelector('#languageToggle');
-languageToggle.addEventListener('click',()=>{
-  const spanish=languageToggle.textContent==='EN';
-  languageToggle.textContent=spanish?'ES':'EN';
-  showToast(spanish?'Spanish labels will be completed page by page.':'English restored.');
+const utilityMenuToggle=document.querySelector('#utilityMenuToggle');
+const utilityMenu=document.querySelector('#utilityMenu');
+function closeUtilityMenu(){
+  utilityMenu.hidden=true;
+  utilityMenuToggle.setAttribute('aria-expanded','false');
+}
+utilityMenuToggle.addEventListener('click',()=>{
+  const open=utilityMenu.hidden;
+  utilityMenu.hidden=!open;
+  utilityMenuToggle.setAttribute('aria-expanded',String(open));
 });
+document.addEventListener('click',event=>{
+  if(!event.target.closest('.utility-nav')) closeUtilityMenu();
+});
+utilityMenu.querySelectorAll('button').forEach(control=>control.addEventListener('click',event=>{
+  if(!event.currentTarget.closest('.segmented')) closeUtilityMenu();
+}));
 
-const themeToggle=document.querySelector('#themeToggle');
-themeToggle.addEventListener('click',()=>{
-  const dark=document.body.classList.toggle('dark');
-  const image=themeToggle.querySelector('img');
-  const source=dark?'assets/dark.webp':'assets/light.webp';
-  image.src=typeof MARXIA_ASSETS!=='undefined'&&MARXIA_ASSETS[source]?MARXIA_ASSETS[source]:source;
+const languageButtons=document.querySelectorAll('[data-language-choice]');
+function setLanguage(language){
+  document.documentElement.lang=language;
+  languageButtons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.languageChoice===language)));
+  try{localStorage.setItem('marxia-language',language)}catch(error){}
+  showToast(language==='es'?'Español seleccionado. Las traducciones se completarán página por página.':'English selected.');
+}
+languageButtons.forEach(button=>button.addEventListener('click',()=>setLanguage(button.dataset.languageChoice)));
+
+const themeButtons=document.querySelectorAll('[data-theme-choice]');
+function setTheme(theme){
+  const dark=theme==='dark';
+  document.body.classList.toggle('dark',dark);
+  themeButtons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.themeChoice===theme)));
+  try{localStorage.setItem('marxia-theme',theme)}catch(error){}
   showToast(dark?'Dark appearance enabled.':'Light appearance enabled.');
   drawChart();
-});
+}
+themeButtons.forEach(button=>button.addEventListener('click',()=>setTheme(button.dataset.themeChoice)));
+try{
+  const storedTheme=localStorage.getItem('marxia-theme');
+  const storedLanguage=localStorage.getItem('marxia-language');
+  if(storedTheme==='dark'||storedTheme==='light') setTheme(storedTheme);
+  if(storedLanguage==='en'||storedLanguage==='es') setLanguage(storedLanguage);
+}catch(error){}
 
 document.addEventListener('keydown',event=>{
   if((event.metaKey||event.ctrlKey)&&event.key.toLowerCase()==='k'){
@@ -51,6 +79,7 @@ document.addEventListener('keydown',event=>{
   if(event.key==='Escape'){
     document.querySelector('#sidebar').classList.remove('open');
     menuToggle.setAttribute('aria-expanded','false');
+    closeUtilityMenu();
   }
 });
 
@@ -137,6 +166,57 @@ document.querySelector('#clientForm').addEventListener('submit',event=>{
   updateClientType();
 });
 
+const inventoryCatalog=[
+  {name:'Dark Cocoa 70%',sku:'SKU-1021',price:8.50,stock:8,tax:15,notInStock:false},
+  {name:'Cacao Beans Raw',sku:'SKU-2003',price:12.75,stock:12,tax:15,notInStock:false},
+  {name:'Vanilla Extract 250ml',sku:'SKU-3012',price:9.25,stock:5,tax:15,notInStock:false},
+  {name:'Cacao Nacional',sku:'SKU-4010',price:14.00,stock:20,tax:15,notInStock:false}
+];
+const productInventorySearch=document.querySelector('#productInventorySearch');
+const inventoryProductOptions=document.querySelector('#inventoryProductOptions');
+const inventorySearchStatus=document.querySelector('#inventorySearchStatus');
+const productName=document.querySelector('#productName');
+const productPrice=document.querySelector('#productPrice');
+const productSku=document.querySelector('#productSku');
+inventoryCatalog.forEach(product=>{
+  const option=document.createElement('option');
+  option.value=product.name;
+  option.label=product.sku;
+  inventoryProductOptions.append(option);
+});
+function findInventoryProduct(query){
+  const normalized=query.trim().toLowerCase();
+  if(!normalized) return null;
+  return inventoryCatalog.find(product=>product.name.toLowerCase()===normalized||product.sku.toLowerCase()===normalized)
+    ||inventoryCatalog.find(product=>product.name.toLowerCase().includes(normalized)||product.sku.toLowerCase().includes(normalized));
+}
+function populateProductFromInventory(){
+  const product=findInventoryProduct(productInventorySearch.value);
+  if(!product){
+    inventorySearchStatus.textContent='No matching inventory product found. Try a product name or SKU.';
+    return;
+  }
+  productName.value=product.name;
+  productPrice.value=product.price.toFixed(2);
+  productSku.value=product.sku;
+  productStock.value=product.stock;
+  productTaxValue.value=product.tax;
+  productTaxValue.disabled=false;
+  productTaxToggle.classList.add('on');
+  productTaxToggle.setAttribute('aria-checked','true');
+  notInStock.checked=product.notInStock;
+  productStock.disabled=product.notInStock;
+  inventorySearchStatus.textContent=product.name+' ('+product.sku+') loaded from inventory.';
+}
+document.querySelector('#loadInventoryProduct').addEventListener('click',populateProductFromInventory);
+productInventorySearch.addEventListener('change',populateProductFromInventory);
+productInventorySearch.addEventListener('keydown',event=>{
+  if(event.key==='Enter'){
+    event.preventDefault();
+    populateProductFromInventory();
+  }
+});
+
 const productUpload=document.querySelector('#productUpload');
 const productPhoto=document.querySelector('#productPhoto');
 productUpload.addEventListener('click',()=>productPhoto.click());
@@ -155,7 +235,8 @@ productTaxToggle.addEventListener('click',()=>{
   productTaxToggle.classList.toggle('on',on);
   productTaxValue.disabled=!on;
 });
-document.querySelector('#notInStock').addEventListener('change',event=>{
+const notInStock=document.querySelector('#notInStock');
+notInStock.addEventListener('change',event=>{
   productStock.disabled=event.currentTarget.checked;
   if(event.currentTarget.checked) productStock.value=0;
 });
@@ -170,4 +251,6 @@ document.querySelector('#productForm').addEventListener('submit',event=>{
   productTaxToggle.classList.add('on');
   productTaxToggle.setAttribute('aria-checked','true');
   productUpload.querySelector('strong').textContent='Take a picture or upload';
+  productInventorySearch.value='';
+  inventorySearchStatus.textContent='Choose an existing inventory product to populate the form.';
 });
