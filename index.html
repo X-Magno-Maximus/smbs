@@ -8,7 +8,7 @@
   <meta name="description" content="Marxia SMB business overview">
   <link rel="stylesheet" href="styles.css?v=20260904-2">
   <script src="embedded-assets.js"></script>
-  <script src="app.js?v=20260904-2" defer></script>
+  <script src="app.js?v=20260904-3" defer></script>
 </head>
 <body>
   <div class="app-shell">
@@ -131,10 +131,11 @@
         <button class="dialog-close" type="button" data-close-dialog aria-label="Close client form">×</button>
       </header>
       <div class="form-grid">
-        <label>Client type<select id="clientType" name="clientType" required><option value="customer">Customer</option><option value="business">Business</option></select></label>
+        <label>Customer or Business<select id="clientType" name="clientType" required><option value="customer">Customer</option><option value="business">Business</option></select></label>
         <label>Client number<input id="clientNumber" name="clientNumber" value="CLI-0001" readonly><small>Generated automatically</small></label>
-        <label class="wide">Customer or business name<input name="clientName" required autocomplete="organization" placeholder="e.g. Café Aurora"></label>
-        <label id="taxIdField" hidden>Tax ID<input id="clientTaxId" name="taxId" placeholder="Required for businesses"></label>
+        <label class="wide"><span id="clientNameLabel">Customer name</span><input id="clientName" name="clientName" required autocomplete="name" placeholder="e.g. Gabriel Salazar"></label>
+        <label id="taxIdField" hidden>Tax ID<input id="clientTaxId" name="taxId" placeholder="Enter the business Tax ID"></label>
+        <label class="wide" id="businessAddressField" hidden>Business address<input id="businessAddress" name="businessAddress" autocomplete="street-address" placeholder="Street, city, province, postal code"></label>
         <label>Email<input name="email" type="email" required autocomplete="email" placeholder="billing@client.com"></label>
         <label>Contact name<input name="contactName" required autocomplete="name" placeholder="Primary billing contact"></label>
         <label>Contact phone<input name="phone" type="tel" autocomplete="tel" placeholder="+593"></label>

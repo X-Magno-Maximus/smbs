@@ -105,13 +105,25 @@ document.querySelectorAll('.record-dialog').forEach(dialog=>dialog.addEventListe
 }));
 
 const clientType=document.querySelector('#clientType');
+const clientNameLabel=document.querySelector('#clientNameLabel');
+const clientName=document.querySelector('#clientName');
 const taxIdField=document.querySelector('#taxIdField');
 const clientTaxId=document.querySelector('#clientTaxId');
+const businessAddressField=document.querySelector('#businessAddressField');
+const businessAddress=document.querySelector('#businessAddress');
 function updateClientType(){
   const business=clientType.value==='business';
+  clientNameLabel.textContent=business?'Business name':'Customer name';
+  clientName.placeholder=business?'e.g. Café Aurora LLC':'e.g. Gabriel Salazar';
+  clientName.autocomplete=business?'organization':'name';
   taxIdField.hidden=!business;
+  businessAddressField.hidden=!business;
   clientTaxId.required=business;
   clientTaxId.setAttribute('aria-required',String(business));
+  if(!business){
+    clientTaxId.value='';
+    businessAddress.value='';
+  }
 }
 clientType.addEventListener('change',updateClientType);
 updateClientType();
