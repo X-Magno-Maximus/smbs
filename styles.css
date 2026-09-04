@@ -23,3 +23,7 @@ body.dark{--ink:#eaf2ef;--muted:#a9b8b3;--line:#334943;--surface:#162923;--canva
 .app-shell{transition:grid-template-columns .22s ease}.sidebar{width:230px;transition:transform .22s ease}.app-shell.sidebar-collapsed{grid-template-columns:0 minmax(0,1fr)}.app-shell.sidebar-collapsed .sidebar{transform:translateX(-100%)}.sidebar-slide-toggle{position:fixed;top:18px;left:212px;z-index:31;display:grid;place-items:center;width:36px;height:54px;transform:none;border:1px solid rgba(255,255,255,.25);border-radius:0 9px 9px 0;background:var(--green-dark);color:#fff;font-size:24px;font-weight:750;cursor:pointer;box-shadow:2px 2px 8px rgba(0,35,28,.18);transition:left .22s ease,background .16s}.sidebar-slide-toggle:hover,.sidebar-slide-toggle:focus-visible{background:#0d725f;outline:3px solid rgba(212,164,47,.4);outline-offset:2px}.app-shell.sidebar-collapsed .sidebar-slide-toggle{left:0}
 @media(max-width:900px){.app-shell,.app-shell.sidebar-collapsed{grid-template-columns:1fr}.sidebar,.app-shell.sidebar-collapsed .sidebar{left:0;transform:translateX(-100%)}.sidebar.open{transform:translateX(0)}.sidebar-slide-toggle,.app-shell.sidebar-collapsed .sidebar-slide-toggle{left:0}.sidebar.open~.sidebar-slide-toggle{left:212px}}
 @media(prefers-reduced-motion:reduce){.app-shell,.sidebar,.sidebar-slide-toggle{transition:none}}
+
+.app-shell.sidebar-collapsed .topbar{padding-left:62px}
+@media(max-width:900px){.sidebar:not(.open)~.workspace .topbar{padding-left:62px}}
+@media(max-width:620px){.sidebar:not(.open)~.workspace .topbar{padding-left:56px}}
