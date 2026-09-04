@@ -44,8 +44,8 @@
           <button class="notification" type="button" aria-label="Notifications"><span>3</span>!</button>
           <button class="language" id="languageToggle" type="button" aria-label="Switch language">EN</button>
           <button class="theme" id="themeToggle" type="button" aria-label="Switch color theme"><img src="assets/light.webp" alt=""></button>
-          <button class="action secondary" type="button" data-toast="Client page will be created in its own stage.">＋ Client</button>
-          <button class="action primary" type="button" data-toast="Product page will be created in its own stage.">＋ Product</button>
+          <button class="action secondary" type="button" data-open-dialog="clientDialog">＋ Client</button>
+          <button class="action primary" type="button" data-open-dialog="productDialog">＋ Product</button>
           <button class="profile" type="button" data-page="Profile"><span>GS</span><span><strong>Gabriel</strong><small>Owner</small></span></button>
         </div>
       </header>
@@ -54,6 +54,19 @@
         <section class="heading-row">
           <div><h1>Good morning, Gabriel</h1><p>Here's what's happening across your business.</p></div>
           <div class="as-of"><strong>Today is Friday, September 4, 2026</strong><span>Data as of 8:00 AM local time</span></div>
+        </section>
+
+        <section class="creation-cards" aria-label="Create business records">
+          <button class="creation-card product-card" type="button" data-open-dialog="productDialog">
+            <img src="assets/products.webp" alt="">
+            <span><strong>＋ Product</strong><small>Add a product with its image, price, stock, SKU, and tax details.</small></span>
+            <b aria-hidden="true">›</b>
+          </button>
+          <button class="creation-card client-card" type="button" data-open-dialog="clientDialog">
+            <img src="assets/avatar.webp" alt="">
+            <span><strong>＋ Client</strong><small>Add a customer or business and prepare their billing contact information.</small></span>
+            <b aria-hidden="true">›</b>
+          </button>
         </section>
 
         <article class="panel chart-panel">
@@ -111,6 +124,46 @@
       </div>
     </main>
   </div>
+  <dialog class="record-dialog" id="clientDialog" aria-labelledby="clientDialogTitle">
+    <form method="dialog" class="record-form" id="clientForm">
+      <header class="dialog-heading">
+        <div><small>NEW CLIENT</small><h2 id="clientDialogTitle">Add a client</h2><p>Create either a customer or business billing record.</p></div>
+        <button class="dialog-close" type="button" data-close-dialog aria-label="Close client form">×</button>
+      </header>
+      <div class="form-grid">
+        <label>Client type<select id="clientType" name="clientType" required><option value="customer">Customer</option><option value="business">Business</option></select></label>
+        <label>Client number<input id="clientNumber" name="clientNumber" value="CLI-0001" readonly><small>Generated automatically</small></label>
+        <label class="wide">Customer or business name<input name="clientName" required autocomplete="organization" placeholder="e.g. Café Aurora"></label>
+        <label id="taxIdField" hidden>Tax ID<input id="clientTaxId" name="taxId" placeholder="Required for businesses"></label>
+        <label>Email<input name="email" type="email" required autocomplete="email" placeholder="billing@client.com"></label>
+        <label>Contact name<input name="contactName" required autocomplete="name" placeholder="Primary billing contact"></label>
+        <label>Contact phone<input name="phone" type="tel" autocomplete="tel" placeholder="+593"></label>
+      </div>
+      <p class="form-note">When this client is invoiced or billed, the billing notice will be sent immediately to this email address.</p>
+      <footer class="dialog-actions"><button type="button" data-close-dialog>Cancel</button><button class="primary" type="submit">Save client</button></footer>
+    </form>
+  </dialog>
+
+  <dialog class="record-dialog" id="productDialog" aria-labelledby="productDialogTitle">
+    <form method="dialog" class="record-form" id="productForm">
+      <header class="dialog-heading">
+        <div><small>NEW PRODUCT</small><h2 id="productDialogTitle">Add to your catalog</h2><p>Photograph it, price it, and start selling.</p></div>
+        <button class="dialog-close" type="button" data-close-dialog aria-label="Close product form">×</button>
+      </header>
+      <div class="product-form-grid">
+        <div class="image-field"><label>Product image</label><button class="upload-control" id="productUpload" type="button"><img src="assets/products.webp" alt=""><strong>Take a picture or upload</strong><small>JPG or PNG · up to 10 MB</small></button><input hidden id="productPhoto" name="photo" type="file" accept="image/png,image/jpeg" capture="environment"></div>
+        <div class="product-fields">
+          <label>Product name<input name="productName" required placeholder="e.g. Cacao Nacional"></label>
+          <div class="field-pair"><label>Price (USD)<input name="price" required type="number" min="0" step=".01" placeholder="0.00"></label><label>SKU<input name="sku" placeholder="Auto-generated"></label></div>
+          <label>Stock quantity<span class="stepper"><button id="stockMinus" type="button" aria-label="Decrease stock quantity">−</button><input id="productStock" name="stock" type="number" min="0" value="20"><button id="stockPlus" type="button" aria-label="Increase stock quantity">＋</button></span></label>
+        </div>
+      </div>
+      <div class="tax-row"><span><strong>Add VAT / tax</strong><small>Calculated at checkout and shown on invoices</small></span><label><input id="productTaxValue" name="tax" type="number" min="0" max="100" value="15">%</label><button id="productTaxToggle" class="switch on" type="button" role="switch" aria-checked="true" aria-label="Add VAT or tax"><i></i></button></div>
+      <label class="stock-check"><input id="notInStock" name="notInStock" type="checkbox"> Mark product as not in stock</label>
+      <footer class="dialog-actions"><button type="button" data-close-dialog>Cancel</button><button class="primary" type="submit">Save product</button></footer>
+    </form>
+  </dialog>
+
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
