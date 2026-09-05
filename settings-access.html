@@ -7,9 +7,9 @@
   <title>Marxia | Settings & Access</title>
   <meta name="description" content="Marxia SMB settings, identity, employees, roles, approvals, and audit controls">
   <link rel="stylesheet" href="styles.css?v=20260904-11">
-  <link rel="stylesheet" href="settings-access.css?v=20260905-4">
+  <link rel="stylesheet" href="settings-access.css?v=20260905-5">
   <script src="embedded-assets.js"></script>
-  <script src="settings-access.js?v=20260905-4" defer></script>
+  <script src="settings-access.js?v=20260905-5" defer></script>
 </head>
 <body>
   <div class="app-shell">
@@ -260,14 +260,37 @@
     <form method="dialog" class="record-form" id="employeeForm">
       <header class="dialog-heading"><div><small>NEW EMPLOYEE</small><h2 id="employeeDialogTitle">Add new employee</h2><p>Create the staff record before assigning access.</p></div><button class="dialog-close" type="button" data-close-dialog aria-label="Close employee form">×</button></header>
       <div class="form-grid">
-        <label>First name<input required autocomplete="given-name"></label><label>Last name<input required autocomplete="family-name"></label>
-        <label class="wide">Address<input required autocomplete="street-address"></label>
-        <label>Email<input required type="email" autocomplete="email"></label><label>Phone<input required type="tel" autocomplete="tel"></label>
-        <label>Position<select required><option value="">Choose position</option><option>Employee / Staff</option><option>Supervisor</option><option>Manager</option><option>Management Admin</option><option>IT SuperUser</option><option>Vice President</option></select></label>
-        <label>Initial status<select required><option>Pending owner review</option><option>Active</option><option>Inactive</option></select></label>
+        <label>First name<input id="employeeFirstName" name="firstName" required autocomplete="given-name"></label><label>Last name<input id="employeeLastName" name="lastName" required autocomplete="family-name"></label>
+        <label class="wide">Address<input name="address" required autocomplete="street-address"></label>
+        <label>Email<input name="email" required type="email" autocomplete="email"></label><label>Phone<input name="phone" required type="tel" autocomplete="tel"></label>
       </div>
-      <p class="form-note">Creating an employee record does not automatically grant system access. Access must be authorized separately.</p>
-      <footer class="dialog-actions"><button type="button" data-close-dialog>Cancel</button><button class="primary" type="submit">Submit employee</button></footer>
+      <fieldset class="position-picker"><legend>Available positions</legend><p>Choose one position. Your choice will remain highlighted.</p><div class="position-buttons" role="radiogroup" aria-label="Available employee positions">
+        <button type="button" role="radio" aria-checked="false" data-position="Employee / Staff">Employee / Staff</button>
+        <button type="button" role="radio" aria-checked="false" data-position="Supervisor">Supervisor</button>
+        <button type="button" role="radio" aria-checked="false" data-position="Manager">Manager</button>
+        <button type="button" role="radio" aria-checked="false" data-position="Management Admin">Management Admin</button>
+        <button type="button" role="radio" aria-checked="false" data-position="IT SuperUser">IT SuperUser</button>
+        <button type="button" role="radio" aria-checked="false" data-position="Vice President">Vice President</button>
+      </div><input id="employeePosition" name="position" type="hidden" required></fieldset>
+      <section class="employee-status-panel" aria-labelledby="initialStatusLabel"><div><strong id="initialStatusLabel">Initial status</strong><small id="employeeStatus" role="status" aria-live="polite">Choose a position to enable employee actions.</small></div><div class="employee-action-buttons">
+        <button class="approval-request" id="employeeRequestApproval" type="button" disabled>Request Owner Approval</button>
+        <button id="employeeApprove" type="button" disabled>Approve</button>
+        <button id="employeeToggleActive" type="button" disabled>Deactivate</button>
+        <button class="danger-button-small" id="employeeDelete" type="button" disabled>Delete</button>
+      </div></section>
+      <p class="form-note">Creating an employee record does not automatically grant system access. The SMB Owner must approve the requested position before access is granted.</p>
+      <footer class="dialog-actions"><button type="button" data-close-dialog>Cancel</button><button class="primary" type="submit">Save employee record</button></footer>
+    </form>
+  </dialog>
+
+  <dialog class="confirm-dialog approval-dialog" id="employeeApprovalDialog" aria-labelledby="employeeApprovalDialogTitle">
+    <form method="dialog" id="employeeApprovalForm">
+      <h2 id="employeeApprovalDialogTitle">Request Owner Approval</h2>
+      <p>Type or paste the selected rank / position exactly as shown. This records who made the request, the employee, date and time, and sends it to the SMB Owner for approval.</p>
+      <strong id="selectedEmployeePosition"></strong>
+      <label>Rank / position<input id="approvalPositionConfirmation" required autocomplete="off" placeholder="Type or paste the selected position"></label>
+      <p class="field-error" id="approvalPositionError" role="alert" hidden>The rank / position must match the selected position.</p>
+      <div class="dialog-actions"><button type="button" data-close-dialog>Cancel</button><button class="primary" type="submit">Proceed</button></div>
     </form>
   </dialog>
 
