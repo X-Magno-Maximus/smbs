@@ -7,9 +7,9 @@
   <title>Marxia | Settings & Access</title>
   <meta name="description" content="Marxia SMB settings, identity, employees, roles, approvals, and audit controls">
   <link rel="stylesheet" href="styles.css?v=20260904-11">
-  <link rel="stylesheet" href="settings-access.css?v=20260905-5">
+  <link rel="stylesheet" href="settings-access.css?v=20260905-6">
   <script src="embedded-assets.js"></script>
-  <script src="settings-access.js?v=20260905-5" defer></script>
+  <script src="settings-access.js?v=20260905-6" defer></script>
 </head>
 <body>
   <div class="app-shell">
@@ -99,10 +99,10 @@
           <details class="settings-section" data-search-terms="employees staff add employee name address email phone position">
             <summary><span><img src="assets/avatar.webp" alt=""><b>Employees &amp; Staff</b><small>Add people and review employment status</small></span><i aria-hidden="true">＋</i></summary>
             <div class="section-body">
-              <div class="table-scroll"><table class="settings-table"><thead><tr><th>Employee</th><th>Position</th><th>Status</th><th>Last access</th><th>Action</th></tr></thead><tbody>
-                <tr><td>Ana Pérez</td><td>Manager</td><td><em class="paid">Active</em></td><td>Today, 8:14 AM</td><td><button type="button" data-toast="Ana Pérez's employee record opened.">Review</button></td></tr>
-                <tr><td>Isaac Silva</td><td>Inventory Supervisor</td><td><em class="paid">Active</em></td><td>Yesterday</td><td><button type="button" data-toast="Isaac Silva's employee record opened.">Review</button></td></tr>
-                <tr><td>Luis Mora</td><td>Fulfillment Staff</td><td><em class="medium">Pending review</em></td><td>Sep 2</td><td><button type="button" data-toast="Luis Mora's employee record opened.">Review</button></td></tr>
+              <div class="table-scroll"><table class="settings-table employee-access-table"><thead><tr><th>Employee</th><th>Position</th><th>Status</th><th>Last access</th><th>Access actions</th></tr></thead><tbody>
+                <tr data-employee-access data-employee="Ana Pérez" data-suspended="false"><td><strong>Ana Pérez</strong><small class="employee-access-note">Account and employment record retained</small></td><td>Manager</td><td><em class="paid" data-employee-status>Active</em></td><td>Today, 8:14 AM</td><td><div class="employee-row-actions"><button type="button" data-toast="Ana Pérez's employee record opened.">Review</button><button type="button" data-reset-password>Request Password Reset</button><button type="button" data-suspend-access>Suspend</button><button class="danger-button-small" type="button" data-delete-employee-access>Delete Access</button></div></td></tr>
+                <tr data-employee-access data-employee="Isaac Silva" data-suspended="false"><td><strong>Isaac Silva</strong><small class="employee-access-note">Account and employment record retained</small></td><td>Inventory Supervisor</td><td><em class="paid" data-employee-status>Active</em></td><td>Yesterday</td><td><div class="employee-row-actions"><button type="button" data-toast="Isaac Silva's employee record opened.">Review</button><button type="button" data-reset-password>Request Password Reset</button><button type="button" data-suspend-access>Suspend</button><button class="danger-button-small" type="button" data-delete-employee-access>Delete Access</button></div></td></tr>
+                <tr data-employee-access data-employee="Luis Mora" data-suspended="false"><td><strong>Luis Mora</strong><small class="employee-access-note">Account and employment record retained</small></td><td>Fulfillment Staff</td><td><em class="medium" data-employee-status>Pending review</em></td><td>Sep 2</td><td><div class="employee-row-actions"><button type="button" data-toast="Luis Mora's employee record opened.">Review</button><button type="button" data-reset-password>Request Password Reset</button><button type="button" data-suspend-access>Suspend</button><button class="danger-button-small" type="button" data-delete-employee-access>Delete Access</button></div></td></tr>
               </tbody></table></div>
             </div>
           </details>
@@ -292,6 +292,10 @@
       <p class="field-error" id="approvalPositionError" role="alert" hidden>The rank / position must match the selected position.</p>
       <div class="dialog-actions"><button type="button" data-close-dialog>Cancel</button><button class="primary" type="submit">Proceed</button></div>
     </form>
+  </dialog>
+
+  <dialog class="confirm-dialog" id="employeeAccessDeleteDialog" aria-labelledby="employeeAccessDeleteTitle">
+    <form method="dialog" id="employeeAccessDeleteForm"><h2 id="employeeAccessDeleteTitle">Delete application access?</h2><p>This removes only the employee's application access. The employee account, employment record, and audit history will remain intact.</p><strong id="employeeAccessDeleteIdentity"></strong><div class="dialog-actions"><button type="button" data-close-dialog>Cancel</button><button class="danger-button" type="submit">Delete Access</button></div></form>
   </dialog>
 
   <dialog class="confirm-dialog" id="deleteDialog" aria-labelledby="deleteDialogTitle">
