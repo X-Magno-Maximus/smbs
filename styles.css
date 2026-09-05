@@ -27,3 +27,5 @@ body.dark{--ink:#eaf2ef;--muted:#a9b8b3;--line:#334943;--surface:#162923;--canva
 .app-shell.sidebar-collapsed .topbar{padding-left:62px}
 @media(max-width:900px){.sidebar:not(.open)~.workspace .topbar{padding-left:62px}}
 @media(max-width:620px){.sidebar:not(.open)~.workspace .topbar{padding-left:56px}}
+
+.status-card-link{display:inline-block;margin-top:10px;color:var(--green);font-size:10px;font-weight:700;text-decoration:none}.status-card-link:hover{text-decoration:underline}.status-card-link:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:3px}
