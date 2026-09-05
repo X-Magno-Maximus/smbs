@@ -7,9 +7,9 @@
   <title>Marxia | Settings & Access</title>
   <meta name="description" content="Marxia SMB settings, identity, employees, roles, approvals, and audit controls">
   <link rel="stylesheet" href="styles.css?v=20260904-11">
-  <link rel="stylesheet" href="settings-access.css?v=20260905-6">
+  <link rel="stylesheet" href="settings-access.css?v=20260905-7">
   <script src="embedded-assets.js"></script>
-  <script src="settings-access.js?v=20260905-6" defer></script>
+  <script src="settings-access.js?v=20260905-7" defer></script>
 </head>
 <body>
   <div class="app-shell">
@@ -68,7 +68,7 @@
       <div class="page settings-page">
         <section class="heading-row settings-heading">
           <div><a class="back-link" href="index.html">‹ Overview</a><h1>Settings &amp; Access</h1><p>Manage your business identity, people, permissions, approvals, and security records.</p></div>
-          <button class="primary-page-action" id="addEmployeeButton" type="button">＋ Add new employee</button>
+          <button class="primary-page-action has-tooltip" id="addEmployeeButton" type="button" data-tooltip="Open the form to create a new employee record and request role approval." aria-label="Add new employee. Opens the employee record and role approval form.">＋ Add new employee</button>
         </section>
 
         <section class="settings-summary" aria-label="Settings summary">
@@ -100,9 +100,9 @@
             <summary><span><img src="assets/avatar.webp" alt=""><b>Employees &amp; Staff</b><small>Add people and review employment status</small></span><i aria-hidden="true">＋</i></summary>
             <div class="section-body">
               <div class="table-scroll"><table class="settings-table employee-access-table"><thead><tr><th>Employee</th><th>Position</th><th>Status</th><th>Last access</th><th>Access actions</th></tr></thead><tbody>
-                <tr data-employee-access data-employee="Ana Pérez" data-suspended="false"><td><strong>Ana Pérez</strong><small class="employee-access-note">Account and employment record retained</small></td><td>Manager</td><td><em class="paid" data-employee-status>Active</em></td><td>Today, 8:14 AM</td><td><div class="employee-row-actions"><button type="button" data-toast="Ana Pérez's employee record opened.">Review</button><button type="button" data-reset-password>Request Password Reset</button><button type="button" data-suspend-access>Suspend</button><button class="danger-button-small" type="button" data-delete-employee-access>Delete Access</button></div></td></tr>
-                <tr data-employee-access data-employee="Isaac Silva" data-suspended="false"><td><strong>Isaac Silva</strong><small class="employee-access-note">Account and employment record retained</small></td><td>Inventory Supervisor</td><td><em class="paid" data-employee-status>Active</em></td><td>Yesterday</td><td><div class="employee-row-actions"><button type="button" data-toast="Isaac Silva's employee record opened.">Review</button><button type="button" data-reset-password>Request Password Reset</button><button type="button" data-suspend-access>Suspend</button><button class="danger-button-small" type="button" data-delete-employee-access>Delete Access</button></div></td></tr>
-                <tr data-employee-access data-employee="Luis Mora" data-suspended="false"><td><strong>Luis Mora</strong><small class="employee-access-note">Account and employment record retained</small></td><td>Fulfillment Staff</td><td><em class="medium" data-employee-status>Pending review</em></td><td>Sep 2</td><td><div class="employee-row-actions"><button type="button" data-toast="Luis Mora's employee record opened.">Review</button><button type="button" data-reset-password>Request Password Reset</button><button type="button" data-suspend-access>Suspend</button><button class="danger-button-small" type="button" data-delete-employee-access>Delete Access</button></div></td></tr>
+                <tr data-employee-access data-employee="Ana Pérez" data-suspended="false"><td><strong>Ana Pérez</strong><small class="employee-access-note">Account and employment record retained</small></td><td>Manager</td><td><em class="paid" data-employee-status>Active</em></td><td>Today, 8:14 AM</td><td><div class="employee-row-actions"><button class="has-tooltip" type="button" data-tooltip="Open Ana Pérez’s employee record for review without changing access." aria-label="Review Ana Pérez employee record" data-toast="Ana Pérez's employee record opened.">Review</button><button class="has-tooltip" type="button" data-reset-password data-tooltip="Send this employee a secure, expiring password-reset link. The password is never displayed or emailed.">Request Password Reset</button><button class="has-tooltip" type="button" data-suspend-access data-tooltip="Immediately suspend application access and revoke active sessions for a lost or stolen device.">Suspend</button><button class="danger-button-small has-tooltip" type="button" data-delete-employee-access data-tooltip="Remove application access only. Keep the employee account, employment record, and audit history.">Delete Access</button></div></td></tr>
+                <tr data-employee-access data-employee="Isaac Silva" data-suspended="false"><td><strong>Isaac Silva</strong><small class="employee-access-note">Account and employment record retained</small></td><td>Inventory Supervisor</td><td><em class="paid" data-employee-status>Active</em></td><td>Yesterday</td><td><div class="employee-row-actions"><button class="has-tooltip" type="button" data-tooltip="Open Isaac Silva’s employee record for review without changing access." aria-label="Review Isaac Silva employee record" data-toast="Isaac Silva's employee record opened.">Review</button><button class="has-tooltip" type="button" data-reset-password data-tooltip="Send this employee a secure, expiring password-reset link. The password is never displayed or emailed.">Request Password Reset</button><button class="has-tooltip" type="button" data-suspend-access data-tooltip="Immediately suspend application access and revoke active sessions for a lost or stolen device.">Suspend</button><button class="danger-button-small has-tooltip" type="button" data-delete-employee-access data-tooltip="Remove application access only. Keep the employee account, employment record, and audit history.">Delete Access</button></div></td></tr>
+                <tr data-employee-access data-employee="Luis Mora" data-suspended="false"><td><strong>Luis Mora</strong><small class="employee-access-note">Account and employment record retained</small></td><td>Fulfillment Staff</td><td><em class="medium" data-employee-status>Pending review</em></td><td>Sep 2</td><td><div class="employee-row-actions"><button class="has-tooltip" type="button" data-tooltip="Open Luis Mora’s employee record for review without changing access." aria-label="Review Luis Mora employee record" data-toast="Luis Mora's employee record opened.">Review</button><button class="has-tooltip" type="button" data-reset-password data-tooltip="Send this employee a secure, expiring password-reset link. The password is never displayed or emailed.">Request Password Reset</button><button class="has-tooltip" type="button" data-suspend-access data-tooltip="Immediately suspend application access and revoke active sessions for a lost or stolen device.">Suspend</button><button class="danger-button-small has-tooltip" type="button" data-delete-employee-access data-tooltip="Remove application access only. Keep the employee account, employment record, and audit history.">Delete Access</button></div></td></tr>
               </tbody></table></div>
             </div>
           </details>
@@ -265,21 +265,21 @@
         <label>Email<input name="email" required type="email" autocomplete="email"></label><label>Phone<input name="phone" required type="tel" autocomplete="tel"></label>
       </div>
       <fieldset class="position-picker"><legend>Available positions</legend><p>Choose one position. Your choice will remain highlighted.</p><div class="position-buttons" role="radiogroup" aria-label="Available employee positions">
-        <button type="button" role="radio" aria-checked="false" data-position="Employee / Staff">Employee / Staff</button>
-        <button type="button" role="radio" aria-checked="false" data-position="Supervisor">Supervisor</button>
-        <button type="button" role="radio" aria-checked="false" data-position="Manager">Manager</button>
-        <button type="button" role="radio" aria-checked="false" data-position="Management Admin">Management Admin</button>
-        <button type="button" role="radio" aria-checked="false" data-position="IT SuperUser">IT SuperUser</button>
-        <button type="button" role="radio" aria-checked="false" data-position="Vice President">Vice President</button>
+        <button class="has-tooltip" type="button" role="radio" aria-checked="false" data-position="Employee / Staff" data-tooltip="Select Employee / Staff as the employee’s proposed position. Owner approval is still required.">Employee / Staff</button>
+        <button class="has-tooltip" type="button" role="radio" aria-checked="false" data-position="Supervisor" data-tooltip="Select Supervisor as the employee’s proposed position. Owner approval is still required.">Supervisor</button>
+        <button class="has-tooltip" type="button" role="radio" aria-checked="false" data-position="Manager" data-tooltip="Select Manager as the employee’s proposed position. Owner approval is still required.">Manager</button>
+        <button class="has-tooltip" type="button" role="radio" aria-checked="false" data-position="Management Admin" data-tooltip="Select Management Admin as the employee’s proposed position. Owner approval is still required.">Management Admin</button>
+        <button class="has-tooltip" type="button" role="radio" aria-checked="false" data-position="IT SuperUser" data-tooltip="Select IT SuperUser as the employee’s proposed position. Owner approval is still required.">IT SuperUser</button>
+        <button class="has-tooltip" type="button" role="radio" aria-checked="false" data-position="Vice President" data-tooltip="Select Vice President as the employee’s proposed position. Owner approval is still required.">Vice President</button>
       </div><input id="employeePosition" name="position" type="hidden" required></fieldset>
       <section class="employee-status-panel" aria-labelledby="initialStatusLabel"><div><strong id="initialStatusLabel">Initial status</strong><small id="employeeStatus" role="status" aria-live="polite">Choose a position to enable employee actions.</small></div><div class="employee-action-buttons">
-        <button class="approval-request" id="employeeRequestApproval" type="button" disabled>Request Owner Approval</button>
-        <button id="employeeApprove" type="button" disabled>Approve</button>
-        <button id="employeeToggleActive" type="button" disabled>Deactivate</button>
-        <button class="danger-button-small" id="employeeDelete" type="button" disabled>Delete</button>
+        <button class="approval-request has-tooltip" id="employeeRequestApproval" type="button" data-tooltip="Open the confirmation form and send this position request to the SMB Owner." disabled>Request Owner Approval</button>
+        <button class="has-tooltip" id="employeeApprove" type="button" data-tooltip="Record the SMB Owner’s approval for the selected employee position." disabled>Approve</button>
+        <button class="has-tooltip" id="employeeToggleActive" type="button" data-tooltip="Deactivate or reactivate this employee’s application access." disabled>Deactivate</button>
+        <button class="danger-button-small has-tooltip" id="employeeDelete" type="button" data-tooltip="Delete this unsaved employee record after confirmation." disabled>Delete</button>
       </div></section>
       <p class="form-note">Creating an employee record does not automatically grant system access. The SMB Owner must approve the requested position before access is granted.</p>
-      <footer class="dialog-actions"><button type="button" data-close-dialog>Cancel</button><button class="primary" type="submit">Save employee record</button></footer>
+      <footer class="dialog-actions"><button class="has-tooltip" type="button" data-close-dialog data-tooltip="Close this form without saving the employee record.">Cancel</button><button class="primary has-tooltip" type="submit" data-tooltip="Save the employee record with its current access and approval status.">Save employee record</button></footer>
     </form>
   </dialog>
 
