@@ -194,6 +194,7 @@ document.querySelectorAll('[data-employee-access]').forEach(row=>{
     const suspended=row.dataset.suspended==='true';
     row.dataset.suspended=String(!suspended);
     suspendButton.textContent=suspended?'Suspend':'Restore Access';
+    suspendButton.dataset.tooltip=suspended?'Immediately suspend application access and revoke active sessions for a lost or stolen device.':'Restore application access after the device and employee identity have been verified.';
     status.textContent=suspended?'Active':'Suspended — sessions revoked';
     status.className=suspended?'paid':'low';
     showToast(suspended?employee+' access restored.':employee+' access suspended for device protection.');
