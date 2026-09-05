@@ -176,6 +176,48 @@ document.querySelectorAll('.settings-form').forEach(form=>form.addEventListener(
   showToast(form.dataset.formName+' saved.');
 }));
 
+const employeeAccessDeleteDialog=document.querySelector('#employeeAccessDeleteDialog');
+const employeeAccessDeleteIdentity=document.querySelector('#employeeAccessDeleteIdentity');
+let pendingEmployeeAccessRow=null;
+document.querySelectorAll('[data-employee-access]').forEach(row=>{
+  const employee=row.dataset.employee;
+  const status=row.querySelector('[data-employee-status]');
+  const suspendButton=row.querySelector('[data-suspend-access]');
+  row.querySelector('[data-reset-password]').addEventListener('click',event=>{
+    event.currentTarget.disabled=true;
+    event.currentTarget.textContent='Reset Requested';
+    status.textContent='Password reset requested';
+    status.className='medium';
+    showToast('A secure password-reset link was requested for '+employee+'. No password was emailed or exposed.');
+  });
+  suspendButton.addEventListener('click',()=>{
+    const suspended=row.dataset.suspended==='true';
+    row.dataset.suspended=String(!suspended);
+    suspendButton.textContent=suspended?'Suspend':'Restore Access';
+    status.textContent=suspended?'Active':'Suspended — sessions revoked';
+    status.className=suspended?'paid':'low';
+    showToast(suspended?employee+' access restored.':employee+' access suspended for device protection.');
+  });
+  row.querySelector('[data-delete-employee-access]').addEventListener('click',()=>{
+    pendingEmployeeAccessRow=row;
+    employeeAccessDeleteIdentity.textContent=employee;
+    employeeAccessDeleteDialog.showModal();
+  });
+});
+document.querySelector('#employeeAccessDeleteForm').addEventListener('submit',event=>{
+  event.preventDefault();
+  if(!pendingEmployeeAccessRow)return;
+  const employee=pendingEmployeeAccessRow.dataset.employee;
+  const status=pendingEmployeeAccessRow.querySelector('[data-employee-status]');
+  status.textContent='Application access deleted';
+  status.className='low';
+  pendingEmployeeAccessRow.dataset.suspended='true';
+  pendingEmployeeAccessRow.querySelectorAll('.employee-row-actions button:not([data-toast])').forEach(button=>button.disabled=true);
+  employeeAccessDeleteDialog.close();
+  pendingEmployeeAccessRow=null;
+  showToast(employee+' application access deleted. The account and employee record were preserved.');
+});
+
 const governanceOwnerPassword=document.querySelector('#governanceOwnerPassword');
 function ownerIsVerified(){
   if(governanceOwnerPassword?.value) return true;
