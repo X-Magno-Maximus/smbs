@@ -96,24 +96,55 @@ document.querySelectorAll('.settings-form').forEach(form=>form.addEventListener(
   showToast(form.dataset.formName+' saved.');
 }));
 
-const ownerAuthPassword=document.querySelector('#ownerAuthPassword');
-document.querySelector('#privilegedRoleForm').addEventListener('submit',event=>{
-  event.preventDefault();
-  if(!event.currentTarget.reportValidity()) return;
-  ownerAuthPassword.value='';
-  showToast('Privileged-role request sent for SMB Owner approval.');
-  event.currentTarget.reset();
+const governanceOwnerPassword=document.querySelector('#governanceOwnerPassword');
+function ownerIsVerified(){
+  if(governanceOwnerPassword?.value) return true;
+  showToast('Enter the Business Owner password before completing this action.');
+  governanceOwnerPassword?.focus();
+  return false;
+}
+document.querySelectorAll('[data-governed-item]').forEach(item=>{
+  const status=item.querySelector('[data-governed-status]');
+  const requestButton=item.querySelector('[data-request-governance]');
+  const approveButton=item.querySelector('[data-approve-governance]');
+  const toggleButton=item.querySelector('[data-toggle-governance]');
+  function updateGovernedStatus(message){
+    status.textContent=(item.dataset.active==='true'?'Active':'Inactive')+' · '+message;
+  }
+  requestButton.addEventListener('click',()=>{
+    item.dataset.approved='pending';
+    requestButton.textContent='Approval Requested';
+    requestButton.disabled=true;
+    updateGovernedStatus('Awaiting Business Owner approval');
+    showToast('Owner approval requested and email notification queued.');
+  });
+  approveButton.addEventListener('click',()=>{
+    if(!ownerIsVerified()) return;
+    item.dataset.approved='true';
+    requestButton.textContent='Owner Approval Recorded';
+    requestButton.disabled=true;
+    approveButton.disabled=true;
+    updateGovernedStatus('Approved by Business Owner');
+    governanceOwnerPassword.value='';
+    showToast('Approved. The owner email and audit history were updated.');
+  });
+  toggleButton.addEventListener('click',()=>{
+    if(!ownerIsVerified()) return;
+    const active=item.dataset.active==='true';
+    item.dataset.active=String(!active);
+    toggleButton.textContent=active?'Activate':'Deactivate';
+    const approval=item.dataset.approved==='true'?'Approved by Business Owner':item.dataset.approved==='pending'?'Awaiting Business Owner approval':'Owner approval not requested';
+    updateGovernedStatus(approval);
+    governanceOwnerPassword.value='';
+    showToast(active?'Access deactivated.':'Access activated.');
+  });
 });
-document.querySelectorAll('[data-decision]').forEach(control=>control.addEventListener('click',()=>{
-  const item=control.closest('article');
-  item.hidden=true;
-  showToast('Request '+control.dataset.decision+'. The owner and audit record will be notified.');
-}));
 
 const deleteDialog=document.querySelector('#deleteDialog');
 const deleteIdentity=document.querySelector('#deleteUserIdentity');
 let pendingDeleteUser='';
 document.querySelectorAll('[data-delete-user]').forEach(control=>control.addEventListener('click',()=>{
+  if(control.closest('[data-governed-item]')&&!ownerIsVerified()) return;
   pendingDeleteUser=control.dataset.deleteUser;
   deleteIdentity.textContent=pendingDeleteUser;
   deleteDialog.showModal();
