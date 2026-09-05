@@ -126,9 +126,37 @@ document.querySelector('#deleteForm').addEventListener('submit',event=>{
   showToast('Protected deletion queued for '+pendingDeleteUser+'.');
   pendingDeleteUser='';
 });
-document.querySelector('#masterEndUserAccess').addEventListener('change',event=>{
-  document.querySelectorAll('.end-user-list input[role="switch"]').forEach(toggle=>{toggle.checked=event.currentTarget.checked;});
-  showToast(event.currentTarget.checked?'All end-user access activated.':'All end-user access deactivated.');
+document.querySelectorAll('[data-access-item]').forEach(item=>{
+  const status=item.querySelector('[data-access-status]');
+  const requestButton=item.querySelector('[data-request-approval]');
+  const approveButton=item.querySelector('[data-approve-access]');
+  const toggleButton=item.querySelector('[data-toggle-access]');
+  function updateAccessStatus(message){
+    const active=item.dataset.active==='true';
+    status.textContent=(active?'Active':'Inactive')+' · '+message;
+  }
+  requestButton.addEventListener('click',()=>{
+    item.dataset.approved='pending';
+    requestButton.textContent='Approval Requested';
+    requestButton.disabled=true;
+    updateAccessStatus('Awaiting Business Owner approval');
+    showToast('Owner approval requested and email notification queued.');
+  });
+  approveButton.addEventListener('click',()=>{
+    item.dataset.approved='true';
+    requestButton.textContent='Owner Approval Recorded';
+    requestButton.disabled=true;
+    approveButton.disabled=true;
+    updateAccessStatus('Approved by Business Owner');
+    showToast('Access approved. The owner email and audit history were updated.');
+  });
+  toggleButton.addEventListener('click',()=>{
+    const active=item.dataset.active==='true';
+    item.dataset.active=String(!active);
+    toggleButton.textContent=active?'Activate':'Deactivate';
+    updateAccessStatus(item.dataset.approved==='true'?'Approved by Business Owner':item.dataset.approved==='pending'?'Awaiting Business Owner approval':'Owner approval not requested');
+    showToast(active?'End-user access deactivated.':'End-user access activated.');
+  });
 });
 
 const auditRange=document.querySelector('#auditRange');
