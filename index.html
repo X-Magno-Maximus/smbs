@@ -23,8 +23,8 @@
         <button class="nav-item" data-page="Products"><img src="assets/products.webp" alt=""><span>Products</span></button>
         <button class="nav-item" data-page="Inventory"><img src="assets/inventory.webp" alt=""><span>Inventory</span></button>
         <button class="nav-item" data-page="Marketplace"><img src="assets/marketplace.webp" alt=""><span>Marketplace</span></button>
-        <button class="nav-item" data-page="Logistics"><img src="assets/truck.webp" alt=""><span>Logistics</span></button>
-        <button class="nav-item" data-page="Accounting"><img src="assets/accounting.webp" alt=""><span>Accounting</span></button>
+        <a class="nav-item" href="logistics.html"><img src="assets/truck.webp" alt=""><span>Logistics</span></a>
+        <a class="nav-item" href="accounting.html"><img src="assets/accounting.webp" alt=""><span>Accounting</span></a>
         <button class="nav-item" data-page="Reports"><img src="assets/reports.webp" alt=""><span>Reports</span></button>
         <a class="nav-item" href="settings-access.html"><img src="assets/settings.webp" alt=""><span>Settings &amp; Access</span></a>
       </nav>
@@ -110,9 +110,9 @@
 
             <div class="status-grid" aria-label="Business status">
               <article class="panel status-card"><h2>Today</h2><ul><li>5 orders to confirm</li><li>2 shipments to schedule</li><li>1 payment to record</li></ul><button type="button" data-toast="Today's task workflow will be completed on this page.">View today's tasks ›</button></article>
-              <article class="panel status-card"><h2>Business health</h2><dl><div><dt>Overall status</dt><dd class="badge">Good</dd></div><div><dt>Sales vs last month</dt><dd class="positive">↑ 18.6%</dd></div><div><dt>On-time fulfillment</dt><dd>94%</dd></div><div><dt>Overdue invoices</dt><dd class="negative">2</dd></div></dl><button type="button" data-toast="Reports will be created as an independent page.">View full report ›</button></article>
+              <article class="panel status-card"><h2>Business health</h2><dl><div><dt>Overall status</dt><dd class="badge">Good</dd></div><div><dt>Sales vs last month</dt><dd class="positive">↑ 18.6%</dd></div><div><dt>On-time fulfillment</dt><dd>94%</dd></div><div><dt>Overdue invoices</dt><dd class="negative">2</dd></div></dl><a class="status-card-link" href="accounting.html#business-health">View accounting health ›</a></article>
               <article class="panel status-card"><h2>Low stock alert</h2><dl><div><dt>Dark Cocoa 70% (SKU-1021)</dt><dd class="negative">8 units left</dd></div><div><dt>Cacao Beans Raw (SKU-2003)</dt><dd class="negative">12 units left</dd></div><div><dt>Vanilla Extract 250ml (SKU-3012)</dt><dd class="negative">5 units left</dd></div></dl><button type="button" data-toast="Inventory is an independent page awaiting its build stage.">View all low stock ›</button></article>
-              <article class="panel status-card"><h2>Fulfillment progress</h2><div class="progress-copy"><span>Orders shipped (MTD)</span><b>68%</b></div><progress value="68" max="100">68%</progress><small>34 of 50 orders</small><button type="button" data-toast="Logistics is an independent page awaiting its build stage.">View logistics ›</button></article>
+              <article class="panel status-card"><h2>Fulfillment progress</h2><div class="progress-copy"><span>Orders shipped (MTD)</span><b>68%</b></div><progress value="68" max="100">68%</progress><small>34 of 50 orders</small><a class="status-card-link" href="logistics.html#fulfillment-progress">View logistics ›</a></article>
             </div>
 
             <div class="tables-grid">
