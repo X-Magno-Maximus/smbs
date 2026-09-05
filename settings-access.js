@@ -81,14 +81,94 @@ document.addEventListener('keydown',event=>{
 });
 
 const employeeDialog=document.querySelector('#employeeDialog');
+const employeeForm=document.querySelector('#employeeForm');
+const employeePosition=document.querySelector('#employeePosition');
+const employeeStatus=document.querySelector('#employeeStatus');
+const employeeApprovalDialog=document.querySelector('#employeeApprovalDialog');
+const employeeApprovalForm=document.querySelector('#employeeApprovalForm');
+const approvalPositionConfirmation=document.querySelector('#approvalPositionConfirmation');
+const approvalPositionError=document.querySelector('#approvalPositionError');
+const employeeActionButtons=document.querySelectorAll('.employee-action-buttons button');
+let employeeActive=true;
+let employeeApproved=false;
 document.querySelector('#addEmployeeButton').addEventListener('click',()=>employeeDialog.showModal());
 document.querySelectorAll('[data-close-dialog]').forEach(control=>control.addEventListener('click',()=>control.closest('dialog').close()));
-document.querySelector('#employeeForm').addEventListener('submit',event=>{
+document.querySelectorAll('[data-position]').forEach(button=>button.addEventListener('click',()=>{
+  employeePosition.value=button.dataset.position;
+  document.querySelectorAll('[data-position]').forEach(choice=>{
+    const selected=choice===button;
+    choice.classList.toggle('selected',selected);
+    choice.setAttribute('aria-checked',String(selected));
+  });
+  employeeActionButtons.forEach(action=>action.disabled=false);
+  employeeStatus.textContent=button.dataset.position+' selected · Owner approval not requested';
+}));
+document.querySelector('#employeeRequestApproval').addEventListener('click',()=>{
+  if(!employeeForm.reportValidity()||!employeePosition.value){showToast('Complete the employee record and choose a position first.');return;}
+  document.querySelector('#selectedEmployeePosition').textContent='Selected position: '+employeePosition.value;
+  approvalPositionConfirmation.value='';
+  approvalPositionError.hidden=true;
+  employeeApprovalDialog.showModal();
+});
+employeeApprovalForm.addEventListener('submit',event=>{
   event.preventDefault();
-  if(!event.currentTarget.reportValidity()) return;
+  const typed=approvalPositionConfirmation.value.trim();
+  if(typed.localeCompare(employeePosition.value,undefined,{sensitivity:'accent'})!==0){
+    approvalPositionError.hidden=false;
+    approvalPositionConfirmation.setAttribute('aria-invalid','true');
+    approvalPositionConfirmation.focus();
+    return;
+  }
+  approvalPositionError.hidden=true;
+  approvalPositionConfirmation.removeAttribute('aria-invalid');
+  const employeeName=(document.querySelector('#employeeFirstName').value+' '+document.querySelector('#employeeLastName').value).trim();
+  const requestedAt=new Date();
+  const formatted=requestedAt.toLocaleString([], {dateStyle:'medium',timeStyle:'short'});
+  employeeStatus.textContent=employeePosition.value+' · Awaiting SMB Owner approval · Requested '+formatted;
+  const requestButton=document.querySelector('#employeeRequestApproval');
+  requestButton.textContent='Approval Requested';
+  requestButton.disabled=true;
+  const auditBody=document.querySelector('.audit-history-table tbody');
+  if(auditBody){
+    const row=document.createElement('tr');
+    row.dataset.auditDate=requestedAt.toISOString().slice(0,10);
+    row.innerHTML='<td>'+formatted+'</td><td></td><td></td><td>Queued to owner@cacaoymas.com</td><td><em class="medium">Pending</em></td>';
+    row.children[1].textContent=employeeName+' — '+employeePosition.value;
+    row.children[2].textContent='Current authenticated end user';
+    auditBody.prepend(row);
+    applyAuditRange();
+  }
+  employeeApprovalDialog.close();
+  approvalPositionConfirmation.value='';
+  showToast('Owner approval request recorded and sent to the SMB Owner.');
+});
+document.querySelector('#employeeApprove').addEventListener('click',()=>{
+  if(!employeePosition.value)return;
+  employeeApproved=true;
+  employeeStatus.textContent=employeePosition.value+' · Approved by SMB Owner';
+  document.querySelector('#employeeApprove').disabled=true;
+  showToast('Employee position approved and recorded.');
+});
+document.querySelector('#employeeToggleActive').addEventListener('click',event=>{
+  employeeActive=!employeeActive;
+  event.currentTarget.textContent=employeeActive?'Deactivate':'Activate';
+  employeeStatus.textContent=employeePosition.value+' · '+(employeeActive?'Active':'Inactive')+(employeeApproved?' · Owner approved':' · Owner approval pending');
+  showToast(employeeActive?'Employee activated.':'Employee deactivated.');
+});
+document.querySelector('#employeeDelete').addEventListener('click',()=>{
+  const employeeName=(document.querySelector('#employeeFirstName').value+' '+document.querySelector('#employeeLastName').value).trim()||'New employee record';
+  pendingDeleteUser=employeeName;
+  deleteIdentity.textContent=employeeName;
+  deleteDialog.showModal();
+});
+employeeForm.addEventListener('submit',event=>{
+  event.preventDefault();
+  if(!event.currentTarget.reportValidity()||!employeePosition.value){showToast('Choose an available position before saving.');return;}
   employeeDialog.close();
-  event.currentTarget.reset();
-  showToast('Employee submitted for owner review. Access has not been granted.');
+  showToast('Employee record saved with status: '+employeeStatus.textContent+'.');
+});
+employeeDialog.addEventListener('close',()=>{
+  if(employeeApprovalDialog.open)employeeApprovalDialog.close();
 });
 document.querySelectorAll('.settings-form').forEach(form=>form.addEventListener('submit',event=>{
   event.preventDefault();
