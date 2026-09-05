@@ -7,9 +7,9 @@
   <title>Marxia | Settings & Access</title>
   <meta name="description" content="Marxia SMB settings, identity, employees, roles, approvals, and audit controls">
   <link rel="stylesheet" href="styles.css?v=20260904-11">
-  <link rel="stylesheet" href="settings-access.css?v=20260904-1">
+  <link rel="stylesheet" href="settings-access.css?v=20260905-2">
   <script src="embedded-assets.js"></script>
-  <script src="settings-access.js?v=20260904-1" defer></script>
+  <script src="settings-access.js?v=20260905-2" defer></script>
 </head>
 <body>
   <div class="app-shell">
@@ -89,6 +89,7 @@
                 <label>Business email<input required type="email" value="owner@cacaoymas.com"></label>
                 <label>Business phone<input type="tel" placeholder="+593"></label>
               </div>
+              <label class="control-row profile-notification"><span><strong>Email owner about authorization changes</strong><small>Notify the owner when staff access, roles, or promotions change.</small></span><input type="checkbox" role="switch" checked></label>
               <div class="section-actions"><button class="primary" type="submit">Save business profile</button></div>
             </form>
           </details>
@@ -154,15 +155,27 @@
             </div>
           </details>
 
-          <details class="settings-section" data-search-terms="notifications audit history owner email authorization authentication">
-            <summary><span><img src="assets/accounting.webp" alt=""><b>Notifications &amp; Audit History</b><small>Owner alerts and traceable access events</small></span><i aria-hidden="true">＋</i></summary>
+          <details class="settings-section" data-search-terms="notifications audit history approval owner email date range twelve months">
+            <summary><span><img src="assets/accounting.webp" alt=""><b>Notifications &amp; Audit History</b><small>Read-only approval history and owner email records</small></span><i aria-hidden="true">＋</i></summary>
             <div class="section-body">
-              <label class="control-row"><span><strong>Email owner about authorization changes</strong><small>Notify the owner when staff access, roles, or promotions change.</small></span><input type="checkbox" role="switch" checked></label>
-              <div class="table-scroll"><table class="settings-table"><thead><tr><th>Time</th><th>Event</th><th>Actor</th><th>Result</th></tr></thead><tbody>
-                <tr><td>8:24 AM</td><td>Staff role reviewed</td><td>Gabriel Salazar</td><td><em class="paid">Approved</em></td></tr>
-                <tr><td>8:12 AM</td><td>New device sign-in</td><td>Ana Pérez</td><td><em class="paid">Verified</em></td></tr>
-                <tr><td>7:58 AM</td><td>Support access expired</td><td>System</td><td><em class="low">Closed</em></td></tr>
+              <div class="audit-view-heading">
+                <div><strong>Approval history</strong><small>View-only records showing approval decisions and the Business Owner email notification.</small></div>
+                <div class="audit-filters">
+                  <label>History range<select id="auditRange" aria-label="Choose approval history range"><option value="30">Last 30 days</option><option value="90">Last 3 months</option><option value="180">Last 6 months</option><option value="365">Last 12 months</option><option value="custom">Custom dates</option></select></label>
+                  <label class="audit-custom-date" hidden>From<input id="auditDateFrom" type="date" min="2025-09-05" max="2026-09-05"></label>
+                  <label class="audit-custom-date" hidden>To<input id="auditDateTo" type="date" min="2025-09-05" max="2026-09-05"></label>
+                </div>
+              </div>
+              <p class="audit-status" id="auditStatus" role="status" aria-live="polite">Showing approval history from the last 30 days.</p>
+              <div class="table-scroll"><table class="settings-table audit-history-table"><thead><tr><th>Date</th><th>Approval event</th><th>Requested by</th><th>Business Owner email</th><th>Decision</th></tr></thead><tbody>
+                <tr data-audit-date="2026-09-04"><td>Sep 4, 2026 · 8:24 AM</td><td>Staff role reviewed</td><td>Ana Pérez</td><td>Sent to owner@cacaoymas.com</td><td><em class="paid">Approved</em></td></tr>
+                <tr data-audit-date="2026-08-22"><td>Aug 22, 2026 · 2:10 PM</td><td>Supervisor promotion</td><td>Luis Mora</td><td>Sent to owner@cacaoymas.com</td><td><em class="paid">Approved</em></td></tr>
+                <tr data-audit-date="2026-07-14"><td>Jul 14, 2026 · 10:42 AM</td><td>Inventory role access</td><td>Isaac Silva</td><td>Sent to owner@cacaoymas.com</td><td><em class="low">Rejected</em></td></tr>
+                <tr data-audit-date="2026-05-03"><td>May 3, 2026 · 4:18 PM</td><td>Management Admin request</td><td>Mateo Ruiz</td><td>Sent to owner@cacaoymas.com</td><td><em class="paid">Approved</em></td></tr>
+                <tr data-audit-date="2026-02-17"><td>Feb 17, 2026 · 9:06 AM</td><td>Employee account activation</td><td>Sofía León</td><td>Sent to owner@cacaoymas.com</td><td><em class="paid">Approved</em></td></tr>
+                <tr data-audit-date="2025-10-09"><td>Oct 9, 2025 · 11:31 AM</td><td>Accounting role access</td><td>Diego Paz</td><td>Sent to owner@cacaoymas.com</td><td><em class="paid">Approved</em></td></tr>
               </tbody></table></div>
+              <p class="audit-empty" id="auditEmpty" hidden>No approval records exist for the selected date range.</p>
             </div>
           </details>
         </section>
