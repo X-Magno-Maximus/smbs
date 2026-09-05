@@ -130,3 +130,53 @@ document.querySelector('#masterEndUserAccess').addEventListener('change',event=>
   document.querySelectorAll('.end-user-list input[role="switch"]').forEach(toggle=>{toggle.checked=event.currentTarget.checked;});
   showToast(event.currentTarget.checked?'All end-user access activated.':'All end-user access deactivated.');
 });
+
+const auditRange=document.querySelector('#auditRange');
+const auditFrom=document.querySelector('#auditDateFrom');
+const auditTo=document.querySelector('#auditDateTo');
+const auditCustomDates=document.querySelectorAll('.audit-custom-date');
+const auditRows=document.querySelectorAll('[data-audit-date]');
+const auditStatus=document.querySelector('#auditStatus');
+const auditEmpty=document.querySelector('#auditEmpty');
+function isoDate(date){return date.toISOString().slice(0,10);}
+function applyAuditRange(){
+  if(!auditRange) return;
+  const today=new Date();
+  today.setHours(23,59,59,999);
+  const oldestAllowed=new Date(today);
+  oldestAllowed.setDate(oldestAllowed.getDate()-365);
+  let fromDate;
+  let toDate=today;
+  const custom=auditRange.value==='custom';
+  auditCustomDates.forEach(field=>field.hidden=!custom);
+  if(custom){
+    fromDate=auditFrom.value?new Date(auditFrom.value+'T00:00:00'):oldestAllowed;
+    toDate=auditTo.value?new Date(auditTo.value+'T23:59:59'):today;
+    if(fromDate<oldestAllowed){fromDate=oldestAllowed;auditFrom.value=isoDate(oldestAllowed);}
+    if(toDate>today){toDate=today;auditTo.value=isoDate(today);}
+    if(fromDate>toDate){auditStatus.textContent='The From date must be before the To date.';auditEmpty.hidden=false;auditRows.forEach(row=>row.hidden=true);return;}
+  }else{
+    fromDate=new Date(today);
+    fromDate.setDate(fromDate.getDate()-Number(auditRange.value));
+  }
+  let visible=0;
+  auditRows.forEach(row=>{
+    const rowDate=new Date(row.dataset.auditDate+'T12:00:00');
+    const show=rowDate>=fromDate&&rowDate<=toDate;
+    row.hidden=!show;
+    if(show) visible+=1;
+  });
+  auditEmpty.hidden=visible!==0;
+  const label=custom?`${isoDate(fromDate)} through ${isoDate(toDate)}`:auditRange.options[auditRange.selectedIndex].text;
+  auditStatus.textContent=`Showing ${visible} approval record${visible===1?'':'s'} for ${label.toLowerCase()}.`;
+}
+if(auditRange){
+  const today=new Date(),oldest=new Date();
+  oldest.setDate(today.getDate()-365);
+  auditFrom.min=isoDate(oldest);auditFrom.max=isoDate(today);auditTo.min=isoDate(oldest);auditTo.max=isoDate(today);
+  auditFrom.value=isoDate(oldest);auditTo.value=isoDate(today);
+  auditRange.addEventListener('change',applyAuditRange);
+  auditFrom.addEventListener('change',applyAuditRange);
+  auditTo.addEventListener('change',applyAuditRange);
+  applyAuditRange();
+}
