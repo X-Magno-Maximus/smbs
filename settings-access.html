@@ -7,9 +7,9 @@
   <title>Marxia | Settings & Access</title>
   <meta name="description" content="Marxia SMB settings, identity, employees, roles, approvals, and audit controls">
   <link rel="stylesheet" href="styles.css?v=20260904-11">
-  <link rel="stylesheet" href="settings-access.css?v=20260905-3">
+  <link rel="stylesheet" href="settings-access.css?v=20260905-4">
   <script src="embedded-assets.js"></script>
-  <script src="settings-access.js?v=20260905-3" defer></script>
+  <script src="settings-access.js?v=20260905-4" defer></script>
 </head>
 <body>
   <div class="app-shell">
@@ -94,17 +94,7 @@
             </form>
           </details>
 
-          <details class="settings-section" data-search-terms="account authentication password mfa session security">
-            <summary><span><img src="assets/settings.webp" alt=""><b>Account &amp; Authentication</b><small>Password, multifactor authentication, and sessions</small></span><i aria-hidden="true">＋</i></summary>
-            <div class="section-body">
-              <div class="control-list">
-                <label class="control-row"><span><strong>Require multifactor authentication</strong><small>Require a second factor for owners, administrators, and managers.</small></span><input type="checkbox" role="switch" checked></label>
-                <label class="control-row"><span><strong>Notify owner about new sign-ins</strong><small>Email the owner when a new device or location signs in.</small></span><input type="checkbox" role="switch" checked></label>
-                <label class="control-row"><span><strong>Automatic session lock</strong><small>Lock privileged sessions after two minutes of inactivity.</small></span><input type="checkbox" role="switch" checked></label>
-              </div>
-              <p class="security-note">Passwords are verified by the authentication service and are never displayed or stored in this page.</p>
-            </div>
-          </details>
+          
 
           <details class="settings-section" data-search-terms="employees staff add employee name address email phone position">
             <summary><span><img src="assets/avatar.webp" alt=""><b>Employees &amp; Staff</b><small>Add people and review employment status</small></span><i aria-hidden="true">＋</i></summary>
@@ -117,30 +107,97 @@
             </div>
           </details>
 
-          <details class="settings-section" data-search-terms="roles access permissions rbac supervisor employee contractor manager admin superuser vice president">
-            <summary><span><img src="assets/settings.webp" alt=""><b>Roles &amp; Access Permissions</b><small>RBAC controls and privileged-role authorization</small></span><i aria-hidden="true">＋</i></summary>
-            <div class="section-body role-layout">
-              <section><h3>Preset staff access</h3><p>Activate or deactivate approved presets for operational roles.</p>
-                <div class="control-list">
-                  <label class="control-row"><span><strong>Supervisor</strong><small>Operational review and team approvals</small></span><input type="checkbox" role="switch" checked></label>
-                  <label class="control-row"><span><strong>Employee / Staff</strong><small>Assigned operational screens only</small></span><input type="checkbox" role="switch" checked></label>
-                  <label class="control-row"><span><strong>Independent contractor</strong><small>Time-bound assigned work only</small></span><input type="checkbox" role="switch"></label>
-                </div>
-              </section>
-              <form class="privileged-form" id="privilegedRoleForm"><h3>Privileged roles</h3><p>Management Admin, IT SuperUser, and VP access requires direct SMB Owner approval.</p>
-                <label>Employee email<input required type="email" placeholder="employee@business.com"></label>
-                <label>Privileged role<select required><option value="">Choose a role</option><option>Management Admin</option><option>IT SuperUser</option><option>Vice President</option></select></label>
-                <label>Owner re-authentication<input id="ownerAuthPassword" required type="password" autocomplete="current-password" placeholder="Enter owner password"></label>
-                <button class="primary" type="submit">Authorize role request</button>
-              </form>
-            </div>
-          </details>
-
-          <details class="settings-section" data-search-terms="approvals promotions owner management pending review">
-            <summary><span><img src="assets/reports.webp" alt=""><b>Approvals &amp; Promotions</b><small>Owner review for role and employment changes</small></span><i aria-hidden="true">＋</i></summary>
-            <div class="section-body approval-list">
-              <article><span><strong>Luis Mora — promotion to Supervisor</strong><small>Submitted by Ana Pérez · Sep 4, 2026</small></span><div><button type="button" data-decision="rejected">Reject</button><button class="primary" type="button" data-decision="approved">Approve</button></div></article>
-              <article><span><strong>IT SuperUser access — Mateo Ruiz</strong><small>Privileged request · Owner approval required</small></span><div><button type="button" data-decision="rejected">Reject</button><button class="primary" type="button" data-decision="approved">Approve</button></div></article>
+                    <details class="settings-section" data-search-terms="account authentication roles access permissions approvals promotions mfa session supervisor employee contractor admin superuser owner">
+            <summary><span><img src="assets/settings.webp" alt=""><b>Account, Roles &amp; Approvals</b><small>Authentication, RBAC, promotions, and owner authorization</small></span><i aria-hidden="true">＋</i></summary>
+            <div class="section-body governance-body">
+              <div class="governance-auth"><div><strong>Business Owner authorization</strong><small>Owner identity must be verified before an approval is completed. Passwords are never displayed or stored by this page.</small></div><label>Owner re-authentication<input id="governanceOwnerPassword" type="password" autocomplete="current-password" placeholder="Enter owner password"></label></div>
+              <section class="governance-group" aria-labelledby="authenticationGroup"><h3 id="authenticationGroup">Account &amp; Authentication</h3><p>Security policies for account access and sessions.</p><div class="governance-list">
+                <article data-governed-item data-active="true" data-approved="false">
+                  <span><small>AUTHENTICATION POLICY</small><strong>Require multifactor authentication</strong><small data-governed-status>Required for owners, administrators, and managers · Owner approval not requested</small></span>
+                  <div class="access-actions">
+                    <button class="approval-request" type="button" data-request-governance>Request Owner Approval</button>
+                    <button class="approve-access" type="button" data-approve-governance>Approve</button>
+                    <button type="button" data-toggle-governance>Deactivate</button>
+                    <button class="danger-button-small" type="button" data-delete-user="Require multifactor authentication">Delete</button>
+                  </div>
+                </article>
+                <article data-governed-item data-active="true" data-approved="false">
+                  <span><small>AUTHENTICATION POLICY</small><strong>Notify owner about new sign-ins</strong><small data-governed-status>New device and location sign-in email notices · Owner approval not requested</small></span>
+                  <div class="access-actions">
+                    <button class="approval-request" type="button" data-request-governance>Request Owner Approval</button>
+                    <button class="approve-access" type="button" data-approve-governance>Approve</button>
+                    <button type="button" data-toggle-governance>Deactivate</button>
+                    <button class="danger-button-small" type="button" data-delete-user="Notify owner about new sign-ins">Delete</button>
+                  </div>
+                </article>
+                <article data-governed-item data-active="true" data-approved="false">
+                  <span><small>AUTHENTICATION POLICY</small><strong>Automatic session lock</strong><small data-governed-status>Privileged sessions lock after two minutes · Owner approval not requested</small></span>
+                  <div class="access-actions">
+                    <button class="approval-request" type="button" data-request-governance>Request Owner Approval</button>
+                    <button class="approve-access" type="button" data-approve-governance>Approve</button>
+                    <button type="button" data-toggle-governance>Deactivate</button>
+                    <button class="danger-button-small" type="button" data-delete-user="Automatic session lock">Delete</button>
+                  </div>
+                </article>
+              </div></section>
+              <section class="governance-group" aria-labelledby="rolesGroup"><h3 id="rolesGroup">Roles &amp; Access Permissions</h3><p>Preset and privileged RBAC assignments.</p><div class="governance-list">
+                <article data-governed-item data-active="true" data-approved="false">
+                  <span><small>ROLE ACCESS</small><strong>Supervisor</strong><small data-governed-status>Operational review and team approvals · Owner approval not requested</small></span>
+                  <div class="access-actions">
+                    <button class="approval-request" type="button" data-request-governance>Request Owner Approval</button>
+                    <button class="approve-access" type="button" data-approve-governance>Approve</button>
+                    <button type="button" data-toggle-governance>Deactivate</button>
+                    <button class="danger-button-small" type="button" data-delete-user="Supervisor role">Delete</button>
+                  </div>
+                </article>
+                <article data-governed-item data-active="true" data-approved="false">
+                  <span><small>ROLE ACCESS</small><strong>Employee / Staff</strong><small data-governed-status>Assigned operational screens only · Owner approval not requested</small></span>
+                  <div class="access-actions">
+                    <button class="approval-request" type="button" data-request-governance>Request Owner Approval</button>
+                    <button class="approve-access" type="button" data-approve-governance>Approve</button>
+                    <button type="button" data-toggle-governance>Deactivate</button>
+                    <button class="danger-button-small" type="button" data-delete-user="Employee Staff role">Delete</button>
+                  </div>
+                </article>
+                <article data-governed-item data-active="false" data-approved="false">
+                  <span><small>ROLE ACCESS</small><strong>Independent contractor</strong><small data-governed-status>Time-bound assigned work only · Owner approval not requested</small></span>
+                  <div class="access-actions">
+                    <button class="approval-request" type="button" data-request-governance>Request Owner Approval</button>
+                    <button class="approve-access" type="button" data-approve-governance>Approve</button>
+                    <button type="button" data-toggle-governance>Activate</button>
+                    <button class="danger-button-small" type="button" data-delete-user="Independent contractor role">Delete</button>
+                  </div>
+                </article>
+                <article data-governed-item data-active="false" data-approved="false">
+                  <span><small>PRIVILEGED ROLE</small><strong>IT SuperUser — Mateo Ruiz</strong><small data-governed-status>Direct SMB Owner authorization required · Owner approval not requested</small></span>
+                  <div class="access-actions">
+                    <button class="approval-request" type="button" data-request-governance>Request Owner Approval</button>
+                    <button class="approve-access" type="button" data-approve-governance>Approve</button>
+                    <button type="button" data-toggle-governance>Activate</button>
+                    <button class="danger-button-small" type="button" data-delete-user="IT SuperUser Mateo Ruiz">Delete</button>
+                  </div>
+                </article>
+              </div></section>
+              <section class="governance-group" aria-labelledby="approvalsGroup"><h3 id="approvalsGroup">Approvals &amp; Promotions</h3><p>Owner review of role and employment changes.</p><div class="governance-list">
+                <article data-governed-item data-active="false" data-approved="false">
+                  <span><small>PROMOTION REQUEST</small><strong>Luis Mora — promotion to Supervisor</strong><small data-governed-status>Submitted by Ana Pérez · Sep 4, 2026 · Owner approval not requested</small></span>
+                  <div class="access-actions">
+                    <button class="approval-request" type="button" data-request-governance>Request Owner Approval</button>
+                    <button class="approve-access" type="button" data-approve-governance>Approve</button>
+                    <button type="button" data-toggle-governance>Activate</button>
+                    <button class="danger-button-small" type="button" data-delete-user="Luis Mora promotion">Delete</button>
+                  </div>
+                </article>
+                <article data-governed-item data-active="false" data-approved="false">
+                  <span><small>ACCESS APPROVAL</small><strong>Management Admin — Sofía León</strong><small data-governed-status>Privileged access request · Owner approval not requested</small></span>
+                  <div class="access-actions">
+                    <button class="approval-request" type="button" data-request-governance>Request Owner Approval</button>
+                    <button class="approve-access" type="button" data-approve-governance>Approve</button>
+                    <button type="button" data-toggle-governance>Activate</button>
+                    <button class="danger-button-small" type="button" data-delete-user="Management Admin Sofia Leon">Delete</button>
+                  </div>
+                </article>
+              </div></section>
             </div>
           </details>
 
@@ -215,7 +272,7 @@
   </dialog>
 
   <dialog class="confirm-dialog" id="deleteDialog" aria-labelledby="deleteDialogTitle">
-    <form method="dialog" id="deleteForm"><h2 id="deleteDialogTitle">Delete end-user account?</h2><p>This action requires explicit confirmation. The account will be queued for protected deletion.</p><strong id="deleteUserIdentity"></strong><div class="dialog-actions"><button type="button" data-close-dialog>Cancel</button><button class="danger-button" type="submit">Delete account</button></div></form>
+    <form method="dialog" id="deleteForm"><h2 id="deleteDialogTitle">Delete access record?</h2><p>This action requires explicit confirmation. The selected access record will be queued for protected deletion.</p><strong id="deleteUserIdentity"></strong><div class="dialog-actions"><button type="button" data-close-dialog>Cancel</button><button class="danger-button" type="submit">Delete account</button></div></form>
   </dialog>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
