@@ -7,9 +7,9 @@
   <title>Marxia | Settings & Access</title>
   <meta name="description" content="Marxia SMB settings, identity, employees, roles, approvals, and audit controls">
   <link rel="stylesheet" href="styles.css?v=20260904-11">
-  <link rel="stylesheet" href="settings-access.css?v=20260905-2">
+  <link rel="stylesheet" href="settings-access.css?v=20260905-3">
   <script src="embedded-assets.js"></script>
-  <script src="settings-access.js?v=20260905-2" defer></script>
+  <script src="settings-access.js?v=20260905-3" defer></script>
 </head>
 <body>
   <div class="app-shell">
@@ -144,13 +144,29 @@
             </div>
           </details>
 
-          <details class="settings-section" data-search-terms="end user customer activate deactivate delete access">
-            <summary><span><img src="assets/overview.webp" alt=""><b>End-User Access</b><small>Activation controls and protected account removal</small></span><i aria-hidden="true">＋</i></summary>
+          <details class="settings-section" data-search-terms="end user email device owner approval activate deactivate delete access">
+            <summary><span><img src="assets/overview.webp" alt=""><b>End-User Access</b><small>Owner-approved email and device access controls</small></span><i aria-hidden="true">＋</i></summary>
             <div class="section-body">
-              <label class="master-control control-row"><span><strong>All end-user access</strong><small>Master activation control for customer accounts</small></span><input id="masterEndUserAccess" type="checkbox" role="switch" checked></label>
+              <p class="access-note">Each end-user email and device is controlled separately. Approval activity is recorded and emailed to the Business Owner.</p>
               <div class="end-user-list">
-                <article><span><strong>customer.one@example.com</strong><small>Customer · Active</small></span><label><input type="checkbox" role="switch" checked aria-label="Activate customer.one@example.com"></label><button class="danger-link" type="button" data-delete-user="customer.one@example.com">Delete</button></article>
-                <article><span><strong>buyer.two@example.com</strong><small>Customer · Active</small></span><label><input type="checkbox" role="switch" checked aria-label="Activate buyer.two@example.com"></label><button class="danger-link" type="button" data-delete-user="buyer.two@example.com">Delete</button></article>
+                <article data-access-item data-active="true" data-approved="false">
+                  <span><small>END-USER EMAIL</small><strong>customer.one@example.com</strong><small data-access-status>Active · Owner approval not requested</small></span>
+                  <div class="access-actions">
+                    <button class="approval-request" type="button" data-request-approval>Request Owner Approval</button>
+                    <button class="approve-access" type="button" data-approve-access>Approve</button>
+                    <button type="button" data-toggle-access>Deactivate</button>
+                    <button class="danger-button-small" type="button" data-delete-user="customer.one@example.com">Delete</button>
+                  </div>
+                </article>
+                <article data-access-item data-active="true" data-approved="false">
+                  <span><small>END-USER DEVICE</small><strong>Gabriel's Windows PC · DEV-8F21</strong><small data-access-status>Active · Owner approval not requested</small></span>
+                  <div class="access-actions">
+                    <button class="approval-request" type="button" data-request-approval>Request Owner Approval</button>
+                    <button class="approve-access" type="button" data-approve-access>Approve</button>
+                    <button type="button" data-toggle-access>Deactivate</button>
+                    <button class="danger-button-small" type="button" data-delete-user="Gabriel's Windows PC · DEV-8F21">Delete</button>
+                  </div>
+                </article>
               </div>
             </div>
           </details>
