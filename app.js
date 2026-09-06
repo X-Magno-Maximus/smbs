@@ -74,10 +74,11 @@ const languageLabels=document.querySelectorAll('[data-language-label]');
 function setLanguage(language,announce=true){
   const spanish=language==='es';
   document.documentElement.lang=language;
+  window.MarxiaI18n?.apply(language);
   languageToggle.setAttribute('aria-checked',String(spanish));
   languageLabels.forEach(label=>label.classList.toggle('active',label.dataset.languageLabel===language));
   try{localStorage.setItem('marxia-language',language)}catch(error){}
-  if(announce) showToast(spanish?'Español seleccionado. Las traducciones se completarán página por página.':'English selected.');
+  if(announce) showToast(spanish?'Español activado.':'English selected.');
 }
 languageToggle.addEventListener('click',()=>setLanguage(languageToggle.getAttribute('aria-checked')==='true'?'en':'es'));
 
