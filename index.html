@@ -6,9 +6,9 @@
   <meta name="theme-color" content="#064f40">
   <title>Marxia | Business Overview</title>
   <meta name="description" content="Marxia SMB business overview">
-  <link rel="stylesheet" href="styles.css?v=20260904-11">
+  <link rel="stylesheet" href="styles.css?v=20260906-7">
   <script src="embedded-assets.js"></script>
-  <script src="app.js?v=20260904-7" defer></script>
+  <script src="app.js?v=20260906-1" defer></script>
 </head>
 <body>
   <div class="app-shell">
@@ -50,16 +50,18 @@
               <button class="utility-profile" type="button" data-page="Profile"><img src="assets/avatar.webp" alt=""><span><strong>Gabriel</strong><small>Profile · Owner</small></span><b aria-hidden="true">›</b></button>
               <section class="utility-group" aria-labelledby="appearanceLabel">
                 <strong id="appearanceLabel">Appearance</strong>
-                <div class="segmented">
-                  <button type="button" data-theme-choice="light" aria-pressed="true"><img src="assets/light.webp" alt="">Light</button>
-                  <button type="button" data-theme-choice="dark" aria-pressed="false"><img src="assets/dark.webp" alt="">Dark</button>
+                <div class="binary-setting">
+                  <span data-theme-label="light" class="active">Light</span>
+                  <button class="toggle-switch" type="button" role="switch" aria-checked="false" data-theme-toggle aria-label="Switch between Light and Dark appearance" title="Move left for Light or right for Dark"><span class="toggle-thumb" aria-hidden="true"></span></button>
+                  <span data-theme-label="dark">Dark</span>
                 </div>
               </section>
               <section class="utility-group" aria-labelledby="languageLabel">
                 <strong id="languageLabel">Language</strong>
-                <div class="segmented language-options">
-                  <button type="button" data-language-choice="en" aria-pressed="true">EN</button>
-                  <button type="button" data-language-choice="es" aria-pressed="false">ES</button>
+                <div class="binary-setting">
+                  <span data-language-label="en" class="active">English</span>
+                  <button class="toggle-switch" type="button" role="switch" aria-checked="false" data-language-toggle aria-label="Switch between English and Spanish" title="Move left for English or right for Spanish"><span class="toggle-thumb" aria-hidden="true"></span></button>
+                  <span data-language-label="es">Spanish</span>
                 </div>
               </section>
             </nav>
