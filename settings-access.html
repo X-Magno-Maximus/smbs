@@ -7,7 +7,7 @@
   <title>Marxia | Settings & Access</title>
   <meta name="description" content="Marxia SMB settings, identity, employees, roles, approvals, and audit controls">
   <link rel="stylesheet" href="styles.css?v=20260904-11">
-  <link rel="stylesheet" href="settings-access.css?v=20260906-1">
+  <link rel="stylesheet" href="settings-access.css?v=20260906-2">
   <script src="embedded-assets.js"></script>
   <script src="settings-access.js?v=20260906-1" defer></script>
 </head>
@@ -111,35 +111,6 @@
             <summary><span><img src="assets/settings.webp" alt=""><b>Account, Roles &amp; Approvals</b><small>Authentication, RBAC, promotions, and owner authorization</small></span><i aria-hidden="true">＋</i></summary>
             <div class="section-body governance-body">
               <div class="governance-auth"><div><strong>Business Owner authorization</strong><small>Owner identity must be verified before an approval is completed. Passwords are never displayed or stored by this page.</small></div><label>Owner re-authentication<input id="governanceOwnerPassword" type="password" autocomplete="current-password" placeholder="Enter owner password"></label></div>
-              <section class="governance-group" aria-labelledby="authenticationGroup"><h3 id="authenticationGroup">Account &amp; Authentication</h3><p>Security policies for account access and sessions.</p><div class="governance-list">
-                <article data-governed-item data-active="true" data-approved="false">
-                  <span><small>AUTHENTICATION POLICY</small><strong>Require multifactor authentication</strong><small data-governed-status>Required for owners, administrators, and managers · Owner approval not requested</small></span>
-                  <div class="access-actions">
-                    <button class="approval-request" type="button" data-request-governance>Request Owner Approval</button>
-                    <button class="approve-access" type="button" data-approve-governance>Approve</button>
-                    <button type="button" data-toggle-governance>Deactivate</button>
-                    <button class="danger-button-small" type="button" data-delete-user="Require multifactor authentication">Delete</button>
-                  </div>
-                </article>
-                <article data-governed-item data-active="true" data-approved="false">
-                  <span><small>AUTHENTICATION POLICY</small><strong>Notify owner about new sign-ins</strong><small data-governed-status>New device and location sign-in email notices · Owner approval not requested</small></span>
-                  <div class="access-actions">
-                    <button class="approval-request" type="button" data-request-governance>Request Owner Approval</button>
-                    <button class="approve-access" type="button" data-approve-governance>Approve</button>
-                    <button type="button" data-toggle-governance>Deactivate</button>
-                    <button class="danger-button-small" type="button" data-delete-user="Notify owner about new sign-ins">Delete</button>
-                  </div>
-                </article>
-                <article data-governed-item data-active="true" data-approved="false">
-                  <span><small>AUTHENTICATION POLICY</small><strong>Automatic session lock</strong><small data-governed-status>Privileged sessions lock after two minutes · Owner approval not requested</small></span>
-                  <div class="access-actions">
-                    <button class="approval-request" type="button" data-request-governance>Request Owner Approval</button>
-                    <button class="approve-access" type="button" data-approve-governance>Approve</button>
-                    <button type="button" data-toggle-governance>Deactivate</button>
-                    <button class="danger-button-small" type="button" data-delete-user="Automatic session lock">Delete</button>
-                  </div>
-                </article>
-              </div></section>
               <section class="governance-group" aria-labelledby="rolesGroup"><h3 id="rolesGroup">Roles &amp; Access Permissions</h3><p>Preset and privileged RBAC assignments.</p><div class="governance-list">
                 <article data-governed-item data-active="true" data-approved="false">
                   <span><small>ROLE ACCESS</small><strong>Supervisor</strong><small data-governed-status>Operational review and team approvals · Owner approval not requested</small></span>
@@ -286,6 +257,13 @@
         <button class="has-tooltip" type="button" role="radio" aria-checked="false" data-position="IT SuperUser" data-tooltip="Select IT SuperUser as the employee’s proposed position. Owner approval is still required.">IT SuperUser</button>
         <button class="has-tooltip" type="button" role="radio" aria-checked="false" data-position="Vice President" data-tooltip="Select Vice President as the employee’s proposed position. Owner approval is still required.">Vice President</button>
       </div><input id="employeePosition" name="position" type="hidden" required></fieldset>
+      <fieldset class="employee-auth-requirements"><legend>Account &amp; Authentication</legend><p>These security requirements are applied automatically and cannot be removed during employee creation.</p><div class="employee-auth-grid">
+        <label><input type="checkbox" checked disabled><span><strong>Authorization</strong><small>Business Owner authorization is required before access is granted.</small></span></label>
+        <label><input type="checkbox" checked disabled><span><strong>Authentication</strong><small>The employee must verify their identity before using the application.</small></span></label>
+        <label><input type="checkbox" checked disabled><span><strong>Multifactor authentication</strong><small>A second authentication factor must be enrolled and verified.</small></span></label>
+        <label><input type="checkbox" checked disabled><span><strong>Automatic session lock</strong><small>The application locks automatically after the approved inactivity period.</small></span></label>
+        <label><input type="checkbox" checked disabled><span><strong>Notify Owner about new sign-ins</strong><small>New device and location sign-ins generate an Owner notification and audit event.</small></span></label>
+      </div></fieldset>
       <section class="employee-status-panel" aria-labelledby="initialStatusLabel"><div><strong id="initialStatusLabel">Initial status</strong><small id="employeeStatus" role="status" aria-live="polite">Choose a position to enable employee actions.</small></div><div class="employee-action-buttons">
         <button class="approval-request has-tooltip" id="employeeRequestApproval" type="button" data-tooltip="Open the confirmation form and send this position request to the SMB Owner." disabled>Request Owner Approval</button>
         <button class="has-tooltip" id="employeeApprove" type="button" data-tooltip="Record the SMB Owner’s approval for the selected employee position." disabled>Approve</button>
