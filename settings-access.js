@@ -88,24 +88,105 @@ const employeeApprovalDialog=document.querySelector('#employeeApprovalDialog');
 const employeeApprovalForm=document.querySelector('#employeeApprovalForm');
 const approvalPositionConfirmation=document.querySelector('#approvalPositionConfirmation');
 const approvalPositionError=document.querySelector('#approvalPositionError');
+const employeeRequestApproval=document.querySelector('#employeeRequestApproval');
+const employeeApprove=document.querySelector('#employeeApprove');
+const employeePromote=document.querySelector('#employeePromote');
+const employeeToggleActive=document.querySelector('#employeeToggleActive');
+const employeeDelete=document.querySelector('#employeeDelete');
 const employeeActionButtons=document.querySelectorAll('.employee-action-buttons button');
+const existingEmployeeSearch=document.querySelector('#existingEmployeeSearch');
+const employeeSearchStatus=document.querySelector('#employeeSearchStatus');
+const existingEmployees=[
+  {firstName:'Ana',lastName:'Pérez',email:'ana.perez@cacaoymas.com',phone:'+593 99 000 0101',address:'Employee address on file',position:'Manager',active:true},
+  {firstName:'Isaac',lastName:'Silva',email:'isaac.silva@cacaoymas.com',phone:'+593 99 000 0102',address:'Employee address on file',position:'Supervisor',active:true},
+  {firstName:'Luis',lastName:'Mora',email:'luis.mora@cacaoymas.com',phone:'+593 99 000 0103',address:'Employee address on file',position:'Employee / Staff',active:true}
+];
+const roleProgression={'Employee / Staff':'Supervisor','Independent contractor':'Employee / Staff','Supervisor':'Manager','Manager':'Management Admin','Management Admin':'Director','IT SuperUser':'Director','Director':'Vice President','Vice President':'Vice President'};
+let selectedExistingEmployee=null;
+let pendingEmployeeAction='New employee access';
 let employeeActive=true;
 let employeeApproved=false;
-document.querySelector('#addEmployeeButton').addEventListener('click',()=>employeeDialog.showModal());
-document.querySelectorAll('[data-close-dialog]').forEach(control=>control.addEventListener('click',()=>control.closest('dialog').close()));
-document.querySelectorAll('[data-position]').forEach(button=>button.addEventListener('click',()=>{
-  employeePosition.value=button.dataset.position;
+function chooseEmployeePosition(position){
+  employeePosition.value=position;
   document.querySelectorAll('[data-position]').forEach(choice=>{
-    const selected=choice===button;
+    const selected=choice.dataset.position===position;
     choice.classList.toggle('selected',selected);
     choice.setAttribute('aria-checked',String(selected));
   });
-  employeeActionButtons.forEach(action=>action.disabled=false);
-  employeeStatus.textContent=button.dataset.position+' selected · Owner approval not requested';
+}
+function setEmployeeActionAvailability(enabled){
+  employeeActionButtons.forEach(action=>{if(action!==employeeApprove)action.disabled=!enabled;});
+}
+function resetEmployeeMode(){
+  selectedExistingEmployee=null;
+  pendingEmployeeAction='New employee access';
+  employeeActive=true;
+  employeeApproved=false;
+  employeePromote.hidden=true;
+  employeeApprove.textContent='Approve';
+  employeeApprove.disabled=true;
+  employeeRequestApproval.textContent='Request Approval';
+  employeeRequestApproval.disabled=!employeePosition.value;
+  employeeToggleActive.textContent='Deactivate';
+  employeeDelete.textContent='Delete';
+  employeeSearchStatus.textContent='Search to update, promote, deactivate, or request deletion of an existing employee.';
+}
+function findExistingEmployee(){
+  const query=existingEmployeeSearch.value.trim().toLocaleLowerCase();
+  const employee=existingEmployees.find(person=>(person.firstName+' '+person.lastName).toLocaleLowerCase()===query||person.email.toLocaleLowerCase()===query);
+  if(!employee){
+    selectedExistingEmployee=null;
+    employeeSearchStatus.textContent=query?'No exact employee match was found. Enter a full name or email.':'Enter an employee name or email.';
+    return;
+  }
+  selectedExistingEmployee=employee;
+  pendingEmployeeAction='Existing employee record update';
+  employeeForm.elements.firstName.value=employee.firstName;
+  employeeForm.elements.lastName.value=employee.lastName;
+  employeeForm.elements.address.value=employee.address;
+  employeeForm.elements.email.value=employee.email;
+  employeeForm.elements.phone.value=employee.phone;
+  chooseEmployeePosition(employee.position);
+  employeeActive=employee.active;
+  employeeApproved=true;
+  setEmployeeActionAvailability(true);
+  employeeApprove.textContent='Approved';
+  employeeApprove.disabled=true;
+  employeeApprove.dataset.completed='true';
+  employeePromote.hidden=false;
+  employeeRequestApproval.textContent='Request Approval';
+  employeeRequestApproval.disabled=false;
+  employeeToggleActive.textContent='Deactivate';
+  employeeDelete.textContent='Delete';
+  employeeStatus.textContent=employee.position+' · Approved by Supervisor or Manager · Owner authorization required for changes';
+  employeeSearchStatus.textContent='Found '+employee.firstName+' '+employee.lastName+'. Review the record or select an action.';
+}
+document.querySelector('#addEmployeeButton').addEventListener('click',()=>employeeDialog.showModal());
+document.querySelectorAll('[data-close-dialog]').forEach(control=>control.addEventListener('click',()=>control.closest('dialog').close()));
+document.querySelector('#findEmployeeButton').addEventListener('click',findExistingEmployee);
+existingEmployeeSearch.addEventListener('change',findExistingEmployee);
+existingEmployeeSearch.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();findExistingEmployee();}});
+document.querySelectorAll('[data-position]').forEach(button=>button.addEventListener('click',()=>{
+  chooseEmployeePosition(button.dataset.position);
+  setEmployeeActionAvailability(true);
+  if(selectedExistingEmployee){
+    pendingEmployeeAction='Role change to '+button.dataset.position;
+    employeeStatus.textContent=button.dataset.position+' selected · Request SMB Owner approval to apply this role change';
+  }else{
+    employeeStatus.textContent=button.dataset.position+' selected · Owner approval not requested';
+  }
 }));
-document.querySelector('#employeeRequestApproval').addEventListener('click',()=>{
+employeePromote.addEventListener('click',()=>{
+  if(!selectedExistingEmployee)return;
+  const nextRole=roleProgression[employeePosition.value]||employeePosition.value;
+  chooseEmployeePosition(nextRole);
+  pendingEmployeeAction='Promotion to '+nextRole;
+  employeeStatus.textContent='Promotion to '+nextRole+' selected · Request SMB Owner approval';
+  showToast('Promotion selected. Use Request Approval to send it to the SMB Owner.');
+});
+employeeRequestApproval.addEventListener('click',()=>{
   if(!employeeForm.reportValidity()||!employeePosition.value){showToast('Complete the employee record and choose a position first.');return;}
-  document.querySelector('#selectedEmployeePosition').textContent='Selected position: '+employeePosition.value;
+  document.querySelector('#selectedEmployeePosition').textContent='Requested change: '+pendingEmployeeAction+' · Position: '+employeePosition.value;
   approvalPositionConfirmation.value='';
   approvalPositionError.hidden=true;
   employeeApprovalDialog.showModal();
@@ -124,38 +205,51 @@ employeeApprovalForm.addEventListener('submit',event=>{
   const employeeName=(document.querySelector('#employeeFirstName').value+' '+document.querySelector('#employeeLastName').value).trim();
   const requestedAt=new Date();
   const formatted=requestedAt.toLocaleString([], {dateStyle:'medium',timeStyle:'short'});
-  employeeStatus.textContent=employeePosition.value+' · Awaiting SMB Owner approval · Requested '+formatted;
-  const requestButton=document.querySelector('#employeeRequestApproval');
-  requestButton.textContent='Approval Requested';
-  requestButton.disabled=true;
+  employeeStatus.textContent=pendingEmployeeAction+' · Awaiting SMB Owner approval · Requested '+formatted;
+  employeeRequestApproval.textContent='Approval Requested';
+  employeeRequestApproval.disabled=true;
+  employeeRequestApproval.dataset.completed='true';
   const auditBody=document.querySelector('.audit-history-table tbody');
   if(auditBody){
     const row=document.createElement('tr');
     row.dataset.auditDate=requestedAt.toISOString().slice(0,10);
     row.innerHTML='<td>'+formatted+'</td><td></td><td></td><td>Queued to owner@cacaoymas.com</td><td><em class="medium">Pending</em></td>';
-    row.children[1].textContent=employeeName+' — '+employeePosition.value;
-    row.children[2].textContent='Current authenticated end user';
+    row.children[1].textContent=employeeName+' — '+pendingEmployeeAction+' — '+employeePosition.value;
+    row.children[2].textContent='Current authenticated Supervisor or Manager';
     auditBody.prepend(row);
     applyAuditRange();
   }
   employeeApprovalDialog.close();
   approvalPositionConfirmation.value='';
-  showToast('Owner approval request recorded and sent to the SMB Owner.');
+  showToast('Approval request recorded and sent to the SMB Owner.');
 });
-document.querySelector('#employeeApprove').addEventListener('click',()=>{
-  if(!employeePosition.value)return;
+employeeApprove.addEventListener('click',()=>{
+  if(!employeePosition.value||selectedExistingEmployee)return;
   employeeApproved=true;
-  employeeStatus.textContent=employeePosition.value+' · Approved by SMB Owner';
-  document.querySelector('#employeeApprove').disabled=true;
-  showToast('Employee position approved and recorded.');
+  employeeStatus.textContent=employeePosition.value+' · Approved by Supervisor or Manager · Awaiting Owner authorization';
+  employeeApprove.textContent='Approved';
+  employeeApprove.disabled=true;
+  employeeApprove.dataset.completed='true';
+  showToast('Management approval recorded. Final Owner authorization is still required.');
 });
-document.querySelector('#employeeToggleActive').addEventListener('click',event=>{
+employeeToggleActive.addEventListener('click',()=>{
+  if(selectedExistingEmployee){
+    pendingEmployeeAction='Deactivation request';
+    employeeStatus.textContent='Deactivation selected · Request SMB Owner approval before access changes';
+    showToast('Deactivation selected. Use Request Approval to continue.');
+    return;
+  }
   employeeActive=!employeeActive;
-  event.currentTarget.textContent=employeeActive?'Deactivate':'Activate';
-  employeeStatus.textContent=employeePosition.value+' · '+(employeeActive?'Active':'Inactive')+(employeeApproved?' · Owner approved':' · Owner approval pending');
-  showToast(employeeActive?'Employee activated.':'Employee deactivated.');
+  employeeToggleActive.textContent=employeeActive?'Deactivate':'Activate';
+  employeeStatus.textContent=employeePosition.value+' · '+(employeeActive?'Active':'Inactive')+(employeeApproved?' · Management approved':' · Owner approval pending');
 });
-document.querySelector('#employeeDelete').addEventListener('click',()=>{
+employeeDelete.addEventListener('click',()=>{
+  if(selectedExistingEmployee){
+    pendingEmployeeAction='Access deletion request';
+    employeeStatus.textContent='Access deletion selected · Employee account and history will be preserved · Request SMB Owner approval';
+    showToast('Access deletion selected. Use Request Approval to continue.');
+    return;
+  }
   const employeeName=(document.querySelector('#employeeFirstName').value+' '+document.querySelector('#employeeLastName').value).trim()||'New employee record';
   pendingDeleteUser=employeeName;
   deleteIdentity.textContent=employeeName;
@@ -164,11 +258,16 @@ document.querySelector('#employeeDelete').addEventListener('click',()=>{
 employeeForm.addEventListener('submit',event=>{
   event.preventDefault();
   if(!event.currentTarget.reportValidity()||!employeePosition.value){showToast('Choose an available position before saving.');return;}
+  const mode=selectedExistingEmployee?'updated':'created';
   employeeDialog.close();
-  showToast('Employee record saved with status: '+employeeStatus.textContent+'.');
+  showToast('Employee record '+mode+'. Use Request Approval before applying access changes.');
 });
 employeeDialog.addEventListener('close',()=>{
   if(employeeApprovalDialog.open)employeeApprovalDialog.close();
+  employeeForm.reset();
+  existingEmployeeSearch.value='';
+  chooseEmployeePosition('');
+  resetEmployeeMode();
 });
 document.querySelectorAll('.settings-form').forEach(form=>form.addEventListener('submit',event=>{
   event.preventDefault();
