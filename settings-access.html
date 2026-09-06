@@ -7,9 +7,9 @@
   <title>Marxia | Settings & Access</title>
   <meta name="description" content="Marxia SMB settings, identity, employees, roles, approvals, and audit controls">
   <link rel="stylesheet" href="styles.css?v=20260904-11">
-  <link rel="stylesheet" href="settings-access.css?v=20260906-3">
+  <link rel="stylesheet" href="settings-access.css?v=20260906-4">
   <script src="embedded-assets.js"></script>
-  <script src="settings-access.js?v=20260906-1" defer></script>
+  <script src="settings-access.js?v=20260906-2" defer></script>
 </head>
 <body>
   <div class="app-shell">
@@ -244,6 +244,12 @@
   <dialog class="record-dialog" id="employeeDialog" aria-labelledby="employeeDialogTitle">
     <form method="dialog" class="record-form" id="employeeForm">
       <header class="dialog-heading"><div><small>NEW EMPLOYEE</small><h2 id="employeeDialogTitle">Add new employee</h2><p>Create the staff record before assigning access.</p></div><button class="dialog-close" type="button" data-close-dialog aria-label="Close employee form">×</button></header>
+      <section class="employee-record-search" aria-labelledby="employeeSearchLabel">
+        <label id="employeeSearchLabel" for="existingEmployeeSearch">Find an existing employee</label>
+        <div class="employee-search-control"><span aria-hidden="true">⌕</span><input id="existingEmployeeSearch" type="search" list="existingEmployeeOptions" placeholder="Search by employee name or email" autocomplete="off"><button id="findEmployeeButton" type="button">Search</button></div>
+        <datalist id="existingEmployeeOptions"><option value="Ana Pérez"><option value="Isaac Silva"><option value="Luis Mora"></datalist>
+        <p id="employeeSearchStatus" role="status" aria-live="polite">Search to update, promote, deactivate, or request deletion of an existing employee.</p>
+      </section>
       <div class="form-grid">
         <label>First name<input id="employeeFirstName" name="firstName" required autocomplete="given-name"></label><label>Last name<input id="employeeLastName" name="lastName" required autocomplete="family-name"></label>
         <label class="wide">Address<input name="address" required autocomplete="street-address"></label>
@@ -265,12 +271,12 @@
         <label><input type="checkbox" checked disabled><span><strong>Notify Owner about new sign-ins</strong><small>New device and location sign-ins generate an Owner notification and audit event.</small></span></label>
       </div></fieldset>
       <section class="employee-status-panel" aria-labelledby="initialStatusLabel"><div><strong id="initialStatusLabel">Initial status</strong><small id="employeeStatus" role="status" aria-live="polite">Choose a position to enable employee actions.</small></div><div class="employee-action-buttons">
-        <button class="approval-request has-tooltip" id="employeeRequestApproval" type="button" data-tooltip="Open the confirmation form and send this position request to the SMB Owner." disabled>Request Owner Approval</button>
-        <button class="has-tooltip" id="employeeApprove" type="button" data-tooltip="Record the SMB Owner’s approval for the selected employee position." disabled>Approve</button>
+        <button class="approval-request has-tooltip" id="employeeRequestApproval" type="button" data-tooltip="Open the confirmation form and send this employee request to the SMB Owner." disabled>Request Approval</button>
+        <button class="has-tooltip" id="employeePromote" type="button" data-tooltip="Select the employee’s next role as a proposed promotion. Owner approval is required." hidden>Promote</button><button class="has-tooltip" id="employeeApprove" type="button" data-tooltip="Record management approval for this employee. Final Owner authorization remains required." disabled>Approve</button>
         <button class="has-tooltip" id="employeeToggleActive" type="button" data-tooltip="Deactivate or reactivate this employee’s application access." disabled>Deactivate</button>
         <button class="danger-button-small has-tooltip" id="employeeDelete" type="button" data-tooltip="Delete this unsaved employee record after confirmation." disabled>Delete</button>
       </div></section>
-      <p class="form-note">Creating an employee record does not automatically grant system access. The SMB Owner must approve the requested position before access is granted.</p>
+      <p class="form-note">Once the record has been created, it needs approval; request approval by clicking the Request Approval button above.</p>
       <footer class="dialog-actions"><button class="has-tooltip" type="button" data-close-dialog data-tooltip="Close this form without saving the employee record.">Cancel</button><button class="primary has-tooltip" type="submit" data-tooltip="Save the employee record with its current access and approval status.">Save employee record</button></footer>
     </form>
   </dialog>
