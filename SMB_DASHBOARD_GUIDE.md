@@ -1,0 +1,527 @@
+# Marxia SMB Dashboard — Progress and Section Guide
+
+**Repository:** `X-Magno-Maximus/smbs`  
+**Last updated:** September 6, 2026  
+**Status:** Living MVP guide — update this document as pages, integrations, permissions, and workflows change.
+
+## 1. Purpose
+
+The Marxia SMB Dashboard is the primary business-management reference for the Marxia platform. It brings together business operations, products, clients, orders, inventory, logistics, accounting, staff access, approvals, and audit history.
+
+The dashboard is being created and corrected one page at a time. Its shared structure and security patterns will guide later product levels:
+
+1. Freemium
+2. Individual
+3. Freelancer
+4. PRO
+5. SMB
+
+This file records what each current section is for, what has been implemented in the interface, and what still requires trusted backend integration.
+
+## 2. Current Dashboard Structure
+
+### Overview — `index.html`
+
+The Overview is the SMB's operational landing page.
+
+It currently provides:
+
+- Responsive dashboard shell.
+- Left vertical navigation that slides open and closed.
+- Search.
+- Profile and appearance menu.
+- Light and Dark themes.
+- English and Spanish selectors.
+- Separate IT Tech Support access.
+- Business greeting and high-level performance view.
+- Client and Product creation cards.
+- Revenue and Orders over-time graph.
+- Net sales, gross profit, inventory value, and receivables summaries.
+- Today, Business Health, Low Stock, and Fulfillment Progress panels.
+- Recent Orders and Top Products views.
+
+#### Add Client
+
+Opens the client form.
+
+- Supports Customer or Business records.
+- Customer records use the customer name.
+- Business records reveal Business Name, Tax ID, and Business Address.
+- Business Name and Tax ID are required for Business records.
+- Email and contact details support future invoicing and notification delivery.
+
+Actual invoice-email delivery requires the production messaging and invoicing backend.
+
+#### Add Product
+
+Opens the product form.
+
+- Product image.
+- Product name.
+- Price.
+- SKU.
+- Stock quantity.
+- VAT/tax.
+- Availability state.
+- Inventory Product Search by product name or SKU.
+- Selecting an existing inventory item populates its current product fields.
+
+The current catalog data is an interface dataset. Production inventory must come from the authorized inventory service.
+
+#### Business Summary Connections
+
+- Net Sales opens Orders.
+- Gross Profit opens Accounting.
+- Inventory Value opens Inventory.
+- Business Health opens Accounting.
+- Fulfillment Progress opens Logistics.
+
+Destination pages that remain staged must not be represented as production-complete.
+
+#### IT Tech Support
+
+The `?` control opens the Support Request form.
+
+The form includes:
+
+- End-user name.
+- Account email.
+- Support category.
+- Issue details.
+- Requested temporary-access period.
+- Masked re-authentication field.
+- Explicit temporary-support consent.
+
+Passwords must never be added to a support ticket, audit message, or IT Support view. Production re-authentication must be verified only by the authentication service before short-lived support access is issued.
+
+## 3. Logistics — `logistics.html`
+
+The Logistics page is the source view for fulfillment and shipment activity.
+
+It currently provides:
+
+- Fulfillment-progress summary.
+- Shipment and order queue.
+- Delivery status.
+- Carrier assignment.
+- Shipment scheduling.
+- Search and status filtering.
+- Links between shipment records and Accounting.
+- Logistics cost and settlement status.
+
+The Logistics page supplies operational shipment events. Accounting remains the financial source of truth for approved expenses, shipping charges, and reconciliation.
+
+Production integration must validate tenant, role, shipment, and order authorization on the server.
+
+## 4. Accounting — `accounting.html`
+
+The Accounting page explains business health and reconciles operational costs.
+
+It currently provides:
+
+- Net Sales MTD.
+- Gross Profit MTD.
+- Receivables.
+- Logistics Costs MTD.
+- Business Health.
+- Basic accounting flow.
+- Logistics cost reconciliation.
+- Recent transactions.
+- Transaction-entry form.
+- Search and reconciliation-status filters.
+
+The accounting sequence follows:
+
+1. Sales Revenue − Returns and Discounts = Net Sales.
+2. Net Sales − Cost of Goods Sold = Gross Profit.
+3. Gross Profit − Operating Expenses − Other Expenses and Taxes = Net Profit.
+4. Opening Capital + Contributions + Net Profit − Withdrawals = Closing Equity.
+
+Displayed figures currently support MVP visualization. Production financial entries require validated business rules, immutable audit records, authorized posting, and server-side reconciliation.
+
+## 5. Settings & Access — `settings-access.html`
+
+Settings & Access controls business identity, employees, roles, approvals, end-user access, notifications, and historical records.
+
+### Business Profile
+
+Used for:
+
+- Business name.
+- Tax ID.
+- Business address.
+- Business email.
+- Business phone.
+- Owner-email notifications for staff access, role, and promotion changes.
+
+The authorization-change notification setting appears immediately before Save Business Profile.
+
+### Employees & Staff
+
+Displays the employee directory with:
+
+- Employee name.
+- Position.
+- Status.
+- Last access.
+- Review.
+- Request Password Reset.
+- Suspend or Restore Access.
+- Delete Access.
+
+Security behavior:
+
+- Password Reset requests a secure, expiring reset link; passwords are never displayed or emailed.
+- Suspend represents immediate access suspension and active-session revocation for lost or stolen devices.
+- Delete Access removes application access only.
+- Employee identity, employment record, account history, and audit history remain preserved.
+
+#### Add New Employee
+
+The form collects:
+
+- First name.
+- Last name.
+- Address.
+- Email.
+- Phone.
+- Selected position.
+
+Available positions are displayed as clickable buttons. The selected position remains highlighted.
+
+The form includes the mandatory Account & Authentication package:
+
+- Authorization.
+- Authentication.
+- Multifactor authentication.
+- Automatic session lock.
+- Notify Owner about new sign-ins.
+
+These requirements are checked, grayed, and locked because they are automatically applied and cannot be removed during employee creation.
+
+The instruction is:
+
+> Once the record has been created, it needs approval; request approval by clicking the Request Approval button above.
+
+#### Existing Employee Search
+
+The Add New Employee form also searches existing employees by exact full name or email.
+
+When an existing employee is found:
+
+- Their record and current role populate the form.
+- `Approved` is disabled and gray to show existing Supervisor or Manager approval.
+- Request Approval remains available.
+- Promote remains available.
+- Deactivate remains available.
+- Delete remains available.
+
+Promote, Deactivate, and Delete select a proposed change. They do not silently apply it. The Supervisor or Manager must submit Request Approval, and the requested action is recorded and sent for final SMB Owner authorization.
+
+#### New Employee Approval Request
+
+Request Approval requires the requester to type or paste the selected position before proceeding.
+
+The request records:
+
+- Employee.
+- Requested position or access change.
+- Requesting authenticated user.
+- Date and time.
+- Pending approval status.
+- Business Owner notification state.
+
+Creating or updating an employee record does not independently grant or modify application access.
+
+### Account, Roles & Approvals
+
+This dropdown contains the remaining RBAC and approval controls.
+
+#### Business Owner Authorization
+
+Sensitive approvals require Owner re-authentication. Passwords must be verified by the authentication service and must never be stored in this page or written to audit records.
+
+#### Roles & Access Permissions
+
+Current role categories include:
+
+- Supervisor.
+- Employee / Staff.
+- Independent Contractor.
+
+Every role displays:
+
+- Predetermined access purpose.
+- Current approval/activity status.
+- Staff assigned to the role.
+- Assignment count.
+- Request Owner Approval.
+- Approve.
+- Deactivate/Activate.
+- Delete.
+
+Current demonstrated assignments:
+
+- Supervisor: Isaac Silva.
+- Employee / Staff: Luis Mora.
+- Independent Contractor: no staff assigned.
+
+An empty assignment is shown explicitly rather than inventing an employee.
+
+#### Approvals & Promotions
+
+Used for role changes and privileged access requiring Owner review.
+
+It includes:
+
+- Promotion requests.
+- Management Admin access.
+- IT SuperUser privileged-role requests.
+- Request Owner Approval.
+- Approve.
+- Deactivate/Activate.
+- Delete.
+
+The IT SuperUser role is intentionally located under Approvals & Promotions because it requires direct SMB Owner authorization.
+
+### End-User Access — Usuario
+
+Used to search and manage end-user application access.
+
+Search supports:
+
+- First name.
+- Last name.
+- Email.
+
+Every end-user record displays:
+
+- First name and last name.
+- Email.
+- Access status.
+- Approve.
+- Deactivate.
+- Delete.
+- Request Owner's Approval.
+- Password Reset.
+
+Completed actions become disabled, gray, and past tense:
+
+- Approve → Approved.
+- Deactivate → Deactivated.
+- Delete → Deleted.
+- Request Owner's Approval → Requested.
+
+Password Reset remains reusable. Delete removes application access while preserving identity and historical records.
+
+Every action creates a timestamped audit entry.
+
+### Notifications & Audit History
+
+This is a read-only historical viewer.
+
+It provides:
+
+- Approval and access event.
+- Requester or actor.
+- Business Owner email-notification record.
+- Decision or result.
+- Date and time.
+- 30-day filter.
+- 3-month filter.
+- 6-month filter.
+- 12-month filter.
+- Custom date range within the available 12 months.
+
+Historical approval information is also retained through Business Owner email notifications.
+
+## 6. Shared RBAC Requirements
+
+The dashboard follows least privilege and separation of duties.
+
+### Employee / Staff
+
+- Assigned operational screens and tasks only.
+- No administrative or Owner authority.
+
+### Independent Contractor
+
+- Time-bound access.
+- Assigned work only.
+- No general dashboard access.
+
+### Supervisor
+
+- Operational review.
+- Staff task oversight.
+- Limited management approval.
+- Cannot provide final Owner authorization.
+
+### Manager
+
+- Department operations.
+- Employee review.
+- Promotion and access recommendations.
+- Cannot replace ultimate SMB Owner approval.
+
+### Management Admin
+
+- Administrative management.
+- Direct SMB Owner approval required.
+- No automatic Owner-level authority.
+
+### IT SuperUser
+
+- Approved technical support and troubleshooting only.
+- Purpose-limited and time-limited access.
+- Direct SMB Owner authorization required.
+- No unrestricted business-data entitlement.
+
+### Director
+
+- Department oversight.
+- Reporting.
+- Approval recommendations.
+- Final access depends on Owner authorization.
+
+### Vice President
+
+- Executive and cross-department oversight.
+- Direct SMB Owner approval required.
+- No ability to override the Business Owner.
+
+### Business Owner
+
+- Ultimate authorization for employee access, privileged roles, promotions, and sensitive changes.
+- Owner authority cannot be assigned through the normal employee form.
+- Sensitive approvals require Owner re-authentication.
+
+## 7. Product-Level Foundation
+
+The SMB dashboard is the most complete operating reference. Later tiers should reuse its shared shell, accessibility, theme, language, security, and audit patterns while limiting features by approved entitlement.
+
+| Tier | Intended foundation |
+|---|---|
+| Freemium | Essential account, limited catalog/client tools, basic activity view |
+| Individual | Single operator, personal business activity, products or services, clients |
+| Freelancer | Client, contract, service, invoice, receivable, and schedule workflows |
+| PRO | Expanded reporting, automation, integrations, and professional controls |
+| SMB | Full staff RBAC, approvals, inventory, orders, logistics, accounting, support, and audit history |
+
+This table establishes the product direction, not final pricing or production entitlement rules. Every tier's exact limits must be separately approved before enforcement.
+
+## 8. Security and Governance Baseline
+
+The intended control direction uses principles from NIST, CISA, OWASP, and PCI DSS.
+
+Current design requirements include:
+
+- Deny by default.
+- Least privilege.
+- Tenant isolation.
+- Role-based access control.
+- Separation of duties.
+- Explicit Owner authorization.
+- Re-authentication for sensitive actions.
+- Multifactor authentication.
+- Automatic session locking.
+- New sign-in notifications.
+- Secure password-reset links.
+- Short-lived support access.
+- Server-side validation.
+- Audit logging.
+- Protected deletion.
+- No password exposure.
+- No payment-card storage in dashboard pages.
+
+These principles represent the intended architecture. They do not by themselves constitute compliance certification.
+
+## 9. Interface-Ready vs Backend-Required
+
+### Interface-ready
+
+- Responsive pages and navigation.
+- Light and Dark presentation.
+- English and Spanish selection controls.
+- Dialogs and forms.
+- Search and filtering.
+- Visual role and approval states.
+- Staff assignment lists.
+- Audit-history viewer.
+- Cross-page navigation.
+- Client, Product, Employee, Logistics, Accounting, and Support workflows.
+
+### Trusted backend still required
+
+- Real authentication and re-authentication.
+- MFA enrollment and verification.
+- Authoritative tenant and RBAC enforcement.
+- Owner-approval delivery and processing.
+- Transactional inventory reduction.
+- Sales posting.
+- Order Taker integration.
+- Invoice and notification delivery.
+- Password-reset delivery.
+- Session revocation.
+- Support-access token issuance and expiration.
+- Durable, tamper-resistant audit storage.
+- Logistics and accounting persistence.
+- Payment processing.
+- Production monitoring and fraud analysis.
+
+Browser state, hidden controls, or local storage must never be treated as authoritative authorization.
+
+## 10. Planned Page Stages
+
+The shared navigation includes additional pages that will continue to be built and corrected independently:
+
+- Orders.
+- Products.
+- Inventory.
+- Marketplace.
+- Reports.
+
+Each page should reuse the approved dashboard shell and connect only to the data and actions required by its role.
+
+## 11. Update Procedure
+
+For every future dashboard change:
+
+1. Confirm the exact page and section.
+2. Preserve unrelated functionality.
+3. Confirm role and Owner-approval boundaries.
+4. Confirm Light and Dark contrast.
+5. Confirm desktop, laptop, tablet, and mobile behavior.
+6. Confirm mouse, keyboard, and accessible labels.
+7. Confirm actions, links, triggers, and dialogs.
+8. Confirm sensitive data is not exposed.
+9. Identify whether the behavior is interface-only or backend-enforced.
+10. Update this guide when the section's purpose or behavior changes.
+11. Commit through a focused pull request.
+12. Verify the merged `main` branch.
+
+## 12. Change Log
+
+### September 6, 2026
+
+- Re-established the SMB Overview dashboard.
+- Added Client and Product creation workflows.
+- Added Inventory Product Search.
+- Connected Business Health to Accounting.
+- Connected Fulfillment Progress to Logistics.
+- Created Logistics and Accounting pages.
+- Created Settings & Access.
+- Added Business Profile controls.
+- Added employee directory access controls.
+- Added New Employee and Existing Employee workflows.
+- Moved Account & Authentication requirements into Add New Employee.
+- Consolidated Roles & Access Permissions and Approvals & Promotions.
+- Moved IT SuperUser to Approvals & Promotions.
+- Added staff-assignment lists under RBAC roles.
+- Added searchable End-User Access.
+- Added read-only 12-month Notifications & Audit History.
+- Improved button size, tooltips, and Light/Dark contrast.
+
+---
+
+This is a living guide. Update it as the Marxia SMB Dashboard is corrected, expanded, integrated, tested, security-tested, moved through BETA, and prepared for production.
