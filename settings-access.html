@@ -87,14 +87,14 @@
                 <button class="primary has-tooltip" id="authorizeBusinessProfile" type="button" data-tooltip="Verify SMB Owner authorization and unlock the Business Profile fields.">Authorize</button>
               </div>
               <div class="form-grid">
-                <label>Business name<input data-profile-protected required value="Cacao & Más" disabled></label>
-                <label>Tax ID<input data-profile-protected required placeholder="Enter registered Tax ID" disabled></label>
-                <label class="wide">Business address<input data-profile-protected required autocomplete="street-address" placeholder="Street, city, province, postal code" disabled></label>
-                <label>Business email<input data-profile-protected required type="email" value="owner@cacaoymas.com" disabled></label>
-                <label>Business phone<input data-profile-protected type="tel" placeholder="+593" disabled></label>
+                <label class="has-tooltip" data-tooltip="View or update the legal business name after SMB Owner authorization.">Business name<input data-profile-protected required value="Cacao & Más" title="Legal business name" disabled></label>
+                <label class="has-tooltip" data-tooltip="View or update the registered business Tax ID after SMB Owner authorization.">Tax ID<input data-profile-protected required placeholder="Enter registered Tax ID" title="Registered business Tax ID" disabled></label>
+                <label class="wide has-tooltip" data-tooltip="View or update the registered business address after SMB Owner authorization.">Business address<input data-profile-protected required autocomplete="street-address" placeholder="Street, city, province, postal code" title="Registered business address" disabled></label>
+                <label class="has-tooltip" data-tooltip="View or update the Business Owner notification email after authorization.">Business email<input data-profile-protected required type="email" value="owner@cacaoymas.com" title="Business Owner notification email" disabled></label>
+                <label class="has-tooltip" data-tooltip="View or update the official business contact number after authorization.">Business phone<input data-profile-protected type="tel" placeholder="+593" title="Official business contact number" disabled></label>
               </div>
-              <label class="control-row profile-notification"><span><strong>Email owner about authorization changes</strong><small>Notify the owner when staff access, roles, or promotions change.</small></span><input data-profile-protected type="checkbox" role="switch" checked disabled></label>
-              <div class="section-actions"><button class="primary" data-profile-protected type="submit" disabled>Save business profile</button></div>
+              <label class="control-row profile-notification has-tooltip" data-tooltip="Enable or disable Owner email notices for staff access, role, and promotion changes."><span><strong>Email owner about authorization changes</strong></span><input data-profile-protected type="checkbox" role="switch" title="Owner authorization-change email notifications" checked disabled></label>
+              <div class="section-actions"><button class="primary has-tooltip" data-profile-protected type="submit" data-tooltip="Save the authorized Business Profile changes." disabled>Save business profile</button></div>
             </form>
           </details>
 
