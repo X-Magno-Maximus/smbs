@@ -145,7 +145,17 @@ Settings & Access controls business identity, employees, roles, approvals, end-u
 
 ### Business Profile
 
-Used for:
+Business Profile is locked by default and requires SMB Owner authorization before its protected fields can be viewed or changed.
+
+Authorization controls:
+
+- SMB Owner password field.
+- `Authorize` button.
+- Protected fields remain disabled until authorization.
+- The password is cleared and disabled immediately after authorization.
+- Explanations for every Business Profile field and button appear on mouse hover rather than as additional visible instructions.
+
+Authorized profile fields:
 
 - Business name.
 - Tax ID.
@@ -154,7 +164,7 @@ Used for:
 - Business phone.
 - Owner-email notifications for staff access, role, and promotion changes.
 
-The authorization-change notification setting appears immediately before Save Business Profile.
+The authorization-change notification setting appears immediately before Save Business Profile. Production must verify the password through the authentication service; the browser interface must not store it or treat a non-empty value as authoritative verification.
 
 ### Employees & Staff
 
