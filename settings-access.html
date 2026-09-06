@@ -7,7 +7,7 @@
   <title>Marxia | Settings & Access</title>
   <meta name="description" content="Marxia SMB settings, identity, employees, roles, approvals, and audit controls">
   <link rel="stylesheet" href="styles.css?v=20260904-11">
-  <link rel="stylesheet" href="settings-access.css?v=20260906-2">
+  <link rel="stylesheet" href="settings-access.css?v=20260906-3">
   <script src="embedded-assets.js"></script>
   <script src="settings-access.js?v=20260906-1" defer></script>
 </head>
@@ -113,7 +113,7 @@
               <div class="governance-auth"><div><strong>Business Owner authorization</strong><small>Owner identity must be verified before an approval is completed. Passwords are never displayed or stored by this page.</small></div><label>Owner re-authentication<input id="governanceOwnerPassword" type="password" autocomplete="current-password" placeholder="Enter owner password"></label></div>
               <section class="governance-group" aria-labelledby="rolesGroup"><h3 id="rolesGroup">Roles &amp; Access Permissions</h3><p>Preset and privileged RBAC assignments.</p><div class="governance-list">
                 <article data-governed-item data-active="true" data-approved="false">
-                  <span><small>ROLE ACCESS</small><strong>Supervisor</strong><small data-governed-status>Operational review and team approvals · Owner approval not requested</small></span>
+                  <span><small>ROLE ACCESS</small><strong>Supervisor</strong><small data-governed-status>Operational review and team approvals · Owner approval not requested</small><div class="assigned-staff"><b>Assigned staff (1)</b><ul aria-label="Staff assigned to Supervisor"><li>Isaac Silva</li></ul></div></span>
                   <div class="access-actions">
                     <button class="approval-request" type="button" data-request-governance>Request Owner Approval</button>
                     <button class="approve-access" type="button" data-approve-governance>Approve</button>
@@ -122,7 +122,7 @@
                   </div>
                 </article>
                 <article data-governed-item data-active="true" data-approved="false">
-                  <span><small>ROLE ACCESS</small><strong>Employee / Staff</strong><small data-governed-status>Assigned operational screens only · Owner approval not requested</small></span>
+                  <span><small>ROLE ACCESS</small><strong>Employee / Staff</strong><small data-governed-status>Assigned operational screens only · Owner approval not requested</small><div class="assigned-staff"><b>Assigned staff (1)</b><ul aria-label="Staff assigned to Employee / Staff"><li>Luis Mora</li></ul></div></span>
                   <div class="access-actions">
                     <button class="approval-request" type="button" data-request-governance>Request Owner Approval</button>
                     <button class="approve-access" type="button" data-approve-governance>Approve</button>
@@ -131,7 +131,7 @@
                   </div>
                 </article>
                 <article data-governed-item data-active="false" data-approved="false">
-                  <span><small>ROLE ACCESS</small><strong>Independent contractor</strong><small data-governed-status>Time-bound assigned work only · Owner approval not requested</small></span>
+                  <span><small>ROLE ACCESS</small><strong>Independent contractor</strong><small data-governed-status>Time-bound assigned work only · Owner approval not requested</small><div class="assigned-staff empty"><b>Assigned staff (0)</b><p>No staff assigned</p></div></span>
                   <div class="access-actions">
                     <button class="approval-request" type="button" data-request-governance>Request Owner Approval</button>
                     <button class="approve-access" type="button" data-approve-governance>Approve</button>
