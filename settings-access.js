@@ -42,29 +42,37 @@ utilityMenuToggle.addEventListener('click',()=>{
 });
 document.addEventListener('click',event=>{if(!event.target.closest('.utility-nav')) closeUtilityMenu();});
 
-const languageButtons=document.querySelectorAll('[data-language-choice]');
+const languageToggle=document.querySelector('[data-language-toggle]');
+const languageLabels=document.querySelectorAll('[data-language-label]');
 function setLanguage(language,announce=true){
+  const spanish=language==='es';
   document.documentElement.lang=language;
-  languageButtons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.languageChoice===language)));
+  languageToggle.setAttribute('aria-checked',String(spanish));
+  languageLabels.forEach(label=>label.classList.toggle('active',label.dataset.languageLabel===language));
   try{localStorage.setItem('marxia-language',language)}catch(error){}
-  if(announce) showToast(language==='es'?'Español seleccionado. La traducción se completará página por página.':'English selected.');
+  if(announce) showToast(spanish?'Español seleccionado. La traducción se completará página por página.':'English selected.');
 }
-languageButtons.forEach(button=>button.addEventListener('click',()=>setLanguage(button.dataset.languageChoice)));
-const themeButtons=document.querySelectorAll('[data-theme-choice]');
+languageToggle.addEventListener('click',()=>setLanguage(languageToggle.getAttribute('aria-checked')==='true'?'en':'es'));
+const themeToggle=document.querySelector('[data-theme-toggle]');
+const themeLabels=document.querySelectorAll('[data-theme-label]');
 function setTheme(theme,announce=true){
   const dark=theme==='dark';
   document.body.classList.toggle('dark',dark);
-  themeButtons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.themeChoice===theme)));
+  themeToggle.setAttribute('aria-checked',String(dark));
+  themeLabels.forEach(label=>label.classList.toggle('active',label.dataset.themeLabel===theme));
   try{localStorage.setItem('marxia-theme',theme)}catch(error){}
   if(announce) showToast(dark?'Dark appearance enabled.':'Light appearance enabled.');
 }
-themeButtons.forEach(button=>button.addEventListener('click',()=>setTheme(button.dataset.themeChoice)));
+themeToggle.addEventListener('click',()=>setTheme(themeToggle.getAttribute('aria-checked')==='true'?'light':'dark'));
 try{
   const theme=localStorage.getItem('marxia-theme');
   const language=localStorage.getItem('marxia-language');
-  if(theme==='dark'||theme==='light') setTheme(theme,false);
-  if(language==='en'||language==='es') setLanguage(language,false);
-}catch(error){}
+  setTheme(theme==='dark'?'dark':'light',false);
+  setLanguage(language==='es'?'es':'en',false);
+}catch(error){
+  setTheme('light',false);
+  setLanguage('en',false);
+}
 
 const settingsSearch=document.querySelector('#settingsSearch');
 settingsSearch.addEventListener('input',()=>{
