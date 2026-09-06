@@ -51,3 +51,12 @@ body.dark .settings-table .employee-row-actions button:first-child:hover{backgro
 
 .business-profile-auth{display:grid;grid-template-columns:minmax(240px,1fr) auto;align-items:end;gap:10px;margin-bottom:18px;padding:14px;border:1px solid var(--line);border-radius:8px;background:var(--cream)}.business-profile-auth label{display:grid;gap:6px;color:var(--ink);font-size:10px;font-weight:800}.business-profile-auth input{height:42px;padding:0 11px;border:1px solid var(--line);border-radius:7px;background:var(--surface);color:var(--ink)}.business-profile-auth button{min-height:42px;padding:0 20px}.business-profile-auth button[data-completed="true"]{border-color:#9aa4a0;background:#e4e8e6;color:#4e5a56}.business-profile-auth input:focus{border-color:var(--green);outline:3px solid rgba(6,79,64,.14)}[data-profile-protected]:disabled{cursor:not-allowed;opacity:.62}.dark .business-profile-auth{background:#1c302a}.dark .business-profile-auth input{border-color:#50645e;background:#132620}.dark .business-profile-auth button[data-completed="true"]{border-color:#64706c;background:#34413d;color:#d6dedb}
 @media(max-width:620px){.business-profile-auth{grid-template-columns:1fr}.business-profile-auth button{min-height:46px;width:100%}}
+
+#authorizeBusinessProfile{min-width:132px;border:2px solid #7a5200;background:#f2c14e;color:#16231f;font-size:12px;font-weight:900;letter-spacing:.01em;box-shadow:0 2px 0 rgba(75,49,0,.3);opacity:1}
+#authorizeBusinessProfile:hover{border-color:#5f3f00;background:#ffd66b;color:#101b17}
+#authorizeBusinessProfile:focus-visible{outline:3px solid #1d64b5;outline-offset:3px}
+#authorizeBusinessProfile[data-completed="true"]{border-color:#53625d;background:#dce3e0;color:#263530;box-shadow:none}
+body.dark #authorizeBusinessProfile{border-color:#ffe08a;background:#f2c14e;color:#10231c}
+body.dark #authorizeBusinessProfile:hover{border-color:#fff0bc;background:#ffdc78;color:#07150f}
+body.dark #authorizeBusinessProfile:focus-visible{outline-color:#8fbdff}
+body.dark #authorizeBusinessProfile[data-completed="true"]{border-color:#81918b;background:#34413d;color:#f0f5f3}
