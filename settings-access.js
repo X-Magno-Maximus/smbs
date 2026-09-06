@@ -269,6 +269,20 @@ employeeDialog.addEventListener('close',()=>{
   chooseEmployeePosition('');
   resetEmployeeMode();
 });
+const businessProfilePassword=document.querySelector('#businessProfilePassword');
+const authorizeBusinessProfile=document.querySelector('#authorizeBusinessProfile');
+const businessProfileProtected=document.querySelectorAll('[data-profile-protected]');
+authorizeBusinessProfile.addEventListener('click',()=>{
+  if(!businessProfilePassword.reportValidity())return;
+  businessProfileProtected.forEach(control=>control.disabled=false);
+  businessProfilePassword.value='';
+  businessProfilePassword.disabled=true;
+  authorizeBusinessProfile.textContent='Authorized';
+  authorizeBusinessProfile.disabled=true;
+  authorizeBusinessProfile.dataset.completed='true';
+  showToast('Business Profile authorized.');
+});
+
 document.querySelectorAll('.settings-form').forEach(form=>form.addEventListener('submit',event=>{
   event.preventDefault();
   if(!form.reportValidity()) return;
