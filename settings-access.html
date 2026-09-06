@@ -7,9 +7,9 @@
   <title>Marxia | Settings & Access</title>
   <meta name="description" content="Marxia SMB settings, identity, employees, roles, approvals, and audit controls">
   <link rel="stylesheet" href="styles.css?v=20260904-11">
-  <link rel="stylesheet" href="settings-access.css?v=20260906-4">
+  <link rel="stylesheet" href="settings-access.css?v=20260906-5">
   <script src="embedded-assets.js"></script>
-  <script src="settings-access.js?v=20260906-2" defer></script>
+  <script src="settings-access.js?v=20260906-3" defer></script>
 </head>
 <body>
   <div class="app-shell">
@@ -81,16 +81,20 @@
         <section class="settings-sections" id="settingsSections">
           <details class="settings-section" open data-search-terms="business profile identity tax address email phone">
             <summary><span><img src="assets/marketplace.webp" alt=""><b>Business Profile</b><small>Legal identity and business contact information</small></span><i aria-hidden="true">＋</i></summary>
-            <form class="section-body settings-form" data-form-name="Business profile">
-              <div class="form-grid">
-                <label>Business name<input required value="Cacao & Más"></label>
-                <label>Tax ID<input required placeholder="Enter registered Tax ID"></label>
-                <label class="wide">Business address<input required autocomplete="street-address" placeholder="Street, city, province, postal code"></label>
-                <label>Business email<input required type="email" value="owner@cacaoymas.com"></label>
-                <label>Business phone<input type="tel" placeholder="+593"></label>
+            <form class="section-body settings-form" data-form-name="Business profile" id="businessProfileForm">
+              <div class="business-profile-auth">
+                <label class="has-tooltip" data-tooltip="Enter the SMB Owner password to authorize access to Business Profile.">SMB Owner password<input id="businessProfilePassword" type="password" autocomplete="current-password" required title="Enter the SMB Owner password to authorize Business Profile access."></label>
+                <button class="primary has-tooltip" id="authorizeBusinessProfile" type="button" data-tooltip="Verify SMB Owner authorization and unlock the Business Profile fields.">Authorize</button>
               </div>
-              <label class="control-row profile-notification"><span><strong>Email owner about authorization changes</strong><small>Notify the owner when staff access, roles, or promotions change.</small></span><input type="checkbox" role="switch" checked></label>
-              <div class="section-actions"><button class="primary" type="submit">Save business profile</button></div>
+              <div class="form-grid">
+                <label>Business name<input data-profile-protected required value="Cacao & Más" disabled></label>
+                <label>Tax ID<input data-profile-protected required placeholder="Enter registered Tax ID" disabled></label>
+                <label class="wide">Business address<input data-profile-protected required autocomplete="street-address" placeholder="Street, city, province, postal code" disabled></label>
+                <label>Business email<input data-profile-protected required type="email" value="owner@cacaoymas.com" disabled></label>
+                <label>Business phone<input data-profile-protected type="tel" placeholder="+593" disabled></label>
+              </div>
+              <label class="control-row profile-notification"><span><strong>Email owner about authorization changes</strong><small>Notify the owner when staff access, roles, or promotions change.</small></span><input data-profile-protected type="checkbox" role="switch" checked disabled></label>
+              <div class="section-actions"><button class="primary" data-profile-protected type="submit" disabled>Save business profile</button></div>
             </form>
           </details>
 
