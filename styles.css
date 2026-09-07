@@ -63,3 +63,22 @@ body.dark{--ink:#eaf2ef;--muted:#a9b8b3;--line:#334943;--surface:#162923;--canva
 @media(max-width:1400px){.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:900px){.attention-strip{gap:12px}.attention-strip button{padding:18px;grid-template-columns:1fr}.attention-strip span{grid-template-columns:auto 1fr}.attention-strip button{grid-template-rows:auto auto 1fr}}
 @media(max-width:620px){.attention-strip,.metric-grid{grid-template-columns:1fr;gap:14px}.attention-strip button{grid-template-columns:56px minmax(0,1fr);grid-template-rows:auto 1fr}.attention-strip button,.metric{padding:20px;min-height:180px}.metric div>strong{font-size:32px}}
+
+/* Size cards to the available dashboard width, including sidebar changes. */
+.main-column{container-type:inline-size}
+.attention-strip,.metric-grid{width:100%;gap:clamp(14px,1.5vw,24px)}
+.attention-strip{grid-template-columns:repeat(3,minmax(0,1fr))}
+.metric-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.attention-strip button{min-height:190px;grid-template-columns:56px minmax(0,1fr);grid-template-rows:auto 1fr;padding:22px}
+.metric{min-height:250px;grid-template-columns:1fr;grid-template-rows:auto auto 1fr;padding:22px}
+.metric img{width:52px;height:52px}
+.metric div>strong{font-size:clamp(28px,2.4vw,38px)}
+/* Defer off-screen rendering while retaining native search and keyboard access.
+   Intrinsic sizes reserve space before the browser measures the actual content. */
+.deferred-overview{content-visibility:auto;contain-intrinsic-size:auto 540px}
+.tables-grid.deferred-overview{contain-intrinsic-size:auto 380px}
+@container(max-width:1000px){.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.metric{grid-template-columns:56px minmax(0,1fr);grid-template-rows:auto 1fr;min-height:220px}}
+@container(max-width:650px){.attention-strip{grid-template-columns:1fr}.metric-grid{grid-template-columns:1fr}.attention-strip button,.metric{min-height:180px;padding:20px}}
+/* Responsive fallback for browsers without container queries. */
+@supports not (container-type:inline-size){@media(max-width:1230px){.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:700px){.attention-strip,.metric-grid{grid-template-columns:1fr}}}
+@media print{.deferred-overview{content-visibility:visible;contain-intrinsic-size:none}}

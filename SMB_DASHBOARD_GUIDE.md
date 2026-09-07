@@ -549,3 +549,12 @@ Verification: JavaScript syntax checked; responsive sizing and label spacing rev
 The three attention items are now separate taller cards. Financial cards use a 220px minimum height and switch to two columns below 1400px and one column on phones. Every card includes a visible 14px explanation below a divider, translated into Spanish through the existing language system. Text wraps freely and card heights can grow. Explanation colors are #45554e on white and #d4e2dc on the dark surface. Existing data and click behavior are preserved; explanations describe the metrics without claiming unfinished destinations work. Receivables retain the existing aging-group wording until its age basis is defined.
 
 Validation: translation JavaScript parses; all seven explanations and Spanish translations are present. Layout rules reviewed for narrow screens and wrapping. Browser visual verification remains pending.
+
+
+## Full-width card rows and deferred rendering
+
+The attention row uses three equal columns and financial metrics four equal columns when the dashboard content area exceeds 1000px. Container queries respond to actual available width as the sidebar opens or closes. Financial cards wrap to two columns at 1000px, and all cards use one column at 650px. Desktop cards have minimum heights of 190px (attention) and 250px (financial), with flexible text wrapping and existing bilingual explanations.
+
+The Today/Business health/stock/fulfillment grid and the transaction tables use native content-visibility:auto to defer off-screen layout and paint. Intrinsic fallback heights reserve scroll space; browser-measured heights replace estimates. Unsupported browsers render normally. Print renders all sections. This is lazy rendering of existing static sections, not deferred backend data fetching or a claim of reduced network payload. No business records are loaded from a backend by this change.
+
+Validation: all seven explanation elements retained; container breakpoints and print fallback checked in source. Browser visual and performance verification remains pending.
