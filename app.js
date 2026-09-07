@@ -309,3 +309,20 @@ supportForm.addEventListener('submit',event=>{
   supportForm.reset();
 });
 document.querySelector('#supportDialog').addEventListener('close',()=>{supportPassword.value='';});
+
+
+// Reveal native disclosure targets reached from queue links or bookmarked URLs.
+function revealOverviewTarget(){
+  const id=window.location.hash.slice(1);
+  const target=document.getElementById(id);
+  if(target&&target.matches('details.overview-disclosure')){
+    target.open=true;
+    requestAnimationFrame(()=>target.scrollIntoView({block:'start'}));
+  }
+}
+window.addEventListener('hashchange',revealOverviewTarget);
+document.addEventListener('click',event=>{
+  const link=event.target.closest('a[href^="#"]');
+  if(link&&link.hash===window.location.hash) revealOverviewTarget();
+});
+revealOverviewTarget();
