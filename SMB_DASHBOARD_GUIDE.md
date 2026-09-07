@@ -535,3 +535,26 @@ For every future dashboard change:
 ---
 
 This is a living guide. Update it as the Marxia SMB Dashboard is corrected, expanded, integrated, tested, security-tested, moved through BETA, and prepared for production.
+
+
+## Responsive overview graph — September 7, 2026
+
+The Revenue & Orders graph uses the full content width and a viewport-based plotting height with a 320px desktop minimum, replacing the fixed 170px plot. Other overview cards follow below the graph. On phones the plot uses 340px height and fewer date labels to avoid overlap. Canvas rendering follows its measured CSS dimensions and device pixel ratio; ResizeObserver redraws during sidebar width changes. Legend, date, and axis labels are larger; the dark-theme legend matches the sales line. Existing chart data and reporting periods are unchanged.
+
+Verification: JavaScript syntax checked; responsive sizing and label spacing reviewed in source. Browser visual verification remains pending.
+
+
+## Larger overview cards and explanatory text — September 7, 2026
+
+The three attention items are now separate taller cards. Financial cards use a 220px minimum height and switch to two columns below 1400px and one column on phones. Every card includes a visible 14px explanation below a divider, translated into Spanish through the existing language system. Text wraps freely and card heights can grow. Explanation colors are #45554e on white and #d4e2dc on the dark surface. Existing data and click behavior are preserved; explanations describe the metrics without claiming unfinished destinations work. Receivables retain the existing aging-group wording until its age basis is defined.
+
+Validation: translation JavaScript parses; all seven explanations and Spanish translations are present. Layout rules reviewed for narrow screens and wrapping. Browser visual verification remains pending.
+
+
+## Full-width card rows and deferred rendering
+
+The attention row uses three equal columns and financial metrics four equal columns when the dashboard content area exceeds 1000px. Container queries respond to actual available width as the sidebar opens or closes. Financial cards wrap to two columns at 1000px, and all cards use one column at 650px. Desktop cards have minimum heights of 190px (attention) and 250px (financial), with flexible text wrapping and existing bilingual explanations.
+
+The Today/Business health/stock/fulfillment grid and the transaction tables use native content-visibility:auto to defer off-screen layout and paint. Intrinsic fallback heights reserve scroll space; browser-measured heights replace estimates. Unsupported browsers render normally. Print renders all sections. This is lazy rendering of existing static sections, not deferred backend data fetching or a claim of reduced network payload. No business records are loaded from a backend by this change.
+
+Validation: all seven explanation elements retained; container breakpoints and print fallback checked in source. Browser visual and performance verification remains pending.
