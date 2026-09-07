@@ -32,3 +32,13 @@ body.dark{--ink:#eaf2ef;--muted:#a9b8b3;--line:#334943;--surface:#162923;--canva
 
 .binary-setting{display:grid;grid-template-columns:minmax(50px,1fr) 54px minmax(50px,1fr);align-items:center;gap:9px}.binary-setting>span{color:var(--muted);font-size:10px;font-weight:700;text-align:center;transition:color .2s ease,font-weight .2s ease}.binary-setting>span.active{color:var(--green);font-weight:900}.toggle-switch{position:relative;width:54px;height:30px;padding:0;border:2px solid #73827d;border-radius:999px;background:#d9e2df;cursor:pointer;transition:background .25s ease,border-color .25s ease}.toggle-switch .toggle-thumb{position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 2px 5px rgba(0,25,20,.3);transition:transform .25s ease,background .25s ease}.toggle-switch[aria-checked="true"]{border-color:#075747;background:#075747}.toggle-switch[aria-checked="true"] .toggle-thumb{transform:translateX(24px);background:#f2c14e}.toggle-switch:hover{border-color:#b78100}.toggle-switch:focus-visible{outline:3px solid #1d64b5;outline-offset:3px}.dark .binary-setting>span.active{color:#f2c14e}.dark .toggle-switch{border-color:#8da099;background:#43534e}.dark .toggle-switch[aria-checked="true"]{border-color:#f2c14e;background:#075747}.dark .toggle-switch:focus-visible{outline-color:#8fbdff}
 @media(prefers-reduced-motion:reduce){.binary-setting>span,.toggle-switch,.toggle-switch .toggle-thumb{transition:none}}
+
+/* Let the overview graph occupy the remaining desktop screen height. */
+.chart-panel{padding:20px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.chart-panel .panel-heading{flex-wrap:wrap;margin-bottom:0}
+.chart-panel .panel-heading .legend{font-size:12px;flex-wrap:wrap}
+.chart-panel .panel-heading select{font-size:12px;min-height:40px}
+.chart-panel>small{font-size:11px}
+.chart-panel canvas{width:100%;height:max(320px,calc(100vh - 390px));height:max(320px,calc(100dvh - 390px))}
+.dark .chart-panel .line-key{border-color:#62c4a7}
+@media(max-width:620px){.chart-panel{padding:14px;gap:10px}.chart-panel canvas{height:340px}.chart-panel .panel-heading{gap:12px}.chart-panel .panel-heading .legend{margin-left:0}}

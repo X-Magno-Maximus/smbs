@@ -119,17 +119,18 @@ function drawChart(){
   const canvas=document.querySelector('#performanceChart');
   const rect=canvas.getBoundingClientRect();
   const ratio=window.devicePixelRatio||1;
-  canvas.width=Math.max(320,rect.width)*ratio;
-  canvas.height=170*ratio;
+  if(!rect.width||!rect.height) return;
+  canvas.width=Math.round(rect.width*ratio);
+  canvas.height=Math.round(rect.height*ratio);
   const ctx=canvas.getContext('2d');
   ctx.scale(ratio,ratio);
   const width=canvas.width/ratio;
-  const height=170;
-  const pad={left:40,right:18,top:18,bottom:26};
+  const height=canvas.height/ratio;
+  const pad={left:48,right:26,top:22,bottom:34};
   const plotW=width-pad.left-pad.right;
   const plotH=height-pad.top-pad.bottom;
   const dark=document.body.classList.contains('dark');
-  ctx.font='9px system-ui';
+  ctx.font='12px system-ui';
   ctx.strokeStyle=dark?'#344b44':'#e5e9e7';
   ctx.fillStyle=dark?'#9fb0aa':'#68716e';
   ctx.lineWidth=1;
@@ -147,9 +148,19 @@ function drawChart(){
   sales.forEach((v,i)=>{const x=pad.left+i*step;const y=pad.top+plotH-(v/30)*plotH;i?ctx.lineTo(x,y):ctx.moveTo(x,y)});
   ctx.stroke();
   const labels=[['Aug 6',1],['Aug 11',6],['Aug 16',12],['Aug 21',17],['Aug 26',22],['Aug 31',27],['Sep 4',29]];
-  ctx.fillStyle=dark?'#9fb0aa':'#68716e';labels.forEach(([label,i])=>ctx.fillText(label,pad.left+i*step-13,height-7));
+  ctx.fillStyle=dark?'#c7d8d1':'#52615b';
+  ctx.textAlign='center';
+  labels.forEach(([label,i],index)=>{
+    if(width<600&&index%2!==0) return;
+    const x=Math.min(width-ctx.measureText(label).width/2-2,pad.left+i*step);
+    ctx.fillText(label,x,height-10);
+  });
 }
 window.addEventListener('resize',drawChart);
+const performanceCanvas=document.querySelector('#performanceChart');
+if(performanceCanvas&&typeof ResizeObserver!=='undefined'){
+  new ResizeObserver(drawChart).observe(performanceCanvas);
+}
 drawChart();
 
 const dialogOpeners=document.querySelectorAll('[data-open-dialog]');

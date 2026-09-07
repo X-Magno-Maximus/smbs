@@ -535,3 +535,10 @@ For every future dashboard change:
 ---
 
 This is a living guide. Update it as the Marxia SMB Dashboard is corrected, expanded, integrated, tested, security-tested, moved through BETA, and prepared for production.
+
+
+## Responsive overview graph — September 7, 2026
+
+The Revenue & Orders graph uses the full content width and a viewport-based plotting height with a 320px desktop minimum, replacing the fixed 170px plot. Other overview cards follow below the graph. On phones the plot uses 340px height and fewer date labels to avoid overlap. Canvas rendering follows its measured CSS dimensions and device pixel ratio; ResizeObserver redraws during sidebar width changes. Legend, date, and axis labels are larger; the dark-theme legend matches the sales line. Existing chart data and reporting periods are unchanged.
+
+Verification: JavaScript syntax checked; responsive sizing and label spacing reviewed in source. Browser visual verification remains pending.
