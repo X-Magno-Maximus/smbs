@@ -558,3 +558,12 @@ The attention row uses three equal columns and financial metrics four equal colu
 The Today/Business health/stock/fulfillment grid and the transaction tables use native content-visibility:auto to defer off-screen layout and paint. Intrinsic fallback heights reserve scroll space; browser-measured heights replace estimates. Unsupported browsers render normally. Print renders all sections. This is lazy rendering of existing static sections, not deferred backend data fetching or a claim of reduced network payload. No business records are loaded from a backend by this change.
 
 Validation: all seven explanation elements retained; container breakpoints and print fallback checked in source. Browser visual and performance verification remains pending.
+
+
+## IT Support popup on every dashboard screen
+
+Overview, Accounting, Logistics, and Settings & Access now use the same top-bar question-mark button and support.js module. The module creates the existing Support Request form on first click and opens it in place, without navigation. Newly added dashboard pages must include the shared script and data-support-open button. The dialog supports native Escape dismissal, explicit close and Cancel, outside clicks, focus return, responsive existing form styling, and English/Spanish text. Dialog construction occurs after page-specific handlers have registered, so generic transaction/settings handlers do not submit or close it.
+
+Password fields are cleared on close, submit, and page exit and are never logged, stored, or sent by this UI. There is no connected support/authentication service yet: submitting keeps the form open and clearly states that the request has not been sent. No access grant, email, ticket creation, or identity verification is claimed. Existing form fields and authorization controls are retained.
+
+Validation: all four HTML screens contain one shared opener and one shared module; duplicate Overview support markup and handlers removed; JavaScript syntax checked. Browser interaction verification remains pending.

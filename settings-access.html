@@ -8,8 +8,9 @@
   <meta name="description" content="Marxia SMB settings, identity, employees, roles, approvals, and audit controls">
   <link rel="stylesheet" href="styles.css?v=20260906-7">
   <link rel="stylesheet" href="settings-access.css?v=20260906-6">
-  <script src="embedded-assets.js"></script><script src="i18n.js?v=20260906-1" defer></script>
+  <script src="embedded-assets.js"></script><script src="i18n.js?v=20260907-support-1" defer></script>
   <script src="settings-access.js?v=20260906-5" defer></script>
+<script src="support.js?v=20260907-1" defer></script>
 </head>
 <body>
   <div class="app-shell">
@@ -41,7 +42,7 @@
         <button class="mobile-menu" id="menuToggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Open navigation">☰</button>
         <label class="search settings-search"><span aria-hidden="true">⌕</span><input type="search" id="settingsSearch" placeholder="Search settings, people, roles..." aria-label="Search settings"><kbd>⌘ K</kbd></label>
         <div class="top-actions">
-          <a class="support-button" href="index.html" aria-label="Return to Overview for IT Tech Support" title="IT Tech Support">?</a>
+          <button class="support-button" type="button" data-support-open aria-haspopup="dialog" aria-controls="supportDialog" aria-label="Open IT Tech Support request form" title="IT Tech Support">?</button>
           <div class="utility-nav">
             <button class="utility-menu-toggle" id="utilityMenuToggle" type="button" aria-controls="utilityMenu" aria-expanded="false" aria-label="Open profile and appearance menu">☰</button>
             <nav class="utility-menu" id="utilityMenu" aria-label="Profile and appearance" hidden>
