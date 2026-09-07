@@ -542,3 +542,10 @@ This is a living guide. Update it as the Marxia SMB Dashboard is corrected, expa
 The Revenue & Orders graph uses the full content width and a viewport-based plotting height with a 320px desktop minimum, replacing the fixed 170px plot. Other overview cards follow below the graph. On phones the plot uses 340px height and fewer date labels to avoid overlap. Canvas rendering follows its measured CSS dimensions and device pixel ratio; ResizeObserver redraws during sidebar width changes. Legend, date, and axis labels are larger; the dark-theme legend matches the sales line. Existing chart data and reporting periods are unchanged.
 
 Verification: JavaScript syntax checked; responsive sizing and label spacing reviewed in source. Browser visual verification remains pending.
+
+
+## Larger overview cards and explanatory text — September 7, 2026
+
+The three attention items are now separate taller cards. Financial cards use a 220px minimum height and switch to two columns below 1400px and one column on phones. Every card includes a visible 14px explanation below a divider, translated into Spanish through the existing language system. Text wraps freely and card heights can grow. Explanation colors are #45554e on white and #d4e2dc on the dark surface. Existing data and click behavior are preserved; explanations describe the metrics without claiming unfinished destinations work. Receivables retain the existing aging-group wording until its age basis is defined.
+
+Validation: translation JavaScript parses; all seven explanations and Spanish translations are present. Layout rules reviewed for narrow screens and wrapping. Browser visual verification remains pending.

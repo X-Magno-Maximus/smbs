@@ -42,3 +42,24 @@ body.dark{--ink:#eaf2ef;--muted:#a9b8b3;--line:#334943;--surface:#162923;--canva
 .chart-panel canvas{width:100%;height:max(320px,calc(100vh - 390px));height:max(320px,calc(100dvh - 390px))}
 .dark .chart-panel .line-key{border-color:#62c4a7}
 @media(max-width:620px){.chart-panel{padding:14px;gap:10px}.chart-panel canvas{height:340px}.chart-panel .panel-heading{gap:12px}.chart-panel .panel-heading .legend{margin-left:0}}
+
+/* Roomier overview cards with readable explanations at the bottom. */
+.attention-strip{gap:18px;padding:0;border:0;background:transparent;box-shadow:none}
+.attention-strip button{display:grid;grid-template-columns:56px minmax(0,1fr);gap:14px;align-content:start;min-height:174px;padding:22px;border:1px solid var(--line);border-radius:10px;background:var(--surface);box-shadow:var(--shadow)}
+.attention-strip button:last-child{border-right:1px solid var(--line)}
+.attention-strip img,.metric img{width:56px;height:56px}
+.attention-strip strong{font-size:15px;font-weight:650}
+.attention-strip b{font-size:32px}
+.attention-strip span small{font-size:13px;line-height:1.5}
+.metric-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.metric{display:grid;grid-template-columns:56px minmax(0,1fr);gap:14px;align-content:start;align-items:center;min-width:0;min-height:220px;padding:22px;border-radius:10px}
+.metric div{min-width:0}
+.metric div>small{font-size:14px;line-height:1.4}
+.metric div>strong{font-size:clamp(26px,2.2vw,34px);white-space:normal;overflow-wrap:anywhere}
+.metric div>span{font-size:12px;line-height:1.5}
+.attention-strip .card-explanation,.metric .card-explanation{display:block;grid-column:1/-1;align-self:end;margin:6px 0 0;padding-top:12px;border-top:1px solid var(--line);color:#45554e;font-size:14px;font-weight:400;line-height:1.55;text-align:left;overflow-wrap:anywhere}
+.attention-strip button,.metric{grid-template-rows:auto 1fr}
+.dark .attention-strip .card-explanation,.dark .metric .card-explanation{color:#d4e2dc}
+@media(max-width:1400px){.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:900px){.attention-strip{gap:12px}.attention-strip button{padding:18px;grid-template-columns:1fr}.attention-strip span{grid-template-columns:auto 1fr}.attention-strip button{grid-template-rows:auto auto 1fr}}
+@media(max-width:620px){.attention-strip,.metric-grid{grid-template-columns:1fr;gap:14px}.attention-strip button{grid-template-columns:56px minmax(0,1fr);grid-template-rows:auto 1fr}.attention-strip button,.metric{padding:20px;min-height:180px}.metric div>strong{font-size:32px}}
