@@ -105,11 +105,7 @@ const employeeDelete=document.querySelector('#employeeDelete');
 const employeeActionButtons=document.querySelectorAll('.employee-action-buttons button');
 const existingEmployeeSearch=document.querySelector('#existingEmployeeSearch');
 const employeeSearchStatus=document.querySelector('#employeeSearchStatus');
-const existingEmployees=[
-  {firstName:'Ana',lastName:'Pérez',email:'ana.perez@cacaoymas.com',phone:'+593 99 000 0101',address:'Employee address on file',position:'Manager',active:true},
-  {firstName:'Isaac',lastName:'Silva',email:'isaac.silva@cacaoymas.com',phone:'+593 99 000 0102',address:'Employee address on file',position:'Supervisor',active:true},
-  {firstName:'Luis',lastName:'Mora',email:'luis.mora@cacaoymas.com',phone:'+593 99 000 0103',address:'Employee address on file',position:'Employee / Staff',active:true}
-];
+const existingEmployees=window.MarxiaSettingsSample.people;
 const roleProgression={'Employee / Staff':'Supervisor','Independent contractor':'Employee / Staff','Supervisor':'Manager','Manager':'Management Admin','Management Admin':'Director','IT SuperUser':'Director','Director':'Vice President','Vice President':'Vice President'};
 let selectedExistingEmployee=null;
 let pendingEmployeeAction='New employee access';
