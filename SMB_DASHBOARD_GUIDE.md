@@ -567,3 +567,12 @@ Overview, Accounting, Logistics, and Settings & Access now use the same top-bar 
 Password fields are cleared on close, submit, and page exit and are never logged, stored, or sent by this UI. There is no connected support/authentication service yet: submitting keeps the form open and clearly states that the request has not been sent. No access grant, email, ticket creation, or identity verification is claimed. Existing form fields and authorization controls are retained.
 
 Validation: all four HTML screens contain one shared opener and one shared module; duplicate Overview support markup and handlers removed; JavaScript syntax checked. Browser interaction verification remains pending.
+
+
+## Staff Roles, Access & Activity — September 8, 2026
+
+Settings now offers one shared directory with Permissions and Activity views. The former Roles group links to this directory; the former End-User Access list is incorporated. Employee identities/job titles reference the existingEmployees objects. Existing unassigned example accounts and privileged role identities are retained without inventing jobs or login history. Both views share the same in-memory permission drafts. Activity view shows the proposed permissions as muted read-only reference; Permissions view shows activity as muted read-only context. Search matches name, email, and job.
+
+Each person can prepare application activation and per-screen Read/Write/Approve/Audit proposals. All current permissions remain unknown until authoritative data is available; initial unchecked proposals are not claims of current access. Owner-review preparation is explicitly not submission, approval, or live authorization. Nothing is persisted as authorization, no email is claimed, and no audit event is fabricated. Integration must supply authenticated tenant-scoped identity/activity, verified owner approvals, and server audit events before applying changes. Privileged roles require manual owner review. Drafts are temporary until reload. Existing approval/promotion workflows outside this section are unchanged.
+
+Activity fields include last login with timezone, branch, device/browser, approximate location, and session status. All use Not available pending real records. EN/ES, contrast, narrow-screen layout, and keyboard controls included. Syntax and reference checks completed; browser visual/interaction verification pending.
