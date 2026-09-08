@@ -93,3 +93,31 @@ body.dark #authorizeBusinessProfile[data-completed="true"]{border-color:#81918b;
 .section-actions button,.primary-page-action,.privileged-form button,.employee-action-buttons button,.settings-table .employee-row-actions button,.access-actions button{height:auto;padding-top:10px;padding-bottom:10px;white-space:normal}
 .staff-permission-grid label{font-size:var(--font-support)}
 @media(max-width:620px){.settings-summary{grid-template-columns:1fr}.staff-view-controls button{width:100%}}
+
+/* Compact staff directory identity row with an independent details disclosure. */
+.staff-record .staff-record-header{display:grid;grid-template-columns:minmax(150px,1fr) minmax(130px,.8fr) minmax(200px,1.4fr) 44px;align-items:center;gap:12px 20px}
+.staff-record-header h3,.staff-record .staff-record-header p{margin:0;min-width:0;overflow-wrap:anywhere}
+.staff-record .staff-record-header p{font-size:var(--font-body);line-height:1.5}
+.staff-record-toggle{display:grid;place-items:center;width:44px;height:44px;padding:0;border:1px solid var(--secondary-border);border-radius:8px;background:var(--secondary-normal);color:var(--secondary-text);cursor:pointer}
+.staff-record-toggle:hover{background:var(--secondary-hover)}
+.staff-record-toggle:active{background:var(--secondary-pressed)}
+.staff-record-toggle:focus-visible{outline:3px solid var(--button-focus);outline-offset:3px}
+.staff-record-chevron{width:11px;height:11px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-3px) rotate(45deg)}
+.staff-record-toggle[aria-expanded="true"] .staff-record-chevron{transform:translateY(3px) rotate(225deg)}
+.staff-toggle-label{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.staff-record>.staff-columns{margin-top:18px}
+.staff-record>.staff-columns[hidden]{display:none}
+@media(max-width:900px){
+ .staff-record .staff-record-header{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 44px;gap:10px 14px}
+ .staff-record-header h3{grid-column:1;grid-row:1}
+ .staff-record-occupation{grid-column:2;grid-row:1}
+ .staff-record-email{grid-column:1/3;grid-row:2}
+ .staff-record-toggle{grid-column:3;grid-row:1/3}
+}
+@media(max-width:480px){
+ .staff-record .staff-record-header{grid-template-columns:minmax(0,1fr) 44px}
+ .staff-record-header h3{grid-column:1;grid-row:1}
+ .staff-record-occupation{grid-column:1;grid-row:2}
+ .staff-record-email{grid-column:1;grid-row:3}
+ .staff-record-toggle{grid-column:2;grid-row:1/4}
+}

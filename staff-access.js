@@ -25,10 +25,33 @@
  people.forEach(({id,person})=>{
    const row=element('article',undefined,'staff-record');
    row.dataset.staffId=id;
-   const header=element('header');
-   header.append(element('h3',person.firstName+' '+person.lastName),element('p',person.email),element('p',person.position));
+   const header=element('header',undefined,'staff-record-header');
+   const name=element('h3',person.firstName+' '+person.lastName);
+   name.id=id+'-name';
+   const occupation=element('p',person.position,'staff-record-occupation');
+   const email=element('p',person.email || 'Not available','staff-record-email');
+   const expand=element('button',undefined,'staff-record-toggle');
+   expand.type='button';
+   const toggleLabel=element('span','Show staff details','staff-toggle-label');
+   toggleLabel.id=id+'-toggle-label';
+   const arrow=element('span',undefined,'staff-record-chevron');
+   arrow.setAttribute('aria-hidden','true');
+   expand.append(toggleLabel,arrow);
+   expand.setAttribute('aria-labelledby',toggleLabel.id+' '+name.id);
+   expand.setAttribute('aria-expanded','false');
+   expand.setAttribute('aria-controls',id+'-details');
+   header.append(name,occupation,email,expand);
    row.append(header);
    const columns=element('div',undefined,'staff-columns');
+   columns.id=id+'-details';
+   columns.hidden=true;
+   expand.addEventListener('click',()=>{
+     const open=expand.getAttribute('aria-expanded')!=='true';
+     expand.setAttribute('aria-expanded',String(open));
+     columns.hidden=!open;
+     toggleLabel.textContent=open?'Hide staff details':'Show staff details';
+     translated();
+   });
    const permissions=element('section',undefined,'staff-permissions');
    permissions.append(element('h4','Roles & Access Permissions'),element('p','Current permissions: Not available'));
    const draft={enabled:false,permissions:{},prepared:false};
@@ -70,7 +93,7 @@
    const mirror=element('p','No permission changes prepared','staff-permission-reference');
    permissions.append(mirror);
    const activity=element('section',undefined,'staff-activity');
-   activity.append(element('h4','End-User Access / Activity'));
+   activity.append(element('h4','Activity'));
    const facts=element('dl');
    ['Last login date / time / timezone','Branch','Device / browser','Approximate location','Session status'].forEach(label=>{
      const item=element('div');item.append(element('dt',label),element('dd','Not available'));facts.append(item);
