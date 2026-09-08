@@ -150,12 +150,12 @@
 .employee-access-table td:first-child strong{display:block;font-size:var(--font-body);font-weight:800;line-height:1.3}
 .employee-access-table td:first-child .employee-access-note{display:block;margin-top:4px;color:var(--muted);font-size:var(--font-support);line-height:1.35}
 .employee-select{position:absolute;left:0;top:1px;width:19px;height:19px;accent-color:var(--green);cursor:pointer}
-.employee-row-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0}
+.employee-row-actions{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap;min-width:0}
 .settings-table .employee-row-actions>button,.settings-table .employee-row-actions .employee-more summary{min-height:38px;padding:0 12px;border:1px solid var(--green);border-radius:7px;background:var(--surface);color:var(--green);font-size:var(--font-body);font-weight:750;white-space:nowrap;cursor:pointer}
 .settings-table .employee-row-actions>button:hover,.settings-table .employee-row-actions .employee-more summary:hover{background:var(--green);color:#fff}
 .settings-table .employee-row-actions>button:active{transform:translateY(1px)}
 .settings-table .employee-row-actions>button:focus-visible,.settings-table .employee-row-actions .employee-more summary:focus-visible,.employee-select:focus-visible,.employee-access-toolbar button:focus-visible,.employee-access-toolbar input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-.employee-row-actions .employee-more{position:relative}
+.employee-row-actions .employee-more{position:relative;margin-left:auto;flex:0 0 auto}
 .employee-row-actions .employee-more summary{display:flex;align-items:center;list-style:none}
 .employee-row-actions .employee-more summary::-webkit-details-marker{display:none}
 .employee-row-actions .employee-more summary::after{content:'▾';margin-left:7px;font-size:12px}
@@ -165,8 +165,8 @@
 .employee-row-actions .employee-more-menu button:hover{background:var(--green);color:#fff}
 .employee-row-actions .employee-more-menu .danger-button-small{color:var(--danger)}
 .employee-row-actions .employee-more-menu .danger-button-small:hover{background:var(--danger);color:#fff}
-@media(max-width:900px){.employee-access-table tr{grid-template-columns:1fr 1fr;grid-template-areas:"employee employee" "position status" "access access" "actions actions";gap:14px 18px}.employee-row-actions .employee-more-menu{right:auto;left:0;bottom:auto;top:calc(100% + 7px)}}
-@media(max-width:560px){.employee-access-toolbar{align-items:flex-start;flex-direction:column}.employee-access-toolbar.has-selection .employee-bulk-actions{width:100%}.employee-access-toolbar .employee-bulk-actions button{flex:1}.employee-access-table tr{grid-template-columns:1fr;grid-template-areas:"employee" "position" "status" "access" "actions"}.employee-row-actions>button,.employee-row-actions .employee-more{flex:1 1 150px}.employee-row-actions .employee-more summary{justify-content:center}.employee-row-actions .employee-more-menu{left:0;right:0}.employee-row-actions .employee-more-menu button{text-align:center}}
+@media(max-width:900px){.employee-access-table tr{grid-template-columns:1fr 1fr;grid-template-areas:"employee employee" "position status" "access access" "actions actions";gap:14px 18px}.employee-row-actions .employee-more-menu{right:0;left:auto;bottom:auto;top:calc(100% + 7px)}}
+@media(max-width:560px){.employee-access-toolbar{align-items:flex-start;flex-direction:column}.employee-access-toolbar.has-selection .employee-bulk-actions{width:100%}.employee-access-toolbar .employee-bulk-actions button{flex:1}.employee-access-table tr{grid-template-columns:1fr;grid-template-areas:"employee" "position" "status" "access" "actions"}.employee-row-actions>button{flex:1 1 150px}.employee-row-actions .employee-more{flex:0 0 auto;margin-left:auto}.employee-row-actions .employee-more summary{justify-content:center}.employee-row-actions .employee-more-menu{left:auto;right:0;min-width:0;width:min(240px,calc(100vw - 100px))}.employee-row-actions .employee-more-menu button{text-align:center}}
 .dark .employee-access-toolbar,.dark .employee-access-table tr{background:var(--surface)}
 .dark .employee-row-actions .employee-more-menu{box-shadow:0 18px 40px rgba(0,0,0,.38)}
 `;
