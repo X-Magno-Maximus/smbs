@@ -1,0 +1,142 @@
+/* Approved Marxia button palettes. Loaded after component styles on every page.
+   Paint declarations are intentionally important to replace legacy important
+   white backgrounds on utility controls and legacy destructive-button colors.
+   Layout, typography, visibility, events and authorization stay component-owned. */
+body{
+  --authorization-text:#14251D;
+  --authorization-normal:linear-gradient(180deg,#F2C14E,#DFA82E);
+  --authorization-hover:linear-gradient(180deg,#E7AE32,#CC901A);
+  --authorization-pressed:linear-gradient(180deg,#CC901A,#CC901A);
+  --authorization-border:#7A5200;
+  --authorization-edge:#684300;
+  --danger-text:#FFFFFF;
+  --danger-normal:linear-gradient(180deg,#B42332,#941C29);
+  --danger-hover:linear-gradient(180deg,#941C29,#741521);
+  --danger-pressed:linear-gradient(180deg,#741521,#741521);
+  --danger-border:#741521;
+  --danger-edge:#741521;
+  --disabled-text:#46594E;
+  --disabled-normal:linear-gradient(180deg,#DDE5DF,#DDE5DF);
+  --disabled-hover:linear-gradient(180deg,#DDE5DF,#DDE5DF);
+  --disabled-pressed:linear-gradient(180deg,#DDE5DF,#DDE5DF);
+  --disabled-border:#718579;
+  --disabled-edge:#718579;
+  --primary-text:#FFFFFF;
+  --primary-normal:linear-gradient(180deg,#126B54,#075747);
+  --primary-hover:linear-gradient(180deg,#075747,#033D31);
+  --primary-pressed:linear-gradient(180deg,#033D31,#033D31);
+  --primary-border:#075747;
+  --primary-edge:#A87812;
+  --secondary-text:#14251D;
+  --secondary-normal:linear-gradient(180deg,#E3EDE6,#D5E3DA);
+  --secondary-hover:linear-gradient(180deg,#C9DED0,#BDD4C5);
+  --secondary-pressed:linear-gradient(180deg,#B6CDBE,#B6CDBE);
+  --secondary-border:#617E6B;
+  --secondary-edge:#075747;
+  --button-focus:#1D64B5;
+  --button-shadow:0 2px 4px rgba(8,40,26,.13),inset 0 1px 0 rgba(255,255,255,.14);
+  --button-hover-shadow:0 5px 12px rgba(8,40,26,.2),inset 0 1px 0 rgba(255,255,255,.12);
+  --card-hover:#E3EDE6;
+}
+body.dark{
+  --authorization-text:#0B1712;
+  --authorization-normal:linear-gradient(180deg,#91CEAE,#71B992);
+  --authorization-hover:linear-gradient(180deg,#B1DFC2,#94CFAA);
+  --authorization-pressed:linear-gradient(180deg,#75B58F,#75B58F);
+  --authorization-border:#91CEAE;
+  --authorization-edge:#C4ECD3;
+  --danger-text:#FFF1F2;
+  --danger-normal:linear-gradient(180deg,#842C3B,#692332);
+  --danger-hover:linear-gradient(180deg,#963445,#7B2938);
+  --danger-pressed:linear-gradient(180deg,#60202D,#60202D);
+  --danger-border:#F19AAA;
+  --danger-edge:#FFC0CB;
+  --disabled-text:#C1D0C6;
+  --disabled-normal:linear-gradient(180deg,#304237,#304237);
+  --disabled-hover:linear-gradient(180deg,#304237,#304237);
+  --disabled-pressed:linear-gradient(180deg,#304237,#304237);
+  --disabled-border:#708C7A;
+  --disabled-edge:#708C7A;
+  --primary-text:#FFFFFF;
+  --primary-normal:linear-gradient(180deg,#12664F,#0C503D);
+  --primary-hover:linear-gradient(180deg,#18765B,#12664F);
+  --primary-pressed:linear-gradient(180deg,#084331,#084331);
+  --primary-border:#63A98B;
+  --primary-edge:#B1DFC2;
+  --secondary-text:#F4F7F5;
+  --secondary-normal:linear-gradient(180deg,#284637,#223D30);
+  --secondary-hover:linear-gradient(180deg,#385E49,#2D513E);
+  --secondary-pressed:linear-gradient(180deg,#1F382C,#1F382C);
+  --secondary-border:#82998C;
+  --secondary-edge:#B1DFC2;
+  --button-focus:#B1DFC2;
+  --button-shadow:0 2px 5px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.08);
+  --button-hover-shadow:0 5px 14px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.1);
+  --card-hover:#223D30;
+}
+:is(.dialog-actions button,.page-action,.primary-page-action,.section-actions button,.privileged-form button,.approval-list button,.access-actions button,.position-buttons button,.employee-action-buttons button,.settings-table button,.employee-search-control button,.staff-view-controls button,.staff-permission-editor button,.inventory-search button,.utility-action,.support-button,.utility-menu-toggle,.mobile-menu,.dialog-close,.stepper button,.filter-bar button,.action-link,.danger-link,.status-card-link,.panel-heading button,.status-card button,#authorizeBusinessProfile){
+  background:var(--button-normal,var(--secondary-normal))!important;
+  color:var(--button-text,var(--secondary-text))!important;
+  border:1px solid var(--button-border,var(--secondary-border))!important;
+  border-radius:8px;
+  box-shadow:var(--button-shadow)!important;
+  text-decoration:none;
+  transition:background-color .16s ease,border-color .16s ease,box-shadow .16s ease;
+}
+:is(.dialog-actions button,.page-action,.primary-page-action,.section-actions button,.privileged-form button,.approval-list button,.access-actions button,.position-buttons button,.employee-action-buttons button,.settings-table button,.employee-search-control button,.staff-view-controls button,.staff-permission-editor button,.inventory-search button,.utility-action,.support-button,.utility-menu-toggle,.mobile-menu,.dialog-close,.stepper button,.filter-bar button,.action-link,.danger-link,.status-card-link,.panel-heading button,.status-card button,#authorizeBusinessProfile):is(.primary,.primary-action,.primary-page-action,.approval-request,[aria-pressed="true"],[role="radio"][aria-checked="true"],.selected,.inventory-search button,.employee-search-control button,.staff-permission-editor button){--button-normal:var(--primary-normal);--button-hover:var(--primary-hover);--button-pressed:var(--primary-pressed);--button-text:var(--primary-text);--button-border:var(--primary-border);--button-edge:var(--primary-edge)}
+
+:is(.dialog-actions button,.page-action,.primary-page-action,.section-actions button,.privileged-form button,.approval-list button,.access-actions button,.position-buttons button,.employee-action-buttons button,.settings-table button,.employee-search-control button,.staff-view-controls button,.staff-permission-editor button,.inventory-search button,.utility-action,.support-button,.utility-menu-toggle,.mobile-menu,.dialog-close,.stepper button,.filter-bar button,.action-link,.danger-link,.status-card-link,.panel-heading button,.status-card button,#authorizeBusinessProfile):is(#authorizeBusinessProfile,#employeeApprove,[data-approve-governance],.approve-access,[data-end-user-action="approve"],#supportForm button[type="submit"],#employeeApprovalForm button[type="submit"]){--button-normal:var(--authorization-normal);--button-hover:var(--authorization-hover);--button-pressed:var(--authorization-pressed);--button-text:var(--authorization-text);--button-border:var(--authorization-border);--button-edge:var(--authorization-edge)}
+
+:is(.dialog-actions button,.page-action,.primary-page-action,.section-actions button,.privileged-form button,.approval-list button,.access-actions button,.position-buttons button,.employee-action-buttons button,.settings-table button,.employee-search-control button,.staff-view-controls button,.staff-permission-editor button,.inventory-search button,.utility-action,.support-button,.utility-menu-toggle,.mobile-menu,.dialog-close,.stepper button,.filter-bar button,.action-link,.danger-link,.status-card-link,.panel-heading button,.status-card button,#authorizeBusinessProfile):is(.danger-button,.danger-button-small,.danger-link,[data-delete-user],[data-delete-employee-access],[data-end-user-action="delete"]){--button-normal:var(--danger-normal);--button-hover:var(--danger-hover);--button-pressed:var(--danger-pressed);--button-text:var(--danger-text);--button-border:var(--danger-border);--button-edge:var(--danger-edge)}
+
+@media(hover:hover){
+  :is(.dialog-actions button,.page-action,.primary-page-action,.section-actions button,.privileged-form button,.approval-list button,.access-actions button,.position-buttons button,.employee-action-buttons button,.settings-table button,.employee-search-control button,.staff-view-controls button,.staff-permission-editor button,.inventory-search button,.utility-action,.support-button,.utility-menu-toggle,.mobile-menu,.dialog-close,.stepper button,.filter-bar button,.action-link,.danger-link,.status-card-link,.panel-heading button,.status-card button,#authorizeBusinessProfile):hover:not(:disabled):not([aria-disabled="true"]):not([data-completed="true"]){
+    background:var(--button-hover,var(--secondary-hover))!important;
+    border-color:var(--button-edge,var(--secondary-edge))!important;
+    box-shadow:var(--button-hover-shadow)!important;
+  }
+}
+:is(.dialog-actions button,.page-action,.primary-page-action,.section-actions button,.privileged-form button,.approval-list button,.access-actions button,.position-buttons button,.employee-action-buttons button,.settings-table button,.employee-search-control button,.staff-view-controls button,.staff-permission-editor button,.inventory-search button,.utility-action,.support-button,.utility-menu-toggle,.mobile-menu,.dialog-close,.stepper button,.filter-bar button,.action-link,.danger-link,.status-card-link,.panel-heading button,.status-card button,#authorizeBusinessProfile):active:not(:disabled):not([aria-disabled="true"]):not([data-completed="true"]){
+  background:var(--button-pressed,var(--secondary-pressed))!important;
+  border-color:var(--button-edge,var(--secondary-edge))!important;
+  box-shadow:inset 0 2px 4px rgba(0,0,0,.2)!important;
+}
+:is(.dialog-actions button,.page-action,.primary-page-action,.section-actions button,.privileged-form button,.approval-list button,.access-actions button,.position-buttons button,.employee-action-buttons button,.settings-table button,.employee-search-control button,.staff-view-controls button,.staff-permission-editor button,.inventory-search button,.utility-action,.support-button,.utility-menu-toggle,.mobile-menu,.dialog-close,.stepper button,.filter-bar button,.action-link,.danger-link,.status-card-link,.panel-heading button,.status-card button,#authorizeBusinessProfile):focus-visible{
+  outline:3px solid var(--button-focus)!important;
+  outline-offset:3px!important;
+}
+:is(.dialog-actions button,.page-action,.primary-page-action,.section-actions button,.privileged-form button,.approval-list button,.access-actions button,.position-buttons button,.employee-action-buttons button,.settings-table button,.employee-search-control button,.staff-view-controls button,.staff-permission-editor button,.inventory-search button,.utility-action,.support-button,.utility-menu-toggle,.mobile-menu,.dialog-close,.stepper button,.filter-bar button,.action-link,.danger-link,.status-card-link,.panel-heading button,.status-card button,#authorizeBusinessProfile):is(:disabled,[aria-disabled="true"],[data-completed="true"]){
+  background:var(--disabled-normal)!important;
+  color:var(--disabled-text)!important;
+  border-color:var(--disabled-border)!important;
+  box-shadow:none!important;
+  opacity:1;
+  cursor:not-allowed;
+}
+/* Small former text actions need padding once their surface becomes visible. */
+:is(.action-link,.danger-link,.status-card-link,.panel-heading button,.status-card button){padding:8px 12px;min-height:40px}
+/* Large actionable cards keep their content hierarchy and gain a sage/pine hover. */
+@media(hover:hover){
+  :is(.creation-card,.metric-link,.attention-strip button,.upload-control,.utility-profile):hover{
+    background:var(--card-hover);
+    border-color:var(--secondary-border);
+    box-shadow:var(--button-hover-shadow);
+  }
+}
+:is(.creation-card,.metric-link,.attention-strip button,.upload-control,.utility-profile):active{
+  background:var(--card-hover);
+  box-shadow:inset 0 2px 4px rgba(0,0,0,.15);
+}
+:is(.creation-card,.metric-link,.attention-strip button,.upload-control,.utility-profile):focus-visible{
+  outline:3px solid var(--button-focus);outline-offset:3px;
+}
+/* Sidebar navigation retains its dark surface in both appearances. */
+@media(hover:hover){.sidebar .nav-item:hover,.sidebar .owner-card:hover{background:#12664F;color:#FFFFFF}}
+.sidebar .nav-item:active,.sidebar .owner-card:active{background:#084331;color:#FFFFFF}
+.sidebar :is(.nav-item,.owner-card):focus-visible{outline:3px solid #B1DFC2;outline-offset:2px}
+/* Dark appearance uses green accents, including the existing binary switches. */
+body.dark .binary-setting>span.active{color:#B1DFC2}
+body.dark .toggle-switch[aria-checked="true"]{border-color:#91CEAE;background:#12664F}
+body.dark .toggle-switch[aria-checked="true"] .toggle-thumb{background:#B1DFC2}
+body.dark :is(.toggle-switch,.switch):focus-visible{outline:3px solid #B1DFC2;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){:is(.dialog-actions button,.page-action,.primary-page-action,.section-actions button,.privileged-form button,.approval-list button,.access-actions button,.position-buttons button,.employee-action-buttons button,.settings-table button,.employee-search-control button,.staff-view-controls button,.staff-permission-editor button,.inventory-search button,.utility-action,.support-button,.utility-menu-toggle,.mobile-menu,.dialog-close,.stepper button,.filter-bar button,.action-link,.danger-link,.status-card-link,.panel-heading button,.status-card button,#authorizeBusinessProfile){transition:none}}

@@ -1,7 +1,7 @@
 # Marxia SMB Dashboard — Progress and Section Guide
 
 **Repository:** `X-Magno-Maximus/smbs`  
-**Last updated:** September 6, 2026  
+**Last updated:** September 8, 2026  
 **Status:** Living MVP guide — update this document as pages, integrations, permissions, and workflows change.
 
 ## 1. Purpose
@@ -576,3 +576,49 @@ Settings now offers one shared directory with Permissions and Activity views. Th
 Each person can prepare application activation and per-screen Read/Write/Approve/Audit proposals. All current permissions remain unknown until authoritative data is available; initial unchecked proposals are not claims of current access. Owner-review preparation is explicitly not submission, approval, or live authorization. Nothing is persisted as authorization, no email is claimed, and no audit event is fabricated. Integration must supply authenticated tenant-scoped identity/activity, verified owner approvals, and server audit events before applying changes. Privileged roles require manual owner review. Drafts are temporary until reload. Existing approval/promotion workflows outside this section are unchanged.
 
 Activity fields include last login with timezone, branch, device/browser, approximate location, and session status. All use Not available pending real records. EN/ES, contrast, narrow-screen layout, and keyboard controls included. Syntax and reference checks completed; browser visual/interaction verification pending.
+
+
+## Shared typography standard — September 8, 2026
+
+All four pages (Overview, Accounting, Logistics, Settings & Access) use the shared font tokens in `styles.css`. Page-specific styles consume the same tokens. This also covers Client, Product, Employee, Support, confirmation and operational dialogs.
+
+| Purpose | Desktop | Mobile/tablet (viewport ≤900 CSS px) | Token |
+| --- | --- | --- | --- |
+| Page title | 32px | 28px | --font-page |
+| Dialog title | 24px | 24px | --font-dialog |
+| Section heading | 20px | 20px | --font-section |
+| Card heading | 18px | 18px | --font-card |
+| Body, navigation, buttons, input text | 16px | 16px | --font-body |
+| Tables, field labels, supporting information | 14px | 14px | --font-support |
+| Minor timestamps and chart labels | 12px | 12px | --font-caption |
+| Main figures and KPIs | 32px | 28px | --font-metric |
+
+The pixel equivalents assume the browser's default 16px root size. Tokens use rem so user text-size preferences remain effective. The root size is not locked. Existing font families and Light/Dark colors remain in place. Non-text glyphs (menu, close, arrows, bullets) retain their control-specific sizes. The canvas chart labels remain 12px.
+
+Implementation rules:
+- Use the shared semantic tokens for text sizes; avoid page-specific numeric overrides.
+- Inputs and buttons must not inherit the smaller font size of a containing label or table.
+- Allow headings, translated labels and dialog actions to wrap.
+- Keep wide data tables inside their existing horizontal scrolling containers.
+- Mobile/tablet changes only page titles and KPI sizes; body and input text stays 16px.
+- All HTML pages use the same typography cache revision so browsers request the updated styles.
+
+Validation: source checks cover every existing font-size declaration, font shorthand, responsive override and stylesheet link. Browser visual verification is still required for desktop, tablet, phone, EN/ES, Light/Dark, expanded settings sections and dialogs before release.
+
+
+## Approved Light and Dark button designs — September 8, 2026
+
+The shared `button-theme.css` loads last on all four pages. It applies the approved visual concepts through CSS; no bitmap UI assets or new external dependencies are used.
+
+- Light: emerald primary actions, satin gold owner authorization, sage secondary actions.
+- Dark: emerald primary actions, mint owner authorization, muted pine secondary actions.
+- Hover deepens or brightens the colored surface without turning buttons white.
+- Pressed states use a deeper surface and inset shadow. Keyboard focus has a separate visible outline.
+- Destructive actions retain red treatments and explicit Delete labels. Disabled/completed controls use muted surfaces without hover or pressed effects.
+- Selected filters and roles retain a primary fill; toggles keep their distinct switch behavior.
+- Large clickable cards use subtle sage/pine hover surfaces; sidebar navigation stays green.
+- Existing theme switching, language behavior, action handlers and authorization requirements are unchanged.
+
+Button families cover dialog actions (including dynamically inserted Support), page actions, staff and employee controls, approval controls, search/load buttons, filters, utility controls and secondary action links.
+
+Verification: calculated label contrast at both endpoints of every default/hover/pressed gradient in both themes, including destructive and disabled palettes. The lowest endpoint ratio is 5.55:1. These are color calculations, not a claim of whole-page accessibility conformance. Source verification checks stylesheet order, balanced CSS blocks, and unchanged HTML apart from the new stylesheet link. Browser rendering/interaction verification remains pending.
