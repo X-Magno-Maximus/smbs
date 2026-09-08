@@ -121,3 +121,19 @@ body.dark #authorizeBusinessProfile[data-completed="true"]{border-color:#81918b;
  .staff-record-email{grid-column:1;grid-row:3}
  .staff-record-toggle{grid-column:2;grid-row:1/4}
 }
+
+/* Employee disclosure occupies the far-right identity column. */
+.employee-access-table tr.employee-action-card{grid-template-columns:minmax(150px,1.5fr) minmax(120px,1fr) minmax(100px,.7fr) minmax(130px,1fr) 44px;grid-template-areas:"employee position status access toggle" "actions actions actions actions actions";align-items:center}
+.employee-access-table .employee-disclosure-cell{grid-area:toggle}
+.employee-access-table .employee-disclosure-cell::before{display:none}
+.employee-access-table tr.employee-action-card>td[hidden]{display:none}
+.employee-access-table .employee-action-card .employee-row-actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));width:100%;min-width:0;gap:12px}
+.employee-access-table .employee-action-card .employee-row-actions>button{width:100%;min-width:0;white-space:normal;min-height:44px}
+@media(max-width:1000px){
+ .employee-access-table tr.employee-action-card{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 44px;grid-template-areas:"employee employee toggle" "position status toggle" "access access toggle" "actions actions actions";gap:12px}
+ .employee-access-table .employee-action-card .employee-row-actions{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:480px){
+ .employee-access-table tr.employee-action-card{grid-template-columns:minmax(0,1fr) 44px;grid-template-areas:"employee toggle" "position toggle" "status toggle" "access toggle" "actions actions"}
+ .employee-access-table .employee-action-card .employee-row-actions{grid-template-columns:1fr}
+}
