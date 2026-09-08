@@ -60,3 +60,27 @@ body.dark #authorizeBusinessProfile{border-color:#ffe08a;background:#f2c14e;colo
 body.dark #authorizeBusinessProfile:hover{border-color:#fff0bc;background:#ffdc78;color:#07150f}
 body.dark #authorizeBusinessProfile:focus-visible{outline-color:#8fbdff}
 body.dark #authorizeBusinessProfile[data-completed="true"]{border-color:#81918b;background:#34413d;color:#f0f5f3}
+
+/* Shared directory: contextual information is muted, never illegible. */
+.staff-view-controls{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.staff-view-controls button,.staff-permission-editor button{padding:12px 16px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);cursor:pointer}
+.staff-view-controls button[aria-pressed="true"]{background:#075747;color:white;border-color:#075747}
+.staff-record{padding:22px;margin:18px 0;border:1px solid var(--line);border-radius:12px}
+.staff-record[hidden],.staff-permission-editor[hidden]{display:none}
+.staff-record h3{font-size:20px;margin:0}.staff-record p{font-size:14px;line-height:1.6}
+.staff-columns{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.staff-columns>section{padding:18px;border:1px solid var(--line);border-radius:8px;min-width:0}
+.staff-columns h4{font-size:16px;margin:0 0 14px}
+#staffDirectory[data-view="permissions"] .staff-activity,#staffDirectory[data-view="activity"] .staff-permissions{background:#edf0ee;color:#4e5a54}
+.dark #staffDirectory[data-view="permissions"] .staff-activity,.dark #staffDirectory[data-view="activity"] .staff-permissions{background:#23372f;color:#c7d4cd}
+.staff-activity dl>div{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding:12px 0;font-size:14px}
+.staff-activity dd{margin:0}
+.staff-permission-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.staff-permission-grid fieldset{min-width:0;border:1px solid var(--line);border-radius:6px}
+.staff-permission-grid label{display:flex;align-items:center;justify-content:space-between;min-height:44px;gap:12px}
+.staff-permission-editor summary{cursor:pointer;min-height:44px;padding:12px 0}
+.staff-permission-editor input{width:20px;height:20px;accent-color:#075747}
+#staffDirectory[data-view="permissions"] .staff-permission-reference{display:none}
+.staff-view-controls button:focus-visible,.staff-record summary:focus-visible,.staff-record button:focus-visible,.staff-record input:focus-visible{outline:3px solid #d4a42f;outline-offset:3px}
+@media(max-width:800px){.staff-columns{grid-template-columns:1fr}.staff-record{padding:16px}}
+@media(max-width:480px){.staff-permission-grid{grid-template-columns:1fr}}
