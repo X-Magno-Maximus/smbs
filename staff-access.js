@@ -155,18 +155,18 @@
 .settings-table .employee-row-actions>button:hover,.settings-table .employee-row-actions .employee-more summary:hover{background:var(--green);color:#fff}
 .settings-table .employee-row-actions>button:active{transform:translateY(1px)}
 .settings-table .employee-row-actions>button:focus-visible,.settings-table .employee-row-actions .employee-more summary:focus-visible,.employee-select:focus-visible,.employee-access-toolbar button:focus-visible,.employee-access-toolbar input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-.employee-row-actions .employee-more{position:relative;margin-left:auto;flex:0 0 auto}
-.employee-row-actions .employee-more summary{display:flex;align-items:center;list-style:none}
+.employee-row-actions .employee-more{position:relative;margin-left:auto;flex:0 0 auto;max-width:100%}
+.employee-row-actions .employee-more summary{display:flex;align-items:center;list-style:none;width:max-content;margin-left:auto}
 .employee-row-actions .employee-more summary::-webkit-details-marker{display:none}
 .employee-row-actions .employee-more summary::after{content:'▾';margin-left:7px;font-size:12px}
 .employee-row-actions .employee-more[open] summary::after{content:'▴'}
-.employee-row-actions .employee-more-menu{position:absolute;z-index:30;right:0;bottom:calc(100% + 7px);display:grid;min-width:190px;padding:6px;border:1px solid var(--line);border-radius:8px;background:var(--surface);box-shadow:0 14px 34px rgba(0,30,24,.18)}
+.employee-row-actions .employee-more-menu{position:static;display:grid;width:min(240px,calc(100vw - 100px));max-width:100%;min-width:0;margin-top:7px;padding:6px;border:1px solid var(--line);border-radius:8px;background:var(--surface);box-shadow:0 14px 34px rgba(0,30,24,.18)}
 .employee-row-actions .employee-more-menu button{width:100%;min-height:38px;padding:0 10px;border:0;border-radius:6px;background:transparent;color:var(--ink);font-size:var(--font-body);font-weight:700;text-align:left;cursor:pointer}
 .employee-row-actions .employee-more-menu button:hover{background:var(--green);color:#fff}
 .employee-row-actions .employee-more-menu .danger-button-small{color:var(--danger)}
 .employee-row-actions .employee-more-menu .danger-button-small:hover{background:var(--danger);color:#fff}
-@media(max-width:900px){.employee-access-table tr{grid-template-columns:1fr 1fr;grid-template-areas:"employee employee" "position status" "access access" "actions actions";gap:14px 18px}.employee-row-actions .employee-more-menu{right:0;left:auto;bottom:auto;top:calc(100% + 7px)}}
-@media(max-width:560px){.employee-access-toolbar{align-items:flex-start;flex-direction:column}.employee-access-toolbar.has-selection .employee-bulk-actions{width:100%}.employee-access-toolbar .employee-bulk-actions button{flex:1}.employee-access-table tr{grid-template-columns:1fr;grid-template-areas:"employee" "position" "status" "access" "actions"}.employee-row-actions>button{flex:1 1 150px}.employee-row-actions .employee-more{flex:0 0 auto;margin-left:auto}.employee-row-actions .employee-more summary{justify-content:center}.employee-row-actions .employee-more-menu{left:auto;right:0;min-width:0;width:min(240px,calc(100vw - 100px))}.employee-row-actions .employee-more-menu button{text-align:center}}
+@media(max-width:900px){.employee-access-table tr{grid-template-columns:1fr 1fr;grid-template-areas:"employee employee" "position status" "access access" "actions actions";gap:14px 18px}}
+@media(max-width:560px){.employee-access-toolbar{align-items:flex-start;flex-direction:column}.employee-access-toolbar.has-selection .employee-bulk-actions{width:100%}.employee-access-toolbar .employee-bulk-actions button{flex:1}.employee-access-table tr{grid-template-columns:1fr;grid-template-areas:"employee" "position" "status" "access" "actions"}.employee-row-actions>button{flex:1 1 150px}.employee-row-actions .employee-more{flex:0 0 auto;margin-left:auto}.employee-row-actions .employee-more summary{justify-content:center}.employee-row-actions .employee-more-menu button{text-align:center}}
 .dark .employee-access-toolbar,.dark .employee-access-table tr{background:var(--surface)}
 .dark .employee-row-actions .employee-more-menu{box-shadow:0 18px 40px rgba(0,0,0,.38)}
 `;
@@ -212,18 +212,6 @@
        const review=actionWrap.querySelector('button[data-toast]');
        if(review){review.textContent='Review Staff';review.setAttribute('aria-label','Review '+employee+' employee record');}
        const reset=actionWrap.querySelector('[data-reset-password]');
-       const suspend=actionWrap.querySelector('[data-suspend-access]');
-       const del=actionWrap.querySelector('[data-delete-employee-access]');
-       if(suspend&&del){
-         const more=document.createElement('details');
-         more.className='employee-more';
-         const summary=document.createElement('summary');summary.textContent='More';
-         summary.setAttribute('aria-label','More actions for '+employee);
-         const menu=document.createElement('div');menu.className='employee-more-menu';
-         menu.append(suspend,del);
-         more.append(summary,menu);
-         actionWrap.append(more);
-       }
        if(reset)reset.textContent='Request Password Reset';
      }
      checkbox.addEventListener('change',updateSelection);
