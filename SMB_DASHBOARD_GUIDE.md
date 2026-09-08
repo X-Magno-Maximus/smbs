@@ -604,3 +604,21 @@ Implementation rules:
 - All HTML pages use the same typography cache revision so browsers request the updated styles.
 
 Validation: source checks cover every existing font-size declaration, font shorthand, responsive override and stylesheet link. Browser visual verification is still required for desktop, tablet, phone, EN/ES, Light/Dark, expanded settings sections and dialogs before release.
+
+
+## Approved Light and Dark button designs — September 8, 2026
+
+The shared `button-theme.css` loads last on all four pages. It applies the approved visual concepts through CSS; no bitmap UI assets or new external dependencies are used.
+
+- Light: emerald primary actions, satin gold owner authorization, sage secondary actions.
+- Dark: emerald primary actions, mint owner authorization, muted pine secondary actions.
+- Hover deepens or brightens the colored surface without turning buttons white.
+- Pressed states use a deeper surface and inset shadow. Keyboard focus has a separate visible outline.
+- Destructive actions retain red treatments and explicit Delete labels. Disabled/completed controls use muted surfaces without hover or pressed effects.
+- Selected filters and roles retain a primary fill; toggles keep their distinct switch behavior.
+- Large clickable cards use subtle sage/pine hover surfaces; sidebar navigation stays green.
+- Existing theme switching, language behavior, action handlers and authorization requirements are unchanged.
+
+Button families cover dialog actions (including dynamically inserted Support), page actions, staff and employee controls, approval controls, search/load buttons, filters, utility controls and secondary action links.
+
+Verification: calculated label contrast at both endpoints of every default/hover/pressed gradient in both themes, including destructive and disabled palettes. The lowest endpoint ratio is 5.55:1. These are color calculations, not a claim of whole-page accessibility conformance. Source verification checks stylesheet order, balanced CSS blocks, and unchanged HTML apart from the new stylesheet link. Browser rendering/interaction verification remains pending.
