@@ -1,7 +1,7 @@
 # Marxia SMB Dashboard — Progress and Section Guide
 
 **Repository:** `X-Magno-Maximus/smbs`  
-**Last updated:** September 6, 2026  
+**Last updated:** September 8, 2026  
 **Status:** Living MVP guide — update this document as pages, integrations, permissions, and workflows change.
 
 ## 1. Purpose
@@ -576,3 +576,31 @@ Settings now offers one shared directory with Permissions and Activity views. Th
 Each person can prepare application activation and per-screen Read/Write/Approve/Audit proposals. All current permissions remain unknown until authoritative data is available; initial unchecked proposals are not claims of current access. Owner-review preparation is explicitly not submission, approval, or live authorization. Nothing is persisted as authorization, no email is claimed, and no audit event is fabricated. Integration must supply authenticated tenant-scoped identity/activity, verified owner approvals, and server audit events before applying changes. Privileged roles require manual owner review. Drafts are temporary until reload. Existing approval/promotion workflows outside this section are unchanged.
 
 Activity fields include last login with timezone, branch, device/browser, approximate location, and session status. All use Not available pending real records. EN/ES, contrast, narrow-screen layout, and keyboard controls included. Syntax and reference checks completed; browser visual/interaction verification pending.
+
+
+## Shared typography standard — September 8, 2026
+
+All four pages (Overview, Accounting, Logistics, Settings & Access) use the shared font tokens in `styles.css`. Page-specific styles consume the same tokens. This also covers Client, Product, Employee, Support, confirmation and operational dialogs.
+
+| Purpose | Desktop | Mobile/tablet (viewport ≤900 CSS px) | Token |
+| --- | --- | --- | --- |
+| Page title | 32px | 28px | --font-page |
+| Dialog title | 24px | 24px | --font-dialog |
+| Section heading | 20px | 20px | --font-section |
+| Card heading | 18px | 18px | --font-card |
+| Body, navigation, buttons, input text | 16px | 16px | --font-body |
+| Tables, field labels, supporting information | 14px | 14px | --font-support |
+| Minor timestamps and chart labels | 12px | 12px | --font-caption |
+| Main figures and KPIs | 32px | 28px | --font-metric |
+
+The pixel equivalents assume the browser's default 16px root size. Tokens use rem so user text-size preferences remain effective. The root size is not locked. Existing font families and Light/Dark colors remain in place. Non-text glyphs (menu, close, arrows, bullets) retain their control-specific sizes. The canvas chart labels remain 12px.
+
+Implementation rules:
+- Use the shared semantic tokens for text sizes; avoid page-specific numeric overrides.
+- Inputs and buttons must not inherit the smaller font size of a containing label or table.
+- Allow headings, translated labels and dialog actions to wrap.
+- Keep wide data tables inside their existing horizontal scrolling containers.
+- Mobile/tablet changes only page titles and KPI sizes; body and input text stays 16px.
+- All HTML pages use the same typography cache revision so browsers request the updated styles.
+
+Validation: source checks cover every existing font-size declaration, font shorthand, responsive override and stylesheet link. Browser visual verification is still required for desktop, tablet, phone, EN/ES, Light/Dark, expanded settings sections and dialogs before release.
