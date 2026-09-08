@@ -622,3 +622,8 @@ The shared `button-theme.css` loads last on all four pages. It applies the appro
 Button families cover dialog actions (including dynamically inserted Support), page actions, staff and employee controls, approval controls, search/load buttons, filters, utility controls and secondary action links.
 
 Verification: calculated label contrast at both endpoints of every default/hover/pressed gradient in both themes, including destructive and disabled palettes. The lowest endpoint ratio is 5.55:1. These are color calculations, not a claim of whole-page accessibility conformance. Source verification checks stylesheet order, balanced CSS blocks, and unchanged HTML apart from the new stylesheet link. Browser rendering/interaction verification remains pending.
+
+
+### Basic accounting flow layout — September 8, 2026
+
+Accounting places Business health above a full-width Basic accounting flow panel. Net Sales, Gross Profit and Net Profit remain side by side in that order. Amounts never split across lines. Each card has a 15rem minimum width; on narrow screens the focusable, labeled flow region scrolls horizontally instead of squeezing or vertically stacking the cards. The Logistics page retains its existing panel layout.
