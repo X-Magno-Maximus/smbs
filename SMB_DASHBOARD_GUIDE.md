@@ -1,7 +1,7 @@
 # Marxia SMB Dashboard — Progress and Section Guide
 
 **Repository:** `X-Magno-Maximus/smbs`  
-**Last updated:** September 6, 2026  
+**Last updated:** September 8, 2026  
 **Status:** Living MVP guide — update this document as pages, integrations, permissions, and workflows change.
 
 ## 1. Purpose
@@ -558,6 +558,76 @@ The attention row uses three equal columns and financial metrics four equal colu
 The Today/Business health/stock/fulfillment grid and the transaction tables use native content-visibility:auto to defer off-screen layout and paint. Intrinsic fallback heights reserve scroll space; browser-measured heights replace estimates. Unsupported browsers render normally. Print renders all sections. This is lazy rendering of existing static sections, not deferred backend data fetching or a claim of reduced network payload. No business records are loaded from a backend by this change.
 
 Validation: all seven explanation elements retained; container breakpoints and print fallback checked in source. Browser visual and performance verification remains pending.
+
+
+## IT Support popup on every dashboard screen
+
+Overview, Accounting, Logistics, and Settings & Access now use the same top-bar question-mark button and support.js module. The module creates the existing Support Request form on first click and opens it in place, without navigation. Newly added dashboard pages must include the shared script and data-support-open button. The dialog supports native Escape dismissal, explicit close and Cancel, outside clicks, focus return, responsive existing form styling, and English/Spanish text. Dialog construction occurs after page-specific handlers have registered, so generic transaction/settings handlers do not submit or close it.
+
+Password fields are cleared on close, submit, and page exit and are never logged, stored, or sent by this UI. There is no connected support/authentication service yet: submitting keeps the form open and clearly states that the request has not been sent. No access grant, email, ticket creation, or identity verification is claimed. Existing form fields and authorization controls are retained.
+
+Validation: all four HTML screens contain one shared opener and one shared module; duplicate Overview support markup and handlers removed; JavaScript syntax checked. Browser interaction verification remains pending.
+
+
+## Staff Roles, Access & Activity — September 8, 2026
+
+Settings now offers one shared directory with Permissions and Activity views. The former Roles group links to this directory; the former End-User Access list is incorporated. Employee identities/job titles reference the existingEmployees objects. Existing unassigned example accounts and privileged role identities are retained without inventing jobs or login history. Both views share the same in-memory permission drafts. Activity view shows the proposed permissions as muted read-only reference; Permissions view shows activity as muted read-only context. Search matches name, email, and job.
+
+Each person can prepare application activation and per-screen Read/Write/Approve/Audit proposals. All current permissions remain unknown until authoritative data is available; initial unchecked proposals are not claims of current access. Owner-review preparation is explicitly not submission, approval, or live authorization. Nothing is persisted as authorization, no email is claimed, and no audit event is fabricated. Integration must supply authenticated tenant-scoped identity/activity, verified owner approvals, and server audit events before applying changes. Privileged roles require manual owner review. Drafts are temporary until reload. Existing approval/promotion workflows outside this section are unchanged.
+
+Activity fields include last login with timezone, branch, device/browser, approximate location, and session status. All use Not available pending real records. EN/ES, contrast, narrow-screen layout, and keyboard controls included. Syntax and reference checks completed; browser visual/interaction verification pending.
+
+
+## Shared typography standard — September 8, 2026
+
+All four pages (Overview, Accounting, Logistics, Settings & Access) use the shared font tokens in `styles.css`. Page-specific styles consume the same tokens. This also covers Client, Product, Employee, Support, confirmation and operational dialogs.
+
+| Purpose | Desktop | Mobile/tablet (viewport ≤900 CSS px) | Token |
+| --- | --- | --- | --- |
+| Page title | 32px | 28px | --font-page |
+| Dialog title | 24px | 24px | --font-dialog |
+| Section heading | 20px | 20px | --font-section |
+| Card heading | 18px | 18px | --font-card |
+| Body, navigation, buttons, input text | 16px | 16px | --font-body |
+| Tables, field labels, supporting information | 14px | 14px | --font-support |
+| Minor timestamps and chart labels | 12px | 12px | --font-caption |
+| Main figures and KPIs | 32px | 28px | --font-metric |
+
+The pixel equivalents assume the browser's default 16px root size. Tokens use rem so user text-size preferences remain effective. The root size is not locked. Existing font families and Light/Dark colors remain in place. Non-text glyphs (menu, close, arrows, bullets) retain their control-specific sizes. The canvas chart labels remain 12px.
+
+Implementation rules:
+- Use the shared semantic tokens for text sizes; avoid page-specific numeric overrides.
+- Inputs and buttons must not inherit the smaller font size of a containing label or table.
+- Allow headings, translated labels and dialog actions to wrap.
+- Keep wide data tables inside their existing horizontal scrolling containers.
+- Mobile/tablet changes only page titles and KPI sizes; body and input text stays 16px.
+- All HTML pages use the same typography cache revision so browsers request the updated styles.
+
+Validation: source checks cover every existing font-size declaration, font shorthand, responsive override and stylesheet link. Browser visual verification is still required for desktop, tablet, phone, EN/ES, Light/Dark, expanded settings sections and dialogs before release.
+
+
+## Approved Light and Dark button designs — September 8, 2026
+
+The shared `button-theme.css` loads last on all four pages. It applies the approved visual concepts through CSS; no bitmap UI assets or new external dependencies are used.
+
+- Light: emerald primary actions, satin gold owner authorization, sage secondary actions.
+- Dark: emerald primary actions, mint owner authorization, muted pine secondary actions.
+- Hover deepens or brightens the colored surface without turning buttons white.
+- Pressed states use a deeper surface and inset shadow. Keyboard focus has a separate visible outline.
+- Destructive actions retain red treatments and explicit Delete labels. Disabled/completed controls use muted surfaces without hover or pressed effects.
+- Selected filters and roles retain a primary fill; toggles keep their distinct switch behavior.
+- Large clickable cards use subtle sage/pine hover surfaces; sidebar navigation stays green.
+- Existing theme switching, language behavior, action handlers and authorization requirements are unchanged.
+
+Button families cover dialog actions (including dynamically inserted Support), page actions, staff and employee controls, approval controls, search/load buttons, filters, utility controls and secondary action links.
+
+Verification: calculated label contrast at both endpoints of every default/hover/pressed gradient in both themes, including destructive and disabled palettes. The lowest endpoint ratio is 5.55:1. These are color calculations, not a claim of whole-page accessibility conformance. Source verification checks stylesheet order, balanced CSS blocks, and unchanged HTML apart from the new stylesheet link. Browser rendering/interaction verification remains pending.
+
+
+### Basic accounting flow layout — September 8, 2026
+
+Accounting places Business health above a full-width Basic accounting flow panel. Net Sales, Gross Profit and Net Profit remain side by side in that order. Amounts never split across lines. Each card has a 15rem minimum width; on narrow screens the focusable, labeled flow region scrolls horizontally instead of squeezing or vertically stacking the cards. The Logistics page retains its existing panel layout.
+
 
 
 ## Remaining overview cards — size, explanations, and destinations

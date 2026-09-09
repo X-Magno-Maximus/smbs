@@ -402,62 +402,6 @@ document.querySelector('#deleteForm').addEventListener('submit',event=>{
   showToast('Protected deletion queued for '+pendingDeleteUser+'.');
   pendingDeleteUser='';
 });
-const endUserSearch=document.querySelector('#endUserSearch');
-const endUserRows=document.querySelectorAll('[data-end-user]');
-const endUserSearchEmpty=document.querySelector('#endUserSearchEmpty');
-function addAuditRecord(eventName,endUser,result){
-  const requestedAt=new Date();
-  const row=document.createElement('tr');
-  row.dataset.auditDate=requestedAt.toISOString().slice(0,10);
-  const formatted=requestedAt.toLocaleString([], {dateStyle:'medium',timeStyle:'short'});
-  row.innerHTML='<td></td><td></td><td>Current authenticated end user</td><td>Queued to owner@cacaoymas.com</td><td></td>';
-  row.children[0].textContent=formatted;
-  row.children[1].textContent=eventName+' — '+endUser;
-  const resultBadge=document.createElement('em');
-  resultBadge.className=result==='Deleted'||result==='Deactivated'?'low':result==='Requested'?'medium':'paid';
-  resultBadge.textContent=result;
-  row.children[4].append(resultBadge);
-  document.querySelector('.audit-history-table tbody')?.prepend(row);
-  applyAuditRange();
-}
-function applyEndUserSearch(){
-  const query=endUserSearch.value.trim().toLocaleLowerCase();
-  let visible=0;
-  endUserRows.forEach(row=>{
-    const searchable=(row.dataset.firstName+' '+row.dataset.lastName+' '+row.dataset.email).toLocaleLowerCase();
-    row.hidden=Boolean(query&&!searchable.includes(query));
-    if(!row.hidden)visible+=1;
-  });
-  endUserSearchEmpty.hidden=visible!==0;
-}
-endUserSearch.addEventListener('input',applyEndUserSearch);
-document.querySelectorAll('[data-end-user-action]').forEach(button=>button.addEventListener('click',()=>{
-  const row=button.closest('[data-end-user]');
-  const identity=row.dataset.firstName+' '+row.dataset.lastName+' · '+row.dataset.email;
-  const status=row.querySelector('[data-access-status]');
-  const action=button.dataset.endUserAction;
-  if(action==='password-reset'){
-    status.textContent='Secure password reset requested';
-    addAuditRecord('Password reset requested',identity,'Requested');
-    showToast('A secure password-reset link was requested for '+row.dataset.email+'.');
-    return;
-  }
-  const completed={approve:'Approved',deactivate:'Deactivated',delete:'Deleted',request:'Requested'}[action];
-  button.textContent=completed;
-  button.disabled=true;
-  button.dataset.completed='true';
-  if(action==='approve')status.textContent='Approved by Business Owner';
-  if(action==='deactivate')status.textContent='Application access deactivated';
-  if(action==='request')status.textContent='Awaiting Business Owner approval';
-  if(action==='delete'){
-    status.textContent='Application access deleted · Identity and history preserved';
-    row.dataset.accessDeleted='true';
-    row.querySelectorAll('[data-end-user-action]:not([data-end-user-action="delete"])').forEach(control=>control.disabled=true);
-  }
-  addAuditRecord('End-user access '+completed.toLocaleLowerCase(),identity,completed);
-  showToast(identity+' — '+completed+'. Audit history updated.');
-}));
-
 const auditRange=document.querySelector('#auditRange');
 const auditFrom=document.querySelector('#auditDateFrom');
 const auditTo=document.querySelector('#auditDateTo');

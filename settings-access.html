@@ -6,18 +6,19 @@
   <meta name="theme-color" content="#064f40">
   <title>Marxia | Settings & Access</title>
   <meta name="description" content="Marxia SMB settings, identity, employees, roles, approvals, and audit controls">
-  <link rel="stylesheet" href="styles.css?v=20260906-7">
-  <link rel="stylesheet" href="settings-access.css?v=20260906-6">
-  <script src="embedded-assets.js"></script><script src="i18n.js?v=20260906-1" defer></script>
-  <script src="settings-access.js?v=20260906-5" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20260908-typography-1">
+  <link rel="stylesheet" href="settings-access.css?v=20260909-horizontal-actions-1">
+  <link rel="stylesheet" href="button-theme.css?v=20260908-1">
+  <script src="embedded-assets.js"></script><script src="i18n.js?v=20260909-staff-disclosure-1" defer></script>
+  <script src="settings-access.js?v=20260908-1" defer></script>
+  <script src="support.js?v=20260907-1" defer></script>
+  <script src="staff-access.js?v=20260909-staff-disclosure-1" defer></script>
+  <script src="staff-card-actions.js?v=20260909-horizontal-actions-1" defer></script>
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar" id="sidebar" aria-label="Primary navigation">
-      <div class="brand">
-        <span class="brand-mark" aria-hidden="true">M</span>
-        <span><strong>Marxia</strong><small>Cacao &amp; Más</small></span>
-      </div>
+      <div class="brand"><span class="brand-mark" aria-hidden="true">M</span><span><strong>Marxia</strong><small>Cacao &amp; Más</small></span></div>
       <nav class="primary-nav">
         <a class="nav-item" href="index.html"><img src="assets/overview.webp" alt=""><span>Overview</span></a>
         <button class="nav-item" type="button" data-future-page="Orders"><img src="assets/order.webp" alt=""><span>Orders</span></button>
@@ -29,283 +30,31 @@
         <button class="nav-item" type="button" data-future-page="Reports"><img src="assets/reports.webp" alt=""><span>Reports</span></button>
         <a class="nav-item active" href="settings-access.html" aria-current="page"><img src="assets/settings.webp" alt=""><span>Settings &amp; Access</span></a>
       </nav>
-      <button class="owner-card" type="button" data-toast="Profile controls will be completed in the Profile stage.">
-        <img src="assets/avatar.webp" alt="">
-        <span><strong>Gabriel Salazar</strong><small>Owner</small></span>
-      </button>
+      <button class="owner-card" type="button" data-toast="Profile controls will be completed in the Profile stage."><img src="assets/avatar.webp" alt=""><span><strong>Gabriel Salazar</strong><small>Owner</small></span></button>
     </aside>
     <button class="sidebar-slide-toggle" id="sidebarSlideToggle" type="button" aria-controls="sidebar" aria-expanded="true" aria-label="Close navigation menu">&lt;</button>
-
     <main class="workspace">
       <header class="topbar">
         <button class="mobile-menu" id="menuToggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Open navigation">☰</button>
         <label class="search settings-search"><span aria-hidden="true">⌕</span><input type="search" id="settingsSearch" placeholder="Search settings, people, roles..." aria-label="Search settings"><kbd>⌘ K</kbd></label>
-        <div class="top-actions">
-          <a class="support-button" href="index.html" aria-label="Return to Overview for IT Tech Support" title="IT Tech Support">?</a>
-          <div class="utility-nav">
-            <button class="utility-menu-toggle" id="utilityMenuToggle" type="button" aria-controls="utilityMenu" aria-expanded="false" aria-label="Open profile and appearance menu">☰</button>
-            <nav class="utility-menu" id="utilityMenu" aria-label="Profile and appearance" hidden>
-              <button class="utility-profile" type="button" data-toast="Profile controls will be completed in the Profile stage."><img src="assets/avatar.webp" alt=""><span><strong>Gabriel</strong><small>Profile · Owner</small></span><b aria-hidden="true">›</b></button>
-              <section class="utility-group" aria-labelledby="appearanceLabel">
-                <strong id="appearanceLabel">Appearance</strong>
-                <div class="binary-setting">
-                  <span data-theme-label="light" class="active">Light</span>
-                  <button class="toggle-switch" type="button" role="switch" aria-checked="false" data-theme-toggle aria-label="Switch between Light and Dark appearance" title="Move left for Light or right for Dark"><span class="toggle-thumb" aria-hidden="true"></span></button>
-                  <span data-theme-label="dark">Dark</span>
-                </div>
-              </section>
-              <section class="utility-group" aria-labelledby="languageLabel">
-                <strong id="languageLabel">Language</strong>
-                <div class="binary-setting">
-                  <span data-language-label="en" class="active">English</span>
-                  <button class="toggle-switch" type="button" role="switch" aria-checked="false" data-language-toggle aria-label="Switch between English and Spanish" title="Move left for English or right for Spanish"><span class="toggle-thumb" aria-hidden="true"></span></button>
-                  <span data-language-label="es">Spanish</span>
-                </div>
-              </section>
-            </nav>
-          </div>
-        </div>
+        <div class="top-actions"><button class="support-button" type="button" data-support-open aria-haspopup="dialog" aria-controls="supportDialog" aria-label="Open IT Tech Support request form" title="IT Tech Support">?</button><div class="utility-nav"><button class="utility-menu-toggle" id="utilityMenuToggle" type="button" aria-controls="utilityMenu" aria-expanded="false" aria-label="Open profile and appearance menu">☰</button><nav class="utility-menu" id="utilityMenu" aria-label="Profile and appearance" hidden><button class="utility-profile" type="button" data-toast="Profile controls will be completed in the Profile stage."><img src="assets/avatar.webp" alt=""><span><strong>Gabriel</strong><small>Profile · Owner</small></span><b aria-hidden="true">›</b></button><section class="utility-group" aria-labelledby="appearanceLabel"><strong id="appearanceLabel">Appearance</strong><div class="binary-setting"><span data-theme-label="light" class="active">Light</span><button class="toggle-switch" type="button" role="switch" aria-checked="false" data-theme-toggle aria-label="Switch between Light and Dark appearance" title="Move left for Light or right for Dark"><span class="toggle-thumb" aria-hidden="true"></span></button><span data-theme-label="dark">Dark</span></div></section><section class="utility-group" aria-labelledby="languageLabel"><strong id="languageLabel">Language</strong><div class="binary-setting"><span data-language-label="en" class="active">English</span><button class="toggle-switch" type="button" role="switch" aria-checked="false" data-language-toggle aria-label="Switch between English and Spanish" title="Move left for English or right for Spanish"><span class="toggle-thumb" aria-hidden="true"></span></button><span data-language-label="es">Spanish</span></div></section></nav></div></div>
       </header>
-
       <div class="page settings-page">
-        <section class="heading-row settings-heading">
-          <div><a class="back-link" href="index.html">‹ Overview</a><h1>Settings &amp; Access</h1><p>Manage your business identity, people, permissions, approvals, and security records.</p></div>
-          <button class="primary-page-action has-tooltip" id="addEmployeeButton" type="button" data-tooltip="Open the form to create a new employee record and request role approval." aria-label="Add new employee. Opens the employee record and role approval form.">＋ Add new employee</button>
-        </section>
-
-        <section class="settings-summary" aria-label="Settings summary">
-          <article><img src="assets/avatar.webp" alt=""><span><strong>12</strong><small>Employees</small></span></article>
-          <article><img src="assets/settings.webp" alt=""><span><strong>7</strong><small>Active roles</small></span></article>
-          <article><img src="assets/reports.webp" alt=""><span><strong>3</strong><small>Pending approvals</small></span></article>
-          <article><img src="assets/accounting.webp" alt=""><span><strong>24</strong><small>Audit events today</small></span></article>
-        </section>
-
+        <section class="heading-row settings-heading"><div><a class="back-link" href="index.html">‹ Overview</a><h1>Settings &amp; Access</h1><p>Manage your business identity, people, permissions, approvals, and security records.</p></div><button class="primary-page-action has-tooltip" id="addEmployeeButton" type="button" data-tooltip="Open the form to create a new employee record and request role approval." aria-label="Add new employee. Opens the employee record and role approval form.">＋ Add new employee</button></section>
+        <section class="settings-summary" aria-label="Settings summary"><article><img src="assets/avatar.webp" alt=""><span><strong>12</strong><small>Employees</small></span></article><article><img src="assets/settings.webp" alt=""><span><strong>7</strong><small>Active roles</small></span></article><article><img src="assets/reports.webp" alt=""><span><strong>3</strong><small>Pending approvals</small></span></article><article><img src="assets/accounting.webp" alt=""><span><strong>24</strong><small>Audit events today</small></span></article></section>
         <section class="settings-sections" id="settingsSections">
-          <details class="settings-section" open data-search-terms="business profile identity tax address email phone">
-            <summary><span><img src="assets/marketplace.webp" alt=""><b>Business Profile</b><small>Legal identity and business contact information</small></span><i aria-hidden="true">＋</i></summary>
-            <form class="section-body settings-form" data-form-name="Business profile" id="businessProfileForm">
-              <div class="business-profile-auth">
-                <label class="has-tooltip" data-tooltip="Enter the SMB Owner password to authorize access to Business Profile.">SMB Owner password<input id="businessProfilePassword" type="password" autocomplete="current-password" required title="Enter the SMB Owner password to authorize Business Profile access."></label>
-                <button class="primary has-tooltip" id="authorizeBusinessProfile" type="button" data-tooltip="Verify SMB Owner authorization and unlock the Business Profile fields.">Authorize</button>
-              </div>
-              <div class="form-grid">
-                <label class="has-tooltip" data-tooltip="View or update the legal business name after SMB Owner authorization.">Business name<input data-profile-protected required value="Cacao & Más" title="Legal business name" disabled></label>
-                <label class="has-tooltip" data-tooltip="View or update the registered business Tax ID after SMB Owner authorization.">Tax ID<input data-profile-protected required placeholder="Enter registered Tax ID" title="Registered business Tax ID" disabled></label>
-                <label class="wide has-tooltip" data-tooltip="View or update the registered business address after SMB Owner authorization.">Business address<input data-profile-protected required autocomplete="street-address" placeholder="Street, city, province, postal code" title="Registered business address" disabled></label>
-                <label class="has-tooltip" data-tooltip="View or update the Business Owner notification email after authorization.">Business email<input data-profile-protected required type="email" value="owner@cacaoymas.com" title="Business Owner notification email" disabled></label>
-                <label class="has-tooltip" data-tooltip="View or update the official business contact number after authorization.">Business phone<input data-profile-protected type="tel" placeholder="+593" title="Official business contact number" disabled></label>
-              </div>
-              <label class="control-row profile-notification has-tooltip" data-tooltip="Enable or disable Owner email notices for staff access, role, and promotion changes."><span><strong>Email owner about authorization changes</strong></span><input data-profile-protected type="checkbox" role="switch" title="Owner authorization-change email notifications" checked disabled></label>
-              <div class="section-actions"><button class="primary has-tooltip" data-profile-protected type="submit" data-tooltip="Save the authorized Business Profile changes." disabled>Save business profile</button></div>
-            </form>
-          </details>
-
-          
-
-          <details class="settings-section" data-search-terms="employees staff add employee name address email phone position">
-            <summary><span><img src="assets/avatar.webp" alt=""><b>Employees &amp; Staff</b><small>Add people and review employment status</small></span><i aria-hidden="true">＋</i></summary>
-            <div class="section-body">
-              <div class="table-scroll"><table class="settings-table employee-access-table"><thead><tr><th>Employee</th><th>Position</th><th>Status</th><th>Last access</th><th>Access actions</th></tr></thead><tbody>
-                <tr data-employee-access data-employee="Ana Pérez" data-suspended="false"><td><strong>Ana Pérez</strong><small class="employee-access-note">Account and employment record retained</small></td><td>Manager</td><td><em class="paid" data-employee-status>Active</em></td><td>Today, 8:14 AM</td><td><div class="employee-row-actions"><button class="has-tooltip" type="button" data-tooltip="Open Ana Pérez’s employee record for review without changing access." aria-label="Review Ana Pérez employee record" data-toast="Ana Pérez's employee record opened.">Review</button><button class="has-tooltip" type="button" data-reset-password data-tooltip="Send this employee a secure, expiring password-reset link. The password is never displayed or emailed.">Request Password Reset</button><button class="has-tooltip" type="button" data-suspend-access data-tooltip="Immediately suspend application access and revoke active sessions for a lost or stolen device.">Suspend</button><button class="danger-button-small has-tooltip" type="button" data-delete-employee-access data-tooltip="Remove application access only. Keep the employee account, employment record, and audit history.">Delete Access</button></div></td></tr>
-                <tr data-employee-access data-employee="Isaac Silva" data-suspended="false"><td><strong>Isaac Silva</strong><small class="employee-access-note">Account and employment record retained</small></td><td>Inventory Supervisor</td><td><em class="paid" data-employee-status>Active</em></td><td>Yesterday</td><td><div class="employee-row-actions"><button class="has-tooltip" type="button" data-tooltip="Open Isaac Silva’s employee record for review without changing access." aria-label="Review Isaac Silva employee record" data-toast="Isaac Silva's employee record opened.">Review</button><button class="has-tooltip" type="button" data-reset-password data-tooltip="Send this employee a secure, expiring password-reset link. The password is never displayed or emailed.">Request Password Reset</button><button class="has-tooltip" type="button" data-suspend-access data-tooltip="Immediately suspend application access and revoke active sessions for a lost or stolen device.">Suspend</button><button class="danger-button-small has-tooltip" type="button" data-delete-employee-access data-tooltip="Remove application access only. Keep the employee account, employment record, and audit history.">Delete Access</button></div></td></tr>
-                <tr data-employee-access data-employee="Luis Mora" data-suspended="false"><td><strong>Luis Mora</strong><small class="employee-access-note">Account and employment record retained</small></td><td>Fulfillment Staff</td><td><em class="medium" data-employee-status>Pending review</em></td><td>Sep 2</td><td><div class="employee-row-actions"><button class="has-tooltip" type="button" data-tooltip="Open Luis Mora’s employee record for review without changing access." aria-label="Review Luis Mora employee record" data-toast="Luis Mora's employee record opened.">Review</button><button class="has-tooltip" type="button" data-reset-password data-tooltip="Send this employee a secure, expiring password-reset link. The password is never displayed or emailed.">Request Password Reset</button><button class="has-tooltip" type="button" data-suspend-access data-tooltip="Immediately suspend application access and revoke active sessions for a lost or stolen device.">Suspend</button><button class="danger-button-small has-tooltip" type="button" data-delete-employee-access data-tooltip="Remove application access only. Keep the employee account, employment record, and audit history.">Delete Access</button></div></td></tr>
-              </tbody></table></div>
-            </div>
-          </details>
-
-                    <details class="settings-section" data-search-terms="account authentication roles access permissions approvals promotions mfa session supervisor employee contractor admin superuser owner">
-            <summary><span><img src="assets/settings.webp" alt=""><b>Account, Roles &amp; Approvals</b><small>Authentication, RBAC, promotions, and owner authorization</small></span><i aria-hidden="true">＋</i></summary>
-            <div class="section-body governance-body">
-              <div class="governance-auth"><div><strong>Business Owner authorization</strong><small>Owner identity must be verified before an approval is completed. Passwords are never displayed or stored by this page.</small></div><label>Owner re-authentication<input id="governanceOwnerPassword" type="password" autocomplete="current-password" placeholder="Enter owner password"></label></div>
-              <section class="governance-group" aria-labelledby="rolesGroup"><h3 id="rolesGroup">Roles &amp; Access Permissions</h3><p>Preset and privileged RBAC assignments.</p><div class="governance-list">
-                <article data-governed-item data-active="true" data-approved="false">
-                  <span><small>ROLE ACCESS</small><strong>Supervisor</strong><small data-governed-status>Operational review and team approvals · Owner approval not requested</small><div class="assigned-staff"><b>Assigned staff (1)</b><ul aria-label="Staff assigned to Supervisor"><li>Isaac Silva</li></ul></div></span>
-                  <div class="access-actions">
-                    <button class="approval-request" type="button" data-request-governance>Request Owner Approval</button>
-                    <button class="approve-access" type="button" data-approve-governance>Approve</button>
-                    <button type="button" data-toggle-governance>Deactivate</button>
-                    <button class="danger-button-small" type="button" data-delete-user="Supervisor role">Delete</button>
-                  </div>
-                </article>
-                <article data-governed-item data-active="true" data-approved="false">
-                  <span><small>ROLE ACCESS</small><strong>Employee / Staff</strong><small data-governed-status>Assigned operational screens only · Owner approval not requested</small><div class="assigned-staff"><b>Assigned staff (1)</b><ul aria-label="Staff assigned to Employee / Staff"><li>Luis Mora</li></ul></div></span>
-                  <div class="access-actions">
-                    <button class="approval-request" type="button" data-request-governance>Request Owner Approval</button>
-                    <button class="approve-access" type="button" data-approve-governance>Approve</button>
-                    <button type="button" data-toggle-governance>Deactivate</button>
-                    <button class="danger-button-small" type="button" data-delete-user="Employee Staff role">Delete</button>
-                  </div>
-                </article>
-                <article data-governed-item data-active="false" data-approved="false">
-                  <span><small>ROLE ACCESS</small><strong>Independent contractor</strong><small data-governed-status>Time-bound assigned work only · Owner approval not requested</small><div class="assigned-staff empty"><b>Assigned staff (0)</b><p>No staff assigned</p></div></span>
-                  <div class="access-actions">
-                    <button class="approval-request" type="button" data-request-governance>Request Owner Approval</button>
-                    <button class="approve-access" type="button" data-approve-governance>Approve</button>
-                    <button type="button" data-toggle-governance>Activate</button>
-                    <button class="danger-button-small" type="button" data-delete-user="Independent contractor role">Delete</button>
-                  </div>
-                </article>
-              </div></section>
-              <section class="governance-group" aria-labelledby="approvalsGroup"><h3 id="approvalsGroup">Approvals &amp; Promotions</h3><p>Owner review of role and employment changes.</p><div class="governance-list">
-                <article data-governed-item data-active="false" data-approved="false">
-                  <span><small>PRIVILEGED ROLE</small><strong>IT SuperUser — Mateo Ruiz</strong><small data-governed-status>Direct SMB Owner authorization required · Owner approval not requested</small></span>
-                  <div class="access-actions">
-                    <button class="approval-request" type="button" data-request-governance>Request Owner Approval</button>
-                    <button class="approve-access" type="button" data-approve-governance>Approve</button>
-                    <button type="button" data-toggle-governance>Activate</button>
-                    <button class="danger-button-small" type="button" data-delete-user="IT SuperUser Mateo Ruiz">Delete</button>
-                  </div>
-                </article>
-                <article data-governed-item data-active="false" data-approved="false">
-                  <span><small>PROMOTION REQUEST</small><strong>Luis Mora — promotion to Supervisor</strong><small data-governed-status>Submitted by Ana Pérez · Sep 4, 2026 · Owner approval not requested</small></span>
-                  <div class="access-actions">
-                    <button class="approval-request" type="button" data-request-governance>Request Owner Approval</button>
-                    <button class="approve-access" type="button" data-approve-governance>Approve</button>
-                    <button type="button" data-toggle-governance>Activate</button>
-                    <button class="danger-button-small" type="button" data-delete-user="Luis Mora promotion">Delete</button>
-                  </div>
-                </article>
-                <article data-governed-item data-active="false" data-approved="false">
-                  <span><small>ACCESS APPROVAL</small><strong>Management Admin — Sofía León</strong><small data-governed-status>Privileged access request · Owner approval not requested</small></span>
-                  <div class="access-actions">
-                    <button class="approval-request" type="button" data-request-governance>Request Owner Approval</button>
-                    <button class="approve-access" type="button" data-approve-governance>Approve</button>
-                    <button type="button" data-toggle-governance>Activate</button>
-                    <button class="danger-button-small" type="button" data-delete-user="Management Admin Sofia Leon">Delete</button>
-                  </div>
-                </article>
-              </div></section>
-            </div>
-          </details>
-
-          <details class="settings-section" data-search-terms="end user usuario name last name email owner approval deactivate delete password reset access">
-            <summary><span><img src="assets/overview.webp" alt=""><b>End-User Access <small class="section-alias">[Usuario]</small></b><small>Search and control individual application access</small></span><i aria-hidden="true">＋</i></summary>
-            <div class="section-body">
-              <label class="end-user-search"><span aria-hidden="true">⌕</span><input id="endUserSearch" type="search" placeholder="Search by name, last name, or email" aria-label="Search end users by name, last name, or email"></label>
-              <p class="access-note">Actions affect application access only. End-user identities and all historical records remain preserved.</p>
-              <div class="end-user-list" id="endUserList">
-                <article data-end-user data-first-name="María" data-last-name="López" data-email="maria.lopez@example.com">
-                  <span><small>END USER</small><strong>María López</strong><small>maria.lopez@example.com</small><small data-access-status>Active · Owner approval not requested</small></span>
-                  <div class="access-actions">
-                    <button type="button" data-end-user-action="approve">Approve</button>
-                    <button type="button" data-end-user-action="deactivate">Deactivate</button>
-                    <button class="danger-button-small" type="button" data-end-user-action="delete">Delete</button>
-                    <button class="approval-request" type="button" data-end-user-action="request">Request Owner's Approval</button>
-                    <button type="button" data-end-user-action="password-reset">Password Reset</button>
-                  </div>
-                </article>
-                <article data-end-user data-first-name="Carlos" data-last-name="Vega" data-email="carlos.vega@example.com">
-                  <span><small>END USER</small><strong>Carlos Vega</strong><small>carlos.vega@example.com</small><small data-access-status>Active · Owner approval not requested</small></span>
-                  <div class="access-actions">
-                    <button type="button" data-end-user-action="approve">Approve</button>
-                    <button type="button" data-end-user-action="deactivate">Deactivate</button>
-                    <button class="danger-button-small" type="button" data-end-user-action="delete">Delete</button>
-                    <button class="approval-request" type="button" data-end-user-action="request">Request Owner's Approval</button>
-                    <button type="button" data-end-user-action="password-reset">Password Reset</button>
-                  </div>
-                </article>
-                <article data-end-user data-first-name="Elena" data-last-name="Ruiz" data-email="elena.ruiz@example.com">
-                  <span><small>END USER</small><strong>Elena Ruiz</strong><small>elena.ruiz@example.com</small><small data-access-status>Pending Owner approval</small></span>
-                  <div class="access-actions">
-                    <button type="button" data-end-user-action="approve">Approve</button>
-                    <button type="button" data-end-user-action="deactivate">Deactivate</button>
-                    <button class="danger-button-small" type="button" data-end-user-action="delete">Delete</button>
-                    <button class="approval-request" type="button" data-end-user-action="request">Request Owner's Approval</button>
-                    <button type="button" data-end-user-action="password-reset">Password Reset</button>
-                  </div>
-                </article>
-              </div>
-              <p class="audit-empty" id="endUserSearchEmpty" hidden>No end users match this search.</p>
-            </div>
-          </details>
-
-          <details class="settings-section" data-search-terms="notifications audit history approval owner email date range twelve months">
-            <summary><span><img src="assets/accounting.webp" alt=""><b>Notifications &amp; Audit History</b><small>Read-only approval history and owner email records</small></span><i aria-hidden="true">＋</i></summary>
-            <div class="section-body">
-              <div class="audit-view-heading">
-                <div><strong>Approval history</strong><small>View-only records showing approval decisions and the Business Owner email notification.</small></div>
-                <div class="audit-filters">
-                  <label>History range<select id="auditRange" aria-label="Choose approval history range"><option value="30">Last 30 days</option><option value="90">Last 3 months</option><option value="180">Last 6 months</option><option value="365">Last 12 months</option><option value="custom">Custom dates</option></select></label>
-                  <label class="audit-custom-date" hidden>From<input id="auditDateFrom" type="date" min="2025-09-05" max="2026-09-05"></label>
-                  <label class="audit-custom-date" hidden>To<input id="auditDateTo" type="date" min="2025-09-05" max="2026-09-05"></label>
-                </div>
-              </div>
-              <p class="audit-status" id="auditStatus" role="status" aria-live="polite">Showing approval history from the last 30 days.</p>
-              <div class="table-scroll"><table class="settings-table audit-history-table"><thead><tr><th>Date</th><th>Approval event</th><th>Requested by</th><th>Business Owner email</th><th>Decision</th></tr></thead><tbody>
-                <tr data-audit-date="2026-09-04"><td>Sep 4, 2026 · 8:24 AM</td><td>Staff role reviewed</td><td>Ana Pérez</td><td>Sent to owner@cacaoymas.com</td><td><em class="paid">Approved</em></td></tr>
-                <tr data-audit-date="2026-08-22"><td>Aug 22, 2026 · 2:10 PM</td><td>Supervisor promotion</td><td>Luis Mora</td><td>Sent to owner@cacaoymas.com</td><td><em class="paid">Approved</em></td></tr>
-                <tr data-audit-date="2026-07-14"><td>Jul 14, 2026 · 10:42 AM</td><td>Inventory role access</td><td>Isaac Silva</td><td>Sent to owner@cacaoymas.com</td><td><em class="low">Rejected</em></td></tr>
-                <tr data-audit-date="2026-05-03"><td>May 3, 2026 · 4:18 PM</td><td>Management Admin request</td><td>Mateo Ruiz</td><td>Sent to owner@cacaoymas.com</td><td><em class="paid">Approved</em></td></tr>
-                <tr data-audit-date="2026-02-17"><td>Feb 17, 2026 · 9:06 AM</td><td>Employee account activation</td><td>Sofía León</td><td>Sent to owner@cacaoymas.com</td><td><em class="paid">Approved</em></td></tr>
-                <tr data-audit-date="2025-10-09"><td>Oct 9, 2025 · 11:31 AM</td><td>Accounting role access</td><td>Diego Paz</td><td>Sent to owner@cacaoymas.com</td><td><em class="paid">Approved</em></td></tr>
-              </tbody></table></div>
-              <p class="audit-empty" id="auditEmpty" hidden>No approval records exist for the selected date range.</p>
-            </div>
-          </details>
+          <details class="settings-section" open data-search-terms="business profile identity tax address email phone"><summary><span><img src="assets/marketplace.webp" alt=""><b>Business Profile</b><small>Legal identity and business contact information</small></span><i aria-hidden="true">＋</i></summary><form class="section-body settings-form" data-form-name="Business profile" id="businessProfileForm"><div class="business-profile-auth"><label class="has-tooltip" data-tooltip="Enter the SMB Owner password to authorize access to Business Profile.">SMB Owner password<input id="businessProfilePassword" type="password" autocomplete="current-password" required title="Enter the SMB Owner password to authorize Business Profile access."></label><button class="primary has-tooltip" id="authorizeBusinessProfile" type="button" data-tooltip="Verify SMB Owner authorization and unlock the Business Profile fields.">Authorize</button></div><div class="form-grid"><label class="has-tooltip" data-tooltip="View or update the legal business name after SMB Owner authorization.">Business name<input data-profile-protected required value="Cacao & Más" title="Legal business name" disabled></label><label class="has-tooltip" data-tooltip="View or update the registered business Tax ID after SMB Owner authorization.">Tax ID<input data-profile-protected required placeholder="Enter registered Tax ID" title="Registered business Tax ID" disabled></label><label class="wide has-tooltip" data-tooltip="View or update the registered business address after SMB Owner authorization.">Business address<input data-profile-protected required autocomplete="street-address" placeholder="Street, city, province, postal code" title="Registered business address" disabled></label><label class="has-tooltip" data-tooltip="View or update the Business Owner notification email after authorization.">Business email<input data-profile-protected required type="email" value="owner@cacaoymas.com" title="Business Owner notification email" disabled></label><label class="has-tooltip" data-tooltip="View or update the official business contact number after authorization.">Business phone<input data-profile-protected type="tel" placeholder="+593" title="Official business contact number" disabled></label></div><label class="control-row profile-notification has-tooltip" data-tooltip="Enable or disable Owner email notices for staff access, role, and promotion changes."><span><strong>Email owner about authorization changes</strong></span><input data-profile-protected type="checkbox" role="switch" title="Owner authorization-change email notifications" checked disabled></label><div class="section-actions"><button class="primary has-tooltip" data-profile-protected type="submit" data-tooltip="Save the authorized Business Profile changes." disabled>Save business profile</button></div></form></details>
+          <details class="settings-section" data-search-terms="employees staff add employee name address email phone position"><summary><span><img src="assets/avatar.webp" alt=""><b>Employees &amp; Staff</b><small>Add people and review employment status</small></span><i aria-hidden="true">＋</i></summary><div class="section-body"><div class="table-scroll"><table class="settings-table employee-access-table"><thead><tr><th>Employee</th><th>Position</th><th>Status</th><th>Last access</th><th>Access actions</th></tr></thead><tbody>
+            <tr data-employee-access data-employee="Ana Pérez" data-suspended="false"><td><strong>Ana Pérez</strong><small class="employee-access-note">Account and employment record retained</small></td><td>Manager</td><td><em class="paid" data-employee-status>Active</em></td><td>Today, 8:14 AM</td><td><div class="employee-row-actions"><button class="has-tooltip" type="button" data-tooltip="Open Ana Pérez’s employee record for review without changing access." aria-label="Review Ana Pérez employee record" data-toast="Ana Pérez's employee record opened.">Review</button><button class="has-tooltip" type="button" data-reset-password data-tooltip="Send this employee a secure, expiring password-reset link. The password is never displayed or emailed.">Request Password Reset</button><button class="has-tooltip" type="button" data-suspend-access data-tooltip="Immediately suspend application access and revoke active sessions for a lost or stolen device.">Suspend</button><button class="danger-button-small has-tooltip" type="button" data-delete-employee-access data-tooltip="Remove application access only. Keep the employee account, employment record, and audit history.">Delete Access</button></div></td></tr>
+            <tr data-employee-access data-employee="Isaac Silva" data-suspended="false"><td><strong>Isaac Silva</strong><small class="employee-access-note">Account and employment record retained</small></td><td>Inventory Supervisor</td><td><em class="paid" data-employee-status>Active</em></td><td>Yesterday</td><td><div class="employee-row-actions"><button class="has-tooltip" type="button" data-tooltip="Open Isaac Silva’s employee record for review without changing access." aria-label="Review Isaac Silva employee record" data-toast="Isaac Silva's employee record opened.">Review</button><button class="has-tooltip" type="button" data-reset-password data-tooltip="Send this employee a secure, expiring password-reset link. The password is never displayed or emailed.">Request Password Reset</button><button class="has-tooltip" type="button" data-suspend-access data-tooltip="Immediately suspend application access and revoke active sessions for a lost or stolen device.">Suspend</button><button class="danger-button-small has-tooltip" type="button" data-delete-employee-access data-tooltip="Remove application access only. Keep the employee account, employment record, and audit history.">Delete Access</button></div></td></tr>
+            <tr data-employee-access data-employee="Luis Mora" data-suspended="false"><td><strong>Luis Mora</strong><small class="employee-access-note">Account and employment record retained</small></td><td>Fulfillment Staff</td><td><em class="medium" data-employee-status>Pending review</em></td><td>Sep 2</td><td><div class="employee-row-actions"><button class="has-tooltip" type="button" data-tooltip="Open Luis Mora’s employee record for review without changing access." aria-label="Review Luis Mora employee record" data-toast="Luis Mora's employee record opened.">Review</button><button class="has-tooltip" type="button" data-reset-password data-tooltip="Send this employee a secure, expiring password-reset link. The password is never displayed or emailed.">Request Password Reset</button><button class="has-tooltip" type="button" data-suspend-access data-tooltip="Immediately suspend application access and revoke active sessions for a lost or stolen device.">Suspend</button><button class="danger-button-small has-tooltip" type="button" data-delete-employee-access data-tooltip="Remove application access only. Keep the employee account, employment record, and audit history.">Delete Access</button></div></td></tr>
+          </tbody></table></div></div></details>
+          <details class="settings-section" data-search-terms="account authentication roles access permissions approvals promotions mfa session supervisor employee contractor admin superuser owner"><summary><span><img src="assets/settings.webp" alt=""><b>Account, Roles &amp; Approvals</b><small>Authentication, RBAC, promotions, and owner authorization</small></span><i aria-hidden="true">＋</i></summary><div class="section-body governance-body"><div class="governance-auth"><div><strong>Business Owner authorization</strong><small>Owner identity must be verified before an approval is completed. Passwords are never displayed or stored by this page.</small></div><label>Owner re-authentication<input id="governanceOwnerPassword" type="password" autocomplete="current-password" placeholder="Enter owner password"></label></div><section class="governance-group" aria-labelledby="rolesGroup"><h3 id="rolesGroup">Roles &amp; Access Permissions</h3><p>Manage staff roles and review access activity in one shared directory.</p><a href="#staff-access" id="openStaffPermissions">Open staff permissions ›</a></section><section class="governance-group" aria-labelledby="approvalsGroup"><h3 id="approvalsGroup">Approvals &amp; Promotions</h3><p>Owner review of role and employment changes.</p><div class="governance-list"><article data-governed-item data-active="false" data-approved="false"><span><small>PRIVILEGED ROLE</small><strong>IT SuperUser — Mateo Ruiz</strong><small data-governed-status>Direct SMB Owner authorization required · Owner approval not requested</small></span><div class="access-actions"><button class="approval-request" type="button" data-request-governance>Request Owner Approval</button><button class="approve-access" type="button" data-approve-governance>Approve</button><button type="button" data-toggle-governance>Activate</button><button class="danger-button-small" type="button" data-delete-user="IT SuperUser Mateo Ruiz">Delete</button></div></article><article data-governed-item data-active="false" data-approved="false"><span><small>PROMOTION REQUEST</small><strong>Luis Mora — promotion to Supervisor</strong><small data-governed-status>Submitted by Ana Pérez · Sep 4, 2026 · Owner approval not requested</small></span><div class="access-actions"><button class="approval-request" type="button" data-request-governance>Request Owner Approval</button><button class="approve-access" type="button" data-approve-governance>Approve</button><button type="button" data-toggle-governance>Activate</button><button class="danger-button-small" type="button" data-delete-user="Luis Mora promotion">Delete</button></div></article><article data-governed-item data-active="false" data-approved="false"><span><small>ACCESS APPROVAL</small><strong>Management Admin — Sofía León</strong><small data-governed-status>Privileged access request · Owner approval not requested</small></span><div class="access-actions"><button class="approval-request" type="button" data-request-governance>Request Owner Approval</button><button class="approve-access" type="button" data-approve-governance>Approve</button><button type="button" data-toggle-governance>Activate</button><button class="danger-button-small" type="button" data-delete-user="Management Admin Sofia Leon">Delete</button></div></article></div></section></div></details>
+          <details class="settings-section" id="staff-access" data-search-terms="staff roles permissions end user activity login date time device branch location usuario"><summary><span><img src="assets/overview.webp" alt=""><b>Staff Roles, Access &amp; Activity</b><small>One directory for job permissions and sign-in activity</small></span><i aria-hidden="true">＋</i></summary><div class="section-body"><div class="staff-view-controls" role="group" aria-label="Choose staff view"><button type="button" data-staff-view="permissions" aria-pressed="true">Roles &amp; Access Permissions</button><button type="button" data-staff-view="activity" aria-pressed="false">Activity</button></div><label class="end-user-search"><input type="search" id="staffDirectorySearch" placeholder="Search staff by name, email, or job" aria-label="Search staff by name, email, or job"></label><p>Permission changes are drafts for owner review. Current permissions and sign-in activity require verified records.</p><div id="staffDirectory" data-view="permissions"></div><p id="staffDirectoryEmpty" hidden>No matching staff records.</p><p id="staffRequestStatus" role="status" aria-live="polite"></p></div></details>
+          <details class="settings-section" data-search-terms="notifications audit history approval owner email date range twelve months"><summary><span><img src="assets/accounting.webp" alt=""><b>Notifications &amp; Audit History</b><small>Read-only approval history and owner email records</small></span><i aria-hidden="true">＋</i></summary><div class="section-body"><div class="audit-view-heading"><div><strong>Approval history</strong><small>View-only records showing approval decisions and the Business Owner email notification.</small></div><div class="audit-filters"><label>History range<select id="auditRange" aria-label="Choose approval history range"><option value="30">Last 30 days</option><option value="90">Last 3 months</option><option value="180">Last 6 months</option><option value="365">Last 12 months</option><option value="custom">Custom dates</option></select></label><label class="audit-custom-date" hidden>From<input id="auditDateFrom" type="date" min="2025-09-05" max="2026-09-05"></label><label class="audit-custom-date" hidden>To<input id="auditDateTo" type="date" min="2025-09-05" max="2026-09-05"></label></div></div><p class="audit-status" id="auditStatus" role="status" aria-live="polite">Showing approval history from the last 30 days.</p><div class="table-scroll"><table class="settings-table audit-history-table"><thead><tr><th>Date</th><th>Approval event</th><th>Requested by</th><th>Business Owner email</th><th>Decision</th></tr></thead><tbody><tr data-audit-date="2026-09-04"><td>Sep 4, 2026 · 8:24 AM</td><td>Staff role reviewed</td><td>Ana Pérez</td><td>Sent to owner@cacaoymas.com</td><td><em class="paid">Approved</em></td></tr></tbody></table></div></div></details>
         </section>
       </div>
     </main>
   </div>
-
-  <dialog class="record-dialog" id="employeeDialog" aria-labelledby="employeeDialogTitle">
-    <form method="dialog" class="record-form" id="employeeForm">
-      <header class="dialog-heading"><div><small>NEW EMPLOYEE</small><h2 id="employeeDialogTitle">Add new employee</h2><p>Create the staff record before assigning access.</p></div><button class="dialog-close" type="button" data-close-dialog aria-label="Close employee form">×</button></header>
-      <section class="employee-record-search" aria-labelledby="employeeSearchLabel">
-        <label id="employeeSearchLabel" for="existingEmployeeSearch">Find an existing employee</label>
-        <div class="employee-search-control"><span aria-hidden="true">⌕</span><input id="existingEmployeeSearch" type="search" list="existingEmployeeOptions" placeholder="Search by employee name or email" autocomplete="off"><button id="findEmployeeButton" type="button">Search</button></div>
-        <datalist id="existingEmployeeOptions"><option value="Ana Pérez"><option value="Isaac Silva"><option value="Luis Mora"></datalist>
-        <p id="employeeSearchStatus" role="status" aria-live="polite">Search to update, promote, deactivate, or request deletion of an existing employee.</p>
-      </section>
-      <div class="form-grid">
-        <label>First name<input id="employeeFirstName" name="firstName" required autocomplete="given-name"></label><label>Last name<input id="employeeLastName" name="lastName" required autocomplete="family-name"></label>
-        <label class="wide">Address<input name="address" required autocomplete="street-address"></label>
-        <label>Email<input name="email" required type="email" autocomplete="email"></label><label>Phone<input name="phone" required type="tel" autocomplete="tel"></label>
-      </div>
-      <fieldset class="position-picker"><legend>Available positions</legend><p>Choose one position. Your choice will remain highlighted.</p><div class="position-buttons" role="radiogroup" aria-label="Available employee positions">
-        <button class="has-tooltip" type="button" role="radio" aria-checked="false" data-position="Employee / Staff" data-tooltip="Select Employee / Staff as the employee’s proposed position. Owner approval is still required.">Employee / Staff</button>
-        <button class="has-tooltip" type="button" role="radio" aria-checked="false" data-position="Supervisor" data-tooltip="Select Supervisor as the employee’s proposed position. Owner approval is still required.">Supervisor</button>
-        <button class="has-tooltip" type="button" role="radio" aria-checked="false" data-position="Manager" data-tooltip="Select Manager as the employee’s proposed position. Owner approval is still required.">Manager</button>
-        <button class="has-tooltip" type="button" role="radio" aria-checked="false" data-position="Management Admin" data-tooltip="Select Management Admin as the employee’s proposed position. Owner approval is still required.">Management Admin</button>
-        <button class="has-tooltip" type="button" role="radio" aria-checked="false" data-position="IT SuperUser" data-tooltip="Select IT SuperUser as the employee’s proposed position. Owner approval is still required.">IT SuperUser</button>
-        <button class="has-tooltip" type="button" role="radio" aria-checked="false" data-position="Vice President" data-tooltip="Select Vice President as the employee’s proposed position. Owner approval is still required.">Vice President</button>
-      </div><input id="employeePosition" name="position" type="hidden" required></fieldset>
-      <fieldset class="employee-auth-requirements"><legend>Account &amp; Authentication</legend><p>These security requirements are applied automatically and cannot be removed during employee creation.</p><div class="employee-auth-grid">
-        <label><input type="checkbox" checked disabled><span><strong>Authorization</strong><small>Business Owner authorization is required before access is granted.</small></span></label>
-        <label><input type="checkbox" checked disabled><span><strong>Authentication</strong><small>The employee must verify their identity before using the application.</small></span></label>
-        <label><input type="checkbox" checked disabled><span><strong>Multifactor authentication</strong><small>A second authentication factor must be enrolled and verified.</small></span></label>
-        <label><input type="checkbox" checked disabled><span><strong>Automatic session lock</strong><small>The application locks automatically after the approved inactivity period.</small></span></label>
-        <label><input type="checkbox" checked disabled><span><strong>Notify Owner about new sign-ins</strong><small>New device and location sign-ins generate an Owner notification and audit event.</small></span></label>
-      </div></fieldset>
-      <section class="employee-status-panel" aria-labelledby="initialStatusLabel"><div><strong id="initialStatusLabel">Initial status</strong><small id="employeeStatus" role="status" aria-live="polite">Choose a position to enable employee actions.</small></div><div class="employee-action-buttons">
-        <button class="approval-request has-tooltip" id="employeeRequestApproval" type="button" data-tooltip="Open the confirmation form and send this employee request to the SMB Owner." disabled>Request Approval</button>
-        <button class="has-tooltip" id="employeePromote" type="button" data-tooltip="Select the employee’s next role as a proposed promotion. Owner approval is required." hidden>Promote</button><button class="has-tooltip" id="employeeApprove" type="button" data-tooltip="Record management approval for this employee. Final Owner authorization remains required." disabled>Approve</button>
-        <button class="has-tooltip" id="employeeToggleActive" type="button" data-tooltip="Deactivate or reactivate this employee’s application access." disabled>Deactivate</button>
-        <button class="danger-button-small has-tooltip" id="employeeDelete" type="button" data-tooltip="Delete this unsaved employee record after confirmation." disabled>Delete</button>
-      </div></section>
-      <p class="form-note">Once the record has been created, it needs approval; request approval by clicking the Request Approval button above.</p>
-      <footer class="dialog-actions"><button class="has-tooltip" type="button" data-close-dialog data-tooltip="Close this form without saving the employee record.">Cancel</button><button class="primary has-tooltip" type="submit" data-tooltip="Save the employee record with its current access and approval status.">Save employee record</button></footer>
-    </form>
-  </dialog>
-
-  <dialog class="confirm-dialog approval-dialog" id="employeeApprovalDialog" aria-labelledby="employeeApprovalDialogTitle">
-    <form method="dialog" id="employeeApprovalForm">
-      <h2 id="employeeApprovalDialogTitle">Request Owner Approval</h2>
-      <p>Type or paste the selected rank / position exactly as shown. This records who made the request, the employee, date and time, and sends it to the SMB Owner for approval.</p>
-      <strong id="selectedEmployeePosition"></strong>
-      <label>Rank / position<input id="approvalPositionConfirmation" required autocomplete="off" placeholder="Type or paste the selected position"></label>
-      <p class="field-error" id="approvalPositionError" role="alert" hidden>The rank / position must match the selected position.</p>
-      <div class="dialog-actions"><button type="button" data-close-dialog>Cancel</button><button class="primary" type="submit">Proceed</button></div>
-    </form>
-  </dialog>
-
-  <dialog class="confirm-dialog" id="employeeAccessDeleteDialog" aria-labelledby="employeeAccessDeleteTitle">
-    <form method="dialog" id="employeeAccessDeleteForm"><h2 id="employeeAccessDeleteTitle">Delete application access?</h2><p>This removes only the employee's application access. The employee account, employment record, and audit history will remain intact.</p><strong id="employeeAccessDeleteIdentity"></strong><div class="dialog-actions"><button type="button" data-close-dialog>Cancel</button><button class="danger-button" type="submit">Delete Access</button></div></form>
-  </dialog>
-
-  <dialog class="confirm-dialog" id="deleteDialog" aria-labelledby="deleteDialogTitle">
-    <form method="dialog" id="deleteForm"><h2 id="deleteDialogTitle">Delete access record?</h2><p>This action requires explicit confirmation. The selected access record will be queued for protected deletion.</p><strong id="deleteUserIdentity"></strong><div class="dialog-actions"><button type="button" data-close-dialog>Cancel</button><button class="danger-button" type="submit">Delete account</button></div></form>
-  </dialog>
-
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
