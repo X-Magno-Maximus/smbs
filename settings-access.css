@@ -137,3 +137,6 @@ body.dark #authorizeBusinessProfile[data-completed="true"]{border-color:#81918b;
  .employee-access-table tr.employee-action-card{grid-template-columns:minmax(0,1fr) 44px;grid-template-areas:"employee toggle" "position toggle" "status toggle" "access toggle" "actions actions"}
  .employee-access-table .employee-action-card .employee-row-actions{grid-template-columns:1fr}
 }
+
+
+.sample-data-note{padding:16px 20px;border:1px solid #a47b20;border-radius:8px;background:#fff4d7;color:#4c3910;font-size:14px;line-height:1.6}.dark .sample-data-note{background:#3a321e;color:#f6e6ba}.employee-access-table a{display:inline-block;padding:12px 0;color:var(--ink);font-size:14px}.staff-record{scroll-margin-top:24px}
