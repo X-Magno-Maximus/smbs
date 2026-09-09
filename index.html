@@ -6,10 +6,10 @@
   <meta name="theme-color" content="#064f40">
   <title>Marxia | Business Overview</title>
   <meta name="description" content="Marxia SMB business overview">
-  <link rel="stylesheet" href="styles.css?v=20260908-typography-1">
+  <link rel="stylesheet" href="styles.css?v=20260909-merged-cards-1">
   <link rel="stylesheet" href="button-theme.css?v=20260908-1">
-  <script src="embedded-assets.js"></script><script src="i18n.js?v=20260907-support-1" defer></script>
-  <script src="app.js?v=20260907-support-1" defer></script>
+  <script src="embedded-assets.js"></script><script src="i18n.js?v=20260909-merged-cards-1" defer></script>
+  <script src="app.js?v=20260909-merged-cards-1" defer></script>
 <script src="support.js?v=20260907-1" defer></script>
 </head>
 <body>
@@ -111,32 +111,32 @@
             </div>
 
 
-            <div class="status-grid deferred-overview" aria-label="Business status">
-              <article class="panel status-card"><h2>Today</h2><ul><li>5 orders to confirm</li><li>2 shipments to schedule</li><li>1 payment to record</li></ul><button type="button" data-toast="Today's task workflow will be completed on this page.">View today's tasks ›</button></article>
-              <article class="panel status-card"><h2>Business health</h2><dl><div><dt>Overall status</dt><dd class="badge">Good</dd></div><div><dt>Sales vs last month</dt><dd class="positive">↑ 18.6%</dd></div><div><dt>On-time fulfillment</dt><dd>94%</dd></div><div><dt>Overdue invoices</dt><dd class="negative">2</dd></div></dl><a class="status-card-link" href="accounting.html#business-health">View accounting health ›</a></article>
-              <article class="panel status-card"><h2>Low stock alert</h2><dl><div><dt>Dark Cocoa 70% (SKU-1021)</dt><dd class="negative">8 units left</dd></div><div><dt>Cacao Beans Raw (SKU-2003)</dt><dd class="negative">12 units left</dd></div><div><dt>Vanilla Extract 250ml (SKU-3012)</dt><dd class="negative">5 units left</dd></div></dl><button type="button" data-toast="Inventory is an independent page awaiting its build stage.">View all low stock ›</button></article>
-              <article class="panel status-card"><h2>Fulfillment progress</h2><div class="progress-copy"><span>Orders shipped (MTD)</span><b>68%</b></div><progress value="68" max="100">68%</progress><small>34 of 50 orders</small><a class="status-card-link" href="logistics.html#fulfillment-progress">View logistics ›</a></article>
+            <div class="status-grid" aria-label="Business status">
+              <article class="panel status-card overview-detail-card deferred-overview" id="today-card"><h2>Today</h2><ul><li>5 orders to confirm</li><li>2 shipments to schedule</li><li>1 payment to record</li></ul><details id="today-tasks" class="overview-disclosure"><summary>Review today's tasks ›</summary><div><h3>Today's task details</h3><p>Order confirmation</p><p>Review pending order work in the priority queue.</p><a href="#priority-queue">Review priorities ›</a><a href="logistics.html#shipment-queue">Review shipments ›</a><a href="accounting.html#recent-transactions">Review payments ›</a></div></details><p class="overview-explanation">Tasks that need attention today: confirm orders, arrange shipments, and record payments.</p></article>
+              <article class="panel status-card overview-detail-card deferred-overview" id="business-health-card"><h2>Business health</h2><dl><div><dt>Overall status</dt><dd class="badge">Good</dd></div><div><dt>Sales vs last month</dt><dd class="positive">↑ 18.6%</dd></div><div><dt>On-time fulfillment</dt><dd>94%</dd></div><div><dt>Overdue invoices</dt><dd class="negative">2</dd></div></dl><a class="status-card-link" href="accounting.html#business-health">View accounting health ›</a><p class="overview-explanation">A summary of sales, fulfillment, and unpaid invoices. Review Accounting for more detail.</p></article>
+              <article class="panel status-card overview-detail-card deferred-overview" id="low-stock-card"><h2>Low stock alert</h2><dl><div><dt>Dark Cocoa 70% (SKU-1021)</dt><dd class="negative">8 units left</dd></div><div><dt>Cacao Beans Raw (SKU-2003)</dt><dd class="negative">12 units left</dd></div><div><dt>Vanilla Extract 250ml (SKU-3012)</dt><dd class="negative">5 units left</dd></div></dl><details id="low-stock-details" class="overview-disclosure"><summary>Review low stock ›</summary><div><h3>Stock details</h3><div class="table-scroll"><table><thead><tr><th>Product</th><th>SKU</th><th>Units remaining</th></tr></thead><tbody><tr><td>Dark Cocoa 70%</td><td>SKU-1021</td><td>8</td></tr><tr><td>Cacao Beans Raw</td><td>SKU-2003</td><td>12</td></tr><tr><td>Vanilla Extract 250ml</td><td>SKU-3012</td><td>5</td></tr></tbody></table></div></div></details><p class="overview-explanation">Products running low. Review remaining quantities before planning replenishment.</p></article>
+              <article class="panel status-card overview-detail-card deferred-overview" id="fulfillment-card"><h2>Fulfillment progress</h2><div class="progress-copy"><span>Orders shipped (MTD)</span><b>68%</b></div><progress value="68" max="100">68%</progress><small>34 of 50 orders</small><a class="status-card-link" href="logistics.html#fulfillment-progress">View logistics ›</a><p class="overview-explanation">The share of this month's orders already shipped. Shipped does not mean delivered.</p></article>
             </div>
 
-            <div class="tables-grid deferred-overview">
-              <article class="panel table-panel">
-                <div class="panel-heading"><h2>Priority queue</h2><button type="button" data-toast="Full queue will be part of the Overview workflow.">View all ›</button></div>
-                <div class="table-scroll"><table><thead><tr><th>Issue</th><th>Severity</th><th>Owner</th><th>Due</th><th>Action</th></tr></thead><tbody>
-                  <tr><td>Overdue payment from Café Aurora</td><td><em class="high">High</em></td><td>Ana P.</td><td>Sep 4</td><td><a href="#" data-no-route>Follow up ›</a></td></tr>
-                  <tr><td>Inventory below reorder point (3 SKUs)</td><td><em class="medium">Medium</em></td><td>Isaac S.</td><td>Sep 3</td><td><a href="#" data-no-route>Review ›</a></td></tr>
-                  <tr><td>Order #10458 requires fulfillment</td><td><em class="medium">Medium</em></td><td>Luis M.</td><td>Sep 3</td><td><a href="#" data-no-route>Process ›</a></td></tr>
-                  <tr><td>Customer inquiry: Shipping delay</td><td><em class="low">Low</em></td><td>Ana P.</td><td>Sep 6</td><td><a href="#" data-no-route>Respond ›</a></td></tr>
+            <div class="tables-grid">
+              <article class="panel table-panel overview-detail-card deferred-overview" id="priority-queue">
+                <div class="panel-heading"><h2>Priority queue</h2><a class="status-card-link" href="#priority-queue-table">Review listed priorities ›</a></div>
+                <div class="table-scroll" id="priority-queue-table" tabindex="0"><table><thead><tr><th>Issue</th><th>Severity</th><th>Owner</th><th>Due</th><th>Action</th></tr></thead><tbody>
+                  <tr><td>Overdue payment from Café Aurora</td><td><em class="high">High</em></td><td>Ana P.</td><td>Sep 4</td><td><a href="accounting.html#recent-transactions">Review accounting ›</a></td></tr>
+                  <tr><td>Inventory below reorder point (3 SKUs)</td><td><em class="medium">Medium</em></td><td>Isaac S.</td><td>Sep 3</td><td><a href="#low-stock-details">Review stock ›</a></td></tr>
+                  <tr><td>Order #10458 requires fulfillment</td><td><em class="medium">Medium</em></td><td>Luis M.</td><td>Sep 3</td><td><a href="logistics.html#shipment-queue">Review shipments ›</a></td></tr>
+                  <tr><td>Customer inquiry: Shipping delay</td><td><em class="low">Low</em></td><td>Ana P.</td><td>Sep 6</td><td><a href="logistics.html#shipment-queue">Review shipments ›</a></td></tr>
                 </tbody></table></div>
-              </article>
-              <article class="panel table-panel">
-                <div class="panel-heading"><h2>Recent transactions</h2><button type="button" data-toast="Transactions will be completed with Accounting.">View all ›</button></div>
+              <p class="overview-explanation">Issues assigned to your team, with urgency and deadlines. Use each link to review the related area.</p></article>
+              <article class="panel table-panel overview-detail-card deferred-overview" id="recent-transactions-card">
+                <div class="panel-heading"><h2>Recent transactions</h2><a class="status-card-link" href="accounting.html#recent-transactions">View accounting transactions ›</a></div>
                 <div class="table-scroll"><table><thead><tr><th>Date</th><th>Type</th><th>Document</th><th>Customer / Vendor</th><th>Amount</th><th>Status</th></tr></thead><tbody>
                   <tr><td>Sep 4, 2026</td><td>Order</td><td>#10472</td><td>Café Aurora</td><td>$4,860.00</td><td><em class="processing">Processing</em></td></tr>
                   <tr><td>Sep 4, 2026</td><td>Invoice</td><td>INV-3081</td><td>Cacao Lab LLC</td><td>$7,125.00</td><td><em class="paid">Paid</em></td></tr>
                   <tr><td>Sep 3, 2026</td><td>Payment</td><td>RCV-2104</td><td>Cacao Lab LLC</td><td>-$7,125.00</td><td><em class="paid">Applied</em></td></tr>
                   <tr><td>Sep 3, 2026</td><td>Order</td><td>#10468</td><td>Greenleaf Market</td><td>$3,210.00</td><td><em class="paid">Confirmed</em></td></tr>
                 </tbody></table></div>
-              </article>
+              <p class="overview-explanation">Recent orders, invoices, and payments. Related entries may refer to the same sale.</p></article>
             </div>
           </section>
 

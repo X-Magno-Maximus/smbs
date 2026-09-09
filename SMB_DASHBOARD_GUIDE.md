@@ -627,3 +627,13 @@ Verification: calculated label contrast at both endpoints of every default/hover
 ### Basic accounting flow layout — September 8, 2026
 
 Accounting places Business health above a full-width Basic accounting flow panel. Net Sales, Gross Profit and Net Profit remain side by side in that order. Amounts never split across lines. Each card has a 15rem minimum width; on narrow screens the focusable, labeled flow region scrolls horizontally instead of squeezing or vertically stacking the cards. The Logistics page retains its existing panel layout.
+
+
+
+## Remaining overview cards — size, explanations, and destinations
+
+Today, Business health, Low stock alert, Fulfillment progress, Priority queue, and Recent transactions now have larger headings, 14px body/explanation text, and 340px minimum card height. Two equal columns fill the content area and become one below 900px of available content width. Tables scroll horizontally when necessary. Each card independently defers off-screen rendering with content-visibility:auto and reserved intrinsic height; print displays all content. This does not fetch backend data lazily.
+
+Each card ends with a translated English/Spanish explanation. Today and Low stock use native keyboard-operable details panels. Today links to the priority queue, Logistics shipment queue, and Accounting transactions. Business health and Fulfillment retain existing page anchors. Priority queue links to its listed issues, and its row actions now navigate to relevant review areas instead of placeholder toasts. Labels explicitly say Review; they do not claim to process a particular order or send a customer response. Recent transactions links to the Accounting transaction section. Added stable destination IDs in Accounting and Logistics. Stock links open the stock disclosure, including direct fragment navigation.
+
+Verification: JavaScript syntax checked; six explanation footers and all card/destination links checked against current HTML. Browser visual and keyboard verification pending. Data remains the existing static sample; individual order processing, collection, and inventory backend workflows are outside this layout change.
