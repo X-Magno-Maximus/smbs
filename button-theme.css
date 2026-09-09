@@ -140,3 +140,45 @@ body.dark .toggle-switch[aria-checked="true"]{border-color:#91CEAE;background:#1
 body.dark .toggle-switch[aria-checked="true"] .toggle-thumb{background:#B1DFC2}
 body.dark :is(.toggle-switch,.switch):focus-visible{outline:3px solid #B1DFC2;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){:is(.dialog-actions button,.page-action,.primary-page-action,.section-actions button,.privileged-form button,.approval-list button,.access-actions button,.position-buttons button,.employee-action-buttons button,.settings-table button,.employee-search-control button,.staff-view-controls button,.staff-permission-editor button,.inventory-search button,.utility-action,.support-button,.utility-menu-toggle,.mobile-menu,.dialog-close,.stepper button,.filter-bar button,.action-link,.danger-link,.status-card-link,.panel-heading button,.status-card button,#authorizeBusinessProfile){transition:none}}
+
+/* Readable text links and clearer surface separation across all four pages. */
+body:not(.dark){
+  --canvas:#E8EEEB;
+  --surface:#FFFFFF;
+  --line:#B8C8BF;
+  --muted:#465B50;
+  --shadow:0 2px 5px rgba(20,45,32,.09),0 8px 22px rgba(20,45,32,.05);
+  --text-link:#075747;
+  --text-link-hover:#033D31;
+  --nested-card:#F3F6F4;
+}
+body.dark{
+  --text-link:#A8DFC4;
+  --text-link-hover:#D5F4E4;
+}
+body .workspace a[href]:not(:where(.nav-item,.page-action,.action-link,.status-card-link)){
+  color:var(--text-link);
+  text-decoration-line:underline;
+  text-decoration-color:currentColor;
+  text-decoration-thickness:1px;
+  text-underline-offset:.2em;
+  font-weight:650;
+}
+body .workspace a[href]:not(:where(.nav-item,.page-action,.action-link,.status-card-link)):visited{color:var(--text-link)}
+body .workspace a[href]:not(:where(.nav-item,.page-action,.action-link,.status-card-link)):hover,
+body .workspace a[href]:not(:where(.nav-item,.page-action,.action-link,.status-card-link)):active{
+  color:var(--text-link-hover);
+  text-decoration-thickness:2px;
+}
+body .workspace a[href]:not(:where(.nav-item,.page-action,.action-link,.status-card-link)):focus-visible{
+  outline:3px solid var(--button-focus);outline-offset:4px;border-radius:3px;
+}
+body:not(.dark) :is(.panel,.settings-section,.staff-record,.settings-summary article,.summary-card){
+  border-color:var(--line);box-shadow:var(--shadow);
+}
+body:not(.dark) :is(.governance-list article,.approval-list article,.end-user-list article,.staff-columns>section,.accounting-flow article){
+  background:var(--nested-card);border-color:var(--line);
+}
+body:not(.dark) .employee-access-table tr{background:var(--nested-card);border-color:var(--line)}
+body.dark .governance-list article>span>small:first-child,
+body.dark .end-user-list article>span>small:first-child{color:#A8DFC4}
