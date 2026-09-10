@@ -140,3 +140,13 @@ body.dark #authorizeBusinessProfile[data-completed="true"]{border-color:#81918b;
 
 
 .sample-data-note{padding:16px 20px;border:1px solid #a47b20;border-radius:8px;background:#fff4d7;color:#4c3910;font-size:14px;line-height:1.6}.dark .sample-data-note{background:#3a321e;color:#f6e6ba}.employee-access-table a{display:inline-block;padding:12px 0;color:var(--ink);font-size:14px}.staff-record{scroll-margin-top:24px}
+
+/* Give employee approval actions the full width beneath the status. */
+.employee-status-panel{display:flex;flex-direction:column;align-items:stretch}
+.employee-status-panel>div:first-child{margin-right:0}
+.employee-status-panel .employee-action-buttons{display:flex;justify-content:flex-start;flex-wrap:wrap;width:100%;gap:10px}
+.employee-status-panel .employee-action-buttons>button{flex:1 1 0;min-width:0;min-height:46px;overflow-wrap:break-word}
+.employee-status-panel .employee-action-buttons>button[hidden]{display:none}
+@media(max-width:480px){
+ .employee-status-panel .employee-action-buttons>button{flex-basis:calc(50% - 10px)}
+}
