@@ -35,6 +35,7 @@
 
 html { min-width:320px; color-scheme:light; }
 body { overflow-x:hidden; background:var(--canvas) !important; color:var(--ink) !important; }
+.app-shell { grid-template-columns:260px minmax(0,1fr); }
 body.dark {
   color-scheme:dark;
   --green-950:#061d19;
@@ -69,7 +70,10 @@ body.dark {
 }
 
 .workspace,.page,.accounting-minimal { min-width:0; background:var(--canvas) !important; color:var(--ink) !important; }
-.page,.operations-page,.accounting-minimal { width:100%; max-width:1500px; }
+.page,.operations-page,.accounting-minimal { width:min(100%,1500px); max-width:1500px; margin-inline:auto; }
+.accounting-minimal { transition:none; }
+.app-shell:not(.sidebar-collapsed) .accounting-minimal { margin-inline:auto; }
+.accounting-titlebar,.accounting-actions,.financial-tabs,.finance-view,.operations-tabs,.operations-panel { width:100%; }
 .panel,.metric,.status-card,.creation-card,.summary-card,.settings-section,.operations-panel,
 .pulse-card,.ledger-balance article,.period-grid article,.accounting-drawer,.minimal-side-nav,
 .utility-menu,.record-dialog,.dialog-compact,dialog { background:var(--surface) !important; color:var(--ink) !important; border-color:var(--line) !important; }
@@ -135,6 +139,15 @@ button,a,input,select,textarea { max-width:100%; }
 .app-shell>*,main>*,section>*,article>* { min-width:0; }
 p,li,dd,dt,small,strong,span,h1,h2,h3,label { overflow-wrap:anywhere; }
 .table-scroll,.financial-tabs,.operations-tabs,.accounting-flow,.accounting-rail nav { scrollbar-color:var(--gold) var(--green-050); }
+
+/* Quiet page rhythm: keep every function while reducing competing decoration. */
+.creation-card,.metric,.summary-card,.status-card,.table-panel,.operations-panel,.settings-section { box-shadow:none !important; }
+.overview-explanation,.panel>p,.operations-panel>p { line-height:1.55; }
+.settings-summary .summary-card img,.operations-summary .summary-card img { display:none; }
+.settings-sections { display:grid; gap:12px !important; }
+.settings-section>summary { min-height:62px; padding-block:16px; }
+.settings-section[open]>summary { border-bottom-color:var(--line); }
+.settings-section:not([open]) { background:transparent !important; }
 
 .appearance-shortcut { display:flex; align-items:center; gap:10px; }
 .appearance-shortcut .binary-setting { min-width:148px; }
