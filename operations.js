@@ -18,3 +18,34 @@ document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListen
 document.querySelectorAll('[data-toast]').forEach(button=>button.addEventListener('click',()=>showToast(button.dataset.toast)));
 document.querySelectorAll('[data-open-dialog]').forEach(button=>button.addEventListener('click',()=>document.querySelector('#'+button.dataset.openDialog)?.showModal()));document.querySelectorAll('[data-close-dialog]').forEach(button=>button.addEventListener('click',()=>button.closest('dialog').close()));document.querySelectorAll('dialog form').forEach(form=>form.addEventListener('submit',event=>{event.preventDefault();if(!form.reportValidity())return;form.closest('dialog').close();form.reset();showToast(form.dataset.success||'Saved successfully.')}));document.addEventListener('keydown',event=>{if((event.metaKey||event.ctrlKey)&&event.key.toLowerCase()==='k'){event.preventDefault();search?.focus()}if(event.key==='Escape'){closeUtility();document.querySelectorAll('dialog[open]').forEach(dialog=>dialog.close())}});
 if(location.hash){const target=document.querySelector(location.hash);if(target)setTimeout(()=>target.scrollIntoView({behavior:'smooth',block:'start'}),100)}
+
+// Accounting workspace view controller
+const accountingViews=[...document.querySelectorAll('[data-accounting-view]')];
+const accountingTriggers=[...document.querySelectorAll('[data-accounting-open]')];
+function openAccountingView(viewName,{updateHash=true,focus=false}={}){
+  const next=accountingViews.find(view=>view.dataset.accountingView===viewName);
+  if(!next)return;
+  accountingViews.forEach(view=>{const active=view===next;view.hidden=!active;view.classList.toggle('is-active',active)});
+  accountingTriggers.forEach(trigger=>{
+    const active=trigger.dataset.accountingOpen===viewName;
+    trigger.classList.toggle('active',active);
+    if(trigger.closest('.accounting-rail')){
+      if(active)trigger.setAttribute('aria-current','page');else trigger.removeAttribute('aria-current');
+    }
+  });
+  if(updateHash)history.replaceState(null,'','#'+viewName);
+  if(focus){next.querySelector('h2')?.setAttribute('tabindex','-1');next.querySelector('h2')?.focus({preventScroll:true});next.scrollIntoView({behavior:'smooth',block:'start'})}
+}
+accountingTriggers.forEach(trigger=>trigger.addEventListener('click',()=>openAccountingView(trigger.dataset.accountingOpen,{focus:true})));
+if(accountingViews.length){
+  const requested=location.hash.slice(1);
+  const valid=accountingViews.some(view=>view.dataset.accountingView===requested);
+  openAccountingView(valid?requested:'overview',{updateHash:false});
+}
+const trendPeriod=document.querySelector('[data-trend-period]');
+trendPeriod?.addEventListener('change',()=>{
+  const months=trendPeriod.value;
+  const description=document.querySelector('.trend-panel .panel-title-row p');
+  if(description)description.textContent=months==='24'?'Monthly history with two-year comparison.':'Monthly history with one-year comparison.';
+  showToast(months==='24'?'Showing the last 24 months.':'Showing the last 12 months.');
+});
