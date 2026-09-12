@@ -1,0 +1,172 @@
+/* Marxia unified minimalist theme, navigation, and zoom-resilient layout. */
+:root {
+  --green-950:#082a24;
+  --green-900:#0b3b32;
+  --green-800:#0b5142;
+  --green-700:#08735d;
+  --green-100:#dcebe5;
+  --green-050:#eef5f2;
+  --gold:#b88a2a;
+  --purple:#5d3f8c;
+  --purple-focus:#7655aa;
+  --ink:#17342e;
+  --muted:#536b63;
+  --line:#bfd0c9;
+  --surface:#ffffff;
+  --canvas:#eef5f2;
+  --cream:#e3eee9;
+  --shadow:0 1px 2px rgba(8,42,36,.06);
+  --minimal-green:var(--green-700);
+  --minimal-dark:var(--green-900);
+  --minimal-ink:var(--ink);
+  --minimal-muted:var(--muted);
+  --minimal-line:var(--line);
+  --minimal-surface:var(--surface);
+  --minimal-soft:var(--canvas);
+  --accounting-green:var(--green-700);
+  --accounting-green-dark:var(--green-900);
+  --accounting-ink:var(--ink);
+  --accounting-muted:var(--muted);
+  --accounting-line:var(--line);
+  --accounting-surface:var(--surface);
+  --accounting-soft:var(--canvas);
+  --accounting-gold:var(--gold);
+}
+
+html { min-width:320px; color-scheme:light; }
+body { overflow-x:hidden; background:var(--canvas) !important; color:var(--ink) !important; }
+body.dark {
+  color-scheme:dark;
+  --green-950:#061d19;
+  --green-900:#0b322a;
+  --green-800:#12483b;
+  --green-700:#69c49f;
+  --green-100:#244a3f;
+  --green-050:#17372f;
+  --gold:#d9b85f;
+  --purple:#b8a0df;
+  --purple-focus:#cbb8eb;
+  --ink:#f1f8f5;
+  --muted:#b9ccc5;
+  --line:#42645a;
+  --surface:#102d27;
+  --canvas:#0b211c;
+  --cream:#1b4036;
+  --minimal-green:var(--green-700);
+  --minimal-dark:var(--green-700);
+  --minimal-ink:var(--ink);
+  --minimal-muted:var(--muted);
+  --minimal-line:var(--line);
+  --minimal-surface:var(--surface);
+  --minimal-soft:var(--canvas);
+  --accounting-green:var(--green-700);
+  --accounting-green-dark:var(--green-700);
+  --accounting-ink:var(--ink);
+  --accounting-muted:var(--muted);
+  --accounting-line:var(--line);
+  --accounting-surface:var(--surface);
+  --accounting-soft:var(--canvas);
+}
+
+.workspace,.page,.accounting-minimal { min-width:0; background:var(--canvas) !important; color:var(--ink) !important; }
+.page,.operations-page,.accounting-minimal { width:100%; max-width:1500px; }
+.panel,.metric,.status-card,.creation-card,.summary-card,.settings-section,.operations-panel,
+.pulse-card,.ledger-balance article,.period-grid article,.accounting-drawer,.minimal-side-nav,
+.utility-menu,.record-dialog,.dialog-compact,dialog { background:var(--surface) !important; color:var(--ink) !important; border-color:var(--line) !important; }
+
+.sidebar { background:var(--surface) !important; color:var(--ink) !important; border-color:var(--line) !important; }
+.sidebar .brand strong,.sidebar .owner-card,.sidebar .owner-card strong { color:var(--ink) !important; }
+.sidebar .brand small,.sidebar .owner-card small,.sidebar .nav-item { color:var(--muted) !important; }
+.sidebar .nav-item:hover,.sidebar .nav-item:focus-visible,.sidebar .nav-item.active,
+.minimal-nav-links a:hover,.minimal-nav-links a:focus-visible,.minimal-nav-links a.active {
+  background:var(--green-050) !important;
+  color:var(--green-800) !important;
+}
+body.dark .sidebar .nav-item:hover,body.dark .sidebar .nav-item:focus-visible,body.dark .sidebar .nav-item.active,
+body.dark .minimal-nav-links a:hover,body.dark .minimal-nav-links a:focus-visible,body.dark .minimal-nav-links a.active {
+  background:var(--green-100) !important;
+  color:var(--ink) !important;
+}
+.nav-item.active,.minimal-nav-links a.active { box-shadow:inset 3px 0 var(--gold) !important; }
+.topbar { background:color-mix(in srgb,var(--surface) 94%,transparent) !important; color:var(--ink); border-color:var(--line) !important; }
+.search,.search input,.utility-action,.utility-profile,.segmented button,.quiet-action,
+.accounting-menu-toggle,.minimal-nav-toggle,.sidebar-slide-toggle { color:var(--ink) !important; }
+.search input::placeholder { color:var(--muted); opacity:1; }
+
+.heading-row p,.as-of,.metric small,.metric span,.summary-card small,.panel p,
+.operations-panel p,.accounting-titlebar h1 span,.metric-heading p,.period-grid small,
+.drawer-scroll b,.settings-section p { color:var(--muted) !important; }
+.metric-link:hover,.creation-card:hover,.obligation-list button:hover { border-color:var(--gold) !important; background:var(--green-050) !important; }
+body.dark .metric-link:hover,body.dark .creation-card:hover,body.dark .obligation-list button:hover { background:var(--green-100) !important; }
+.action.primary,.primary-action,.page-action.primary,.quiet-action.primary,.financial-breakdown .total {
+  background:var(--green-800) !important;
+  border-color:var(--green-800) !important;
+  color:#fff !important;
+}
+body.dark .action.primary,body.dark .primary-action,body.dark .page-action.primary,body.dark .quiet-action.primary {
+  background:#1b684f !important;
+  border-color:#86d1b0 !important;
+}
+.trend-chip,.status-pill,.badge { background:var(--green-100) !important; color:var(--green-800) !important; }
+body.dark .trend-chip,body.dark .status-pill,body.dark .badge { color:var(--ink) !important; }
+.financial-tabs button[aria-selected="true"],.operations-tabs button[aria-selected="true"] { color:var(--green-800) !important; border-color:var(--gold) !important; }
+body.dark .financial-tabs button[aria-selected="true"],body.dark .operations-tabs button[aria-selected="true"] { color:var(--ink) !important; }
+.bar { background:linear-gradient(180deg,var(--green-700),var(--green-900)) !important; }
+.bar:nth-child(4n+2) { box-shadow:inset 0 4px var(--gold); }
+
+:where(a,button,input,select,textarea,[tabindex]):focus-visible {
+  outline:3px solid var(--purple-focus) !important;
+  outline-offset:3px !important;
+}
+.support-button,.utility-menu-toggle,.minimal-nav-toggle,.sidebar-slide-toggle {
+  background:var(--surface) !important;
+  border-color:var(--line) !important;
+  color:var(--green-800) !important;
+}
+body.dark .support-button,body.dark .utility-menu-toggle,body.dark .minimal-nav-toggle,body.dark .sidebar-slide-toggle { color:var(--gold) !important; }
+.utility-menu,.accounting-drawer,.minimal-side-nav,.sidebar { box-shadow:0 18px 46px rgba(4,27,22,.18); }
+.accounting-drawer-backdrop.open { background:rgba(2,17,14,.62); }
+.drawer-scroll button { color:var(--ink) !important; border-color:var(--line) !important; }
+.drawer-scroll button:hover,.drawer-scroll button:focus-visible { background:var(--green-050) !important; color:var(--green-800) !important; }
+body.dark .drawer-scroll button:hover,body.dark .drawer-scroll button:focus-visible { background:var(--green-100) !important; color:var(--ink) !important; }
+
+img,svg,canvas { max-width:100%; }
+button,a,input,select,textarea { max-width:100%; }
+.app-shell>*,main>*,section>*,article>* { min-width:0; }
+p,li,dd,dt,small,strong,span,h1,h2,h3,label { overflow-wrap:anywhere; }
+.table-scroll,.financial-tabs,.operations-tabs,.accounting-flow,.accounting-rail nav { scrollbar-color:var(--gold) var(--green-050); }
+
+.appearance-shortcut { display:flex; align-items:center; gap:10px; }
+.appearance-shortcut .binary-setting { min-width:148px; }
+
+@media (max-width:900px), (min-resolution:2dppx) and (max-width:1400px) {
+  .app-shell { grid-template-columns:minmax(0,1fr) !important; }
+  .sidebar { position:fixed; inset:0 auto 0 0; width:min(260px,86vw); height:100dvh; overflow-y:auto; transform:translateX(-105%); transition:transform .2s ease; }
+  .sidebar.open { left:0; transform:translateX(0); }
+  .app-shell.sidebar-collapsed .sidebar { transform:translateX(-105%); }
+  .page,.operations-page,.accounting-minimal { padding:clamp(16px,3vw,28px) !important; }
+  .topbar { position:sticky; top:0; z-index:100; }
+  .accounting-layout,.operations-grid,.tables-grid,.ledger-grid { grid-template-columns:minmax(0,1fr) !important; }
+  .accounting-rail { position:static !important; width:100%; }
+  .accounting-rail nav { display:flex !important; overflow-x:auto; }
+  .accounting-rail button { flex:0 0 min(210px,72vw); }
+}
+
+@media (max-width:620px) {
+  .topbar { gap:8px; padding-inline:12px; }
+  .heading-row,.accounting-titlebar,.metric-heading,.panel-title-row { align-items:flex-start; flex-direction:column; }
+  .creation-cards,.metric-grid,.status-grid,.operations-summary,.pulse-grid,.ledger-balance,
+  .accounting-cards,.period-grid,.form-grid,.product-form-grid,.field-pair { grid-template-columns:minmax(0,1fr) !important; }
+  .attention-strip { display:flex !important; overflow-x:auto; }
+  .attention-strip button { flex:0 0 min(240px,82vw); }
+  .page-actions,.accounting-actions>div,.dialog-actions { flex-wrap:wrap; }
+  .page-action,.quiet-action { white-space:normal; text-align:center; }
+  .financial-tabs button,.operations-tabs button { flex:0 0 auto; }
+  .chart-panel canvas,.chart-lines { min-height:210px; }
+  .table-scroll { overflow-x:auto; overscroll-behavior-inline:contain; }
+  .appearance-shortcut { width:100%; justify-content:flex-start; }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  *,*::before,*::after { scroll-behavior:auto !important; transition-duration:.01ms !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; }
+}

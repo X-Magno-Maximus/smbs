@@ -59,6 +59,7 @@ const themeLabels=document.querySelectorAll('[data-theme-label]');
 function setTheme(theme,announce=true){
   const dark=theme==='dark';
   document.body.classList.toggle('dark',dark);
+  document.documentElement.dataset.theme=theme;
   themeToggle.setAttribute('aria-checked',String(dark));
   themeLabels.forEach(label=>label.classList.toggle('active',label.dataset.themeLabel===theme));
   try{localStorage.setItem('marxia-theme',theme)}catch(error){}
