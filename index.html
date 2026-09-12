@@ -11,7 +11,26 @@
   <script src="embedded-assets.js"></script><script src="i18n.js?v=20260909-merged-cards-1" defer></script>
   <script src="app.js?v=20260909-merged-cards-1" defer></script>
 <script src="support.js?v=20260907-1" defer></script>
-</head>
+<!-- minimalist-overview-shell --><style>
+:root{--minimal-green:#08735d;--minimal-dark:#064f40;--minimal-ink:#17342e;--minimal-muted:#63766f;--minimal-line:#dce7e2;--minimal-surface:#fff;--minimal-soft:#eef4f1}
+body{background:var(--minimal-soft);color:var(--minimal-ink)}
+.sidebar{width:260px;background:var(--minimal-surface);color:var(--minimal-ink);border-right:1px solid var(--minimal-line);box-shadow:12px 0 34px rgba(3,32,26,.08)}
+.brand{border-bottom:1px solid var(--minimal-line);padding:24px 20px}.brand-mark{background:var(--minimal-dark);color:#fff}.brand strong{color:var(--minimal-ink)}.brand small{color:var(--minimal-muted)}
+.primary-nav{padding:14px;gap:5px}.nav-item{min-height:44px;border-radius:11px;color:var(--minimal-muted);padding:0 14px}.nav-item img{display:none}.nav-item:hover,.nav-item:focus-visible{background:var(--minimal-soft);color:var(--minimal-dark)}.nav-item.active{background:var(--minimal-soft);color:var(--minimal-dark);box-shadow:inset 3px 0 var(--minimal-green)}
+.owner-card{margin:14px;background:transparent;border:1px solid var(--minimal-line);color:var(--minimal-ink);box-shadow:none}.owner-card small{color:var(--minimal-muted)}
+.sidebar-slide-toggle{background:var(--minimal-surface);border-color:var(--minimal-line);color:var(--minimal-dark);box-shadow:none}
+.workspace{background:var(--minimal-soft)}.topbar{background:rgba(255,255,255,.92);border-bottom:1px solid var(--minimal-line);box-shadow:none}.search{border:1px solid var(--minimal-line);box-shadow:none;border-radius:12px}.support-button,.utility-menu-toggle{background:var(--minimal-surface);border:1px solid var(--minimal-line);color:var(--minimal-dark);box-shadow:none}
+.page{max-width:1500px;margin:0 auto;padding:clamp(24px,3vw,48px)}.heading-row{align-items:end;margin-bottom:22px}.heading-row h1{font-family:inherit;font-size:clamp(2.1rem,4vw,3.8rem);line-height:1;letter-spacing:-.045em;color:var(--minimal-ink)}.heading-row p,.as-of{color:var(--minimal-muted)}
+.creation-cards{gap:12px}.creation-card,.panel,.status-card,.metric,.overview-detail-card{background:var(--minimal-surface);border:1px solid var(--minimal-line);box-shadow:none;border-radius:18px}.creation-card{padding:22px}.creation-card img{display:none}.creation-card:hover{border-color:var(--minimal-green);transform:none}
+.chart-panel{border-radius:20px;padding:clamp(20px,2.6vw,34px);box-shadow:none}.chart-panel h2{font-size:clamp(1.35rem,2vw,2rem);letter-spacing:-.025em}
+.attention-strip{gap:1px;border:1px solid var(--minimal-line);border-radius:18px;overflow:hidden;background:var(--minimal-line)}.attention-strip button{border:0;border-radius:0;background:var(--minimal-surface);box-shadow:none}
+.metric-grid{gap:1px;border:1px solid var(--minimal-line);border-radius:18px;overflow:hidden;background:var(--minimal-line)}.metric{border:0;border-radius:0}.metric-link:hover{transform:none;background:#f7fbf9}
+.status-grid{gap:12px}.status-card{padding:24px}.tables-grid{gap:16px}.table-panel{box-shadow:none;border:1px solid var(--minimal-line);border-radius:18px}
+.primary-action{background:var(--minimal-dark);border-color:var(--minimal-dark);border-radius:999px}.utility-menu{border-color:var(--minimal-line);box-shadow:0 20px 50px rgba(3,32,26,.14)}
+html[data-theme=dark]{--minimal-ink:#edf7f3;--minimal-muted:#a9bbb4;--minimal-line:#31524a;--minimal-surface:#102d27;--minimal-soft:#173b33}
+@media(max-width:900px){.page{padding:20px 16px}.sidebar{box-shadow:18px 0 50px rgba(3,32,26,.22)}.metric-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.heading-row h1{font-size:2.15rem}.creation-cards,.metric-grid{grid-template-columns:1fr}.attention-strip{display:flex;overflow-x:auto}.attention-strip button{min-width:230px}.status-grid{grid-template-columns:1fr}}
+</style></head>
 <body>
   <div class="app-shell">
     <aside class="sidebar" id="sidebar" aria-label="Primary navigation">
