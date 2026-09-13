@@ -649,3 +649,17 @@ Totals: 12 staff records (11 employees plus 1 independent contractor), 9 active,
 Business fields use explicit sample values and example.com emails. Activity is fixed to September 8, 2026, with UTC−05:00 timestamps, branch, device, approximate location and session state. Invited/pending people have no login. Read-only review links open the exact directory record, including when its enclosing section is collapsed. Old unrelated static table entries and role request controls have been replaced with these linked examples. No notifications are sent; audit messages state sample only. The dataset does not create accounts, issue credentials or authorize staff. In-memory permission drafts remain temporary; original unrelated form workflows are not connected to a live backend.
 
 Verification: unique IDs/emails, all request and audit person references, pending-request audit references, role totals, staff totals, empty privileged grants, sample session consistency and JavaScript syntax checked. Browser visual/interaction verification pending.
+## Internationalization maintenance
+
+The dashboard uses `i18n.js` for English and Spanish interface copy. The selected language is shared through the `marxia-language` browser preference so navigation between compatible Marxia applications remains consistent.
+
+Translation coverage includes static page copy, dialog content, dynamic status text, placeholders, tooltips, and accessibility labels. Business-entered names, product names, SKUs, addresses, emails, order references, currency values, and identifiers remain unchanged.
+
+When adding interface copy:
+
+1. Add an exact English source string and its neutral Ecuador-appropriate Spanish translation to the `es` dictionary in `i18n.js`.
+2. Keep operational or user-entered data outside the dictionary.
+3. For dynamic messages, use stable templates or add the final rendered forms to the translation logic.
+4. Test English → Spanish → English without reload and after a reload.
+5. Verify layouts at mobile, tablet, desktop, and browser zoom up to 250%.
+6. Check visible copy plus `placeholder`, `title`, `aria-label`, dialog, toast, and asynchronously inserted content.
