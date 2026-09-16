@@ -27,6 +27,33 @@ body{background:var(--minimal-soft);color:var(--minimal-ink)}
 .metric-grid{gap:1px;border:1px solid var(--minimal-line);border-radius:18px;overflow:hidden;background:var(--minimal-line)}.metric{border:0;border-radius:0}.metric-link:hover{transform:none;background:#f7fbf9}
 .status-grid{gap:12px}.status-card{padding:24px}.tables-grid{gap:16px}.table-panel{box-shadow:none;border:1px solid var(--minimal-line);border-radius:18px}
 .primary-action{background:var(--minimal-dark);border-color:var(--minimal-dark);border-radius:999px}.utility-menu{border-color:var(--minimal-line);box-shadow:0 20px 50px rgba(3,32,26,.14)}
+
+/* Unified minimalist Dashboard hierarchy */
+.page{max-width:1500px;color:var(--minimal-ink)}
+.heading-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:28px;margin-bottom:0;padding-bottom:20px;border-bottom:2px solid var(--minimal-green)}
+.heading-row h1{margin:0;line-height:.94}
+.heading-row h1 span{display:block;margin-top:6px;font-weight:430;color:var(--minimal-muted)}
+.heading-row p{margin:12px 0 0;font-size:1rem}
+.as-of{display:grid;gap:7px;text-align:right;padding-bottom:4px;font-size:.84rem}.as-of strong{color:var(--minimal-ink)}
+.creation-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;margin:18px 0 0;border:1px solid var(--minimal-line);border-radius:18px;overflow:hidden;background:var(--minimal-line)}
+.creation-card{min-height:112px;border:0;border-radius:0;padding:22px 24px;box-shadow:none}
+.creation-card span{display:grid;gap:7px}.creation-card strong{font-size:1.2rem}.creation-card small{color:var(--minimal-muted);line-height:1.45}.creation-card>b{font-size:1.5rem;color:var(--minimal-green)}
+.chart-panel{margin-top:14px;padding:0;overflow:hidden;border-radius:18px}
+.chart-panel .panel-heading{min-height:76px;padding:18px clamp(18px,2.2vw,28px);border-bottom:1px solid var(--minimal-line);display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.chart-panel .panel-heading h2{margin:0;font-size:1.3rem}.chart-panel .legend{margin-left:auto}.chart-panel select{min-height:42px;border-color:var(--minimal-line);border-radius:10px;background:var(--minimal-surface);color:var(--minimal-ink)}
+.chart-panel canvas{display:block;width:100%!important;height:clamp(270px,30vw,380px)!important;padding:18px clamp(12px,2vw,24px) 8px}
+.chart-panel>small{display:block;padding:10px clamp(18px,2.2vw,28px) 16px;border-top:1px solid var(--minimal-line);color:var(--minimal-muted)}
+.overview-layout{margin-top:14px}.main-column{display:grid;gap:14px}
+.attention-strip{display:grid;grid-template-columns:repeat(3,1fr);margin:0}
+.attention-strip button{min-height:126px;padding:20px 22px;display:grid;grid-template-columns:auto 1fr;align-content:start;gap:8px 12px;text-align:left}
+.attention-strip button img{display:none}.attention-strip button span{display:grid;grid-template-columns:auto 1fr;align-items:baseline;gap:5px 10px}.attention-strip button span b{font-size:1.7rem;grid-row:1 / span 2}.attention-strip button span strong{font-size:1rem}.attention-strip button span small{color:var(--minimal-muted)}.attention-strip .card-explanation{grid-column:1/-1;color:var(--minimal-muted);line-height:1.4}
+.metric-grid{display:grid;grid-template-columns:repeat(4,minmax(150px,1fr));margin:0}
+.metric{min-height:150px;padding:22px 24px;display:grid;align-content:start;gap:10px}.metric img{display:none}.metric>div{display:grid;gap:8px}.metric>div>small{color:var(--minimal-muted);font-weight:750}.metric strong{font-size:clamp(1.45rem,2.4vw,2rem);letter-spacing:-.035em}.metric .card-explanation{color:var(--minimal-muted);line-height:1.4}
+.status-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:0}
+.status-card{padding:0;overflow:hidden}.status-card>h2{margin:0;padding:20px 22px 16px;border-bottom:1px solid var(--minimal-line);font-size:1.18rem}.status-card>ul,.status-card>dl,.status-card>.progress-copy,.status-card>progress,.status-card>small,.status-card>.status-card-link,.status-card>details{margin-left:22px;margin-right:22px}.status-card>ul,.status-card>dl{margin-top:18px}.status-card dl div{min-height:46px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:14px;border-bottom:1px solid var(--minimal-line)}.status-card dt{color:var(--minimal-muted)}.status-card dd{margin:0;font-weight:780}.status-card>.status-card-link,.status-card>details{display:block;margin-top:16px}.overview-explanation{margin:18px 0 0!important;padding:16px 22px;border-top:1px solid var(--minimal-line);color:var(--minimal-muted);line-height:1.45;background:color-mix(in srgb,var(--minimal-soft) 65%,transparent)}
+.tables-grid{display:grid;grid-template-columns:1fr;gap:14px;margin:0}.table-panel{padding:0;overflow:hidden}.table-panel .panel-heading{min-height:70px;padding:18px 22px;border-bottom:1px solid var(--minimal-line)}.table-panel .panel-heading h2{margin:0;font-size:1.18rem}.table-panel .table-scroll{margin:0}.table-panel table{min-width:760px}.table-panel th{background:var(--minimal-soft);color:var(--minimal-muted);font-size:.75rem;letter-spacing:.04em;text-transform:uppercase}.table-panel th,.table-panel td{padding:14px 18px;border-color:var(--minimal-line)}.table-panel tbody tr:hover{background:color-mix(in srgb,var(--minimal-soft) 68%,transparent)}
+@media(max-width:1000px){.heading-row{grid-template-columns:1fr}.as-of{text-align:left}.metric-grid{grid-template-columns:repeat(2,1fr)}.status-grid{grid-template-columns:1fr}.chart-panel canvas{height:330px!important}}
+@media(max-width:650px){.creation-cards,.metric-grid{grid-template-columns:1fr}.attention-strip{display:flex;overflow-x:auto}.attention-strip button{min-width:250px}.heading-row h1{font-size:2.15rem}.chart-panel canvas{height:270px!important}.chart-panel .legend{order:3;width:100%;margin-left:0}}
 html[data-theme=dark]{--minimal-ink:#edf7f3;--minimal-muted:#a9bbb4;--minimal-line:#31524a;--minimal-surface:#102d27;--minimal-soft:#173b33}
 @media(max-width:900px){.page{padding:20px 16px}.sidebar{box-shadow:18px 0 50px rgba(3,32,26,.22)}.metric-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:540px){.heading-row h1{font-size:2.15rem}.creation-cards,.metric-grid{grid-template-columns:1fr}.attention-strip{display:flex;overflow-x:auto}.attention-strip button{min-width:230px}.status-grid{grid-template-columns:1fr}}
@@ -91,7 +118,7 @@ html[data-theme=dark]{--minimal-ink:#edf7f3;--minimal-muted:#a9bbb4;--minimal-li
 
       <div class="page">
         <section class="heading-row">
-          <div><h1>Good morning, Gabriel</h1><p>Here's what's happening across your business.</p></div>
+          <div><h1>Good morning, Gabriel <span>Overview</span></h1><p>Here's what's happening across your business.</p></div>
           <div class="as-of"><strong>Today is Friday, September 4, 2026</strong><span>Data as of 8:00 AM local time</span></div>
         </section>
 
