@@ -54,6 +54,17 @@ body{background:var(--minimal-soft);color:var(--minimal-ink)}
 .tables-grid{display:grid;grid-template-columns:1fr;gap:14px;margin:0}.table-panel{padding:0;overflow:hidden}.table-panel .panel-heading{min-height:70px;padding:18px 22px;border-bottom:1px solid var(--minimal-line)}.table-panel .panel-heading h2{margin:0;font-size:1.18rem}.table-panel .table-scroll{margin:0}.table-panel table{min-width:760px}.table-panel th{background:var(--minimal-soft);color:var(--minimal-muted);font-size:.75rem;letter-spacing:.04em;text-transform:uppercase}.table-panel th,.table-panel td{padding:14px 18px;border-color:var(--minimal-line)}.table-panel tbody tr:hover{background:color-mix(in srgb,var(--minimal-soft) 68%,transparent)}
 @media(max-width:1000px){.heading-row{grid-template-columns:1fr}.as-of{text-align:left}.metric-grid{grid-template-columns:repeat(2,1fr)}.status-grid{grid-template-columns:1fr}.chart-panel canvas{height:330px!important}}
 @media(max-width:650px){.creation-cards,.metric-grid{grid-template-columns:1fr}.attention-strip{display:flex;overflow-x:auto}.attention-strip button{min-width:250px}.heading-row h1{font-size:2.15rem}.chart-panel canvas{height:270px!important}.chart-panel .legend{order:3;width:100%;margin-left:0}}
+
+/* Viewport-safe account and logout controls */
+.sidebar{height:100dvh;min-height:0;overflow:hidden}
+.primary-nav{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
+.sidebar-account-footer{flex:0 0 auto;margin-top:auto;padding:10px 14px 14px;border-top:1px solid var(--minimal-line);background:var(--minimal-surface)}
+.sidebar-account-footer .owner-card{width:100%;min-height:62px;margin:0;padding:9px 11px;border-radius:12px}
+.sidebar-account-footer .owner-card img{width:38px;height:38px}
+.sidebar-logout{width:100%;min-height:44px;margin-top:6px;padding:0 12px;display:flex;align-items:center;justify-content:space-between;border:1px solid transparent;border-radius:10px;background:transparent;color:var(--minimal-muted);font:inherit;font-weight:760;cursor:pointer}
+.sidebar-logout:hover,.sidebar-logout:focus-visible{background:var(--minimal-soft);border-color:var(--minimal-line);color:var(--minimal-dark)}
+.sidebar-logout b{font-size:1.25rem}.logout-menu-action{margin-top:4px;border-top:1px solid var(--minimal-line)!important;color:var(--minimal-muted)!important}.logout-menu-action:hover,.logout-menu-action:focus-visible{color:var(--minimal-dark)!important;background:var(--minimal-soft)!important}
+@media(max-height:720px) and (min-width:901px){.brand{padding-block:16px}.primary-nav{padding-block:8px}.nav-item{min-height:40px}.sidebar-account-footer{padding-top:8px;padding-bottom:8px}.sidebar-account-footer .owner-card{min-height:56px}.sidebar-account-footer .owner-card img{width:34px;height:34px}.sidebar-logout{min-height:40px}}
 html[data-theme=dark]{--minimal-ink:#edf7f3;--minimal-muted:#a9bbb4;--minimal-line:#31524a;--minimal-surface:#102d27;--minimal-soft:#173b33}
 @media(max-width:900px){.page{padding:20px 16px}.sidebar{box-shadow:18px 0 50px rgba(3,32,26,.22)}.metric-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:540px){.heading-row h1{font-size:2.15rem}.creation-cards,.metric-grid{grid-template-columns:1fr}.attention-strip{display:flex;overflow-x:auto}.attention-strip button{min-width:230px}.status-grid{grid-template-columns:1fr}}
@@ -76,10 +87,13 @@ html[data-theme=dark]{--minimal-ink:#edf7f3;--minimal-muted:#a9bbb4;--minimal-li
         <button class="nav-item" data-page="Reports"><img src="assets/reports.webp" alt=""><span>Reports</span></button>
         <a class="nav-item" href="settings-access.html"><img src="assets/settings.webp" alt=""><span>Settings &amp; Access</span></a>
       </nav>
-      <button class="owner-card" type="button" data-page="Profile">
-        <img src="assets/avatar.webp" alt="">
-        <span><strong>Gabriel Salazar</strong><small>Owner</small></span>
-      </button>
+      <div class="sidebar-account-footer">
+        <button class="owner-card" type="button" data-page="Profile">
+          <img src="assets/avatar.webp" alt="">
+          <span><strong>Gabriel Salazar</strong><small>Owner</small></span>
+        </button>
+        <button class="sidebar-logout" type="button" data-logout aria-label="Log out of Marxia"><span>Log out</span><b aria-hidden="true">›</b></button>
+      </div>
     </aside>
     <button class="sidebar-slide-toggle" id="sidebarSlideToggle" type="button" aria-controls="sidebar" aria-expanded="true" aria-label="Close navigation menu">&lt;</button>
 
@@ -111,6 +125,7 @@ html[data-theme=dark]{--minimal-ink:#edf7f3;--minimal-muted:#a9bbb4;--minimal-li
                   <span data-language-label="es">Spanish</span>
                 </div>
               </section>
+              <button class="utility-action logout-menu-action" type="button" data-logout aria-label="Log out of Marxia">Log out</button>
             </nav>
           </div>
         </div>
@@ -239,6 +254,14 @@ html[data-theme=dark]{--minimal-ink:#edf7f3;--minimal-muted:#a9bbb4;--minimal-li
     </form>
   </dialog>
 
+  <script>
+    document.querySelectorAll('[data-logout]').forEach(button=>button.addEventListener('click',()=>{
+      const utilityMenu=document.getElementById('utilityMenu'),utilityToggle=document.getElementById('utilityMenuToggle'),toast=document.getElementById('toast');
+      if(utilityMenu){utilityMenu.hidden=true;utilityToggle?.setAttribute('aria-expanded','false')}
+      window.dispatchEvent(new CustomEvent('marxia:logout',{detail:{source:button.classList.contains('sidebar-logout')?'sidebar':'utility-menu'}}));
+      if(toast){toast.textContent='Log out selected. Secure session termination will complete when identity services are connected.';toast.classList.add('show');window.setTimeout(()=>toast.classList.remove('show'),3600)}
+    }));
+  </script>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
